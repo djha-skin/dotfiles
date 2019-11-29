@@ -1,0 +1,13 @@
+[user]
+	email = djhaskin987@gmail.com
+	name = Daniel Jay Haskin
+[push]
+	default = simple
+[sendemail]
+	annotate = yes
+	smtpEncryption = tls
+	smtpServer = smtp.gmail.com
+	smtpUser = djhaskin987@gmail.com
+	smtpServerPort = 587
+[credential]
+	helper = cache --timeout 14400
