@@ -1,0 +1,99 @@
+! $Id$
+
+URxvt*perl-lib: /home/djhaskin987/.urxvt.d
+URxvt*perl-ext-common: keyboard-select,url-select,clipboard,start-command,fullscreen
+URxvt*startCommand: screen -dRR -S ergo -t djh987
+
+URxvt*iso14755:     false
+URxvt*iso14755_52:  false
+
+!h/j/k/l:    Move cursor left/down/up/right (also with arrow keys)
+!g/G/0/^/$/H/M/L/f/F/;/,/w/W/b/B/e/E: More vi-like cursor movement keys
+!'/'/?:      Start forward/backward search
+!n/N:        Repeat last search, N: in reverse direction
+!Ctrl-f/b:   Scroll down/up one screen
+!Ctrl-d/u:   Scroll down/up half a screen
+!v/V/Ctrl-v: Toggle normal/linewise/blockwise selection
+!y/Return:   Copy selection to primary buffer, Return: deactivate afterwards
+!q/Escape:   Deactivate keyboard selection mode
+URxvt*keysym.M-Escape: perl:keyboard-select:activate
+URxvt*keysym.M-s: perl:keyboard-select:search
+URxvt*keysym.F11: perl:fullscreen:switch
+
+!j/k:      Select next downward/upward URL (also with arrow keys)
+!g/G:      Select first/last URL (also with home/end key)
+!o/Return: Open selected URL in browser, Return: deactivate afterwards
+!y:        Copy (yank) selected URL and deactivate selection mode
+!q/Escape: Deactivate URL selection mode
+URxvt*keysym.M-u: perl:url-select:select_next
+URxvt*urlLauncher:   firefox
+URxvt*underlineURLs: true
+URvxt.urlButton:     3
+
+URxvt*keysym.Mod4-c:   perl:clipboard:copy
+URxvt*keysym.Mod4-v:   perl:clipboard:paste
+URxvt*keysym.Mod4-S-v:   perl:clipboard:paste_escaped
+!You can also overwrite the system commands to use for copying/pasting.
+!The default ones are:
+!URxvt*copyCommand:  xsel -ib
+!URxvt*pasteCommand: xsel -ob
+URxvt*copyCommand:  xclip -i -selection clipboard
+URxvt*pasteCommand: xclip -o -selection clipboard
+URxvt*smoothResize:     True
+
+! load color-specific resources for clients that have them
+URxvt*termName: rxvt-256color
+URxvt*scrollBar_right: false
+!URxvt*borderLess: true
+URxvt*font: xft:FreeMono:pixelsize=24
+URxvt*boldFont: xft:FreeMono:bold:pixelsize=24
+URxvt*foreground: white
+URxvt*background: black
+URxvt*title: "Too close for missles, I'm switching to guns."
+URxvt*border: 0
+URxvt*scrollBar: false
+URxvt*geometry: resolution
+URxvt*inheritPixmap:    false
+URxvt*transparent:      false
+URxvt*borderColor: #000000
+URxvt*color4: RoyalBlue
+URxvt*internalBorder: 7
+
+URxvt*allowSendEvents: true
+
+Emacs*font: Courier 10 Pitch:pixelsize=12:foundry=bitstream:weight=normal:slant=normal:width=normal:spacing=100:scalable=true
+
+#ifdef COLOR
+xterm*customization: -color
+#endif
+xterm*foreground: white
+xterm*background: black
+!xterm*metaSendsEscape: true
+xterm*faceName: Courier 10 Pitch
+xterm*faceSize: 12
+xterm*scrollbar: false
+xterm*border: 0
+!xterm*title: "Too close for missles, I'm switching to guns."
+!xterm*VT100.geometry:       80x50
+xterm*fullscreen: true
+xterm*allowSendEvents: true
+! {{{ Quick Reference
+!
+! Scrolling:
+! Scroll Wheel
+! Shift-PgUp/PgDn
+!  ! Copy/Paste:
+! Mouse-Select : Copy to PRIMARY
+! Shift + Mouse-Select: Copy to CLIPBOARD
+!
+! Middle-Click : Paste from PRIMARY
+! Shift + Middle-Click: Paste from CLIPBOARD
+!
+! Ctrl+Shift+V : Paste from CLIPBOARD
+! Ctrl+Alt+Shift+V : Paste from PRIMARY
+!
+! }}}
+
+! More Konsole/Yakuake-like keybindings:
+URxvt*VT100.Translations: #override \
+Ctrl Shift =: string(0x1b) string("[z2a")

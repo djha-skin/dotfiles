@@ -1,0 +1,27 @@
+hardstatus alwayslastline "%{=b}%{G} Screen(s): %{b}%w %=%{G}%C%A  "
+caption always "%{= kC}%n (%t)"
+#rendition so "= dd"
+startup_message off
+msgwait 1
+bindkey -k k7 detach
+bindkey -k k8 kill
+bindkey -k k; screen
+bindkey -k k9 title
+bindkey -k F1 prev
+bindkey -k F2 next
+bind \" select
+bind ( focus up
+bind ) focus down
+bind ; resize -4
+bind \' resize +4
+bind = resize =
+bind [ copy
+bind ] paste .
+bind / eval "clear" "scrollback 0" "scrollback 5000"
+bind \\ focus next
+defscrollback 5000
+bell off
+vbell off
+bell_msg ""
+term screen-256color
+shell -$SHELL
