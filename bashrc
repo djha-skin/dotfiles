@@ -5,7 +5,10 @@ then
     . ${HOME}/.profile
 fi
 
-. ${HOME}/.pijulconfig/bash
+if [ -e ${HOME}/.pijulconfig/bash ]
+then
+    . ${HOME}/.pijulconfig/bash
+fi
 
 [ -z "$PS1" ] && return
 export PS1='[ \u@\h:\w ]$ '

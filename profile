@@ -150,13 +150,16 @@ else
     done
 fi
 
-for i in $(ls -1A ${HOME}/.gem/ruby)
-do
-    if [ -d "${HOME}/.gem/ruby/${i}/bin" ]
-    then
-        export PATH="${HOME}/.gem/ruby/${i}/bin:${PATH}"
-    fi
-done
+if [ -d ${HOME}/.gem/ruby ]
+then
+    for i in $(ls -1A ${HOME}/.gem/ruby)
+    do
+        if [ -d "${HOME}/.gem/ruby/${i}/bin" ]
+        then
+            export PATH="${HOME}/.gem/ruby/${i}/bin:${PATH}"
+        fi
+    done
+fi
 
 export PATH="${home_bindir}:${HOME}/bin:${HOME}/usr/bin:${PATH}"
 
