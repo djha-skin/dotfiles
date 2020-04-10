@@ -54,11 +54,12 @@ hi Comment          guifg=#c0c0c0 ctermfg=lightgrey
 hi Special          guifg=#ff0000 ctermfg=white cterm=bold gui=bold
 hi PreProc          guifg=#80ff80 ctermfg=lightgreen
 hi Type             guifg=#00ff00 ctermfg=green
-hi Statement        guifg=#8080ff ctermfg=lightblue
+hi Statement        guifg=#ff8080 ctermfg=yellow
 hi Constant         guifg=#ff0000 ctermfg=magenta
-hi Operator         guifg=#ffff00 ctermfg=yellow
-hi Identifier       guifg=#00ffff ctermfg=cyan
+hi Operator         guifg=#ffff00 ctermfg=red
+hi Identifier       guifg=#00ffff ctermfg=darkcyan
 hi ColorColumn      guifg=#ff0000 ctermfg=red cterm=bold gui=bold
+hi Delimiter        guifg=#0000ff ctermfg=blue cterm=bold gui=bold
 
 hi link ErrorMsg Error
 hi link TODO Error
@@ -85,7 +86,6 @@ hi link Structure Type
 hi link Typedef Type
 hi link Tag Identifier
 hi link SpecialChar Special
-hi link Delimiter Operator
 hi link SpecialComment Special
 hi link Debug  Special
 " suggested by tigmoid, 2008 Jul 18
@@ -93,3 +93,18 @@ hi Pmenu guifg=#c0c0c0 guibg=#404080
 hi PmenuSel guifg=#c0c0c0 guibg=#2050d0
 hi PmenuSbar guifg=blue guibg=darkgray
 hi PmenuThumb guifg=#c0c0c0
+
+hi clear OverLength
+hi clear ExtraWhitespace
+
+match OverLength '\%>80v.\+'
+match ExtraWhitespace '\s\+\%#\@<!$'
+
+hi ExtraWhitespace ctermbg=red guibg=red
+hi link OverLength ColorColumn
+
+" cursorline, but bold not underlined
+highlight clear CursorLine
+highlight CursorLine gui=bold cterm=bold
+highlight clear cursorline
+highlight cursorline gui=bold cterm=bold

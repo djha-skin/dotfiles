@@ -1,3 +1,5 @@
+"execute pathogen#infect()
+
 " DIE, BELL
 set noeb vb t_vb=
 
@@ -17,7 +19,6 @@ if has('win32unix')
     "Cygwin options
     "set backspace=2
     "if that doesn't work, try this:
-    colorscheme pablo
     set backspace=indent,eol,start
 "http://superuser.com/a/194718/91022
 "elseif has('mac')
@@ -26,9 +27,8 @@ if has('win32unix')
 "...
 elseif has('unix')
     set background=dark
-    colorscheme simple
 endif
-
+colorscheme simple
 syntax enable
 
 "au BufWinEnter * let w:m2=matchadd('ErrorMsg', '/\%>80v.\+/', -1)
@@ -41,23 +41,14 @@ endif
 let b:slime_config = {"sessionname": "ergo", "windowname": "repl"}
 let g:slime_paste_file = "$HOME/.slime_paste"
 
-hi clear OverLength
-hi clear ExtraWhitespace
-hi ExtraWhitespace ctermbg=red guibg=red
-hi link OverLength Error
 
-"let g:solarized_contrast="high"
-"colorscheme solarized
-"highlight Normal guibg=Black ctermbg=black
 set expandtab
 set tabstop=4
 set shiftwidth=4
 set number
 set ruler
 set modeline
-" cursorline, but bold not underlined
 set cursorline
-highlight Cursorline cterm=bold
 
 set viminfo='20,\"1000
 set pastetoggle=<F3>
@@ -126,8 +117,6 @@ let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
-match OverLength '\%>80v.\+'
-2match ExtraWhitespace '\s\+\%#\@<!$'
 
 if has("gui_running")
   if has("gui_gtk2")
@@ -144,3 +133,4 @@ if has("gui_running")
     set guifont=Courier_New_Regular:h14:cDEFAULT
   endif
 endif
+
