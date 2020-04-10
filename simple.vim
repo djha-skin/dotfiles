@@ -43,23 +43,24 @@ hi clear SpecialComment
 hi clear Debug
 
 hi Normal  guifg=#ffffff guibg=#000000 ctermfg=white
-hi Error term=underline guifg=#ff0000 guibg=#000000 ctermfg=red ctermbg=black gui=bold cterm=bold
+hi Error term=underline guifg=#ff0000 guibg=#000000 ctermfg=red ctermbg=black gui=underline cterm=underline
 hi Visual  gui=reverse cterm=reverse
 hi Search  guifg=#f8f888 guibg=#0000ff ctermfg=lightblue ctermbg=blue cterm=bold term=bold
 hi Folded guifg=#808080 guibg=#404040   ctermfg=darkgrey ctermbg=black cterm=bold term=bold
 
-hi Constant         guifg=#ff0000 ctermfg=magenta term=bold gui=bold cterm=bold
-hi PreProc          guifg=#ff00ff ctermfg=cyan
-hi Include          guifg=#ffff00 ctermfg=yellow
-hi Statement        guifg=#0000ff ctermfg=blue gui=bold cterm=bold
-hi Operator         guifg=#00ffff ctermfg=darkcyan gui=bold cterm=bold
-hi Type             guifg=#008080 ctermfg=green gui=bold cterm=bold
+"gui=bold cterm=bold
+
 hi Comment          guifg=#c0c0c0 ctermfg=lightgrey
-hi Identifier       guifg=#00ff00 ctermfg=green gui=bold cterm=bold
-hi Special          guifg=#ffffff ctermfg=white gui=bold cterm=bold
+hi Special          guifg=#ff0000 ctermfg=white cterm=bold gui=bold
+hi PreProc          guifg=#80ff80 ctermfg=lightgreen
+hi Type             guifg=#00ff00 ctermfg=green
+hi Statement        guifg=#8080ff ctermfg=lightblue
+hi Constant         guifg=#ff0000 ctermfg=magenta
+hi Operator         guifg=#ffff00 ctermfg=yellow
+hi Identifier       guifg=#00ffff ctermfg=cyan
+hi ColorColumn      guifg=#ff0000 ctermfg=red cterm=bold gui=bold
 
 hi link ErrorMsg Error
-hi link ColorColumn Error
 hi link TODO Error
 hi link VisualNOS Visual
 hi link IncSearch Search
@@ -72,19 +73,19 @@ hi link String Constant
 hi link Character Constant
 hi link Number Constant
 hi link Boolean Constant
-hi link Float  Number
+hi link Float Number
 hi link Conditional Repeat
 hi link Exception Statement
 hi link Include PreProc
 hi link Define PreProc
-hi link Macro  PreProc
+hi link Macro PreProc
 hi link PreCondit PreProc
 hi link StorageClass Type
 hi link Structure Type
 hi link Typedef Type
-hi link Tag  Identifier
+hi link Tag Identifier
 hi link SpecialChar Special
-hi link Delimiter Special
+hi link Delimiter Operator
 hi link SpecialComment Special
 hi link Debug  Special
 " suggested by tigmoid, 2008 Jul 18
