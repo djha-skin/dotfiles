@@ -1,0 +1,16 @@
+set autoindent
+set backup
+set cut
+set fill 80
+set historylog
+set multibuffer
+set preserve
+set regexp
+set smooth
+set speller "aspell -C"
+set suspend
+set tabsize 4
+set tempfile
+set wordbounds
+set tabstospaces
+set const

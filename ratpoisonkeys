@@ -1,0 +1,7 @@
+bind c exec urxvt
+bind P exec pidgin
+bind j focus
+bind f exec .local/bin/enter-password
+bind B exec firefox
+bind e exec djh987-emacs
+#definekey top F12 exec scrot -u -d 2 screen.png

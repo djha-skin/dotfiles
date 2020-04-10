@@ -1,0 +1,30 @@
+bind C-j ratclick 1
+bind C-k ratclick 2
+bind C-l ratclick 3
+definekey top M-j ratrelwarp 0 16
+definekey top M-k ratrelwarp 0 -16
+definekey top M-h ratrelwarp -16 0
+definekey top M-l ratrelwarp 16 0
+definekey top M-y ratrelwarp -16 -16
+definekey top M-u ratrelwarp 16 -16
+definekey top M-b ratrelwarp -16 16
+definekey top M-n ratrelwarp 16 16
+
+definekey top M-J ratrelwarp 0 256
+definekey top M-K ratrelwarp 0 -256
+definekey top M-H ratrelwarp -256 0
+definekey top M-L ratrelwarp 256 0
+definekey top M-Y ratrelwarp -256 -256
+definekey top M-U ratrelwarp 256 -256
+definekey top M-B ratrelwarp -256 256
+definekey top M-N ratrelwarp 256 256
+
+definekey top F10 ratclick 1
+definekey top F11 ratclick 2
+definekey top F12 ratclick 3
+definekey top M-i rathold down 1
+definekey top M-o rathold down 2
+definekey top M-p rathold down 3
+definekey top M-I rathold up 1
+definekey top M-O rathold up 2
+definekey top M-P rathold up 3

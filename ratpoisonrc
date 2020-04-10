@@ -1,0 +1,11 @@
+startup_message off
+set font Mono-10
+set bargravity nw
+set bgcolor cyan
+exec rpws -i
+exec /usr/bin/rpws init 4 -k
+exec wmname LG3D
+source .ratpoisonkeys
+#source .ratpoisonmouse
+set winname class
+set border 0

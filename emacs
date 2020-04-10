@@ -1,0 +1,324 @@
+;; My custom stuff
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+
+(require 'package)
+
+;; Packages first, that way the rest of the file works
+;;(add-to-list 'package-archives
+;;                 '("marmalade" .
+;;                         "http://marmalade-repo.org/packages/"))
+
+(add-to-list 'package-archives
+                 '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives
+                 '("gnu" . "http://elpa.gnu.org/packages/") t)
+
+(package-initialize)
+
+;; Why would they even HAVE this lever
+(setq ring-bell-function 'ignore)
+
+;; Enhance the operation of incremental searching.
+;; -----------------------------------------------
+;; The following lines force emacs incremental searches to pop up a small
+;; window when doing incremental searches.  Under most circumstances this
+;; is desireable because it reduces the length of screen refreshes during
+;; incremental searches.
+
+(setq search-slow-speed 38399)
+(setq search-slow-window-lines 10)
+
+;; This is needed on Mac OS X
+(exec-path-from-shell-initialize)
+
+;; Mac OS X steals this.
+(setenv "SSH_AUTH_SOCK"
+        (let ((gpg-agent-possibilities
+                (list
+                  (concat "/run/user/"
+                          (number-to-string
+                            (user-real-uid))
+                          "/gnupg/S.gpg-agent.ssh")
+                  (concat (getenv "HOME")
+                          "/.gnupg/S.gpg-agent.ssh"))))
+          (let ((candidate (car gpg-agent-possibilities)))
+            (while (and (not (null gpg-agent-possibilities))
+                        (not (file-exists-p candidate)))
+                   (setq candidate (car gpg-agent-possibilities))
+                   (setq gpg-agent-possibilities (cdr gpg-agent-possibilities)))
+            (if (file-exists-p candidate)
+              candidate
+              nil))))
+
+(setenv "EDITOR" "/usr/local/bin/emacsclient")
+(setenv "ALTERNATE_EDITOR" "")
+
+;; This function for bug in emacs 24
+;; From wenjun yan
+;; http://stackoverflow.com/a/14183331/850326
+(defun plist-to-alist (the-plist)
+    (defun get-tuple-from-plist (the-plist)
+          (when the-plist
+                  (cons (car the-plist) (cadr the-plist))))
+
+      (let ((alist '()))
+            (while the-plist
+                         (add-to-list 'alist (get-tuple-from-plist the-plist))
+                               (setq the-plist (cddr the-plist)))
+              alist))
+
+;; (require 'color-theme)
+;; (require 'color-theme-djhaskin987-console)
+(require 'djhaskin987-untab-to-tab-stop)
+(require 'djhaskin987-unindent-rigidly)
+(require 'djhaskin987-indent-rigidly)
+(require 'djhaskin987-clear-kill-ring)
+(require 'em-tramp)
+(setq color-theme-is-global t)
+(setq cmake-tab-width 4)
+
+(define-key global-map (kbd "C-c C-r") 'rename-buffer)
+;; (color-theme-djhaskin987-console)
+(setq custom-theme-directory "~/.emacs.d/themes")
+(load-theme 'djhaskin987-midnight t)
+
+;; Set default character encoding to UTF-8.
+(set-language-environment "UTF-8")
+(set-input-mode (car (current-input-mode))
+                (nth 1 (current-input-mode))
+                0)
+(setq locale-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+
+;; indentation
+
+(setq-default tab-width 4)
+(setq tab-stop-list (number-sequence 4 80 4))
+(setq-default c-basic-offset 4)
+(setq-default indent-tabs-mode nil)
+(setq-default standard-indent 4)
+;(setq-default indent-line-function 'insert-tab)
+(setq c-default-style
+      "bsd")
+
+;(define-key global-map (kbd "RET") 'newline-and-indent)
+;(define-key global-map (kbd "C-j") 'newline)
+(define-key global-map (kbd "M-j") 'djhaskin987-untab-to-tab-stop)
+(define-key global-map (kbd "C-x M-TAB") 'djhaskin987-unindent-rigidly)
+(define-key global-map (kbd "C-x TAB") 'djhaskin987-indent-rigidly)
+(define-key global-map (kbd "C-|") 'djhaskin987-clear-kill-ring)
+
+;; line numbering
+(require 'linum+)
+(global-linum-mode 1)
+
+(defun djhaskin987-yank-reverse-pop ()
+  (interactive)
+  (yank-pop -1))
+
+;; change of keys, default behavior, etc.
+(define-key global-map (kbd "M-k") 'delete-region)
+(define-key global-map (kbd "C-M-y") 'djhaskin987-yank-reverse-pop)
+(define-key global-map (kbd "M-g") 'goto-line)
+(define-key global-map (kbd "M-%") 'query-replace-regexp)
+
+(defun djhaskin987-save-buffers-kill-emacs (&optional arg)
+  "Offer to save each buffer (once only), then kill this Emacs process.
+  With prefix ARG, silently save all file-visiting buffers, then kill."
+  (interactive "P")
+  (save-some-buffers arg t)
+  (and (or (not (fboundp 'process-list))
+           ;; process-list is not defined on MSDOS.
+           (let ((processes (process-list))
+                 active)
+             (while processes
+                    (and (memq (process-status (car processes)) '(run stop open listen))
+                         (process-query-on-exit-flag (car processes))
+                         (setq active t))
+                    (setq processes (cdr processes)))
+             (or (not active)
+                 (progn (list-processes t)
+                        (yes-or-no-p "Active processes exist; kill them and exit anyway? ")))))
+       ;; Query the user for other things, perhaps.
+       (run-hook-with-args-until-failure 'kill-emacs-query-functions)
+       (or (null confirm-kill-emacs)
+           (funcall confirm-kill-emacs "Really exit Emacs? "))
+       (kill-emacs)))
+(fset 'save-buffers-kill-emacs 'djhaskin987-save-buffers-kill-emacs)
+;(setq system-uses-terminfo nil)
+
+;; 80 characters, people.
+(require 'whitespace)
+(setq whitespace-style '(face empty tabs lines-tail trailing))
+(setq whitespace-line-column 80)
+(global-whitespace-mode t)
+
+;; Let me know where I am in the file
+(setq column-number-mode t)
+(setq line-number-mode t)
+(define-key function-key-map "\e[z2a" [?\C-=])
+
+;; Show parentheses
+(show-paren-mode 1)
+(setq show-paren-delay 0)
+
+;; PLEASE line continuation.
+(setq truncate-lines nil)
+(put 'set-goal-column 'disabled nil)
+
+;; DISABLE ESHELL CYCLING, MAKE IT LIKE BASH PLS
+;; https://stackoverflow.com/a/19840279/850326
+(add-hook
+ 'eshell-mode-hook
+ (lambda ()
+   (setq pcomplete-cycle-completions nil)))
+(setq eshell-cmpl-cycle-completions nil)
+
+;; eshell clear
+(defun eshell-clear-buffer ()
+  "Clear terminal"
+  (interactive)
+  (let ((inhibit-read-only t))
+    (erase-buffer)
+    (eshell-send-input)))
+
+(add-hook 'eshell-mode-hook
+      '(lambda()
+          (local-set-key (kbd "C-l") 'eshell-clear-buffer)))
+
+;; pinentry
+(defun pinentry-emacs (desc prompt ok error)
+  (let ((str (read-passwd (concat (replace-regexp-in-string "%22" "\"" (replace-regexp-in-string "%0A" "\n" desc)) prompt ": "))))
+    str))
+
+(ido-mode t)
+(shell-switcher-mode t)
+(global-auto-complete-mode t)
+
+(require 'real-auto-save)
+(add-hook 'prog-mode-hook 'real-auto-save-mode)
+(add-hook 'org-mode-hook 'real-auto-save-mode)
+
+
+; problems?
+;
+(setenv "PAGER" "less")
+
+; This fixes a bug in tramp that was fixed in the newest upstream version
+; of emacs, but it isn't fixed yet
+; http://emacs.stackexchange.com/a/2114/6980
+(defadvice eshell-gather-process-output (before absolute-cmd (command args) act)
+  (setq command (file-truename command)))
+
+; magit ediff: single pane, please
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+
+(setq system-uses-terminfo nil)
+
+;; vagrant
+(add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
+
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq-default TeX-master nil)
+
+(add-hook 'LaTeX-mode-hook 'visual-line-mode)
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+(eval-after-load 'latex '(add-to-list 'LaTeX-verbatim-environments "minted"))
+
+(setq TeX-PDF-mode t)
+
+;; proof general
+(load-file "~/.emacs.d/ProofGeneral-4.2/generic/proof-site.el")
+;; XXX make these local to the proof mode
+;; proof-display-three-b
+;; proof-shell-exit
+;; proof-process-buffer
+;; proof-activate-scripting
+(global-set-key (kbd "M-.") 'proof-goto-point)
+(global-set-key (kbd "M-?") 'proof-undo-last-successful-command)
+(global-set-key (kbd "M-/") 'proof-assert-next-command-interactive)
+
+;; Insert date
+(defun datestamp ()
+  (interactive)
+  ;(insert (format-time-string "%Y-%m-%dT%H:%M:%S")))
+  (insert (format-time-string "%FT%T%z")))
+
+;; Insert time
+(defun timestamp ()
+  (interactive)
+  ;(insert (format-time-string "%Y-%m-%dT%H:%M:%S")))
+  (insert (format-time-string "%T%z")))
+
+(global-set-key "\C-x\M-d" `datestamp)
+(global-set-key "\C-x\M-t" `timestamp)
+
+;; Change key, I use ratpoison
+(add-hook 'org-mode-hook
+          (lambda()
+            (setq org-log-done 'time)
+            (local-set-key "\M-t" 'org-todo)
+            (local-set-key "\C-cl" 'org-store-link)
+            (local-set-key "\C-cc" 'org-capture)
+            (local-set-key "\C-ca" 'org-agenda)
+            (local-set-key "\C-cb" 'org-iswitchb)
+            (local-set-key "\M-\C-g" 'org-plot/gnuplot)))
+
+(setq markdown-preview-stylesheets (list "https://raw.githubusercontent.com/necolas/normalize.css/master/normalize.css"))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(c-basic-offset 4 t)
+ '(eshell-prefer-lisp-functions t)
+ '(eshell-prefer-lisp-variables nil)
+ '(eshell-show-lisp-completions t)
+ '(eshell-visual-commands (quote ("ssh" "less" "top" "screen" "vim")))
+ '(eshell-visual-subcommands (quote (("vagrant" "ssh"))))
+ '(evil-mode nil)
+ '(exec-path-from-shell-variables (quote ("PATH" "MANPATH" "GOPATH")))
+ '(inhibit-startup-screen t)
+ '(markdown-unordered-list-item-prefix "- ")
+ '(org-agenda-files
+   (quote
+    ("~/Dropbox/Workspace/GTD/index.org" "/Performance/planning/inventory.org" "/Performance/planning/diary.org")))
+ '(org-startup-indented t)
+ '(org-todo-keywords
+   (quote
+    ((sequence "TODO" "DOING" "FEEDBACK" "STALLED" "|" "DONE" "INCOMPLETE" "CANCELLED" "DEFERRED"))))
+ '(package-selected-packages
+   (quote
+    (groovy-imports groovy-mode psysh json-mode itail xterm-color eshell-did-you-mean eshell-up vagrant-tramp magit tuareg shell-switcher real-auto-save quack python-mode icicles go-mode gnuplot-mode gnuplot cmake-mode cider auto-complete auctex)))
+ '(password-cache t)
+ '(password-cache-expiry nil)
+ '(rst-compile-toolsets
+   (quote
+    ((html "rst2html5" ".html" nil)
+     (pdf "rst2pdf" ".pdf" nil))))
+ '(send-mail-function (quote mailclient-send-it))
+ '(shell-switcher-new-shell-function (quote shell-switcher-make-eshell))
+ '(tab-width 4))
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 180 :width normal :foundry "nil" :family "Courier New")))))
+(put 'erase-buffer 'disabled nil)
+
+(defun eshell-brace-expansion (str)
+  (let* ((parts (split-string str "[{}]"))
+         (prefix (car parts))
+         (body   (nth 1 parts))
+         (suffix (nth 2 parts)))
+    (mapcar (lambda (x) (concat prefix x suffix))
+            (split-string body ","))))

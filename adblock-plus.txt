@@ -1,0 +1,4 @@
+youtube.com##div.watch-sidebar-body
+youtube.com##div.watch-sidebar-section
+pandora.com/images/public$image
+p-cdn.com/images/public$image
