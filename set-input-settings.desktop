@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=set-input-settings
+Terminal=true
+Type=Application
+Exec=/home/djhaskin987/.local/libexec/set-input-settings
+Comment=Set up natural scrolling, control-caps and alt-super swaps
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=set-input-settings
