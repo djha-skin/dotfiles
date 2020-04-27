@@ -1,5 +1,3 @@
-"execute pathogen#infect()
-
 " DIE, BELL
 set noeb vb t_vb=
 
@@ -49,6 +47,7 @@ set number
 set ruler
 set modeline
 set cursorline
+set cursorlineopt=line
 
 set viminfo='20,\"1000
 set pastetoggle=<F3>
