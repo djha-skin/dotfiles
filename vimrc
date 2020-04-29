@@ -12,8 +12,9 @@ set noeol
 set nocompatible
 filetype indent on
 filetype plugin on
-
-if has('win32unix')
+if has('win32')
+    set backspace=indent,eol,start
+elseif has('win32unix')
     "Cygwin options
     "set backspace=2
     "if that doesn't work, try this:
@@ -38,7 +39,6 @@ else
 endif
 let b:slime_config = {"sessionname": "ergo", "windowname": "repl"}
 let g:slime_paste_file = "$HOME/.slime_paste"
-
 
 set expandtab
 set tabstop=4
@@ -103,9 +103,13 @@ au BufRead,BufNewFile *.mtn set tabstop=8 | set shiftwidth=8 | set noexpandtab
 " enclose any variable within a line in quotes
 "au filetype sh map \" :.s/\v(^\|[[:blank:]])(\$[^[:blank:]]*)([[:blank:]]\|$)/\1"\2"\3/g
 
-let g:slime_target = "screen"
-let g:slime_window_name = "repl"
-let g:slime_session_name= "djh987"
+if has("win32")
+    let g:slime_target = "conemu"
+else
+    let g:slime_target = "screen"
+    let g:slime_window_name = "repl"
+    let g:slime_session_name= "djh987"
+endif
 
 let g:go_disable_autoinstall = 0
 
@@ -115,7 +119,6 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-
 
 if has("gui_running")
   if has("gui_gtk2")
@@ -128,6 +131,8 @@ if has("gui_running")
     set guifont=Courier\ New/14/-1/5/50/0/0/0/1/0
   elseif has("x14")
     set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
+  elseif has("win32")
+    set guifont=Courier_New:h14:cANSI:qDRAFT
   else
     set guifont=Courier_New_Regular:h14:cDEFAULT
   endif
