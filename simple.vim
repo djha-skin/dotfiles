@@ -51,12 +51,12 @@ hi Folded guifg=#808080 guibg=#404040   ctermfg=darkgrey ctermbg=black cterm=bol
 "gui=bold cterm=bold
 
 hi Comment          guifg=#c0c0c0 ctermfg=lightgrey
-hi Special          guifg=#ff0000 ctermfg=white cterm=bold gui=bold
+hi Special          guifg=#ffffff ctermfg=white cterm=bold gui=bold
 hi PreProc          guifg=#80ff80 ctermfg=lightgreen
 hi Type             guifg=#00ff00 ctermfg=green
 hi Statement        guifg=#ffff00 ctermfg=yellow
-hi Constant         guifg=#ff0000 ctermfg=magenta
-hi Operator         guifg=#ff0f00 ctermfg=red
+hi Constant         guifg=#ff00ff ctermfg=magenta
+hi Operator         guifg=#ff0000 ctermfg=red
 hi Identifier       guifg=#00c0c0 ctermfg=darkcyan
 hi ColorColumn      guifg=#ff0000 ctermfg=red cterm=bold gui=bold
 hi Delimiter        guifg=#0000ff ctermfg=blue cterm=bold gui=bold
