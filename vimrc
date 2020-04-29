@@ -102,13 +102,16 @@ au BufRead,BufNewFile *.mtn set tabstop=8 | set shiftwidth=8 | set noexpandtab
 "au filetype sh map! $$ ${}OD
 " enclose any variable within a line in quotes
 "au filetype sh map \" :.s/\v(^\|[[:blank:]])(\$[^[:blank:]]*)([[:blank:]]\|$)/\1"\2"\3/g
-
-if has("win32")
-    let g:slime_target = "conemu"
+if has("terminal")
+    let g:slime_target="vimterminal"
 else
-    let g:slime_target = "screen"
-    let g:slime_window_name = "repl"
-    let g:slime_session_name= "djh987"
+    if has("win32")
+        let g:slime_target = "conemu"
+    else
+        let g:slime_target = "screen"
+        let g:slime_window_name = "repl"
+        let g:slime_session_name= "djh987"
+    endif
 endif
 
 let g:go_disable_autoinstall = 0
