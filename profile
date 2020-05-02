@@ -61,6 +61,9 @@ if [ -n "$BASH_VERSION" ]; then
     then
         . ${HOME}/.bashrc
     fi
+    # Bash, why
+    # https://superuser.com/a/912098
+    unset PROMPT_COMMAND
 fi
 
 

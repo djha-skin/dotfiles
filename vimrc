@@ -9,6 +9,10 @@ set t_vb=
 
 set noeol
 
+# Vim, why
+# https://superuser.com/a/912098
+set notitle
+
 set nocompatible
 filetype indent on
 filetype plugin on
