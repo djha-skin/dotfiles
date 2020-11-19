@@ -12,6 +12,7 @@ Plug 'jpalardy/vim-slime'
 Plug 'guns/vim-clojure-static'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'psf/black', { 'branch': 'stable' }
+Plug 'APZelos/blamer.nvim'
 call plug#end()
 
 " DIE, BELL
@@ -184,3 +185,4 @@ if exists('g:vscode')
     nnoremap <Leader>s :call VSCodeNotify('calva.evaluateSelection')<CR>
     nnoremap <Leader>c :call VSCodeNotify('calva.evalCurrentFormInREPLWindow')<CR>
 endif
+let g:blamer_enabled = 1
