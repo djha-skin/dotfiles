@@ -12,7 +12,6 @@ Plug 'jpalardy/vim-slime'
 Plug 'guns/vim-clojure-static'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'psf/black', { 'branch': 'stable' }
-Plug 'APZelos/blamer.nvim'
 call plug#end()
 
 " DIE, BELL
@@ -122,6 +121,7 @@ map <Leader>T :%s/\v[[:blank:]][[:blank:]]*$//g<CR>
 imap jk <Esc>
 nnoremap <Leader><space> :let @/=""<CR>
 nnoremap <Leader>d :put =strftime('%FT%T%z')<CR>
+noremap <leader>b :execute "!git blame -L " . line(".") . "," . line(".") . " %"<CR>
 
 "au BufRead,BufNewFile *.c,*.h set makeprg=gcc\ \"%\"
 au BufRead,BufNewFile *.rkt,*.rktl  set filetype=racket
@@ -185,4 +185,3 @@ if exists('g:vscode')
     nnoremap <Leader>s :call VSCodeNotify('calva.evaluateSelection')<CR>
     nnoremap <Leader>c :call VSCodeNotify('calva.evalCurrentFormInREPLWindow')<CR>
 endif
-let g:blamer_enabled = 1
