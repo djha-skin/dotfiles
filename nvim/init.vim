@@ -1,13 +1,23 @@
+let mapleader="\<SPACE>"
+
+if has('win32')
+    let g:python3_post_prog = 'C:\Python39\python.exe'
+endif
+let g:black_linelength = 79
+
 call plug#begin('~/AppData/Local/nvim/plugged')
 " below are some vim plugins for demonstration purpose.
 " add the plugin you want to use here.
 Plug 'jpalardy/vim-slime'
 Plug 'guns/vim-clojure-static'
+Plug 'martinda/Jenkinsfile-vim-syntax'
+Plug 'psf/black', { 'branch': 'stable' }
 call plug#end()
 
 " DIE, BELL
 set noeb vb t_vb=
-let mapleader = "\<Space>"
+set belloff=all
+
 let maplocalleader=","
 "set t_Co=256
 "set foldmethod=syntax
@@ -36,15 +46,39 @@ endif
 colorscheme simple
 syntax enable
 
+set formatoptions+=o
+set nojoinspaces
+set showmatch
+
+if has('win32')
+    let g:slime_target = "conemu"
+    set backspace=2
+    colorscheme simple
+    setlocal nobomb
+    setglobal nobomb
+elseif has('unix')
+    let g:slime_target = "screen"
+    let g:slime_window_name = "repl"
+    let g:slime_session_name= "ergo"
+    let b:slime_config = {"sessionname": "ergo", "windowname": "repl"}
+    let g:slime_paste_file = "$HOME/.slime_paste"
+
+    set background=dark
+    colorscheme simple
+endif
 "au BufWinEnter * let w:m2=matchadd('ErrorMsg', '/\%>80v.\+/', -1)
 " guard against 80 character length lines.
+hi clear OverLength
+hi clear ExtraWhitespace
+hi ExtraWhitespace ctermbg=red guibg=red
+hi link OverLength Error
+match OverLength '\%>80v.\+'
+2match ExtraWhitespace '\s\+\%#\@<!$'
 if exists('+colorcolumn')
     set colorcolumn=80
 else
     au BufWinEnter * let w:m2=matchadd('OverLength', '/\%>80v.\+/', -1)
 endif
-"let b:slime_config = {"sessionname": "ergo", "windowname": "repl"}
-let g:slime_paste_file = "$HOME/.slime_paste"
 
 set expandtab
 set tabstop=4
@@ -67,8 +101,16 @@ if has("multi_byte")
   endif
   set encoding=utf-8
   setglobal fileencoding=utf-8
-  setglobal bomb
   set fileencodings=ucs-bom,utf-8,latin1
+  setglobal nobomb
+  set nobomb
+  setlocal nobomb
+  set encoding=utf-8
+  setlocal encoding=utf-8
+  setglobal encoding=utf-8
+  setglobal fileencoding=utf-8
+  set fileencoding=utf-8
+  setlocal fileencoding=utf-8
 endif
 
 map ]] :call searchpair('\[', '', '\]', 'W')
@@ -77,7 +119,7 @@ map [[ :call searchpair('\[', '', '\]', 'bW')
 map <Leader>t :s/\v[[:blank:]][[:blank:]]*$//g<CR>
 map <Leader>T :%s/\v[[:blank:]][[:blank:]]*$//g<CR>
 imap jk <Esc>
-nnoremap <Leader>\ :let @/=""<CR>
+nnoremap <Leader><space> :let @/=""<CR>
 nnoremap <Leader>d :put =strftime('%FT%T%z')<CR>
 
 "au BufRead,BufNewFile *.c,*.h set makeprg=gcc\ \"%\"
@@ -85,11 +127,16 @@ au BufRead,BufNewFile *.rkt,*.rktl  set filetype=racket
 " insert a unicode lambda on C-\
 "au filetype racket set makeprg=raco\ exe\ \"%\"
 
+au BufRead,BufNewFile Jenkinsfile set syntax=groovy
+au BufRead,BufNewFile *.go set tabstop=4 shiftwidth=4 noexpandtab makeprg=go\ build\ .
+au BufRead,BufNewFile *.py set makeprg=pylint\ --reports=n\ --output-format=parseable\ %:p | set errorformat=%f:%l:\ %m
+au BufWritePre *.py execute ':Black'
+au BufRead,BufNewFile *.yml set tabstop=2 | set shiftwidth=2 | set indentexpr= | set smartindent
+au BufRead,BufNewFile *.yaml set tabstop=2 | set shiftwidth=2 | set indentexpr= | set smartindent
 au BufRead,BufNewFile *.pl set makeprg=perl\ \"%\"
 au BufRead,BufNewFile *.scm  set makeprg=mit-scheme\ --load\ \"%\"
 au BufRead,BufNewFile *.java set makeprg=javac\ -classpath\ .\ -Xlint\ \"%\"
 au BufRead,BufNewFile *.m set makeprg=octave\ \"%\"
-au BufRead,BufNewFile *.py set makeprg=python\ \"%\"
 au BufRead,BufNewFile Makefile.am set makeprg=automake
 au BufRead,BufNewFile COMMIT_EDITMSG set textwidth=72
 au BufRead,BufNewFile *.v   set filetype=coq
@@ -117,13 +164,6 @@ au BufRead,BufNewFile *.mtn set tabstop=8 | set shiftwidth=8 | set noexpandtab
 "        let g:slime_vimterminal_cmd = "bash"
 "    endif
 "else
-if has("win32")
-    let g:slime_target = "conemu"
-else
-    let g:slime_target = "screen"
-    let g:slime_window_name = "repl"
-    let g:slime_session_name= "djh987"
-endif
 "endif
 
 let g:go_disable_autoinstall = 0
