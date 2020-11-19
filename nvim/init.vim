@@ -121,7 +121,7 @@ map <Leader>T :%s/\v[[:blank:]][[:blank:]]*$//g<CR>
 imap jk <Esc>
 nnoremap <Leader><space> :let @/=""<CR>
 nnoremap <Leader>d :put =strftime('%FT%T%z')<CR>
-noremap <leader>b :execute "!git blame -L " . line(".") . "," . line(".") . " %"<CR>
+nnoremap <Leader>b :execute "!git log --no-patch -n 1 -L " . line(".") . "," . line(".") . ":%"<CR>
 
 "au BufRead,BufNewFile *.c,*.h set makeprg=gcc\ \"%\"
 au BufRead,BufNewFile *.rkt,*.rktl  set filetype=racket
