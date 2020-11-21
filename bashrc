@@ -54,6 +54,8 @@ fi
 # sources /etc/bash.bashrc).
 set -o emacs
 
+alias vim=nvim
+
 command -v vg >/dev/null 2>&1 && eval "$(vg eval --shell bash)"
 
 # added by travis gem
