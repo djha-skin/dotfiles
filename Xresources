@@ -1,6 +1,6 @@
 ! $Id$
 
-URxvt*perl-lib: /home/moose/.urxvt.d
+URxvt*perl-lib: /home/djhaskin987/.urxvt.d
 URxvt*perl-ext-common: keyboard-select,url-select,clipboard,start-command,fullscreen
 URxvt*startCommand: screen -dRR -S ergo -t djh987
 
@@ -45,8 +45,8 @@ URxvt*smoothResize:     True
 URxvt*termName: rxvt-256color
 URxvt*scrollBar_right: false
 !URxvt*borderLess: true
-URxvt*font: xft:Courier New:pixelsize=30
-URxvt*boldFont: xft:Courier New:bold:pixelsize=30
+URxvt*font: xft:Courier New:pixelsize=32
+URxvt*boldFont: xft:Courier New:bold:pixelsize=32
 URxvt*foreground: white
 URxvt*background: black
 URxvt*title: "Too close for missles, I'm switching to guns."
@@ -57,9 +57,13 @@ URxvt*inheritPixmap:    false
 URxvt*transparent:      false
 URxvt*borderColor: #000000
 URxvt*color4: RoyalBlue
-URxvt*internalBorder: 7
+URxvt*internalBorder: 0
 
 URxvt*allowSendEvents: true
+URxvt*faceName: Courier 10 Pitch
+URxvt*faceSize: 14
+!xterm*faceName: Courier 10 Pitch
+!xterm*faceSize: 12
 
 Emacs*font: Courier 10 Pitch:pixelsize=12:foundry=bitstream:weight=normal:slant=normal:width=normal:spacing=100:scalable=true
 
