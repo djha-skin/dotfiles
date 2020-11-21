@@ -185,5 +185,5 @@ if exists('g:vscode')
     nnoremap <Leader>f :call VSCodeNotify('calva.loadFile')<CR>
     nnoremap <Leader>n :call VSCodeNotify('calva.loadNamespace')<CR>
     nnoremap <Leader>s :call VSCodeNotify('calva.evaluateSelection')<CR>
-    nnoremap <Leader>c :call VSCodeNotify('calva.evalCurrentFormInREPLWindow')<CR>
+    nnoremap <Leader>c :call VSCodeNotify('calva.evaluateCurrentTopLevelForm')<CR>
 endif
