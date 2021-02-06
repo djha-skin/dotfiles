@@ -4,7 +4,6 @@ if has('win32')
     let g:python3_post_prog = 'C:\Python39\python.exe'
 endif
 let g:black_linelength = 79
-let g:deoplete#enable_at_startup = 1
 
 call plug#begin('~/AppData/Local/nvim/plugged')
 " below are some vim plugins for demonstration purpose.
@@ -14,7 +13,6 @@ Plug 'guns/vim-clojure-static'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'psf/black', { 'branch': 'stable' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
 " DIE, BELL
@@ -138,6 +136,7 @@ au BufRead,BufNewFile *.py set makeprg=pylint\ --reports=n\ --output-format=pars
 au BufWritePre *.py execute ':Black'
 au BufRead,BufNewFile *.yml set tabstop=2 | set shiftwidth=2 | set indentexpr= | set smartindent
 au BufRead,BufNewFile *.yaml set tabstop=2 | set shiftwidth=2 | set indentexpr= | set smartindent
+au BufRead,BufNewFile *.xml set tabstop=2 | set shiftwidth=2
 au BufRead,BufNewFile *.pl set makeprg=perl\ \"%\"
 au BufRead,BufNewFile *.scm  set makeprg=mit-scheme\ --load\ \"%\"
 au BufRead,BufNewFile *.java set makeprg=javac\ -classpath\ .\ -Xlint\ \"%\"
@@ -148,7 +147,7 @@ au BufRead,BufNewFile *.v   set filetype=coq
 au BufRead,BufNewFile *.v   set makeprg=coqc\ \"%\"
 au BufRead,BufNewFile *.rs   set makeprg=cargo\ build
 au BufRead,BufNewFile *.clj set makeprg=lein\ compile
-au BufWritePre *.clj execute ':%!cljstyle pipe'
+au BufWritePre *.clj execute ':!cljstyle fix %'
 au BufRead,BufNewFile *.tex set makeprg=pdflatex\ -halt-on-error\ --shell-escape\ -interaction=nonstopmode\ \"%\"
 au BufRead,BufNewFile SConstruct,SConscript set makeprg=scons
 au BufRead,BufNewFile *.rb set tabstop=2
@@ -180,6 +179,7 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+
 
 if exists('g:vscode')
     nnoremap <Leader>j :call VSCodeNotify('calva.jackIn')<CR>
