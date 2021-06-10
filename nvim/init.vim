@@ -5,7 +5,7 @@ if has('win32')
 endif
 let g:black_linelength = 79
 
-call plug#begin('~/AppData/Local/nvim/plugged')
+call plug#begin()
 " below are some vim plugins for demonstration purpose.
 " add the plugin you want to use here.
 Plug 'jpalardy/vim-slime'
@@ -13,11 +13,32 @@ Plug 'guns/vim-clojure-static'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'psf/black', { 'branch': 'stable' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-call plug#end()
+Plug 'frazrepo/vim-rainbow'
 
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
+Plug 'tpope/vim-fireplace'
+Plug 'venantius/vim-cljfmt'
+call plug#end()
+lua << EOF
+require'lspconfig'.clojure_lsp.setup{}
+require'lspconfig'.pyls.setup{}
+EOF
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"set completeopt=menuone,noselect
+"set completeopt-=preview
+" use omni completion provided by lsp
+"autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
+
+set nofixendofline
 " DIE, BELL
 set noeb vb t_vb=
 set belloff=all
+let g:rainbow_active = 1
 
 let maplocalleader=","
 "set t_Co=256
@@ -136,18 +157,17 @@ au BufRead,BufNewFile *.py set makeprg=pylint\ --reports=n\ --output-format=pars
 au BufWritePre *.py execute ':Black'
 au BufRead,BufNewFile *.yml set tabstop=2 | set shiftwidth=2 | set indentexpr= | set smartindent
 au BufRead,BufNewFile *.yaml set tabstop=2 | set shiftwidth=2 | set indentexpr= | set smartindent
-au BufRead,BufNewFile *.xml set tabstop=2 | set shiftwidth=2
+au BufRead,BufNewFile *.xml set tabstop=4 | set shiftwidth=4 | map <Leader>F :%!xmllint --format -<CR>
 au BufRead,BufNewFile *.pl set makeprg=perl\ \"%\"
 au BufRead,BufNewFile *.scm  set makeprg=mit-scheme\ --load\ \"%\"
-au BufRead,BufNewFile *.java set makeprg=javac\ -classpath\ .\ -Xlint\ \"%\"
+" au BufRead,BufNewFile *.java set makeprg=javac\ -classpath\ .\ -Xlint\ \"%\"
 au BufRead,BufNewFile *.m set makeprg=octave\ \"%\"
 au BufRead,BufNewFile Makefile.am set makeprg=automake
 au BufRead,BufNewFile COMMIT_EDITMSG set textwidth=72
 au BufRead,BufNewFile *.v   set filetype=coq
 au BufRead,BufNewFile *.v   set makeprg=coqc\ \"%\"
 au BufRead,BufNewFile *.rs   set makeprg=cargo\ build
-au BufRead,BufNewFile *.clj set makeprg=lein\ compile
-au BufWritePre *.clj execute ':!cljstyle fix %'
+au BufRead,BufNewFile *.clj set makeprg=lein\ compile | map <Leader>F :!cljstyle fix %<CR>
 au BufRead,BufNewFile *.tex set makeprg=pdflatex\ -halt-on-error\ --shell-escape\ -interaction=nonstopmode\ \"%\"
 au BufRead,BufNewFile SConstruct,SConscript set makeprg=scons
 au BufRead,BufNewFile *.rb set tabstop=2
