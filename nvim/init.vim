@@ -6,8 +6,6 @@ endif
 let g:black_linelength = 79
 
 call plug#begin()
-" below are some vim plugins for demonstration purpose.
-" add the plugin you want to use here.
 Plug 'jpalardy/vim-slime'
 Plug 'guns/vim-clojure-static'
 Plug 'martinda/Jenkinsfile-vim-syntax'
