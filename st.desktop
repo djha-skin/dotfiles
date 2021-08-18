@@ -2,7 +2,7 @@
 Name=Simple Terminal
 GenericName=Terminal
 Comment=Simple Terminal emulator for X
-Exec=st -f "Courier New:size=16" -e screen -dRR -S ergo -t djh987
+Exec=st -f "Courier New:size=16"
 Terminal=false
 Type=Application
 Encoding=UTF-8
