@@ -3,6 +3,7 @@ let mapleader="\<SPACE>"
 if has('win32')
     let g:python3_post_prog = 'C:\Python39\python.exe'
 endif
+
 let g:black_linelength = 79
 
 call plug#begin()
@@ -143,6 +144,8 @@ nnoremap <Leader><space> :let @/=""<CR>
 nnoremap <Leader>d :put =strftime('%FT%T%z')<CR>
 nnoremap <Leader>b :execute "!git blame -L " . line(".") . "," . line(".") . " %"<CR>
 nnoremap <Leader>o :FZF<CR>
+nnoremap <Leader>( t(l"pda(hda("pp
+nnoremap <Leader>l :lua vim.lsp.diagnostic.set_loclist()<CR>
 
 "au BufRead,BufNewFile *.c,*.h set makeprg=gcc\ \"%\"
 au BufRead,BufNewFile *.rkt,*.rktl  set filetype=racket
