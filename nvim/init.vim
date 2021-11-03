@@ -23,7 +23,7 @@ Plug 'venantius/vim-cljfmt'
 call plug#end()
 lua << EOF
 require'lspconfig'.clojure_lsp.setup{}
-require'lspconfig'.pyls.setup{}
+require'lspconfig'.pylsp.setup{}
 EOF
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
