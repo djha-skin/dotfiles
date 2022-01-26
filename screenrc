@@ -1,4 +1,5 @@
 hardstatus alwayslastline "%{=b}%{G} Screen(s): %{b}%w %=%{G}%C%A  "
+
 caption always "%{= kC}%n (%t)"
 #rendition so "= dd"
 startup_message off
