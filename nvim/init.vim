@@ -146,6 +146,7 @@ nnoremap <Leader>b :execute "!git blame -L " . line(".") . "," . line(".") . " %
 nnoremap <Leader>o :FZF<CR>
 nnoremap <Leader>( t(l"pda(hda("pp
 nnoremap <Leader>l :lua vim.lsp.diagnostic.set_loclist()<CR>
+nnoremap <Leader>r :execute "r!screen2vim " . expand("%:t")<CR>
 
 "au BufRead,BufNewFile *.c,*.h set makeprg=gcc\ \"%\"
 au BufRead,BufNewFile *.rkt,*.rktl  set filetype=racket

@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+now=$(date '+%Y-%m-%d-%H-%M-%S')
+base=$(echo "${1}" | sed -e 's| |_|g' -e 's|\.md$||')
+fname="${base}_${now}.png"
+maim -s "${PWD}/${fname}"
+printf "![](${fname})"
