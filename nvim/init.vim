@@ -1,4 +1,4 @@
-let mapleader="\<SPACE>"
+  let mapleader="\<SPACE>"
 
 if has('win32')
     let g:python3_post_prog = 'C:\Python39\python.exe'
@@ -20,10 +20,14 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 Plug 'tpope/vim-fireplace'
 Plug 'venantius/vim-cljfmt'
+Plug 'plasticboy/vim-markdown'
+Plug 'altercation/vim-colors-solarized'
+'
 call plug#end()
 lua << EOF
 require'lspconfig'.clojure_lsp.setup{}
 require'lspconfig'.pylsp.setup{}
+require'lspconfig'.terraformls.setup{}
 EOF
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -62,9 +66,9 @@ elseif has('win32unix')
 "elseif has('unix')
 "...
 elseif has('unix')
-    set background=dark
+    set background=light
 endif
-colorscheme simple
+colorscheme solarized
 syntax enable
 
 set formatoptions+=o
@@ -74,7 +78,7 @@ set showmatch
 if has('win32')
     let g:slime_target = "conemu"
     set backspace=2
-    colorscheme simple
+    colorscheme solarized
     setlocal nobomb
     setglobal nobomb
 elseif has('unix')
@@ -84,8 +88,8 @@ elseif has('unix')
     let b:slime_config = {"sessionname": "ergo", "windowname": "repl"}
     let g:slime_paste_file = "$HOME/.slime_paste"
 
-    set background=dark
-    colorscheme simple
+    set background=light
+    colorscheme solarized
 endif
 "au BufWinEnter * let w:m2=matchadd('ErrorMsg', '/\%>80v.\+/', -1)
 " guard against 80 character length lines.
@@ -178,6 +182,7 @@ au BufRead,BufNewFile *.rb set shiftwidth=2
 au BufRead,BufNewfile *.md set tabstop=2 | set shiftwidth=2 | inoremap <CR> <CR><esc>i
 au BufRead,BufNewFile *.hs set shiftwidth=2 | set tabstop=2
 au BufRead,BufNewFile *.mtn set tabstop=8 | set shiftwidth=8 | set noexpandtab
+au BufWritePost *.tf !terraform fmt --recursive
 
 " make pretty formatted use of variables
 "au filetype sh map! $$ ${}OD
@@ -202,7 +207,9 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-
+let g:vim_markdown_edit_url_in = 'tab'
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_auto_insert_bullets = 0
 
 if exists('g:vscode')
     nnoremap <Leader>j :call VSCodeNotify('calva.jackIn')<CR>
