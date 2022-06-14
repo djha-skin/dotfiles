@@ -1,5 +1,5 @@
-[core]
-    pager = cat
+[pager]
+    branch = false
 [user]
 	email = djhaskin987@gmail.com
 	name = Daniel Jay Haskin
