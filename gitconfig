@@ -1,3 +1,5 @@
+[core]
+    pager = cat
 [user]
 	email = djhaskin987@gmail.com
 	name = Daniel Jay Haskin
@@ -13,3 +15,5 @@
 	helper = cache --timeout 14400
 [pull]
 	rebase = true
+[init]
+	defaultBranch = main
