@@ -21,8 +21,8 @@ Plug 'nvim-treesitter/playground'
 Plug 'tpope/vim-fireplace'
 Plug 'venantius/vim-cljfmt'
 Plug 'plasticboy/vim-markdown'
+"Plug 'corriander/vim-markdown-indent'
 Plug 'altercation/vim-colors-solarized'
-'
 call plug#end()
 lua << EOF
 require'lspconfig'.clojure_lsp.setup{}
@@ -151,10 +151,10 @@ nnoremap <Leader>o :FZF<CR>
 nnoremap <Leader>( t(l"pda(hda("pp
 nnoremap <Leader>l :lua vim.lsp.diagnostic.set_loclist()<CR>
 nnoremap <Leader>r :execute "r!screen2vim " . expand("%:t")<CR>
-nnoremap <Leader>i :execute("!display " . expand("<cfile>"))<CR>
 nnoremap <Leader>f vi(y:!sh -c 'xdg-open 0 && sleep 1'<CR>
 nnoremap <Leader>g viWy:!sh -c 'xdg-open 0 && sleep 1'<CR>
-nnoremap <Leader>G :!sh -c "xdg-open '%' && sleep 1"<CR>
+nnoremap <Leader>G :w<CR>:!sh -c "xdg-open '%' && sleep 1"<CR>
+
 
 "au BufRead,BufNewFile *.c,*.h set makeprg=gcc\ \"%\"
 au BufRead,BufNewFile *.rkt,*.rktl  set filetype=racket
@@ -182,7 +182,8 @@ au BufRead,BufNewFile *.tex set makeprg=pdflatex\ -halt-on-error\ --shell-escape
 au BufRead,BufNewFile SConstruct,SConscript set makeprg=scons
 au BufRead,BufNewFile *.rb set tabstop=2
 au BufRead,BufNewFile *.rb set shiftwidth=2
-au BufRead,BufNewfile *.md set tabstop=2 | set shiftwidth=2 | inoremap <CR> <CR><esc>i
+"| inoremap <CR> <CR><esc>i
+au BufRead,BufNewfile *.md set tabstop=2 | set shiftwidth=2
 au BufRead,BufNewFile *.hs set shiftwidth=2 | set tabstop=2
 au BufRead,BufNewFile *.mtn set tabstop=8 | set shiftwidth=8 | set noexpandtab
 au BufWritePost *.tf !terraform fmt %
@@ -212,7 +213,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:vim_markdown_edit_url_in = 'tab'
 let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_auto_insert_bullets = 0
+let g:vim_markdown_auto_insert_bullets = 1
 
 if exists('g:vscode')
     nnoremap <Leader>j :call VSCodeNotify('calva.jackIn')<CR>
