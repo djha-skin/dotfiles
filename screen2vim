@@ -1,7 +1,11 @@
 #!/bin/sh
 set -e
+if [ ! -d "${PWD}/img" ]
+then
+    mkdir -p "${PWD}/img"
+fi
 now=$(date '+%Y-%m-%d-%H-%M-%S')
 base=$(echo "${1}" | sed -e 's| |_|g' -e 's|\.md$||')
 fname="${base}_${now}.png"
-maim -s "${PWD}/${fname}"
-printf "![](${fname})"
+maim -s "${PWD}/img/${fname}"
+printf "![](img/${fname})"
