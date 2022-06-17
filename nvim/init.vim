@@ -152,8 +152,9 @@ nnoremap <Leader>( t(l"pda(hda("pp
 nnoremap <Leader>l :lua vim.lsp.diagnostic.set_loclist()<CR>
 nnoremap <Leader>r :execute "r!screen2vim " . expand("%:t")<CR>
 nnoremap <Leader>i :execute("!display " . expand("<cfile>"))<CR>
-nnoremap <Leader>g vi(y:!sh -c 'xdg-open 0 && sleep 1'<CR>
-nnoremap <Leader>G :!xdg-open "%"<CR>
+nnoremap <Leader>f vi(y:!sh -c 'xdg-open 0 && sleep 1'<CR>
+nnoremap <Leader>g viWy:!sh -c 'xdg-open 0 && sleep 1'<CR>
+nnoremap <Leader>G :!sh -c "xdg-open '%' && sleep 1"<CR>
 
 "au BufRead,BufNewFile *.c,*.h set makeprg=gcc\ \"%\"
 au BufRead,BufNewFile *.rkt,*.rktl  set filetype=racket
