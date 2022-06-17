@@ -152,6 +152,11 @@ nnoremap <Leader>( t(l"pda(hda("pp
 nnoremap <Leader>l :lua vim.lsp.diagnostic.set_loclist()<CR>
 nnoremap <Leader>r :execute "r!screen2vim " . expand("%:t")<CR>
 nnoremap <Leader>i :execute("!display " . expand("<cfile>"))<CR>
+" Pretty cool. Lets me display PNG files linked in markdown
+nnoremap <Leader>s vi(y:!display 0<CR>
+" Open URL in markdown
+nnoremap <Leader>u vi(y:!firefox 0<CR>
+nnoremap <Leader>g :!firefox %<CR>
 
 "au BufRead,BufNewFile *.c,*.h set makeprg=gcc\ \"%\"
 au BufRead,BufNewFile *.rkt,*.rktl  set filetype=racket
