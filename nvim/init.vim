@@ -152,11 +152,8 @@ nnoremap <Leader>( t(l"pda(hda("pp
 nnoremap <Leader>l :lua vim.lsp.diagnostic.set_loclist()<CR>
 nnoremap <Leader>r :execute "r!screen2vim " . expand("%:t")<CR>
 nnoremap <Leader>i :execute("!display " . expand("<cfile>"))<CR>
-" Pretty cool. Lets me display PNG files linked in markdown
-nnoremap <Leader>s vi(y:!display 0<CR>
-" Open URL in markdown
-nnoremap <Leader>u vi(y:!firefox 0<CR>
-nnoremap <Leader>g :!firefox %<CR>
+nnoremap <Leader>g vi(y:!sh -c 'xdg-open 0 && sleep 1'<CR>
+nnoremap <Leader>G :!xdg-open "%"<CR>
 
 "au BufRead,BufNewFile *.c,*.h set makeprg=gcc\ \"%\"
 au BufRead,BufNewFile *.rkt,*.rktl  set filetype=racket
@@ -187,7 +184,7 @@ au BufRead,BufNewFile *.rb set shiftwidth=2
 au BufRead,BufNewfile *.md set tabstop=2 | set shiftwidth=2 | inoremap <CR> <CR><esc>i
 au BufRead,BufNewFile *.hs set shiftwidth=2 | set tabstop=2
 au BufRead,BufNewFile *.mtn set tabstop=8 | set shiftwidth=8 | set noexpandtab
-au BufWritePost *.tf !terraform fmt --recursive
+au BufWritePost *.tf !terraform fmt %
 
 " make pretty formatted use of variables
 "au filetype sh map! $$ ${}OD
