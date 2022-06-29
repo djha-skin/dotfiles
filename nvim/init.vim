@@ -149,7 +149,7 @@ nnoremap <Leader>d :put =strftime('%FT%T%z')<CR>
 nnoremap <Leader>b :execute "!git blame -L " . line(".") . "," . line(".") . " %"<CR>
 nnoremap <Leader>o :FZF<CR>
 nnoremap <Leader>( t(l"pda(hda("pp
-nnoremap <Leader>l :lua vim.lsp.diagnostic.set_loclist()<CR>
+nnoremap <Leader>l :lua vim.diagnostic.setloclist()<CR>
 nnoremap <Leader>r :execute "r!screen2vim " . expand("%:t")<CR>
 nnoremap <Leader>f vi(y:!sh -c 'xdg-open 0 && sleep 1'<CR>
 nnoremap <Leader>e vi(y:e 0<CR>
@@ -187,6 +187,7 @@ au BufRead,BufNewFile *.rb set shiftwidth=2
 au BufRead,BufNewfile *.md set tabstop=2 | set shiftwidth=2
 au BufRead,BufNewFile *.hs set shiftwidth=2 | set tabstop=2
 au BufRead,BufNewFile *.mtn set tabstop=8 | set shiftwidth=8 | set noexpandtab
+au BufRead,BufNewFile *.tsv set tabstop=8 | set shiftwidth=8 | set noexpandtab
 au BufWritePost *.tf !terraform fmt %
 
 " make pretty formatted use of variables
