@@ -151,9 +151,9 @@ nnoremap <Leader>o :FZF<CR>
 nnoremap <Leader>( t(l"pda(hda("pp
 nnoremap <Leader>l :lua vim.diagnostic.setloclist()<CR>
 nnoremap <Leader>r :execute "r!screen2vim " . expand("%:t")<CR>
-nnoremap <Leader>f vi(y:!sh -c "xdg-open '0' && sleep 1"<CR>
-nnoremap <Leader>e vi(y:e 0<CR>
-nnoremap <Leader>g viWy:!sh -c "xdg-open '0' && sleep 1"<CR>
+nnoremap <Leader>f vi(y:execute "!sh -c \"xdg-open '" . shellescape("0",1) . "' && sleep 1\""
+nnoremap <Leader>g viWy:execute "!sh -c \"xdg-open '" . shellescape("0",1) . "' && sleep 1\""
+nnoremap <Leader>e vi(y:execute "e " . shellescape("0",1)<CR>
 nnoremap <Leader>G :w<CR>:!sh -c "xdg-open '%' && sleep 1"<CR>
 
 
