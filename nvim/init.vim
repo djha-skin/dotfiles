@@ -28,7 +28,20 @@ lua << EOF
 require'lspconfig'.clojure_lsp.setup{}
 require'lspconfig'.pylsp.setup{}
 require'lspconfig'.terraformls.setup{}
+
+
+function fixpath( p )
+  if(string.match(p,"^[a-z]+://"))
+  then
+    return p
+  else
+    return vim.fn.expand("%:p"):gsub("[^/]+$", "") .. p
+  end
+end
 EOF
+
+
+
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -184,7 +197,12 @@ au BufRead,BufNewFile SConstruct,SConscript set makeprg=scons
 au BufRead,BufNewFile *.rb set tabstop=2
 au BufRead,BufNewFile *.rb set shiftwidth=2
 "| inoremap <CR> <CR><esc>i
-au BufRead,BufNewfile *.md set tabstop=2 | set shiftwidth=2
+
+" https://github.com/preservim/vim-markdown/issues/390#issuecomment-578459147
+let g:vim_markdown_auto_insert_bullets=0
+let g:vim_markdown_new_list_item_indent=0
+au BufRead,BufNewfile *.md set tabstop=2 | set shiftwidth=2 | setlocal formatlistpat=^\\s*\\d\\+[.\)]\\s\\+\\\|^\\s*[*+~-]\\s\\+\\\|^\\(\\\|[*#]\\)\\[^[^\\]]\\+\\]:\\s | setlocal comments=n:> | setlocal formatoptions+=cn
+
 au BufRead,BufNewFile *.hs set shiftwidth=2 | set tabstop=2
 au BufRead,BufNewFile *.mtn set tabstop=8 | set shiftwidth=8 | set noexpandtab
 au BufRead,BufNewFile *.tsv set tabstop=8 | set shiftwidth=8 | set noexpandtab
