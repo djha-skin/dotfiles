@@ -5,6 +5,8 @@ if has('win32')
 endif
 
 let g:black_linelength = 79
+let g:vim_markdown_auto_insert_bullets = 0
+let g:vim_markdown_new_list_item_indent = 2
 
 call plug#begin()
 Plug 'jpalardy/vim-slime'
@@ -20,8 +22,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 Plug 'tpope/vim-fireplace'
 Plug 'venantius/vim-cljfmt'
-Plug 'plasticboy/vim-markdown'
-"Plug 'corriander/vim-markdown-indent'
+Plug 'preservim/vim-markdown'
 Plug 'altercation/vim-colors-solarized'
 call plug#end()
 lua << EOF
@@ -199,9 +200,15 @@ au BufRead,BufNewFile *.rb set shiftwidth=2
 "| inoremap <CR> <CR><esc>i
 
 " https://github.com/preservim/vim-markdown/issues/390#issuecomment-578459147
-let g:vim_markdown_auto_insert_bullets=0
-let g:vim_markdown_new_list_item_indent=0
-au BufRead,BufNewfile *.md set tabstop=2 | set shiftwidth=2 | setlocal formatlistpat=^\\s*\\d\\+[.\)]\\s\\+\\\|^\\s*[*+~-]\\s\\+\\\|^\\(\\\|[*#]\\)\\[^[^\\]]\\+\\]:\\s | setlocal comments=n:> | setlocal formatoptions+=cn
+"let g:vim_markdown_auto_insert_bullets=0
+"let g:vim_markdown_new_list_item_indent=0
+"au BufRead,BufNewfile *.md set tabstop=2 | set shiftwidth=2 | setlocal formatlistpat=^\\s*\\d\\+[.\)]\\s\\+\\\|^\\s*[*+~-]\\s\\+\\\|^\\(\\\|[*#]\\)\\[^[^\\]]\\+\\]:\\s | setlocal comments=n:> | setlocal formatoptions+=cn
+
+"https://github.com/preservim/vim-markdown/issues/390#issuecomment-450392655
+"https://github.com/preservim/vim-markdown/pull/375
+"| setlocal comments=bf:>,bf:*,bf:+,bf:- | set formatoptions+=c  | set formatlistpat=^\\s*\\d\\+[.\)]\\s\\+\\\|^\\s*[#*+~-]\\s\\+\\\|^\\(\\\|[*#-~+]\\)\\[^[^\\]]\\+\\]:\\s
+au BufRead,BufNewFile *.md set shiftwidth=2 | set tabstop=2 | setlocal comments=bf:>,bf:*,bf:+,bf:- | set formatoptions+=c  | set formatlistpat=^\\s*\\d\\+[.\)]\\s\\+\\\|^\\s*[#*+~-]\\s\\+\\\|^\\(\\\|[*#-~+]\\)\\[^[^\\]]\\+\\]:\\s
+
 
 au BufRead,BufNewFile *.hs set shiftwidth=2 | set tabstop=2
 au BufRead,BufNewFile *.mtn set tabstop=8 | set shiftwidth=8 | set noexpandtab
