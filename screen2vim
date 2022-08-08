@@ -1,11 +1,18 @@
 #!/bin/sh
 set -e
-if [ ! -d "${PWD}/img" ]
+
+# In case I want to switch windows
+sleep 1
+
+
+place="${1}"
+
+if [ ! -d "${PWD}/${place}" ]
 then
-    mkdir -p "${PWD}/img"
+    mkdir -p "${PWD}/${place}"
 fi
 now=$(date '+%Y-%m-%d-%H-%M-%S')
-base=$(echo "${1}" | sed -e 's| |_|g' -e 's|\.md$||')
+base=$(echo "${2}" | sed -e 's| |_|g' -e 's|\.md$||')
 fname="${base}_${now}.png"
-maim -s "${PWD}/img/${fname}"
-printf "![](img/${fname})"
+maim -s "${PWD}/${place}/${fname}"
+printf "![](${place}/${fname})"
