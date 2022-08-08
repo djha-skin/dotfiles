@@ -32,16 +32,18 @@ require'lspconfig'.terraformls.setup{}
 
 
 function fixpath( p )
-  if(string.match(p,"^[a-z]+://"))
+
+  if(not string.match(p,"^[a-z]+://"))
   then
-    return p
+    local abs = vim.fn.expand("%:p"):gsub("/+[^/]+$", "/") .. p
+    local pwd = vim.fn.getcwd()
+    local betterpath = abs:gsub(pwd .. "/", "")
+    return betterpath
   else
-    return vim.fn.expand("%:p"):gsub("[^/]+$", "") .. p
+    return p
   end
 end
 EOF
-
-
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -164,7 +166,8 @@ nnoremap <Leader>b :execute "!git blame -L " . line(".") . "," . line(".") . " %
 nnoremap <Leader>o :FZF<CR>
 nnoremap <Leader>( t(l"pda(hda("pp
 nnoremap <Leader>l :lua vim.diagnostic.setloclist()<CR>
-nnoremap <Leader>r :execute "r!screen2vim " . expand("%:t")<CR>
+nnoremap <Leader>r :lua vim.fn.execute("r!screen2vim '" .. fixpath('img') .. "' '" ..  vim.fn.expand("%:t") . "'")<CR>
+nnoremap <Leader>h "0di(:lua vim.fn.setreg('0', fixpath(vim.fn.getreg('0')))<CR>h"0p
 nnoremap <Leader>f vi(y:execute "!sh -c \"xdg-open '" . shellescape("0",1) . "' && sleep 1\""<CR>
 nnoremap <Leader>g viWy:execute "!sh -c \"xdg-open '" . shellescape("0",1) . "' && sleep 1\""<CR>
 nnoremap <Leader>e vi(y:execute "e " . shellescape("0",1)<CR>
@@ -207,7 +210,7 @@ au BufRead,BufNewFile *.rb set shiftwidth=2
 "https://github.com/preservim/vim-markdown/issues/390#issuecomment-450392655
 "https://github.com/preservim/vim-markdown/pull/375
 "| setlocal comments=bf:>,bf:*,bf:+,bf:- | set formatoptions+=c  | set formatlistpat=^\\s*\\d\\+[.\)]\\s\\+\\\|^\\s*[#*+~-]\\s\\+\\\|^\\(\\\|[*#-~+]\\)\\[^[^\\]]\\+\\]:\\s
-au BufRead,BufNewFile *.md set shiftwidth=2 | set tabstop=2 | setlocal comments=bf:>,bf:*,bf:+,bf:- | set formatoptions+=c  | set formatlistpat=^\\s*\\d\\+[.\)]\\s\\+\\\|^\\s*[#*+~-]\\s\\+\\\|^\\(\\\|[*#-~+]\\)\\[^[^\\]]\\+\\]:\\s
+au BufRead,BufNewFile *.md set shiftwidth=2 | set tabstop=2 | setlocal comments=bf:*,bf:+,bf:- | set formatoptions+=c  | set formatlistpat=^\\s*\\d\\+[.\)]\\s\\+\\\|^\\s*[#*+~-]\\s\\+\\\|^\\(\\\|[*#-~+]\\)\\[^[^\\]]\\+\\]:\\s
 
 
 au BufRead,BufNewFile *.hs set shiftwidth=2 | set tabstop=2
