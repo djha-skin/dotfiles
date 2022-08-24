@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=KeyNav
+GenericName=KeyNav
+Comment=KeyNav
+Exec=keynav
+Icon=keynav
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Mouse
