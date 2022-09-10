@@ -35,12 +35,12 @@ function prompt
   return $out
 }
 
-Out-UTF8 {
+function Out-UTF8 {
     param
     (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
         [string]
-        $Content
+        $Content,
         [Parameter(Mandatory = $true)]
         [string]
         $Path
