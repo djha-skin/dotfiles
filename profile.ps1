@@ -34,3 +34,17 @@ function prompt
 
   return $out
 }
+
+Out-UTF8 {
+    param
+    (
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
+        [string]
+        $Content
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Path
+    )
+    $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
+    [System.IO.File]::WriteAllLines($Path, $Content, $Utf8NoBomEncoding)
+}

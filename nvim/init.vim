@@ -23,7 +23,8 @@ Plug 'nvim-treesitter/playground'
 Plug 'tpope/vim-fireplace'
 Plug 'venantius/vim-cljfmt'
 Plug 'preservim/vim-markdown'
-Plug 'altercation/vim-colors-solarized'
+Plug 'frankier/neovim-colors-solarized-truecolor-only'
+Plug 'JulioJu/neovim-qt-colors-solarized-truecolor-only'
 call plug#end()
 lua << EOF
 require'lspconfig'.clojure_lsp.setup{}
@@ -59,7 +60,7 @@ set noeb vb t_vb=
 set belloff=all
 let g:rainbow_active = 1
 
-let maplocalleader=","
+let maplocalleader="<Space>"
 "set t_Co=256
 "set foldmethod=syntax
 set t_vb=
@@ -81,9 +82,9 @@ elseif has('win32unix')
 "...
 "elseif has('unix')
 "...
-elseif has('unix')
-    set background=light
 endif
+
+set background=light
 colorscheme solarized
 syntax enable
 
@@ -94,7 +95,6 @@ set showmatch
 if has('win32')
     let g:slime_target = "conemu"
     set backspace=2
-    colorscheme solarized
     setlocal nobomb
     setglobal nobomb
 elseif has('unix')
@@ -103,9 +103,6 @@ elseif has('unix')
     let g:slime_session_name= "ergo"
     let b:slime_config = {"sessionname": "ergo", "windowname": "repl"}
     let g:slime_paste_file = "$HOME/.slime_paste"
-
-    set background=light
-    colorscheme solarized
 endif
 "au BufWinEnter * let w:m2=matchadd('ErrorMsg', '/\%>80v.\+/', -1)
 " guard against 80 character length lines.
