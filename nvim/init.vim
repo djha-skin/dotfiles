@@ -23,8 +23,7 @@ Plug 'nvim-treesitter/playground'
 Plug 'tpope/vim-fireplace'
 Plug 'venantius/vim-cljfmt'
 Plug 'preservim/vim-markdown'
-Plug 'frankier/neovim-colors-solarized-truecolor-only'
-Plug 'JulioJu/neovim-qt-colors-solarized-truecolor-only'
+Plug 'altercation/vim-colors-solarized'
 call plug#end()
 lua << EOF
 require'lspconfig'.clojure_lsp.setup{}
@@ -33,7 +32,6 @@ require'lspconfig'.terraformls.setup{}
 
 
 function fixpath( p )
-
   if(not string.match(p,"^[a-z]+://"))
   then
     local abs = vim.fn.expand("%:p"):gsub("/+[^/]+$", "/") .. p
@@ -60,7 +58,7 @@ set noeb vb t_vb=
 set belloff=all
 let g:rainbow_active = 1
 
-let maplocalleader="<Space>"
+let maplocalleader=","
 "set t_Co=256
 "set foldmethod=syntax
 set t_vb=
@@ -82,9 +80,9 @@ elseif has('win32unix')
 "...
 "elseif has('unix')
 "...
+elseif has('unix')
+    set background=light
 endif
-
-set background=light
 colorscheme solarized
 syntax enable
 
@@ -95,6 +93,7 @@ set showmatch
 if has('win32')
     let g:slime_target = "conemu"
     set backspace=2
+    colorscheme solarized
     setlocal nobomb
     setglobal nobomb
 elseif has('unix')
@@ -103,6 +102,9 @@ elseif has('unix')
     let g:slime_session_name= "ergo"
     let b:slime_config = {"sessionname": "ergo", "windowname": "repl"}
     let g:slime_paste_file = "$HOME/.slime_paste"
+
+    set background=light
+    colorscheme solarized
 endif
 "au BufWinEnter * let w:m2=matchadd('ErrorMsg', '/\%>80v.\+/', -1)
 " guard against 80 character length lines.
@@ -160,10 +162,14 @@ imap jk <Esc>
 nnoremap <Leader><space> :let @/=""<CR>
 nnoremap <Leader>d :put =strftime('%FT%T%z')<CR>
 nnoremap <Leader>b :execute "!git blame -L " . line(".") . "," . line(".") . " %"<CR>
+" Easier copy/pasta
+nnoremap <Leader>c "+y
+nnoremap <Leader>v "+]p
 nnoremap <Leader>o :FZF<CR>
 nnoremap <Leader>( t(l"pda(hda("pp
 nnoremap <Leader>l :lua vim.diagnostic.setloclist()<CR>
-nnoremap <Leader>r :lua vim.fn.execute("r!screen2vim '" .. fixpath('img') .. "' '" ..  vim.fn.expand("%:t") . "'")<CR>
+" the leader f won't work with this, but the leader G will.
+nnoremap <Leader>r :lua vim.fn.execute("r!screen2vim '" .. fixpath("img") .. "' '" .. fixpath(vim.fn.expand("%:t")) .. "'")<CR>
 nnoremap <Leader>h "0di(:lua vim.fn.setreg('0', fixpath(vim.fn.getreg('0')))<CR>h"0p
 nnoremap <Leader>f vi(y:execute "!sh -c \"xdg-open '" . shellescape("0",1) . "' && sleep 1\""<CR>
 nnoremap <Leader>g viWy:execute "!sh -c \"xdg-open '" . shellescape("0",1) . "' && sleep 1\""<CR>
@@ -248,5 +254,5 @@ if exists('g:vscode')
     nnoremap <Leader>f :call VSCodeNotify('calva.loadFile')<CR>
     nnoremap <Leader>n :call VSCodeNotify('calva.loadNamespace')<CR>
     nnoremap <Leader>s :call VSCodeNotify('calva.evaluateSelection')<CR>
-    nnoremap <Leader>c :call VSCodeNotify('calva.evaluateCurrentTopLevelForm')<CR>
+    nnoremap <Leader>C :call VSCodeNotify('calva.evaluateCurrentTopLevelForm')<CR>
 endif
