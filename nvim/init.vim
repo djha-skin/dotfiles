@@ -42,6 +42,13 @@ function fixpath( p )
     return p
   end
 end
+
+function str2file(str, fname)
+  local f = assert(io.open(fname, "w"))
+  f:write(str)
+  f:close()
+end
+
 EOF
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
@@ -163,9 +170,10 @@ nnoremap <Leader><space> :let @/=""<CR>
 nnoremap <Leader>d :put =strftime('%FT%T%z')<CR>
 nnoremap <Leader>b :execute "!git blame -L " . line(".") . "," . line(".") . " %"<CR>
 " Easier copy/pasta
-nnoremap <Leader>c "+y
+vnoremap <Leader>c "+y:lua str2file(vim.fn.getreg('+'), '/tmp/screen-exchange')<CR>
+nnoremap <Leader>c "+y:lua str2file(vim.fn.getreg('+'), '/tmp/screen-exchange')<CR>
 nnoremap <Leader>v "+]p
-nnoremap <leader>V :r /tmp/screen-exchange<CR>
+nnoremap <Leader>V :r /tmp/screen-exchange<CR>
 nnoremap <Leader>o :FZF<CR>
 nnoremap <Leader>( t(l"pda(hda("pp
 nnoremap <Leader>l :lua vim.diagnostic.setloclist()<CR>
