@@ -165,6 +165,7 @@ nnoremap <Leader>b :execute "!git blame -L " . line(".") . "," . line(".") . " %
 " Easier copy/pasta
 nnoremap <Leader>c "+y
 nnoremap <Leader>v "+]p
+nnoremap <leader>V :r /tmp/screen-exchange<CR>
 nnoremap <Leader>o :FZF<CR>
 nnoremap <Leader>( t(l"pda(hda("pp
 nnoremap <Leader>l :lua vim.diagnostic.setloclist()<CR>
