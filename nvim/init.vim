@@ -23,7 +23,12 @@ Plug 'nvim-treesitter/playground'
 Plug 'tpope/vim-fireplace'
 Plug 'venantius/vim-cljfmt'
 Plug 'preservim/vim-markdown'
-Plug 'altercation/vim-colors-solarized'
+if has('win32')
+    Plug 'JulioJu/neovim-qt-colors-solarized-truecolor-only'
+    Plug 'frankier/neovim-colors-solarized-truecolor-only'
+else
+    Plug 'altercation/vim-colors-solarized'
+endif
 call plug#end()
 lua << EOF
 require'lspconfig'.clojure_lsp.setup{}
