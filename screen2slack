@@ -1,0 +1,32 @@
+#!/bin/sh
+set -ex
+
+. ${HOME}/.private_profile
+if which screencapture
+then
+    capt="screencapture -s -i"
+else
+    capt="maim -s"
+fi
+itis=$(date '+%Y-%m-%d-%H-%M-%S')
+fname="${itis}.png"
+src="${HOME:-/home/danielhaskin}/Pictures"
+
+#echo "startup"
+#mkdir -p "${src}"
+#rclone mkdir "${dest}"
+
+echo "screenshot"
+${capt} "${src}/${fname}"
+
+echo "copy"
+channel=$(zenity \
+    --entry --text="screen2slack" \
+    --text="Channel?" \
+    --entry-text="daniel.haskin")
+
+slackcat --channel "${channel}" "${src}/${fname}"
+
+zenity --title "screen2slack" \
+    --info \
+    --text "Synced to Slack"
