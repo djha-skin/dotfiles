@@ -1,0 +1,22 @@
+#!/bin/sh
+set -ex
+
+# Based on this tool:
+# https://github.com/prasmussen/gdrive/releases
+# Be sure to install musl or you will get some weird errors
+
+itis=$(date '+%Y-%m-%d-%H-%M-%S')
+fname="${itis}.png"
+src="${HOME:-/home/danielhaskin}/Pictures"
+
+
+dest="/Screenshots/${itis}.png"
+maim -s "${src}/${fname}"
+fid=$(gdrive upload --name "${dest}" "${src}/${fname}" | \
+    sed -n -e '/Uploaded \([^ ]*\).*$/ { s|^ *Uploaded \([^ ]*\).*$|\1|g; p }')
+echo "${fid}"
+
+gdrive share --type domain --role commenter --domain work.domain "${fid}"
+url=$(gdrive info "${fid}" | awk -F': ' '/ViewUrl/{print $2}')
+printf "${url}"  | xsel -ib
+zenity --title "screen2gdrive" --info --text "Synced to ${remote}, URL in clipboard"
