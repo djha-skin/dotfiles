@@ -1,10 +1,9 @@
 #!/bin/sh
+
+# Replace WORK.DOMAIN with work domain
 set -ex
 
-# Based on this tool:
-# https://github.com/prasmussen/gdrive/releases
-# Be sure to install musl or you will get some weird errors
-
+. ~/.profile
 itis=$(date '+%Y-%m-%d-%H-%M-%S')
 fname="${itis}.png"
 src="${HOME:-/home/danielhaskin}/Pictures"
@@ -13,10 +12,10 @@ src="${HOME:-/home/danielhaskin}/Pictures"
 dest="/Screenshots/${itis}.png"
 maim -s "${src}/${fname}"
 fid=$(gdrive upload --name "${dest}" "${src}/${fname}" | \
-    sed -n -e '/Uploaded \([^ ]*\).*$/ { s|^ *Uploaded \([^ ]*\).*$|\1|g; p }')
+    sed -n -e '/Uploaded \([^ ]*\).*$/ { s|^ *Uploaded \([^ ]*\).*$|\1|g; p }' 2> ~/.sgd-errors)
 echo "${fid}"
 
-gdrive share --type domain --role commenter --domain work.domain "${fid}"
-url=$(gdrive info "${fid}" | awk -F': ' '/ViewUrl/{print $2}')
+gdrive share --type domain --role commenter --domain WORK.DOMAIN "${fid}" 2>~/.sgd-errors
+url=$(gdrive info "${fid}" | awk -F': ' '/ViewUrl/{print $2}' 2>~/.sgd-errors)
 printf "${url}"  | xsel -ib
-zenity --title "screen2gdrive" --info --text "Synced to ${remote}, URL in clipboard"
+zenity --title "screen2gdrive" --info --text "Synced to Work GDrive, URL in clipboard"
