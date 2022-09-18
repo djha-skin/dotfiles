@@ -1,7 +1,4 @@
-REM @echo off
-
-REM Set current location of imagemagick here.
-set "imloc=C:\Users\bhw\scoop\apps\imagemagick\current"
+@echo off
 
 set "remote=HomeGoogleDrive"
 
