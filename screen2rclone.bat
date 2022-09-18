@@ -37,7 +37,7 @@ goto endmain
     ksnip -r -p "%fpath%" 
     set "fdest=%remote%:/Screenshots/%fname%"
     rclone copy "%fpath%" "%fdest%"
-    for /f "tokens=*" %%i in ('rclone link "%fdest%"') do ( set "url=%%i" )
+    for /f "tokens=*" %%i in ('rclone link %fdest%') do ( set "url=%%i" )
 
     REM if NOT "%raw%" == "true" (
     REM     for /f "tokens=2 delims==" %%i in ("%url%") do (
