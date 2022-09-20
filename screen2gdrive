@@ -39,11 +39,13 @@ echo "clipboard"
 #rclone link --expire 4h "${dest}/${fname}" | xsel -ib
 #printf "https://drive.google.com/uc?id=${download_id}" | xsel -ib
 raw_link=$(rclone link "${dest}/${fname}")
+
 if [ "${raw}" = "true" ]
 then
     printf "${raw_link}" | xsel -ib
 else
     file_id=$(printf "${raw_link}" | sed -e 's|^[^?]*[?]id=||')
+    #printf "https://drive.google.com/file/d/${file_id}/view?usp=drivesdk"
     printf "https://drive.google.com/uc?id=${file_id}&filename=${fname}" | xsel -ib
 fi
 zenity --title "screen2gdrive" --info --text "Synced to ${remote}, URL in clipboard"
