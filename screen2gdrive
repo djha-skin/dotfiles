@@ -3,12 +3,17 @@ set -ex
 
 
 raw=false
+viewport=false
 remote=HomeGoogleDrive
 while [ -n "${1}" ]
 do
     case "${1}" in
         --raw)
             raw=true
+            shift
+            ;;
+        --view)
+            viewport=true
             shift
             ;;
         --remote)
@@ -25,7 +30,7 @@ done
 itis=$(date '+%Y-%m-%d-%H-%M-%S')
 fname="${itis}.png"
 src="${HOME:-/home/danielhaskin}/Pictures"
-dest="${remote}:/Angel/Screenshots"
+dest="${remote}:/Screenshots"
 
 #echo "startup"
 #mkdir -p "${src}"
@@ -43,9 +48,12 @@ raw_link=$(rclone link "${dest}/${fname}")
 if [ "${raw}" = "true" ]
 then
     printf "${raw_link}" | xsel -ib
+elif [ "${viewport}" = "true" ]
+then
+    file_id=$(printf "${raw_link}" | sed -e 's|^[^?]*[?]id=||')
+    printf "https://drive.google.com/file/d/${file_id}/view?usp=drivesdk" | xsel -ib
 else
     file_id=$(printf "${raw_link}" | sed -e 's|^[^?]*[?]id=||')
-    #printf "https://drive.google.com/file/d/${file_id}/view?usp=drivesdk"
     printf "https://drive.google.com/uc?id=${file_id}&filename=${fname}" | xsel -ib
 fi
 zenity --title "screen2gdrive" --info --text "Synced to ${remote}, URL in clipboard"
