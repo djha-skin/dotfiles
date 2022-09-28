@@ -23,25 +23,59 @@ Plug 'nvim-treesitter/playground'
 Plug 'tpope/vim-fireplace'
 Plug 'venantius/vim-cljfmt'
 Plug 'preservim/vim-markdown'
+<<<<<<< HEAD:nvim/init.vim
+if has('win32')
+    Plug 'JulioJu/neovim-qt-colors-solarized-truecolor-only'
+    Plug 'frankier/neovim-colors-solarized-truecolor-only'
+else
+    Plug 'altercation/vim-colors-solarized'
+endif
+||||||| parent of a015ab0 (Fix some things):nvim/init.vim
 Plug 'altercation/vim-colors-solarized'
+=======
+Plug 'altercation/vim-colors-solarized'
+
+Plug 'guns/vim-sexp'
+>>>>>>> a015ab0 (Fix some things):dot-config/nvim/init.vim
 call plug#end()
+let g:sexp_enable_insert_mode_mappings = 0
+
 lua << EOF
 require'lspconfig'.clojure_lsp.setup{}
 require'lspconfig'.pylsp.setup{}
 require'lspconfig'.terraformls.setup{}
 
+function clstart( )
+    if ( not started)
+    then
+        started = true
+        vim.lsp.start({
+          name = 'cl-lsp',
+          cmd = {'cl-lsp'},
+          root_dir = vim.fs.dirname(vim.fs.find({'clpmfile'}, { upward = true })[1]),
+        })
+    end
+end
 
 function fixpath( p )
-  if(string.match(p,"^[a-z]+://"))
+  if(not string.match(p,"^[a-z]+://"))
   then
-    return p
+    local abs = vim.fn.expand("%:p"):gsub("/+[^/]+$", "/") .. p
+    local pwd = vim.fn.getcwd()
+    local betterpath = abs:gsub(pwd .. "/", "")
+    return betterpath
   else
-    return vim.fn.expand("%:p"):gsub("[^/]+$", "") .. p
+    return p
   end
 end
+
+function str2file(str, fname)
+  local f = assert(io.open(fname, "w"))
+  f:write(str)
+  f:close()
+end
+
 EOF
-
-
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -161,14 +195,23 @@ imap jk <Esc>
 nnoremap <Leader><space> :let @/=""<CR>
 nnoremap <Leader>d :put =strftime('%FT%T%z')<CR>
 nnoremap <Leader>b :execute "!git blame -L " . line(".") . "," . line(".") . " %"<CR>
+" Easier copy/pasta
+vnoremap <Leader>c "+y:lua str2file(vim.fn.getreg('+'), '/tmp/screen-exchange')<CR>
+nnoremap <Leader>c "+y:lua str2file(vim.fn.getreg('+'), '/tmp/screen-exchange')<CR>
+nnoremap <Leader>v "+]p
+nnoremap <Leader>V :r /tmp/screen-exchange<CR>
 nnoremap <Leader>o :FZF<CR>
 nnoremap <Leader>( t(l"pda(hda("pp
 nnoremap <Leader>l :lua vim.diagnostic.setloclist()<CR>
-nnoremap <Leader>r :execute "r!screen2vim " . expand("%:t")<CR>
+" the leader f won't work with this, but the leader G will.
+nnoremap <Leader>r :lua vim.fn.execute("r!screen2vim '" .. fixpath("img") .. "' '" .. fixpath(vim.fn.expand("%:t")) .. "'")<CR>
+nnoremap <Leader>h "0di(:lua vim.fn.setreg('0', fixpath(vim.fn.getreg('0')))<CR>h"0p
 nnoremap <Leader>f vi(y:execute "!sh -c \"xdg-open '" . shellescape("0",1) . "' && sleep 1\""<CR>
 nnoremap <Leader>g viWy:execute "!sh -c \"xdg-open '" . shellescape("0",1) . "' && sleep 1\""<CR>
 nnoremap <Leader>e vi(y:execute "e " . shellescape("0",1)<CR>
 nnoremap <Leader>G :w<CR>:!sh -c "xdg-open '%' && sleep 1"<CR>
+vnoremap <Leader>c "+y
+nnoremap <Leader>v "+]p
 
 
 "au BufRead,BufNewFile *.c,*.h set makeprg=gcc\ \"%\"
@@ -197,11 +240,11 @@ au BufRead,BufNewFile *.clj nnoremap <Leader>u t(l"ada(da(h"a]p
 au BufRead,BufNewFile *.clj nnoremap <Leader>U dt xjkhxt)lx
 au BufRead,BufNewFile *.clj nnoremap <Leader>d i(util/dbg <Esc>l])a)<Esc>
 au BufRead,BufNewFile *.clj nnoremap <Leader>D bi(util/dbg <Esc>lea)<Esc>
-
 au BufRead,BufNewFile *.tex set makeprg=pdflatex\ -halt-on-error\ --shell-escape\ -interaction=nonstopmode\ \"%\"
 au BufRead,BufNewFile SConstruct,SConscript set makeprg=scons
 au BufRead,BufNewFile *.rb set tabstop=2
 au BufRead,BufNewFile *.rb set shiftwidth=2
+au BufRead,BufNewFile *.lisp lua clstart()
 "| inoremap <CR> <CR><esc>i
 
 " https://github.com/preservim/vim-markdown/issues/390#issuecomment-578459147
@@ -212,7 +255,7 @@ au BufRead,BufNewFile *.rb set shiftwidth=2
 "https://github.com/preservim/vim-markdown/issues/390#issuecomment-450392655
 "https://github.com/preservim/vim-markdown/pull/375
 "| setlocal comments=bf:>,bf:*,bf:+,bf:- | set formatoptions+=c  | set formatlistpat=^\\s*\\d\\+[.\)]\\s\\+\\\|^\\s*[#*+~-]\\s\\+\\\|^\\(\\\|[*#-~+]\\)\\[^[^\\]]\\+\\]:\\s
-au BufRead,BufNewFile *.md set shiftwidth=2 | set tabstop=2 | setlocal comments=bf:>,bf:*,bf:+,bf:- | set formatoptions+=c  | set formatlistpat=^\\s*\\d\\+[.\)]\\s\\+\\\|^\\s*[#*+~-]\\s\\+\\\|^\\(\\\|[*#-~+]\\)\\[^[^\\]]\\+\\]:\\s
+au BufRead,BufNewFile *.md set shiftwidth=2 | set tabstop=2 | setlocal comments=bf:*,bf:+,bf:- | set formatoptions+=c  | set formatlistpat=^\\s*\\d\\+[.\)]\\s\\+\\\|^\\s*[#*+~-]\\s\\+\\\|^\\(\\\|[*#-~+]\\)\\[^[^\\]]\\+\\]:\\s
 
 
 au BufRead,BufNewFile *.hs set shiftwidth=2 | set tabstop=2
@@ -253,5 +296,5 @@ if exists('g:vscode')
     nnoremap <Leader>f :call VSCodeNotify('calva.loadFile')<CR>
     nnoremap <Leader>n :call VSCodeNotify('calva.loadNamespace')<CR>
     nnoremap <Leader>s :call VSCodeNotify('calva.evaluateSelection')<CR>
-    nnoremap <Leader>c :call VSCodeNotify('calva.evaluateCurrentTopLevelForm')<CR>
+    nnoremap <Leader>C :call VSCodeNotify('calva.evaluateCurrentTopLevelForm')<CR>
 endif

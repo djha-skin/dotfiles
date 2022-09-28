@@ -8,10 +8,15 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 export PROFILE_INCLUDED=1
-export HOME="/home/djhaskin987"
+export HOME="/home/djha-skin"
 export home_altprefix="${HOME}/.apps"
 # Set up PATH
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:${HOME}/perl5/bin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+export LANG="en_US.UTF-8"
+export LOCALE="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+export LANGUAGE="en_US:"
+export RLWRAP_EDITOR="nvim '+call cursor(%L,%C)'"
 for i in $(ls -1A "${home_altprefix}")
 do
     if [ -d "${home_altprefix}/${i}" ]
@@ -30,41 +35,42 @@ do
 done
 if [ -n "${GEM_HOME}" ]
 then
-    export PATH="${PATH}:${GEM_HOME}/bin"
+    export PATH="${GEM_HOME}/bin:${PATH}"
 fi
 
-for i in $(ls -1A ${HOME}/.gem/ruby)
-do
-    if [ -d "${HOME}/.gem/ruby/${i}/bin" ]
-    then
-        export PATH="${HOME}/.gem/ruby/${i}/bin:${PATH}"
-    fi
-done
+if [ -n "${HOME}/.roswell" ]
+then
+    export PATH="${PATH}:${HOME}/.roswell/bin"
+fi
+
+if [ -d "${HOME}/.gem/ruby" ]
+then
+    for i in $(ls -1A ${HOME}/.gem/ruby)
+    do
+        if [ -d "${HOME}/.gem/ruby/${i}/bin" ]
+        then
+            export PATH="${HOME}/.gem/ruby/${i}/bin:${PATH}"
+        fi
+    done
+fi
+
 if [ -n "${KREW_ROOT}" ]
 then
     export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 fi
 
 export NPM_PACKAGES="${HOME}/.npm-packages"
-export PATH="$PATH:$NPM_PACKAGES/bin"
+if [ -d "${NPM_PACKAGES}" ]
+then
+    export PATH="${PATH}:${NPM_PACKAGES}/bin"
+fi
 
-export PATH="${HOME}/.local/bin:${PATH}"
-
-# Set up locale
-export LANG="en_US.UTF-8"
-export LOCALE="en_US.UTF-8"
-export LC_ALL="en_US.UTF-8"
-export LANGUAGE="en_US:"
 export GOBIN="${HOME}/.local/bin"
 
-
-for i in $(ls -1A ${home_altprefix})
-do
-    if [ -d "${home_altprefix}/${i}" -a -d "${home_altprefix}/${i}/bin" ]
-    then
-        export PATH="${PATH}:${home_altprefix}/${i}/bin"
-    fi
-done
+if [ -n "${JAVA_HOME}" ]
+then
+    export PATH="${JAVA_HOME}/bin:${PATH}"
+fi
 
 export EDITOR="nvim"
 export ALTERNATE_EDITOR=""
