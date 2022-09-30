@@ -1,18 +1,22 @@
 #!/bin/sh
-set -e
-
-# In case I want to switch windows
-sleep 1
-
-
-place="${1}"
-
-if [ ! -d "${PWD}/${place}" ]
-then
-    mkdir -p "${PWD}/${place}"
-fi
-now=$(date '+%Y-%m-%d-%H-%M-%S')
-base=$(echo "${2}" | sed -e 's|[^/]*/||g' -e 's| |_|g' -e 's|\.md$||')
-fname="${base}_${now}.png"
-maim -s "${PWD}/${place}/${fname}"
-printf "![](img/${fname})"
+# Completion file taken from here:
+# https://web.archive.org/web/20031207221537/http://weitz.de/files/cmucl_completions
+# Pointed out from here: https://stackoverflow.com/a/60281483
+# Thanks to Dr. Edi Weitz, who first created the completion file.
+# His home page is at https://weitz.de/
+# His CL projects are here: https://edicl.github.io/
+export RLWRAP_HOME=${PWD}/.repl
+rlwrap \
+    --break-chars "(){}[],'#\";|\\" \
+    --case-insensitive \
+    --file ~/.config/common-lisp/edi-weitz \
+    --history-filename ~/.cl-history \
+    -M '.lisp' \
+    --multi-line='  ' \
+    --only-cook '^[^[:blank:]]*>>* *' \
+    --prompt-colour=red \
+    --quote-characters "\"" \
+    --remember \
+    ros run "${@}"
+    #ros run --load tools/load-clpm.lisp
+#clpm bundle exec -- ros run
