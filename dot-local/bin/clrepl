@@ -11,8 +11,7 @@ rlwrap \
     --case-insensitive \
     --file ~/.config/common-lisp/edi-weitz \
     --history-filename ~/.cl-history \
-    --forget-matching '^[[:blank:]]*$' \
-    --forget-matching '^[[:blank:]]*[^[:blank:](]' \
+    --forget-matching '^[^(]' \
     -M '.lisp' \
     --multi-line='  ' \
     --only-cook '^[^[:blank:]]*>>* *' \
