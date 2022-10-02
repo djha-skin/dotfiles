@@ -23,20 +23,13 @@ Plug 'nvim-treesitter/playground'
 Plug 'tpope/vim-fireplace'
 Plug 'venantius/vim-cljfmt'
 Plug 'preservim/vim-markdown'
-<<<<<<< HEAD:nvim/init.vim
 if has('win32')
     Plug 'JulioJu/neovim-qt-colors-solarized-truecolor-only'
     Plug 'frankier/neovim-colors-solarized-truecolor-only'
 else
     Plug 'altercation/vim-colors-solarized'
 endif
-||||||| parent of a015ab0 (Fix some things):nvim/init.vim
-Plug 'altercation/vim-colors-solarized'
-=======
-Plug 'altercation/vim-colors-solarized'
-
 Plug 'guns/vim-sexp'
->>>>>>> a015ab0 (Fix some things):dot-config/nvim/init.vim
 call plug#end()
 let g:sexp_enable_insert_mode_mappings = 0
 
