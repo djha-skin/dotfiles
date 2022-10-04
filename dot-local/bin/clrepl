@@ -14,10 +14,10 @@ rlwrap \
     --forget-matching '^[^(]' \
     -M '.lisp' \
     --multi-line='  ' \
-    --only-cook '^[^[:blank:]]*>>* *' \
+    --only-cook '^[^[:blank:]]* *' \
     --prompt-colour=red \
     --quote-characters "\"" \
     --remember \
-    ros run "${@}"
+    ros run -- "${@}"
     #ros run --load tools/load-clpm.lisp
 #clpm bundle exec -- ros run

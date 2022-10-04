@@ -11,12 +11,15 @@ export PROFILE_INCLUDED=1
 export HOME="/home/djha-skin"
 export home_altprefix="${HOME}/.apps"
 # Set up PATH
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+export PATH="${HOME}/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
 export LANG="en_US.UTF-8"
 export LOCALE="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export LANGUAGE="en_US:"
 export RLWRAP_EDITOR="nvim '+call cursor(%L,%C)'"
+export C_INCLUDE_PATH=/usr/include
+export LIBRARY_PATH=/usr/lib64:/usr/lib
+
 for i in $(ls -1A "${home_altprefix}")
 do
     if [ -d "${home_altprefix}/${i}" ]
@@ -33,6 +36,7 @@ do
         fi
     fi
 done
+
 if [ -n "${GEM_HOME}" ]
 then
     export PATH="${GEM_HOME}/bin:${PATH}"
