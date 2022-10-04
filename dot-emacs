@@ -68,19 +68,19 @@
               alist))
 
 ;; (require 'color-theme)
-;; (require 'color-theme-djhaskin987-console)
-(require 'djhaskin987-untab-to-tab-stop)
-(require 'djhaskin987-unindent-rigidly)
-(require 'djhaskin987-indent-rigidly)
-(require 'djhaskin987-clear-kill-ring)
+;; (require 'color-theme-djha-skin-console)
+(require 'djha-skin-untab-to-tab-stop)
+(require 'djha-skin-unindent-rigidly)
+(require 'djha-skin-indent-rigidly)
+(require 'djha-skin-clear-kill-ring)
 (require 'em-tramp)
 (setq color-theme-is-global t)
 (setq cmake-tab-width 4)
 
 (define-key global-map (kbd "C-c C-r") 'rename-buffer)
-;; (color-theme-djhaskin987-console)
+;; (color-theme-djha-skin-console)
 (setq custom-theme-directory "~/.emacs.d/themes")
-(load-theme 'djhaskin987-midnight t)
+(load-theme 'djha-skin-midnight t)
 
 ;; Set default character encoding to UTF-8.
 (set-language-environment "UTF-8")
@@ -106,26 +106,26 @@
 
 ;(define-key global-map (kbd "RET") 'newline-and-indent)
 ;(define-key global-map (kbd "C-j") 'newline)
-(define-key global-map (kbd "M-j") 'djhaskin987-untab-to-tab-stop)
-(define-key global-map (kbd "C-x M-TAB") 'djhaskin987-unindent-rigidly)
-(define-key global-map (kbd "C-x TAB") 'djhaskin987-indent-rigidly)
-(define-key global-map (kbd "C-|") 'djhaskin987-clear-kill-ring)
+(define-key global-map (kbd "M-j") 'djha-skin-untab-to-tab-stop)
+(define-key global-map (kbd "C-x M-TAB") 'djha-skin-unindent-rigidly)
+(define-key global-map (kbd "C-x TAB") 'djha-skin-indent-rigidly)
+(define-key global-map (kbd "C-|") 'djha-skin-clear-kill-ring)
 
 ;; line numbering
 (require 'linum+)
 (global-linum-mode 1)
 
-(defun djhaskin987-yank-reverse-pop ()
+(defun djha-skin-yank-reverse-pop ()
   (interactive)
   (yank-pop -1))
 
 ;; change of keys, default behavior, etc.
 (define-key global-map (kbd "M-k") 'delete-region)
-(define-key global-map (kbd "C-M-y") 'djhaskin987-yank-reverse-pop)
+(define-key global-map (kbd "C-M-y") 'djha-skin-yank-reverse-pop)
 (define-key global-map (kbd "M-g") 'goto-line)
 (define-key global-map (kbd "M-%") 'query-replace-regexp)
 
-(defun djhaskin987-save-buffers-kill-emacs (&optional arg)
+(defun djha-skin-save-buffers-kill-emacs (&optional arg)
   "Offer to save each buffer (once only), then kill this Emacs process.
   With prefix ARG, silently save all file-visiting buffers, then kill."
   (interactive "P")
@@ -147,7 +147,7 @@
        (or (null confirm-kill-emacs)
            (funcall confirm-kill-emacs "Really exit Emacs? "))
        (kill-emacs)))
-(fset 'save-buffers-kill-emacs 'djhaskin987-save-buffers-kill-emacs)
+(fset 'save-buffers-kill-emacs 'djha-skin-save-buffers-kill-emacs)
 ;(setq system-uses-terminfo nil)
 
 ;; 80 characters, people.

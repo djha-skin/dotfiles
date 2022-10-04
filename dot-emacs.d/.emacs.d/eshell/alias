@@ -1,0 +1,9 @@
+alias chmod *chmod $*
+alias git git --no-pager $*
+alias config git --git-dir=$HOME/.cfg/ --work-tree=$HOME --no-pager $*
+alias sudo eshell/sudo $*
+alias File $*
+alias nil $*
+alias find *find $*
+alias add $*
+alias keycode $*
