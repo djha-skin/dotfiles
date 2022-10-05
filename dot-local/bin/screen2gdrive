@@ -1,7 +1,6 @@
 #!/bin/sh
 set -ex
 
-
 raw=false
 viewport=false
 remote=HomeGoogleDrive
@@ -41,19 +40,19 @@ maim -s "${src}/${fname}"
 echo "copy"
 rclone copy "${src}/${fname}" "${dest}/"
 echo "clipboard"
-#rclone link --expire 4h "${dest}/${fname}" | xsel -ib
-#printf "https://drive.google.com/uc?id=${download_id}" | xsel -ib
+#rclone link --expire 4h "${dest}/${fname}" | copy
+#printf "https://drive.google.com/uc?id=${download_id}" | ${paste}
 raw_link=$(rclone link "${dest}/${fname}")
 
 if [ "${raw}" = "true" ]
 then
-    printf "${raw_link}" | xsel -ib
+    printf "${raw_link}" | ${copy}
 elif [ "${viewport}" = "true" ]
 then
     file_id=$(printf "${raw_link}" | sed -e 's|^[^?]*[?]id=||')
-    printf "https://drive.google.com/file/d/${file_id}/view?usp=drivesdk" | xsel -ib
+    printf "https://drive.google.com/file/d/${file_id}/view?usp=drivesdk" | ${copy}
 else
     file_id=$(printf "${raw_link}" | sed -e 's|^[^?]*[?]id=||')
-    printf "https://drive.google.com/uc?id=${file_id}&filename=${fname}" | xsel -ib
+    printf "https://drive.google.com/uc?id=${file_id}&filename=${fname}" | ${copy}
 fi
 zenity --title "screen2gdrive" --info --text "Synced to ${remote}, URL in clipboard"

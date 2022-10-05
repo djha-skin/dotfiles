@@ -1,12 +1,10 @@
 #!/bin/sh
-
-# Replace WORK.DOMAIN with work domain
 set -ex
 
 . ~/.profile
 itis=$(date '+%Y-%m-%d-%H-%M-%S')
 fname="${itis}.png"
-src="${HOME:-/home/danielhaskin}/Pictures"
+src="${HOME}/Pictures"
 
 
 dest="/Screenshots/${itis}.png"
@@ -15,7 +13,12 @@ fid=$(gdrive upload --name "${dest}" "${src}/${fname}" | \
     sed -n -e '/Uploaded \([^ ]*\).*$/ { s|^ *Uploaded \([^ ]*\).*$|\1|g; p }' 2> ~/.sgd-errors)
 echo "${fid}"
 
-gdrive share --type domain --role commenter --domain WORK.DOMAIN "${fid}" 2>~/.sgd-errors
+if [ -z "${GOOGLE_WORK_DOMAIN:-}" ]
+then
+    zenit --title "Nope" --info --text "You need to set GOOGLE_WORK_DOMAIN in your private profile first"
+fi
+
+gdrive share --type domain --role commenter --domain "${GOOGLE_WORK_DOMAIN}" "${fid}" 2>~/.sgd-errors
 url=$(gdrive info "${fid}" | awk -F': ' '/ViewUrl/{print $2}' 2>~/.sgd-errors)
-printf "${url}"  | xsel -ib
+printf "${url}"  | copy
 zenity --title "screen2gdrive" --info --text "Synced to Work GDrive, URL in clipboard"

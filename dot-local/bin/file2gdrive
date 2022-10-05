@@ -1,6 +1,7 @@
 #!/bin/sh
 set -ex
 
+
 raw=false
 remote=HomeGoogleDrive
 while [ -n "${1}" ]
@@ -18,6 +19,7 @@ do
         *)
             echo "Nope." >&2
             exit 1
+            ;;
     esac
 done
 
@@ -33,9 +35,9 @@ rclone copy "${path}" "${dest}/"
 raw_link=$(rclone link "${dest}/${fname}")
 if [ "${raw}" = "true" ]
 then
-    printf "${raw_link}" | xsel -ib
+    printf "${raw_link}" | copy
 else
     file_id=$(printf "${raw_link}" | sed -e 's|^[^?]*[?]id=||')
-    printf "https://drive.google.com/uc?id=${file_id}&filename=${fname}" | xsel -ib
+    printf "https://drive.google.com/uc?id=${file_id}&filename=${fname}" | copy
 fi
 zenity --title "file2gdrive" --info --text "Synced to ${remote}, URL in clipboard"
