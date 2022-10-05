@@ -1,13 +1,8 @@
 #!/bin/sh
 set -ex
 
-. ${HOME}/.private_profile
-if which screencapture
-then
-    capt="screencapture -s -i"
-else
-    capt="maim -s"
-fi
+. ${HOME}/.profile
+
 itis=$(date '+%Y-%m-%d-%H-%M-%S')
 fname="${itis}.png"
 src="${HOME:-/home/danielhaskin}/Pictures"
@@ -17,7 +12,7 @@ src="${HOME:-/home/danielhaskin}/Pictures"
 #rclone mkdir "${dest}"
 
 echo "screenshot"
-${capt} "${src}/${fname}"
+screenshot-region "${src}/${fname}"
 
 echo "copy"
 channel=$(zenity \

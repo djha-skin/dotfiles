@@ -1,0 +1,18 @@
+#!/bin/sh
+set -e
+
+# In case I want to switch windows
+sleep 1
+
+
+place="${1}"
+
+if [ ! -d "${PWD}/${place}" ]
+then
+    mkdir -p "${PWD}/${place}"
+fi
+now=$(date '+%Y-%m-%d-%H-%M-%S')
+base=$(echo "${2}" | sed -e 's|[^/]*/||g' -e 's| |_|g' -e 's|\.md$||')
+fname="${base}_${now}.png"
+screenshot-region "${PWD}/${place}/${fname}"
+printf "![](img/${fname})"

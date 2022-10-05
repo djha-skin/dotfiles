@@ -8,7 +8,7 @@ src="${HOME}/Pictures"
 
 
 dest="/Screenshots/${itis}.png"
-maim -s "${src}/${fname}"
+screenshot-region "${src}/${fname}"
 fid=$(gdrive upload --name "${dest}" "${src}/${fname}" | \
     sed -n -e '/Uploaded \([^ ]*\).*$/ { s|^ *Uploaded \([^ ]*\).*$|\1|g; p }' 2> ~/.sgd-errors)
 echo "${fid}"

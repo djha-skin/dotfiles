@@ -1,0 +1,11 @@
+#!/bin/sh
+
+root_path=${PWD}
+
+if [ -d "${PWD}/img" ]
+then
+    target="${PWD}/img"
+else
+    target="${PWD}"
+fi
+
