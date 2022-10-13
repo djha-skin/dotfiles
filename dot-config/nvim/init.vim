@@ -205,7 +205,8 @@ nnoremap <Leader>e vi(y:execute "e " . shellescape("0",1)<CR>
 nnoremap <Leader>G :w<CR>:!sh -c "xdg-open '%' && sleep 1"<CR>
 vnoremap <Leader>c "+y
 nnoremap <Leader>v "+]p
-
+nnoremap <Leader>n :tabn<CR>
+nnoremap <Leader>p :tabp<CR>
 
 "au BufRead,BufNewFile *.c,*.h set makeprg=gcc\ \"%\"
 au BufRead,BufNewFile *.rkt,*.rktl  set filetype=racket
