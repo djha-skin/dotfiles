@@ -1,0 +1,7 @@
+Host *sr.ht
+  IdentityFile ~/.ssh/srht.pub
+  PreferredAuthentications publickey
+
+Host *github.com
+  IdentityFile ~/.ssh/github.pub
+  PreferredAuthentications publickey
