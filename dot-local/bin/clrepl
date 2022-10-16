@@ -8,19 +8,19 @@
 export RLWRAP_HOME=${PWD}/.repl
 export C_INCLUDE_PATH=/usr/include
 export LIBRARY_PATH=/usr/lib64:/usr/lib
-rlwrap \
+/usr/bin/rlwrap \
+    --forget-matching '[^)] *$' \
+    --multi-line='  ' \
     --break-chars "(){}[],'#\";|\\" \
     --case-insensitive \
     --file ~/.config/common-lisp/edi-weitz \
     --history-filename ~/.cl-history \
     --forget-matching '^[^(]' \
-    --forget-matching '[^)] *$' \
     -M '.lisp' \
-    --multi-line='  ' \
-    --only-cook '^[^[:blank:]]* *' \
+    --only-cook '^[]*>0-9]+ ' \
     --prompt-colour=red \
     --quote-characters "\"" \
     --remember \
-    ros run -- "${@}"
+    ros run "${@}"
     #ros run --load tools/load-clpm.lisp
 #clpm bundle exec -- ros run
