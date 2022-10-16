@@ -21,6 +21,6 @@ export LIBRARY_PATH=/usr/lib64:/usr/lib
     --prompt-colour=red \
     --quote-characters "\"" \
     --remember \
-    ros run "${@}"
+    ros run -S . -- "${@}"
     #ros run --load tools/load-clpm.lisp
 #clpm bundle exec -- ros run
