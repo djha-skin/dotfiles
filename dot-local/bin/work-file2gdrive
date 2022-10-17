@@ -1,0 +1,15 @@
+#!/bin/sh
+set -ex
+
+dest="${remote}:/Files"
+path=$(zenity --file-selection --title "Upload to WorkGoogleDrive")
+fname="$(echo "${path}" | sed -e 's|[^/]*/||g')"
+
+fid=$(gdrive upload --name "${dest}" "${path}" | \
+    sed -n -e '/Uploaded \([^ ]*\).*$/ { s|^ *Uploaded \([^ ]*\).*$|\1|g; p }' 2> ~/.sgd-errors)
+echo "${fid}"
+
+gdrive share --type domain --role commenter --domain <WORK-DOMAIN> "${fid}" 2>~/.sgd-errors
+url=$(gdrive info "${fid}" | awk -F': ' '/ViewUrl/{print $2}' 2>~/.sgd-errors)
+printf "${url}"  | copy
+zenity --title "file2gdrive" --info --text "Synced to Work GDrive, URL in clipboard"
