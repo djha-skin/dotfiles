@@ -50,18 +50,6 @@ function clstart( )
     end
 end
 
-function fixpath( p )
-  if(not string.match(p,"^[a-z]+://"))
-  then
-    local abs = vim.fn.expand("%:p"):gsub("/+[^/]+$", "/") .. p
-    local pwd = vim.fn.getcwd()
-    local betterpath = abs:gsub(pwd .. "/", "")
-    return betterpath
-  else
-    return p
-  end
-end
-
 function str2file(str, fname)
   local f = assert(io.open(fname, "w"))
   f:write(str)
@@ -106,8 +94,6 @@ elseif has('win32unix')
 "...
 "elseif has('unix')
 "...
-elseif has('unix')
-    set background=light
 endif
 colorscheme solarized
 syntax enable
@@ -197,11 +183,8 @@ nnoremap <Leader>o :FZF<CR>
 nnoremap <Leader>( t(l"pda(hda("pp
 nnoremap <Leader>l :lua vim.diagnostic.setloclist()<CR>
 " the leader f won't work with this, but the leader G will.
-nnoremap <Leader>r :lua vim.fn.execute("r!screen2vim '" .. fixpath("img") .. "' '" .. fixpath(vim.fn.expand("%:t")) .. "'")<CR>
-nnoremap <Leader>h "0di(:lua vim.fn.setreg('0', fixpath(vim.fn.getreg('0')))<CR>h"0p
+nnoremap <Leader>r :lua vim.fn.execute("r!screen2vim '" ..  vim.fn.expand("%:p") .. "' 'img'")<CR>
 nnoremap <Leader>f vi(y:execute "!sh -c \"xdg-open '" . shellescape("0",1) . "' && sleep 1\""<CR>
-nnoremap <Leader>g viWy:execute "!sh -c \"xdg-open '" . shellescape("0",1) . "' && sleep 1\""<CR>
-nnoremap <Leader>e vi(y:execute "e " . shellescape("0",1)<CR>
 nnoremap <Leader>G :w<CR>:!sh -c "xdg-open '%' && sleep 1"<CR>
 vnoremap <Leader>c "+y
 nnoremap <Leader>v "+]p

@@ -5,14 +5,17 @@ set -e
 sleep 1
 
 
-place="${1}"
+base_dir=$(echo "${1}" | sed -e 's|/[^/]*$|/|g')
 
-if [ ! -d "${PWD}/${place}" ]
+dest="${base_dir}/${2}"
+
+if [ ! -d "${dest}" ]
 then
-    mkdir -p "${PWD}/${place}"
+    mkdir -p "${dest}"
 fi
 now=$(date '+%Y-%m-%d-%H-%M-%S')
-base=$(echo "${2}" | sed -e 's|[^/]*/||g' -e 's| |_|g' -e 's|\.md$||')
+base=$(echo "${1}" | sed -e 's|[^/]*/||g' -e 's| |_|g' -e 's|\.md$||')
+
 fname="${base}_${now}.png"
-screenshot-region "${PWD}/${place}/${fname}"
-printf "![](img/${fname})"
+screenshot-region "${dest}/${fname}"
+printf "![](${2}/${fname})"
