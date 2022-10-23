@@ -109,11 +109,14 @@ if has('win32')
     setlocal nobomb
     setglobal nobomb
 elseif has('unix')
-    let g:slime_target = "screen"
-    let g:slime_window_name = "repl"
-    let g:slime_session_name= "ergo"
-    let b:slime_config = {"sessionname": "ergo", "windowname": "repl"}
+    let g:slime_target = "tmux"
     let g:slime_paste_file = "$HOME/.slime_paste"
+    let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.0"}
+    let g:slime_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}
+    "let g:slime_window_name = "repl"
+    "let g:slime_session_name= "ergo"
+    "let b:slime_config = {"sessionname": "ergo", "windowname": "repl"}
+    "let g:slime_paste_file = "$HOME/.slime_paste"
 
     set background=light
     colorscheme solarized
