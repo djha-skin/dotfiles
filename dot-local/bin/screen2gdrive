@@ -1,5 +1,8 @@
 #!/bin/sh
 set -ex
+. ~/.profile
+
+echo "${@}" > ~/.screen2gdrive.log
 
 raw=false
 viewport=false
@@ -35,24 +38,24 @@ dest="${remote}:/Screenshots"
 #mkdir -p "${src}"
 #rclone mkdir "${dest}"
 
-echo "screenshot"
-screenshot-region "${src}/${fname}"
-echo "copy"
-rclone copy "${src}/${fname}" "${dest}/"
-echo "clipboard"
+echo "screenshot"  > ~/.screen2gdrive.log 2>&1
+screenshot-region "${src}/${fname}"  > ~/.screen2gdrive.log 2>&1
+echo "copy"  > ~/.screen2gdrive.log 2>&1
+rclone copy "${src}/${fname}" "${dest}/"  > ~/.screen2gdrive.log 2>&1
+echo "clipboard"  > ~/.screen2gdrive.log 2>&1
 #rclone link --expire 4h "${dest}/${fname}" | copy
 #printf "https://drive.google.com/uc?id=${download_id}" | ${paste}
 raw_link=$(rclone link "${dest}/${fname}")
 
 if [ "${raw}" = "true" ]
 then
-    printf "${raw_link}" | ${copy}
+    printf "${raw_link}" | copy
 elif [ "${viewport}" = "true" ]
 then
     file_id=$(printf "${raw_link}" | sed -e 's|^[^?]*[?]id=||')
-    printf "https://drive.google.com/file/d/${file_id}/view?usp=drivesdk" | ${copy}
+    printf "https://drive.google.com/file/d/${file_id}/view?usp=drivesdk" | copy
 else
     file_id=$(printf "${raw_link}" | sed -e 's|^[^?]*[?]id=||')
-    printf "https://drive.google.com/uc?id=${file_id}&filename=${fname}" | ${copy}
+    printf "https://drive.google.com/uc?id=${file_id}&filename=${fname}" | copy
 fi
-zenity --title "screen2gdrive" --info --text "Synced to ${remote}, URL in clipboard"
+zenity --title "screen2gdrive" --info --text "Synced to ${remote}, URL in clipboard"  > ~/.screen2gdrive.log 2>&1
