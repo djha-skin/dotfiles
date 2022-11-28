@@ -1,0 +1,5 @@
+# https://learn.microsoft.com/en-us/windows/wsl/wsl-config#wslconfig
+[wsl2]
+processors = 1
+memory = 1GB
+guiApplications = false
