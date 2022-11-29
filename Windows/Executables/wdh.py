@@ -6,7 +6,7 @@ import io
 
 def pushd(directory, wdh_path, **kwargs):
     with open(wdh_path, "a", encoding="utf-8", errors="ignore") as wdh:
-        print(f"{str(directory)}", file=wdh)
+        print(f"{str(directory.resolve())}", file=wdh)
     return 0
 
 
@@ -81,7 +81,7 @@ def main(args):
     ap_pushd = subp.add_parser(
         "push", help="Push directory onto the wdh stack"
     )
-    ap_pushd.add_argument("directory", help="Directory to push")
+    ap_pushd.add_argument("directory", help="Directory to push", type=Path)
     ap_pushd.set_defaults(func=pushd)
     ap_popd = subp.add_parser("pop", help="Pop directory from the wdh stack")
     ap_popd.set_defaults(func=popd)
