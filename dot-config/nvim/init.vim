@@ -23,12 +23,13 @@ Plug 'nvim-treesitter/playground'
 Plug 'tpope/vim-fireplace'
 Plug 'venantius/vim-cljfmt'
 Plug 'preservim/vim-markdown'
-if has('win32')
-    Plug 'JulioJu/neovim-qt-colors-solarized-truecolor-only'
-    Plug 'frankier/neovim-colors-solarized-truecolor-only'
-else
-    Plug 'altercation/vim-colors-solarized'
-endif
+"if has('win32')
+"    Plug 'JulioJu/neovim-qt-colors-solarized-truecolor-only'
+"    Plug 'frankier/neovim-colors-solarized-truecolor-only'
+"else
+"    Plug 'altercation/vim-colors-solarized'
+"endif
+Plug 'overcache/NeoSolarized'
 Plug 'guns/vim-sexp'
 call plug#end()
 let g:sexp_enable_insert_mode_mappings = 0
@@ -95,7 +96,7 @@ elseif has('win32unix')
 "elseif has('unix')
 "...
 endif
-colorscheme solarized
+colorscheme NeoSolarized
 syntax enable
 
 set formatoptions+=o
@@ -105,7 +106,6 @@ set showmatch
 if has('win32')
     let g:slime_target = "conemu"
     set backspace=2
-    colorscheme solarized
     setlocal nobomb
     setglobal nobomb
 elseif has('unix')
@@ -119,7 +119,6 @@ elseif has('unix')
     "let g:slime_paste_file = "$HOME/.slime_paste"
 
     set background=light
-    colorscheme solarized
 endif
 "au BufWinEnter * let w:m2=matchadd('ErrorMsg', '/\%>80v.\+/', -1)
 " guard against 80 character length lines.
