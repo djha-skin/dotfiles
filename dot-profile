@@ -118,3 +118,30 @@ fi
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
 export PARINIT="rTbgqR B=*/-.,?'_A_a_@ Q=_s>| W=_S"
+
+ppopd() {
+    if [ -n "${WORKING_LOCATION_FILE:-}" -a -f "${WORKING_LOCATION_FILE:-}" ]
+    then
+        cd "$(python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" pop)"
+    fi
+}
+
+ppushd() {
+    python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" push $1
+}
+
+pchanged() {
+    if [ -n "${WORKING_LOCATION_FILE:-}" -a -f "${WORKING_LOCATION_FILE:-}" ]
+    then
+        cd "$(python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" peek)"
+    fi
+}
+
+plistd() {
+    if [ -n "${WORKING_LOCATION_FILE:-}" -a -f "${WORKING_LOCATION_FILE:-}" ]
+    then
+        python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" list
+    fi
+}
+
+export WORKING_LOCATION_FILE="${HOME}/.wdh.txt"
