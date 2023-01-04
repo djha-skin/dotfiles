@@ -8,7 +8,8 @@ elif which pbcopy >/dev/null 2>&1
 then
     copy="pbcopy"
     paste="pbpaste"
-elif which copy >/dev/null 2>&1
+elif which xclip >/dev/null 2>&1
+then
     copy="xclip -selection clipboard -i"
     copy="xclip -selection clipboard -o"
 else
