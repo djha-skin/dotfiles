@@ -11,7 +11,7 @@ then
 elif which xclip >/dev/null 2>&1
 then
     copy="xclip -selection clipboard -i"
-    copy="xclip -selection clipboard -o"
+    paste="xclip -selection clipboard -o"
 else
     copy="xsel -i -b"
     paste="xsel -o -b"
