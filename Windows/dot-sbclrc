@@ -7,4 +7,15 @@
     (load quicklisp-init)))
 
 (defun nvim (fname) (uiop:run-program (list "nvim-qt" fname)))
+
 (push #'nvim *ed-functions*)
+(asdf:load-system "cffi")
+(pushnew (make-pathname
+           :device "C"
+           :directory '(:absolute
+                        "Users"
+                        "bhw"
+                        "Code"
+                        "cmake"
+                        "bin"))
+         cffi:*FOREIGN-LIBRARY-DIRECTORIES*)
