@@ -70,8 +70,7 @@ def setd(directory, wdh_path, **kwargs):
 
 def listd(wdh_path, **kwargs):
     with open(wdh_path, "r", encoding="utf-8", errors="ignore") as wdh:
-        for line in wdh.readlines():
-            print(line)
+        sys.stdout.write(wdh.read())
 
 
 def whathappened(parser, **kwargs):
