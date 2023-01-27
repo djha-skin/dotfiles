@@ -141,7 +141,7 @@ ppopd() {
 }
 
 ppushd() {
-    python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" push "${0}"
+    python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" push "${1}"
     cd "$(python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" peek)"
 }
 
