@@ -119,29 +119,37 @@ export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
 export PARINIT="rTbgqR B=*/-.,?'_A_a_@ Q=_s>| W=_S"
 
-ppopd() {
-    if [ -n "${WORKING_LOCATION_FILE:-}" -a -f "${WORKING_LOCATION_FILE:-}" ]
-    then
-        cd "$(python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" pop)"
-    fi
-}
-
-ppushd() {
-    python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" push $1
-}
+export WORKING_LOCATION_FILE="${HOME}/.wdh.txt"
 
 pchanged() {
     if [ -n "${WORKING_LOCATION_FILE:-}" -a -f "${WORKING_LOCATION_FILE:-}" ]
     then
         cd "$(python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" peek)"
+    else
+        echo "No directory on stack" >&2
     fi
+}
+
+ppopd() {
+    if [ -n "${WORKING_LOCATION_FILE:-}" -a -f "${WORKING_LOCATION_FILE:-}" ]
+    then
+        python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" pop
+        cd "$(python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" peek)"
+    else
+        echo "No directory on stack" >&2
+    fi
+}
+
+ppushd() {
+    python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" push "${0}"
+    cd "$(python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" peek)"
 }
 
 plistd() {
     if [ -n "${WORKING_LOCATION_FILE:-}" -a -f "${WORKING_LOCATION_FILE:-}" ]
     then
         python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" list
+    else
+        echo "No directory on stack" >&2
     fi
 }
-
-export WORKING_LOCATION_FILE="${HOME}/.wdh.txt"
