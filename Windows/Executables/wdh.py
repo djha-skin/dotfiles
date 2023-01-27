@@ -5,9 +5,13 @@ import io
 
 
 def pushd(directory, wdh_path, **kwargs):
-    with open(wdh_path, "a", encoding="utf-8", errors="ignore") as wdh:
-        print(f"{str(directory.resolve())}", file=wdh)
-    return 0
+    if directory.resolve().exists():
+        with open(wdh_path, "a", encoding="utf-8", errors="ignore") as wdh:
+            print(f"{str(directory.resolve())}", file=wdh)
+        return 0
+    else:
+        print("Path does not exist", file=sys.stderr)
+        return 4
 
 
 def last_dir(wdh_path, truncate=True, **kwargs):
@@ -31,24 +35,37 @@ def last_dir(wdh_path, truncate=True, **kwargs):
                 if truncate:
                     wdh.seek(cursor, io.SEEK_SET)
                     wdh.truncate()
-            print(place.strip())
+            return True, place.strip()
         else:
-            print(f"Stack file `{wdh_path}` is empty", file=sys.stderr)
-            return 3
+            return True, None
     else:
-        print(f"Stack file `{wdh_path}` does not exist", file=sys.stderr)
-        return 2
-    return 0
+        return False, None
+
+
+def last_dir_cli(wdh_path, truncate=True, **kwargs):
+    exists, path = last_dir(wdh_path, truncate, **kwargs)
+    if exists and path is not None:
+        print(path)
+        return 0
+    if exists:
+        print(f"Stack file `{wdh_path}` is empty", file=sys.stderr)
+        return 3
+
+    print(f"Stack file `{wdh_path}` does not exist", file=sys.stderr)
+    return 2
 
 
 def peekd(wdh_path, **kwargs):
-
-    last_dir(wdh_path, truncate=False, **kwargs)
+    last_dir_cli(wdh_path, truncate=False, **kwargs)
 
 
 def popd(wdh_path, **kwargs):
+    last_dir_cli(wdh_path, truncate=True, **kwargs)
 
-    last_dir(wdh_path, truncate=True, **kwargs)
+
+def setd(directory, wdh_path, **kwargs):
+    exists, path = last_dir(wdh_path, truncate=True)
+    pushd(directory, wdh_path, **kwargs)
 
 
 def listd(wdh_path, **kwargs):
@@ -91,6 +108,11 @@ def main(args):
     )
     ap_pushd.add_argument("directory", help="Directory to push", type=Path)
     ap_pushd.set_defaults(func=pushd)
+
+    ap_setd = subp.add_parser("set", help="Set top directory")
+    ap_setd.add_argument("directory", help="Directory to set", type=Path)
+    ap_setd.set_defaults(func=setd)
+
     ap_popd = subp.add_parser("pop", help="Pop directory from the wdh stack")
     ap_popd.set_defaults(func=popd)
     options = ap.parse_args(args)
