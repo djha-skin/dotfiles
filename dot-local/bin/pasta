@@ -1,0 +1,4 @@
+#!/bin/sh
+. ${HOME}/.local/lib/copy-pasta.sh
+
+${paste} "${@}"
