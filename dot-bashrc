@@ -1,17 +1,23 @@
 BASHRC_INCLUDED=1
-
-if [ -z "${PROFILE_INCLUDED}" -a -s "${HOME}/.profile" ]
-then
-    . ${HOME}/.profile
-fi
+PROMPT_COMMAND=
+. ${HOME}/.profile
 
 if [ -e ${HOME}/.pijulconfig/bash ]
 then
     . ${HOME}/.pijulconfig/bash
 fi
 
+eval "$(~/.local/bin/rtx activate -s bash)"
+
 [ -z "$PS1" ] && return
-export PS1='[ \u@\h:\w ]$ '
+export PS1='\W 🠺 '
+
+if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
+    GIT_PROMPT_ONLY_IN_REPO=1
+    GIT_PROMPT_THEME=Custom
+
+    source $HOME/.bash-git-prompt/gitprompt.sh
+fi
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
@@ -49,14 +55,9 @@ if [ "$TERM" = "linux" ]; then
     clear #for background artifacting
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-set -o emacs
-
-alias vim=nvim
-
 command -v vg >/dev/null 2>&1 && eval "$(vg eval --shell bash)"
+
+source <(/home/djhaskin987/.local/share/rtx/installs/kubectl/1.24.10/bin/kubectl completion bash)
 
 # added by travis gem
 [ -f /home/djhaskin987/.travis/travis.sh ] && source /home/djhaskin987/.travis/travis.sh
