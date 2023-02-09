@@ -2,9 +2,15 @@ if (Test-Path Alias:\curl) {
     del alias:curl
 }
 
-Set-Alias -name ll -Value Get-ChildItem
-Set-Alias -name vim -Value nvim-qt
-Set-Alias -name which -Value Get-Command
+if (-not (Test-Path Alias:\ll)) {
+    Set-Alias -name ll -Value Get-ChildItem
+}
+if (-not (Test-Path Alias:\vim)) {
+    Set-Alias -name vim -Value nvim-qt
+}
+if (-not (Test-Path Alias:which)) {
+    Set-Alias -name which -Value Get-Command
+}
 
 function Out-UTF8-NoBom {
     param
