@@ -25,8 +25,6 @@ function Out-UTF8-NoBom {
 }
 
 $Env:WORKING_LOCATION_FILE="$Env:USERPROFILE\.wdh.txt"
-pchanged
-
 
 function pchanged {
     if (Test-Path -Path "$Env:WORKING_LOCATION_FILE") {
@@ -75,5 +73,4 @@ function plistd {
     }
 }
 
-
-
+pchanged
