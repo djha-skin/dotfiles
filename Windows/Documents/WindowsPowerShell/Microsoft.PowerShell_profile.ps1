@@ -1,17 +1,20 @@
-del alias:curl
+if (Test-Path Alias:\curl) {
+    del alias:curl
+}
+
 Set-Alias -name ll -Value Get-ChildItem
 Set-Alias -name vim -Value nvim-qt
 Set-Alias -name which -Value Get-Command
 
-function Out-UTF8 {
+function Out-UTF8-NoBom {
     param
     (
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
-        [string]
-        $Content,
         [Parameter(Mandatory = $true)]
         [string]
-        $Path
+        $Path,
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
+        [string]
+        $Content
     )
     # Good grief
     # https://github.com/PowerShell/PowerShell/issues/10278
@@ -23,3 +26,54 @@ function Out-UTF8 {
 
 $Env:WORKING_LOCATION_FILE="$Env:USERPROFILE\.wdh.txt"
 pchanged
+
+
+function pchanged {
+    if (Test-Path -Path "$Env:WORKING_LOCATION_FILE") {
+        cd "$(python3 "${Env:USERPROFILE}/Executables/wdh.py" -p "${Env:WORKING_LOCATION_FILE}" peek)"
+    } else {
+        write-error "No directory on stack"
+    }
+}
+
+
+function ppopd {
+    if (Test-Path -Path "$Env:WORKING_LOCATION_FILE") {
+        python3 "${Env:USERPROFILE}\Executables\wdh.py" -p "${Env:WORKING_LOCATION_FILE}" pop
+        cd "$(python3 "${Env:USERPROFILE}\Executables\wdh.py" -p "${Env:WORKING_LOCATION_FILE}" peek)"
+    } else {
+        write-error "No directory on stack"
+    }
+}
+
+
+function ppushd {
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Path
+    )
+    python3 "${Env:USERPROFILE}\Executables\wdh.py" -p "${Env:WORKING_LOCATION_FILE}" push "${Path}"
+    cd "$(python3 "${Env:USERPROFILE}\Executables\wdh.py" -p "${Env:WORKING_LOCATION_FILE}" peek)"
+}
+
+function psetd {
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Path
+    )
+    python3 "${Env:USERPROFILE}\Executables\wdh.py" -p "${Env:WORKING_LOCATION_FILE}" set "${Path}"
+    cd "$(python3 "${Env:USERPROFILE}\Executables\wdh.py" -p "${Env:WORKING_LOCATION_FILE}" peek)"
+}
+
+function plistd {
+    if (Test-Path -Path "$Env:WORKING_LOCATION_FILE") {
+        python3 "${Env:USERPROFILE}\Executables\wdh.py" -p "${Env:WORKING_LOCATION_FILE}" list
+    } else {
+        write-error "No directory on stack"
+    }
+}
+
+
+
