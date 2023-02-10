@@ -115,7 +115,14 @@ fi
 
 # Preserve MANPATH if you already defined it somewhere in your config.
 # Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
-export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+if ! echo "${MANPATH}" | grep -q "${NPM_PACKAGES}/share/man"
+then
+    export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+fi
+if ! echo "${MANPATH}" | grep -q "${HOME}/.local/share/man"
+then
+    export MANPATH="${HOME}/.local/share/man:${MANPATH-$(manpath)}"
+fi
 
 export PARINIT="rTbgqR B=*/-.,?'_A_a_@ Q=_s>| W=_S"
 
