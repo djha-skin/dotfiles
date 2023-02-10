@@ -1,6 +1,4 @@
 #!/bin/sh
-
-{
 for i in "${@}"
 do
     printf '\n'
@@ -8,4 +6,3 @@ do
     himalaya read --raw --sanitize "${i}"
     printf '\n'
 done
-} > ../a.mbox
