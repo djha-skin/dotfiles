@@ -86,6 +86,8 @@ then
     export PATH="${JAVA_HOME}/bin:${PATH}"
 fi
 
+. <(rtx env)
+
 export EDITOR="nvim"
 export ALTERNATE_EDITOR=""
 export BROWSER="firefox"
@@ -165,4 +167,9 @@ plistd() {
     else
         echo "No directory on stack" >&2
     fi
+}
+
+pcleard() {
+    rm -f "${WORKING_LOCATION_FILE}"
+    touch "${WORKING_LOCATION_FILE}"
 }
