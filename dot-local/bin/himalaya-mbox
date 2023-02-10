@@ -1,0 +1,11 @@
+#!/bin/sh
+
+{
+for i in "${@}"
+do
+    printf '\n'
+    printf 'From nobody Mon Sep 17 00:00:00 2001\n'
+    himalaya read --raw --sanitize "${i}"
+    printf '\n'
+done
+} > ../a.mbox
