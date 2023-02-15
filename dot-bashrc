@@ -70,17 +70,51 @@ PERL_MM_OPT="INSTALL_BASE=/home/djhaskin987/perl5"; export PERL_MM_OPT;
 pchanged
 
 update_ps1() {
+    __ups1_default_colors='\\[\\e[1m\\]'
+    __ups1_reset_colors='\\[\\e[0m\\]'
+    __ups1_red='\\[\\e[31m\\]'
+    __ups1_blue='\\[\\e[34m\\]'
     __ups1_lastcmd="${?}"
-    __ups1_dir=$(echo "${PWD}" | sed \
-        -e 's|/*$||' \
-        -e "s|^${HOME}|~|" \
-        -e 's|\([^/]\)\([^/]*\)\(/\)|\1/|g' \
-        -e 's|\(.\{4,\}\)\(.\{17\}\)$|...\2|')
+    git status >/dev/null 2>&1
+    if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ]
+    then
+        __ups1_info="$(printf " ${__ups1_blue}%16s${__ups1_reset_colors}${__ups1_default_colors} " \
+            "$(git branch --color=never | \
+                awk '/^[*]/{print $2}' | \
+                sed \
+                    -e 's|danielhaskin/\([A-Za-z]\{3\}-[0-9]\{1,4\}\)-\(.\{3\}\).*$|dh/\1-\2*|' \
+                    -e 's|^.\{4,\}\(.\{13\}\)$|*\1|')" \
+            )"
+        __ups1_dir=$(echo "${PWD}" | sed \
+            -e 's|/*$||' \
+            -e "s|^${HOME}|~|" \
+            -e 's|\([^/]\)\([^/]*\)\(/\)|\1/|g' \
+            -e 's|\(.\{2,\}\)\(.\{14\}\)$|*\2|')
+        __ups1_dir_width=15
+        __ups1_info_width=14
+    else
+        __ups1_info="$(printf " ${__ups1_blue}\\\\t${__ups1_reset_colors}${__ups1_default_colors} ")"
+        __ups1_dir=$(echo "${PWD}" | sed \
+            -e 's|/*$||' \
+            -e "s|^${HOME}|~|" \
+            -e 's|\([^/]\)\([^/]*\)\(/\)|\1/|g' \
+            -e 's|\(.\{2,\}\)\(.\{19\}\)$|*\2|')
+        __ups1_dir_width=20
+        __ups1_info_width=9
+    fi
+
     if [ "${__ups1_lastcmd}" -eq 0 ]
     then
-        PS1="$(printf '\[\e[1m\] %3d \\t %20s \\$\[\e[0m\] ' "${__ups1_lastcmd}" "${__ups1_dir}")"
+        __ups1_stat_pref=""
+        __ups1_stat_suff=""
     else
-        PS1="$(printf '\[\e[1m\] \[\e[31m\]%3d\[\e[0m\]\[\e[1m\] \\t %20s \\$\[\e[0m\] ' "${__ups1_lastcmd}" "${__ups1_dir}")"
+        __ups1_stat_pref="${__ups1_red}"
+        __ups1_stat_suff="${__ups1_reset_colors}${__ups1_default_colors}"
     fi
+    PS1="$(printf \
+        "${__ups1_default_colors}${__ups1_stat_pref}%3d${__ups1_stat_suff} %s %${__ups1_dir_width}s \\\\\$${__ups1_reset_colors} " \
+        "${__ups1_lastcmd}" \
+        "${__ups1_info}" \
+        "${__ups1_dir}")"
 }
 export PROMPT_COMMAND="${PROMPT_COMMAND};update_ps1"
