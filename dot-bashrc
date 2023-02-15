@@ -10,7 +10,6 @@ fi
 eval "$(~/.local/bin/rtx activate -s bash)"
 
 [ -z "$PS1" ] && return
-export PS1='\W 🠺 '
 
 if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
     GIT_PROMPT_ONLY_IN_REPO=1
@@ -69,3 +68,19 @@ PERL_MB_OPT="--install_base \"/home/djhaskin987/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/djhaskin987/perl5"; export PERL_MM_OPT;
 
 pchanged
+
+update_ps1() {
+    __ups1_lastcmd="${?}"
+    __ups1_dir=$(echo "${PWD}" | sed \
+        -e 's|/*$||' \
+        -e "s|^${HOME}|~|" \
+        -e 's|\([^/]\)\([^/]*\)\(/\)|\1/|g' \
+        -e 's|\(.\{4,\}\)\(.\{17\}\)$|...\2|')
+    if [ "${__ups1_lastcmd}" -eq 0 ]
+    then
+        export PS1="$(printf '\e[1m %3d \\t %20s \\$\e[0m ' "${__ups1_lastcmd}" "${__ups1_dir}")"
+    else
+        export PS1="$(printf '\e[1m \e[31m%3d\e[0m\e[1m \\t %20s \\$\e[0m ' "${__ups1_lastcmd}" "${__ups1_dir}")"
+    fi
+}
+export PROMPT_COMMAND="${PROMPT_COMMAND};update_ps1"

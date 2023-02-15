@@ -97,19 +97,6 @@ export HISTCONTROL=ignoredups:ignorespace
 export HISTSIZE=1000
 export HISTFILESIZE=2000
 
-# if running bash
-if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -z "${BASHRC_INCLUDED}" -a -s "${HOME}/.bashrc" ]
-    then
-        . ${HOME}/.bashrc
-    fi
-    # Bash, why
-    # https://superuser.com/a/912098
-    unset PROMPT_COMMAND
-fi
-
-
 if [ -f "${HOME}/.private_profile" ]
 then
     . "${HOME}/.private_profile"
