@@ -50,16 +50,16 @@ fi
 
 command -v vg >/dev/null 2>&1 && eval "$(vg eval --shell bash)"
 
-source <(/home/djha-skin/.local/share/rtx/installs/kubectl/1.26.1/bin/kubectl completion bash)
-
+source <(${HOME}/.local/share/rtx/installs/kubectl/1.24.10/bin/kubectl completion bash)
+. /usr/share/bash-completion/completions/git
 # added by travis gem
-[ -f /home/djhaskin987/.travis/travis.sh ] && source /home/djhaskin987/.travis/travis.sh
+[ -f ${HOME}/.travis/travis.sh ] && source ${HOME}/.travis/travis.sh
 
-PATH="/home/djhaskin987/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/djhaskin987/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/djhaskin987/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/djhaskin987/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/djhaskin987/perl5"; export PERL_MM_OPT;
+PATH="${HOME}/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="${HOME}/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="${HOME}/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"${HOME}/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=${HOME}/perl5"; export PERL_MM_OPT;
 
 pchanged
 
