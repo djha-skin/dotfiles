@@ -72,8 +72,8 @@ update_ps1() {
     git status >/dev/null 2>&1
     __ups1_time="$(date -u +'%H:%M:%SZ')"
     __ups1_info=""
-    __ups1_info_width=16
-    __ups1_dir_width=16
+    __ups1_info_width=15
+    __ups1_dir_width=15
     __ups1_dir=$(echo "${PWD}" | sed \
         -e 's|/*$||' \
         -e "s|^${HOME}|~|" \
@@ -81,14 +81,13 @@ update_ps1() {
         -e 's|\(.\{2,\}\)\(.\{14\}\)$|*\2|')
     if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ]
     then
-        __ups1_info="$(printf " ${__ups1_blue}%15s${__ups1_reset_colors}${__ups1_default_colors} " \
-            "$(git branch --color=never | \
+        __ups1_info="$(git branch --color=never | \
                 awk '/^[*]/{print $2}' | \
                 sed \
-                -e 's|\([[:alpha:]]\)[[:alpha:]]*\([^[[:alpha:]]\)|\1\2|' \
-                -e 's|\([^[[:alpha:]]\)\([[:alpha:]]\)[[:alpha:]]*|\1\2|' \
-                -e 's|^.\{2,\}\(.\{14\}\)$|*\1|')" \
-            )"
+                -e 's|\([[:alpha:]]\)[[:alpha:]]*\([^[[:alpha:]]\)|\1\2|g' \
+                -e 's|\([^[[:alpha:]]\)\([[:alpha:]]\)[[:alpha:]]*|\1\2|g' \
+                -e 's|^.\{2,\}\(.\{14\}\)$|*\1|' | \
+                tr '[A-Z]' '[a-z]')"
     fi
 
     if [ "${__ups1_lastcmd}" -eq 0 ]
@@ -100,7 +99,7 @@ update_ps1() {
         __ups1_stat_suff="${__ups1_reset_colors}${__ups1_default_colors}"
     fi
     PS1="$(printf \
-        "${__ups1_default_colors}${__ups1_stat_pref}%3d${__ups1_stat_suff}%10s%${__ups1_info_width}s%${__ups1_dir_width}s \\\\\$${__ups1_reset_colors} " \
+        "${__ups1_default_colors}${__ups1_stat_pref}%3d${__ups1_stat_suff}%10s %-${__ups1_info_width}s %-${__ups1_dir_width}s \\\\\$${__ups1_reset_colors} " \
         "${__ups1_lastcmd}" \
         "${__ups1_time}" \
         "${__ups1_info}" \
