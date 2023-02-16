@@ -64,11 +64,11 @@ PERL_MM_OPT="INSTALL_BASE=/home/djhaskin987/perl5"; export PERL_MM_OPT;
 pchanged
 
 update_ps1() {
+    __ups1_lastcmd="${?}"
     __ups1_default_colors='\\[\\e[1m\\]'
     __ups1_reset_colors='\\[\\e[0m\\]'
     __ups1_red='\\[\\e[31m\\]'
     __ups1_blue='\\[\\e[34m\\]'
-    __ups1_lastcmd="${?}"
     git status >/dev/null 2>&1
     __ups1_time="$(date -u +'%H:%M:%SZ')"
     __ups1_info=""
