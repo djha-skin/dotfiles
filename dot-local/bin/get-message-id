@@ -2,7 +2,6 @@
 
 eml="${1}"
 shift
-set -ex
 cat "${eml}" | \
     awk \
     '/^From *:/ {
