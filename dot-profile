@@ -86,7 +86,7 @@ then
     export PATH="${JAVA_HOME}/bin:${PATH}"
 fi
 
-. <(rtx env)
+#. <(rtx env)
 
 export EDITOR="nvim"
 export ALTERNATE_EDITOR=""
