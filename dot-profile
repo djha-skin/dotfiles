@@ -20,7 +20,7 @@ export RLWRAP_EDITOR="nvim '+call cursor(%L,%C)'"
 export C_INCLUDE_PATH=/usr/include
 export LIBRARY_PATH=/usr/lib64:/usr/lib
 
-export LD_LIBRARY_PATH=${HOME}/.local/lib64:${HOME}/.local/lib:/usr/local/lib64:/usr/local/lib:/usr/lib64:/usr/lib
+#export LD_LIBRARY_PATH=${HOME}/.local/lib64:${HOME}/.local/lib:/usr/local/lib64:/usr/local/lib:/usr/lib64:/usr/lib
 
 for i in $(ls -1A "${home_altprefix}")
 do
