@@ -1,0 +1,15 @@
+#!/bin/sh
+
+eml="${1}"
+shift
+set -ex
+cat "${eml}" | \
+    awk \
+    '/^From *:/ {
+            gsub("^From *: *[^<]*<", "");
+            gsub(">.*$", "");
+            gsub("@", "-at-");
+            gsub(" *[[:punct:]]+","-");
+            print $0;
+        }' | \
+    xargs printf "%s@%s" "$(uuid)"
