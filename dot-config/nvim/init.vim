@@ -248,6 +248,7 @@ au BufRead,BufNewFile *.hs set shiftwidth=2 | set tabstop=2
 au BufRead,BufNewFile *.mtn set tabstop=8 | set shiftwidth=8 | set noexpandtab
 au BufRead,BufNewFile *.tsv set tabstop=8 | set shiftwidth=8 | set noexpandtab
 au BufWritePost *.tf !terraform fmt %
+au BufRead,BufNewFile *.eml set colorcolumn=75 | map <LocalLeader>m :r!get-message-id %<CR>
 
 " make pretty formatted use of variables
 "au filetype sh map! $$ ${}OD
