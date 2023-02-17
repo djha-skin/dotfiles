@@ -11,4 +11,4 @@ cat "${eml}" | \
             gsub(" *[[:punct:]]+","-");
             print $0;
         }' | \
-    xargs printf "%s@%s" "$(uuid)"
+    xargs printf "Message-Id: %s@%s" "$(uuid)"
