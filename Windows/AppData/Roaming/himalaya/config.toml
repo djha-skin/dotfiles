@@ -1,0 +1,35 @@
+[skin]
+backend = "imap"
+email = "me@djha.skin"
+default = true
+display-name = "Skin"
+sender = "smtp"
+smtp-host = "smtp.migadu.com"
+smtp-port = 465
+smtp-ssl = true
+smtp-login = "me@djha.skin"
+smtp-passwd-cmd = 'multipass smtp://smtp.migadu.com:445 me@djha.skin'
+sync = false
+imap-host = "imap.migadu.com"
+imap-port = 993
+imap-ssl = true
+imap-login = "me@djha.skin"
+imap-passwd-cmd = 'multipass imap://imap.migadu.com:993 me@djha.skin'
+
+[gmail]
+backend = "imap"
+email = "djhaskin987@gmail.com"
+default = true
+display-name = "Daniel Jay Haskin"
+sender = "smtp"
+smtp-host = "smtp.gmail.com"
+smtp-port = 465
+smtp-ssl = true
+smtp-login = "me@djha.skin"
+smtp-passwd-cmd = 'multipass smtp://smtp.gmail.com:445 djhaskin987@gmail.com'
+sync = false
+imap-host = "imap.gmail.com"
+imap-port = 993
+imap-ssl = true
+imap-login = "me@djha.skin"
+imap-passwd-cmd = 'multipass imap://imap.gmail.com:993 djhaskin987@gmail.com'
