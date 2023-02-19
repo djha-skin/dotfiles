@@ -15,19 +15,28 @@ if (-not (Test-Path Alias:which)) {
 function Out-UTF8-NoBom {
     param
     (
-        [Parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true, position = 0)]
+        [AllowEmptyString()]
         [string]
-        $Path,
-        [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
+        $Content,
+        [Parameter(Mandatory = $true, ValueFromPipeline = $false, Position = 1)]
         [string]
-        $Content
+        $Path
     )
-    # Good grief
-    # https://github.com/PowerShell/PowerShell/issues/10278
-    $dest = [IO.Path]::GetFullPath([IO.Path]::Combine((Get-Location -PSProvider FileSystem).ProviderPath, $path))
 
-    $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
-    [System.IO.File]::WriteAllLines($dest, $Content, $Utf8NoBomEncoding)
+    begin {
+        # Good grief
+        # https://github.com/PowerShell/PowerShell/issues/10278
+        $dest = [IO.Path]::GetFullPath([IO.Path]::Combine((Get-Location -PSProvider FileSystem).ProviderPath, $path))
+        $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
+        $writer = [System.IO.StreamWriter]::new($Path, $Utf8NoBomEncoding)
+    }
+    process {
+        $writer.WriteLine($_)
+    }
+    end {
+        $writer.close()
+    }
 }
 
 $Env:WORKING_LOCATION_FILE="$Env:USERPROFILE\.wdh.txt"

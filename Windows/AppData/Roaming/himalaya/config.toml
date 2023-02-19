@@ -8,13 +8,13 @@ smtp-host = "smtp.migadu.com"
 smtp-port = 465
 smtp-ssl = true
 smtp-login = "me@djha.skin"
-smtp-passwd-cmd = 'multipass smtp://smtp.migadu.com:445 me@djha.skin'
+smtp-passwd-cmd = 'multipass smtp://smtp.migadu.com:445/ me@djha.skin'
 sync = true
 imap-host = "imap.migadu.com"
 imap-port = 993
 imap-ssl = true
 imap-login = "me@djha.skin"
-imap-passwd-cmd = 'multipass imap://imap.migadu.com:993 me@djha.skin'
+imap-passwd-cmd = 'multipass imap://imap.migadu.com:993/ me@djha.skin'
 
 [skin.folder-aliases]
 archive = "Archive"
@@ -30,14 +30,14 @@ sender = "smtp"
 smtp-host = "smtp.gmail.com"
 smtp-port = 465
 smtp-ssl = true
-smtp-login = "me@djha.skin"
-smtp-passwd-cmd = 'multipass smtp://smtp.gmail.com:445 djhaskin987@gmail.com'
+smtp-login = "djhaskin987@gmail.com"
+smtp-passwd-cmd = 'multipass smtp://smtp.gmail.com:445/ djhaskin987@gmail.com'
 sync = true
 imap-host = "imap.gmail.com"
 imap-port = 993
 imap-ssl = true
-imap-login = "me@djha.skin"
-imap-passwd-cmd = 'multipass imap://imap.gmail.com:993 djhaskin987@gmail.com'
+imap-login = "djhaskin987@gmail.com"
+imap-passwd-cmd = 'multipass imap://imap.gmail.com:993/ djhaskin987@gmail.com'
 
 [gmail.folder-aliases]
 archive = "[Gmail]/All Mail"
@@ -45,3 +45,4 @@ inbox = "INBOX"
 sent = "[Gmail]/Sent Mail"
 drafts = "[Gmail]/Drafts"
 trash = "[Gmail]/Trash"
+junk = "[Gmail]/Spam"
