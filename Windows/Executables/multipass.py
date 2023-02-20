@@ -15,6 +15,6 @@ lines = out.stdout.decode("utf-8", errors="ignore")
 for line in lines.split():
     m = find_pass.search(line)
     if m:
-        print(m.group("pass"))
+        print(m.group("pass"), end="")
         sys.exit(0)
 sys.exit(1)
