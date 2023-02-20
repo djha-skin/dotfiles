@@ -1,0 +1,14 @@
+# ~/.config/systemd/user/himalaya-watch.service
+
+[Unit]
+Description=Himalaya watcher for gmail
+After=network.target
+
+[Service]
+ExecStart=/home/djha-skin/.local/bin/him -a gmail watch
+Environment=RUST_LOG=debug
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target
