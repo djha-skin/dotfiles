@@ -1,0 +1,9 @@
+#!/bin/sh
+
+date -u +%Y-%m-%dT%H:%M:%s-0000 > ~/.dropbox-log
+
+# Allow the system to come up before trying to start up drobox
+sleep 30
+
+# Use dbus, plz
+dbus-launch dropbox start -i >> ~/.dropbox-log 2>&1

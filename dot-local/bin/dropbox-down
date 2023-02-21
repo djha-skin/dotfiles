@@ -1,0 +1,16 @@
+#!/bin/sh
+
+. ${HOME}/.profile
+
+if [ ! -d ${HOME}/Dropbox/Apps ]
+then
+    mkdir -p ~/Dropbox/Apps
+fi
+
+if [ ! -d ${HOME}/Dropbox/Documents ]
+then
+    mkdir -p ${HOME}/Dropbox/Documents
+fi
+
+rclone sync Dropbox:/Apps ${HOME}/Dropbox/Apps
+rclone sync Dropbox:/Documents ${HOME}/Dropbox/Documents
