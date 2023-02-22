@@ -1,0 +1,16 @@
+[core]
+	longpaths = true
+	sshcommand = C:/Windows/System32/OpenSSH/ssh.exe
+[user]
+	name = Skin
+	email = me@djha.skin
+[init]
+	defaultBranch = main
+[sendemail]
+	verify = off
+    annotate = yes
+[sendemail]
+    smtpserver = "smtp.migadu.com"
+    smtpuser = me@djha.skin
+    smtpencryption = ssl
+    smtpserverport = 465

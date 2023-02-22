@@ -1,3 +1,4 @@
+downloads-dir = "C:\\Users\\bhw\\Downloads"
 [skin]
 backend = "imap"
 email = "me@djha.skin"
@@ -17,9 +18,12 @@ imap-login = "me@djha.skin"
 imap-passwd-cmd = 'multipass imap://imap.migadu.com:993/ me@djha.skin'
 
 [skin.folder-aliases]
-archive = "Archive"
+archive = "Archives/2023"
 inbox = "INBOX"
-#sent = "Sent"
+sent = "Sent"
+trash = "Trash"
+drafts = "Drafts"
+junk = "Junk"
 
 [gmail]
 backend = "imap"
