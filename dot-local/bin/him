@@ -1,0 +1,8 @@
+#!/bin/sh
+
+. /home/djha-skin/.profile
+export RUST_LOG=debug
+export NO_COLOR=true
+
+echo "Started operation \`himalaya ${@}\` at \`$(date)\`" >> ~/.himalaya-log
+himalaya "${@}" >> ~/.himalaya-log 2>&1

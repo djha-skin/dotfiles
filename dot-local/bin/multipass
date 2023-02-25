@@ -1,0 +1,6 @@
+#!/bin/sh
+
+printf 'url=%s\nusername=%s\n' \
+    "${1}" "${2}" | \
+    git-credential-keepassxc get | \
+    awk -F' *= *' '/^password/ {print $2}'

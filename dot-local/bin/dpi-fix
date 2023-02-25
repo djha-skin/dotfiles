@@ -1,0 +1,15 @@
+#!/bin/sh
+# https://unix.stackexchange.com/questions/353998/run-script-on-screen-lock-in-kde
+
+dbus-monitor --session "type='signal',interface='org.freedesktop.ScreenSaver'" |
+while read x; do
+  case "$x" in
+    # You can call your desired script in the following line instead of the echo:
+    *"boolean true"*)
+        xrandr --dpi 96
+        ;;
+    *"boolean false"*)
+        xrandr --dpi 96
+        ;;
+  esac
+done

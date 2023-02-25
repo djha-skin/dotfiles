@@ -8,7 +8,7 @@ After=network.target
 ExecStart=/home/djha-skin/.local/bin/him -a skin watch
 Environment=RUST_LOG=debug
 Restart=always
-RestartSec=10
+RestartSec=41
 
 [Install]
 WantedBy=default.target

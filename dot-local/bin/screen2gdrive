@@ -41,9 +41,9 @@ dest="${remote}:/Screenshots"
 echo "screenshot"  > ~/.screen2gdrive.log 2>&1
 screenshot-region "${src}/${fname}"  > ~/.screen2gdrive.log 2>&1
 echo "copy"  > ~/.screen2gdrive.log 2>&1
-rclone copy "${src}/${fname}" "${dest}/"  > ~/.screen2gdrive.log 2>&1
+rclone copyto "${src}/${fname}" "${dest}/${fname}"  > ~/.screen2gdrive.log 2>&1
 echo "clipboard"  > ~/.screen2gdrive.log 2>&1
-#rclone link --expire 4h "${dest}/${fname}" | copy
+rclone link "${dest}/${fname}" | copy
 #printf "https://drive.google.com/uc?id=${download_id}" | ${paste}
 raw_link=$(rclone link "${dest}/${fname}")
 
