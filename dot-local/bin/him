@@ -1,8 +1,8 @@
 #!/bin/sh
 
-. /home/djha-skin/.profile
+. /home/danielhaskin/.profile
 export RUST_LOG=debug
 export NO_COLOR=true
 
-echo "Started operation \`himalaya ${@}\` at \`$(date)\`" >> ~/.himalaya-log
-himalaya "${@}" >> ~/.himalaya-log 2>&1
+echo "Started operation \`himalaya ${@}\` at \`$(date)\`" | tee -a ~/.himalaya-log
+himalaya "${@}" 2>&1 | tee -a ~/.himalaya-log
