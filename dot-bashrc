@@ -70,15 +70,9 @@ update_ps1() {
     __ups1_red='\\[\\e[31m\\]'
     __ups1_blue='\\[\\e[34m\\]'
     git status >/dev/null 2>&1
-    __ups1_time="$(date -u +'%M:%S')"
     __ups1_info=""
-    __ups1_info_width=7
-    __ups1_dir_width=15
-    __ups1_dir=$(echo "${PWD}" | sed \
-        -e 's|/*$||' \
-        -e "s|^${HOME}|~|" \
-        -e 's|\([^/]\)\([^/]*\)\(/\)|\1/|g' \
-        -e 's|\(.\{2,\}\)\(.\{14\}\)$|*\2|')
+    __ups1_info_pref=""
+    __ups1_info_suff=""
     if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ]
     then
         __ups1_info="$(git branch --color=never | \
@@ -99,13 +93,42 @@ update_ps1() {
         __ups1_stat_pref="${__ups1_red}"
         __ups1_stat_suff="${__ups1_reset_colors}${__ups1_default_colors}"
     fi
+
+    if which rtx >/dev/null 2>&1
+    then
+        eval "$(rtx env -s bash)"
+    fi
+    __ups1_time_width=5
+    __ups1_time="$(date -u +'%M:%S')"
+    if [ -n "${__ups1_info}" ]
+    then
+        __ups1_info_pref="${__ups1_blue}"
+        __ups1_info_suff="${__ups1_reset_colors}${__ups1_default_colors}"
+        __ups1_info_width=8 # including the space
+        __ups1_dir_width=15 # not including the space
+        __ups1_dir=$(echo "${PWD}" | sed \
+            -e 's|/*$||' \
+            -e "s|^${HOME}|~|" \
+            -e 's|\([^/]\)\([^/]*\)\(/\)|\1/|g' \
+            -e 's|\(.\{2,\}\)\(.\{14\}\)$|*\2|')
+    else
+        __ups1_info_width=0 # including the space
+        __ups1_dir_width=24 # not including the space
+        __ups1_dir=$(echo "${PWD}" | sed \
+            -e 's|/*$||' \
+            -e "s|^${HOME}|~|" \
+            -e 's|\([^/]\)\([^/]*\)\(/\)|\1/|g' \
+            -e 's|\(.\{2,\}\)\(.\{18\}\)$|*\2|')
+    fi
+
     PS1="$(printf \
-        "${__ups1_default_colors}${__ups1_stat_pref}%3d${__ups1_stat_suff}%6s %-${__ups1_info_width}s %-${__ups1_dir_width}s \\\\\$${__ups1_reset_colors} " \
+        "${__ups1_default_colors}${__ups1_stat_pref}%3d${__ups1_stat_suff} %${__ups1_time_width}s ${__ups1_info_pref}%-${__ups1_info_width}s${__ups1_info_suff}%${__ups1_dir_width}s \\\\\$${__ups1_reset_colors} " \
         "${__ups1_lastcmd}" \
         "${__ups1_time}" \
         "${__ups1_info}" \
         "${__ups1_dir}")"
-    TITLE='bless.'
 
+
+    return "${__ups1_lastcmd}"
 }
-export PROMPT_COMMAND="${PROMPT_COMMAND};update_ps1"
+export PROMPT_COMMAND="update_ps1${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
