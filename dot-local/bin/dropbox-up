@@ -14,3 +14,4 @@ fi
 
 rclone sync ${HOME}/Dropbox/Apps Dropbox:/Apps
 rclone sync ${HOME}/Dropbox/Documents Dropbox:/Documents
+rclone sync ${HOME}/Dropbox/Books Dropbox:/Books
