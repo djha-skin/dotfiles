@@ -16,11 +16,11 @@ src="${HOME:-/home/danielhaskin}/Pictures"
 
 dest="/Screenshots/${itis}.png"
 screenshot-region "${src}/${fname}"
-fid=$(gdrive upload --name "${dest}" "${src}/${fname}" | \
+fid=$(gdrive upload --name "${dest}/${fname}" "${src}/${fname}" | \
     sed -n -e '/Uploaded \([^ ]*\).*$/ { s|^ *Uploaded \([^ ]*\).*$|\1|g; p }' 2> ~/.sgd-errors)
 echo "${fid}"
 
-gdrive share --type domain --role commenter --domain "${WORK_DOMAIN}" "${fid}" 2>~/.sgd-errors
+gdrive share --type domain --role commenter --domain "${WORK_DOMAIN:-example.com}" "${fid}" 2>~/.sgd-errors
 url=$(gdrive info "${fid}" | awk -F': ' '/ViewUrl/{print $2}' 2>~/.sgd-errors)
 printf "${url}"  | copy
 zenity --title "screen2gdrive" --info --text "Synced to Work GDrive, URL in clipboard"
