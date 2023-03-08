@@ -22,6 +22,13 @@ def last_dir(wdh_path, truncate=True, **kwargs):
             with open(wdh_path, "r", encoding="utf-8", errors="ignore") as wdh:
                 for line in wdh:
                     dirs.append(line.strip())
+            if truncate:
+                with open(
+                    wdh_path, "w", encoding="utf-8", errors="ignore"
+                ) as wdh:
+                    for i in range(len(dirs)):
+                        if i != (len(dirs) + index) % len(dirs):
+                            print(dirs[i], file=wdh)
             return True, dirs[index]
         else:
             return True, None
