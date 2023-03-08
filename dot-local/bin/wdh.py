@@ -15,27 +15,14 @@ def pushd(directory, wdh_path, **kwargs):
 
 
 def last_dir(wdh_path, truncate=True, **kwargs):
-    charspot = bytearray(1)
+    index = kwargs.get("index", -1)
+    dirs = []
     if wdh_path.exists():
         if wdh_path.stat().st_size > 0:
-            with open(wdh_path, "rb+") as wdh:
-                cursor = wdh.seek(-2, io.SEEK_END)
-                while True:
-                    cursor += wdh.readinto(charspot)
-                    if charspot == b"\n":
-                        break
-
-                    if cursor <= 1:
-                        cursor = wdh.seek(0, io.SEEK_SET)
-                        break
-                    else:
-                        cursor = wdh.seek(-2, io.SEEK_CUR)
-
-                place = wdh.readline().decode("utf-8", errors="ignore")
-                if truncate:
-                    wdh.seek(cursor, io.SEEK_SET)
-                    wdh.truncate()
-            return True, place.strip()
+            with open(wdh_path, "r", encoding="utf-8", errors="ignore") as wdh:
+                for line in wdh:
+                    dirs.append(line.strip())
+            return True, dirs[index]
         else:
             return True, None
     else:
@@ -99,9 +86,16 @@ def main(args):
     ap_listd = subp.add_parser("list", help="Show contents of the stack")
     ap_listd.set_defaults(func=listd)
     ap_peekd = subp.add_parser(
-        "peek", help="Print directory at the top of the stack"
+        "peek", help="Print directory. By default, print the top of the stack."
     )
     ap_peekd.set_defaults(func=peekd)
+    ap_peekd.add_argument(
+        "-i",
+        "--index",
+        help="Print some other directory at index",
+        default=-1,
+        type=int,
+    )
     ap_pushd = subp.add_parser(
         "push", help="Push directory onto the wdh stack"
     )
