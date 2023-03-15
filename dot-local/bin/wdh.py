@@ -9,7 +9,7 @@ def read_dirs(wdh_path):
         with open(wdh_path, "r", encoding="utf-8", errors="ignore") as wdh:
             for line in wdh:
                 dirs.append(line.strip())
-    dirs
+    return dirs
 
 
 def write_dirs(wdh_path, dirs):
@@ -22,9 +22,11 @@ def pushd(directory, wdh_path, **kwargs):
     index = kwargs["index"]
     full_dir = directory.resolve()
     new_entry = str(full_dir)
+
     if full_dir.exists():
         dirs = read_dirs(wdh_path)
-        dirs.insert(index, new_entry)
+        after_index = (index + len(dirs) + 1) % (len(dirs) + 1)
+        dirs.insert(after_index, new_entry)
         write_dirs(wdh_path, dirs)
     else:
         print("Path does not exist", file=sys.stderr)
@@ -48,7 +50,7 @@ def popd(wdh_path, index, **kwargs):
     write_dirs(wdh_path, dirs)
 
 
-def setd(directory, wdh_path, index, **kwargs):
+def setd(wdh_path, directory, index, **kwargs):
     if directory.exists():
         dirs = read_dirs(wdh_path)
         dirs[index] = str(directory.resolve())
@@ -59,8 +61,9 @@ def setd(directory, wdh_path, index, **kwargs):
 
 
 def listd(wdh_path, **kwargs):
-    with open(wdh_path, "r", encoding="utf-8", errors="ignore") as wdh:
-        sys.stdout.write(wdh.read())
+    dirs = read_dirs(wdh_path)
+    for i in range(len(dirs)):
+        print(f"{i} {dirs[i]}")
 
 
 def whathappened(parser, **kwargs):
@@ -69,7 +72,6 @@ def whathappened(parser, **kwargs):
 
 
 def main(args):
-
     home = Path.home()
     location = home / ".wdh.txt"
 
@@ -124,7 +126,7 @@ def main(args):
     ap_setd.set_defaults(func=setd)
 
     ap_popd = subp.add_parser("pop", help="Pop directory from the wdh stack")
-    ap_setd.add_argument(
+    ap_popd.add_argument(
         "-i",
         "--index",
         help="Pop some other directory index",
@@ -132,7 +134,7 @@ def main(args):
         type=int,
     )
     ap_popd.set_defaults(func=popd)
-    options = ap.parse_args(args)
+    options, _ = ap.parse_known_args(args)
     options.func(**options.__dict__)
 
 
