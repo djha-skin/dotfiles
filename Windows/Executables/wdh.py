@@ -1,76 +1,70 @@
 from pathlib import Path
 import argparse
 import sys
-import io
+
+
+def read_dirs(wdh_path):
+    dirs = []
+    if wdh_path.exists() and wdh_path.stat().st_size > 0:
+        with open(wdh_path, "r", encoding="utf-8", errors="ignore") as wdh:
+            for line in wdh:
+                dirs.append(line.strip())
+    return dirs
+
+
+def write_dirs(wdh_path, dirs):
+    with open(wdh_path, "w", encoding="utf-8", errors="ignore") as wdh:
+        for i in range(len(dirs)):
+            print(dirs[i], file=wdh)
 
 
 def pushd(directory, wdh_path, **kwargs):
-    if directory.resolve().exists():
-        with open(wdh_path, "a", encoding="utf-8", errors="ignore") as wdh:
-            print(f"{str(directory.resolve())}", file=wdh)
-        return 0
+    index = kwargs["index"]
+    full_dir = directory.resolve()
+    new_entry = str(full_dir)
+
+    if full_dir.exists():
+        dirs = read_dirs(wdh_path)
+        after_index = (index + len(dirs) + 1) % (len(dirs) + 1)
+        dirs.insert(after_index, new_entry)
+        write_dirs(wdh_path, dirs)
     else:
         print("Path does not exist", file=sys.stderr)
         return 4
 
 
-def last_dir(wdh_path, truncate=True, **kwargs):
-    charspot = bytearray(1)
-    if wdh_path.exists():
-        if wdh_path.stat().st_size > 0:
-            with open(wdh_path, "rb+") as wdh:
-                cursor = wdh.seek(-2, io.SEEK_END)
-                while True:
-                    cursor += wdh.readinto(charspot)
-                    if charspot == b"\n":
-                        break
+def peek(wdh_path, index, **kwargs):
+    dirs = read_dirs(wdh_path)
+    if len(dirs) > 0:
+        print(dirs[index])
+    return dirs
 
-                    if cursor <= 1:
-                        cursor = wdh.seek(0, io.SEEK_SET)
-                        break
-                    else:
-                        cursor = wdh.seek(-2, io.SEEK_CUR)
 
-                place = wdh.readline().decode("utf-8", errors="ignore")
-                if truncate:
-                    wdh.seek(cursor, io.SEEK_SET)
-                    wdh.truncate()
-            return True, place.strip()
-        else:
-            return True, None
+def peekd(wdh_path, index, **kwargs):
+    peek(wdh_path, index, **kwargs)
+    return 0
+
+
+def popd(wdh_path, index, **kwargs):
+    dirs = peek(wdh_path, index, **kwargs)
+    dirs.pop(index)
+    write_dirs(wdh_path, dirs)
+
+
+def setd(wdh_path, directory, index, **kwargs):
+    if directory.exists():
+        dirs = read_dirs(wdh_path)
+        dirs[index] = str(directory.resolve())
+        write_dirs(wdh_path, dirs)
     else:
-        return False, None
-
-
-def last_dir_cli(wdh_path, truncate=True, **kwargs):
-    exists, path = last_dir(wdh_path, truncate, **kwargs)
-    if exists and path is not None:
-        print(path)
-        return 0
-    if exists:
-        print(f"Stack file `{wdh_path}` is empty", file=sys.stderr)
-        return 3
-
-    print(f"Stack file `{wdh_path}` does not exist", file=sys.stderr)
-    return 2
-
-
-def peekd(wdh_path, **kwargs):
-    last_dir_cli(wdh_path, truncate=False, **kwargs)
-
-
-def popd(wdh_path, **kwargs):
-    last_dir_cli(wdh_path, truncate=True, **kwargs)
-
-
-def setd(directory, wdh_path, **kwargs):
-    exists, path = last_dir(wdh_path, truncate=True)
-    pushd(directory, wdh_path, **kwargs)
+        print("Path does not exist", file=sys.stderr)
+        return 4
 
 
 def listd(wdh_path, **kwargs):
-    with open(wdh_path, "r", encoding="utf-8", errors="ignore") as wdh:
-        sys.stdout.write(wdh.read())
+    dirs = read_dirs(wdh_path)
+    for i in range(len(dirs)):
+        print(f"{i} {dirs[i]}")
 
 
 def whathappened(parser, **kwargs):
@@ -79,7 +73,6 @@ def whathappened(parser, **kwargs):
 
 
 def main(args):
-
     home = Path.home()
     location = home / ".wdh.txt"
 
@@ -99,22 +92,50 @@ def main(args):
     ap_listd = subp.add_parser("list", help="Show contents of the stack")
     ap_listd.set_defaults(func=listd)
     ap_peekd = subp.add_parser(
-        "peek", help="Print directory at the top of the stack"
+        "peek", help="Print directory. By default, print the top of the stack."
     )
     ap_peekd.set_defaults(func=peekd)
+    ap_peekd.add_argument(
+        "-i",
+        "--index",
+        help="Print some other directory at index",
+        default=-1,
+        type=int,
+    )
     ap_pushd = subp.add_parser(
         "push", help="Push directory onto the wdh stack"
     )
     ap_pushd.add_argument("directory", help="Directory to push", type=Path)
+    ap_pushd.add_argument(
+        "-i",
+        "--index",
+        help="Push after some other directory index",
+        default=-1,
+        type=int,
+    )
     ap_pushd.set_defaults(func=pushd)
 
     ap_setd = subp.add_parser("set", help="Set top directory")
     ap_setd.add_argument("directory", help="Directory to set", type=Path)
+    ap_setd.add_argument(
+        "-i",
+        "--index",
+        help="Set some other directory index",
+        default=-1,
+        type=int,
+    )
     ap_setd.set_defaults(func=setd)
 
     ap_popd = subp.add_parser("pop", help="Pop directory from the wdh stack")
+    ap_popd.add_argument(
+        "-i",
+        "--index",
+        help="Pop some other directory index",
+        default=-1,
+        type=int,
+    )
     ap_popd.set_defaults(func=popd)
-    options = ap.parse_args(args)
+    options, _ = ap.parse_known_args(args)
     options.func(**options.__dict__)
 
 

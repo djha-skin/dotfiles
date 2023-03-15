@@ -35,7 +35,8 @@ def pushd(directory, wdh_path, **kwargs):
 
 def peek(wdh_path, index, **kwargs):
     dirs = read_dirs(wdh_path)
-    print(dirs[index])
+    if len(dirs) > 0:
+        print(dirs[index])
     return dirs
 
 
