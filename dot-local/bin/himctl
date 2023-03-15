@@ -1,0 +1,6 @@
+#!/bin/sh
+
+systemctl --user "${@}" himalaya-watch-gmail
+systemctl --user "${@}" himalaya-notify-gmail
+systemctl --user "${@}" himalaya-watch-skin
+systemctl --user "${@}" himalaya-notify-skin
