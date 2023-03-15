@@ -129,8 +129,8 @@ pchanged() {
 ppopd() {
     if [ -n "${WORKING_LOCATION_FILE:-}" -a -f "${WORKING_LOCATION_FILE:-}" ]
     then
-        python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" pop
-        cd "$(python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" peek)"
+        python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" pop "${@}"
+        cd "$(python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" peek "${@}")"
     else
         echo "No directory on stack" >&2
     fi
@@ -138,19 +138,19 @@ ppopd() {
 
 
 ppushd() {
-    python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" push "${1}"
-    cd "$(python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" peek)"
+    python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" push "${@}"
+    cd "$(python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" peek "${@}")"
 }
 
 psetd() {
-    python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" set "${1}"
-    cd "$(python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" peek)"
+    python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" set "${@}"
+    cd "$(python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" peek "${@}")"
 }
 
 plistd() {
     if [ -n "${WORKING_LOCATION_FILE:-}" -a -f "${WORKING_LOCATION_FILE:-}" ]
     then
-        python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" list
+        python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" list "${@}"
     else
         echo "No directory on stack" >&2
     fi
