@@ -1,0 +1,183 @@
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
+
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
+
+export PROFILE_INCLUDED=1
+windows_path_to_msys2() {
+    echo "${1}" |
+        awk -F: '//{print "/" tolower($1) $2}' |
+        tr '[\\`]' '[/\\]'
+}
+
+
+# To make this true in msys2, edit the /etc/nsswitch.conf file, see
+# the file `dotfiles/Windows/etc/nsswitch.conf`
+export HOME="$(windows_path_to_msys2 "${USERPROFILE}")"
+export XDG_CONFIG_HOME="$(windows_path_to_msys2 "${LOCALAPPDATA}")/msys2-bash/config"
+export XDG_DATA_HOME="$(windows_path_to_msys2 "${LOCALAPPDATA}")/msys2-bash/data"
+export XDG_STATE_HOME="$(windows_path_to_msys2 "${LOCALAPPDATA}")/msys2-bash/state"
+export XDG_CACHE_HOME="$(windows_path_to_msys2 "${temp}")/msys2-bash/cache"
+export XDG_DESKTOP_DIR="$HOME/Desktop"
+export XDG_DOCUMENTS_DIR="$HOME/Documents"
+export XDG_DOWNLOAD_DIR="$HOME/Downloads"
+export XDG_MUSIC_DIR="$HOME/Music"
+export XDG_PICTURES_DIR="$HOME/Pictures"
+export XDG_PUBLICSHARE_DIR="$HOME/Public"
+export XDG_TEMPLATES_DIR="$HOME/Templates"
+export XDG_VIDEOS_DIR="$HOME/Videos"
+export HOME_PREFIX="${XDG_DATA_HOME}"
+export HOME_BINDIR="${XDG_DATA_HOME}/bin"
+
+export home_altprefix="${HOME}/Software"
+
+# Set up PATH
+export PATH="export PATH=/c/Users/ProgramData/chocolatey/bin:/c/Windows/System32/:/c/Windows/System32/Wbem:/c/Windows/System32/WindowsPowerShell/v1.0/:${HOME}/scoop/shims:${HOME}/Executables:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
+export LANG="en_US.UTF-8"
+export LOCALE="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+export LANGUAGE="en_US:"
+export RLWRAP_EDITOR="nvim '+call cursor(%L,%C)'"
+export C_INCLUDE_PATH=/usr/include
+export LIBRARY_PATH=/usr/lib64:/usr/lib
+
+#export LD_LIBRARY_PATH=${HOME}/.local/lib64:${HOME}/.local/lib:/usr/local/lib64:/usr/local/lib:/usr/lib64:/usr/lib
+
+for i in $(ls -1A "${home_altprefix}")
+do
+    if [ -d "${home_altprefix}/${i}" ]
+    then
+        if [ -d "${home_altprefix}/${i}/bin" ]
+        then
+            export PATH="${home_altprefix}/${i}/bin:${PATH}"
+            if [ -f "${home_altprefix}/${i}/bin/java" ]
+            then
+                export JAVA_HOME="${home_altprefix}/${i}"
+            fi
+        else
+            export PATH="${home_altprefix}/${i}:${PATH}"
+        fi
+        if [ -d "${home_altprefix}/${i}/lib64" ]
+        then
+            export LD_LIBRARY_PATH="${home_altprefix}/${i}/lib64:${LD_LIBRARY_PATH}"
+        fi
+        if [ -d "${home_altprefix}/${i}/lib" ]
+        then
+            export LD_LIBRARY_PATH="${home_altprefix}/${i}/lib:${LD_LIBRARY_PATH}"
+        fi
+    fi
+done
+
+if [ -n "${GEM_HOME}" ]
+then
+    export PATH="${GEM_HOME}/bin:${PATH}"
+fi
+
+if [ -n "${HOME}/.roswell" ]
+then
+    export PATH="${PATH}:${HOME}/.roswell/lisp/quicklisp/bin"
+fi
+
+if [ -d "${HOME}/.gem/ruby" ]
+then
+    for i in $(ls -1A ${HOME}/.gem/ruby)
+    do
+        if [ -d "${HOME}/.gem/ruby/${i}/bin" ]
+        then
+            export PATH="${HOME}/.gem/ruby/${i}/bin:${PATH}"
+        fi
+    done
+fi
+
+export GOBIN="${HOME}/Executables"
+
+if [ -n "${JAVA_HOME}" ]
+then
+    export PATH="${JAVA_HOME}/bin:${PATH}"
+fi
+
+#. <(rtx env)
+
+export EDITOR="nvim"
+export ALTERNATE_EDITOR=""
+export BROWSER="firefox"
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+export HISTCONTROL=ignoredups:ignorespace
+export HISTSIZE=1000
+export HISTFILESIZE=2000
+
+if [ -f "${HOME}/.private_profile" ]
+then
+    . "${HOME}/.private_profile"
+fi
+
+# Preserve MANPATH if you already defined it somewhere in your config.
+# Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
+if ! echo "${MANPATH}" | grep -q "${NPM_PACKAGES}/share/man"
+then
+    export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+fi
+if ! echo "${MANPATH}" | grep -q "${HOME}/.local/share/man"
+then
+    export MANPATH="${HOME}/.local/share/man:${MANPATH-$(manpath)}"
+fi
+
+export PARINIT="rTbgqR B=*/-.,?'_A_a_@ Q=_s>| W=_S"
+
+export WORKING_LOCATION_FILE="${HOME}/.wdh.txt"
+
+pchanged() {
+    if [ -n "${WORKING_LOCATION_FILE:-}" -a -f "${WORKING_LOCATION_FILE:-}" ]
+    then
+        cd "$(python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" peek)"
+    else
+        echo "No directory on stack" >&2
+    fi
+}
+
+ppopd() {
+    if [ -n "${WORKING_LOCATION_FILE:-}" -a -f "${WORKING_LOCATION_FILE:-}" ]
+    then
+        python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" pop
+        cd "$(python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" peek)"
+    else
+        echo "No directory on stack" >&2
+    fi
+}
+
+
+ppushd() {
+    python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" push "${1}"
+    cd "$(python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" peek)"
+}
+
+psetd() {
+    python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" set "${1}"
+    cd "$(python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" peek)"
+}
+
+plistd() {
+    if [ -n "${WORKING_LOCATION_FILE:-}" -a -f "${WORKING_LOCATION_FILE:-}" ]
+    then
+        python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" list
+    else
+        echo "No directory on stack" >&2
+    fi
+}
+
+pcleard() {
+    rm -f "${WORKING_LOCATION_FILE}"
+    touch "${WORKING_LOCATION_FILE}"
+}
+
+if [ -d "${HOME}/.roswell" ]
+then
+    export PATH="/c/Users/bhw/.roswell/lisp/quicklisp/bin:${PATH}"
+fi
+

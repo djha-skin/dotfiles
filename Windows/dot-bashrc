@@ -1,0 +1,145 @@
+BASHRC_INCLUDED=1
+PROMPT_COMMAND=
+
+
+if [ "${PROFILE_INCLUDED:-0}" -eq 0 ]
+then
+    . ${HOME}/.profile
+fi
+
+if [ -e ${HOME}/.pijulconfig/bash ]
+then
+    . ${HOME}/.pijulconfig/bash
+fi
+
+eval "$(${HOME_BINDIR}/rtx activate -s bash)"
+
+[ -z "$PS1" ] && return
+export PS1='\W 🠺 '
+
+# don't put duplicate lines in the history. See bash(1) for more options
+# ... or force ignoredups and ignorespace
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+if [ "$TERM" = "linux" ]; then
+    echo -en "\e]P0222222" #black
+    echo -en "\e]P8222222" #darkgrey
+    echo -en "\e]P1803232" #darkred
+    echo -en "\e]P9982b2b" #red
+    echo -en "\e]P25b762f" #darkgreen
+    echo -en "\e]PA89b83f" #green
+    echo -en "\e]P3aa9943" #brown
+    echo -en "\e]PBefef60" #yellow
+    echo -en "\e]P4324c80" #darkblue
+    echo -en "\e]PC2b4f98" #blue
+    echo -en "\e]P5706c9a" #darkmagenta
+    echo -en "\e]PD826ab1" #magenta
+    echo -en "\e]P692b19e" #darkcyan
+    echo -en "\e]PEa1cdcd" #cyan
+    echo -en "\e]P7ffffff" #lightgrey
+    echo -en "\e]PFdedede" #white
+    clear #for background artifacting
+fi
+
+command -v vg >/dev/null 2>&1 && eval "$(vg eval --shell bash)"
+
+#source <(${XDG_DATA_HOME}/rtx/installs/kubectl/1.24.10/bin/kubectl completion bash)
+. /usr/share/bash-completion/completions/git
+# added by travis gem
+[ -f ${HOME}/.travis/travis.sh ] && source ${HOME}/.travis/travis.sh
+
+PATH="${HOME}/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="${HOME}/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="${HOME}/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"${HOME}/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=${HOME}/perl5"; export PERL_MM_OPT;
+
+pchanged
+
+update_ps1() {
+    __ups1_lastcmd="${?}"
+    __ups1_default_colors='\\[\\e[1m\\]'
+    __ups1_reset_colors='\\[\\e[0m\\]'
+    __ups1_red='\\[\\e[31m\\]'
+    __ups1_blue='\\[\\e[34m\\]'
+    git status >/dev/null 2>&1
+    __ups1_info=""
+    __ups1_info_pref=""
+    __ups1_info_suff=""
+    if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ]
+    then
+        __ups1_info="$(git branch --color=never | \
+                awk '/^[*]/{print $2}' | \
+                sed \
+                -e 's|\([[:alpha:]]\)[[:alpha:]]*\([^[:alpha:]]\)|\1\2|g' \
+                -e 's|\([^[:alpha:]]\)\([[:alpha:]]\)[[:alpha:]]*|\1\2|g' \
+                -e 's|^[^/]\{1,\}/||g' \
+                -e 's|^\(.\{6\}\).\{2,\}$|\1*|' | \
+                tr '[A-Z]' '[a-z]')"
+    fi
+
+    if [ "${__ups1_lastcmd}" -eq 0 ]
+    then
+        __ups1_stat_pref=""
+        __ups1_stat_suff=""
+    else
+        __ups1_stat_pref="${__ups1_red}"
+        __ups1_stat_suff="${__ups1_reset_colors}${__ups1_default_colors}"
+    fi
+
+    if which rtx >/dev/null 2>&1
+    then
+        eval "$(rtx env -s bash)"
+    fi
+    __ups1_time_width=5
+    __ups1_time="$(date -u +'%M:%S')"
+    if [ -n "${__ups1_info}" ]
+    then
+        __ups1_info_pref="${__ups1_blue}"
+        __ups1_info_suff="${__ups1_reset_colors}${__ups1_default_colors}"
+        __ups1_info_width=8 # including the space
+        __ups1_dir_width=15 # not including the space
+        __ups1_dir=$(echo "${PWD}" | sed \
+            -e 's|/*$||' \
+            -e "s|^${HOME}|~|" \
+            -e 's|\([^/]\)\([^/]*\)\(/\)|\1/|g' \
+            -e 's|\(.\{2,\}\)\(.\{14\}\)$|*\2|')
+    else
+        __ups1_info_width=0 # including the space
+        __ups1_dir_width=24 # not including the space
+        __ups1_dir=$(echo "${PWD}" | sed \
+            -e 's|/*$||' \
+            -e "s|^${HOME}|~|" \
+            -e 's|\([^/]\)\([^/]*\)\(/\)|\1/|g' \
+            -e 's|\(.\{2,\}\)\(.\{18\}\)$|*\2|')
+    fi
+
+    PS1="$(printf \
+        "${__ups1_default_colors}${__ups1_stat_pref}%3d${__ups1_stat_suff} %${__ups1_time_width}s ${__ups1_info_pref}%-${__ups1_info_width}s${__ups1_info_suff}%${__ups1_dir_width}s \\\\\$${__ups1_reset_colors} " \
+        "${__ups1_lastcmd}" \
+        "${__ups1_time}" \
+        "${__ups1_info}" \
+        "${__ups1_dir}")"
+
+
+    return "${__ups1_lastcmd}"
+}
+if [ -n "${PROMPT_COMMAND:-}" ]
+then
+    export PROMPT_COMMAND="{PROMPT_COMMAND};update_ps1"
+else
+    export PROMPT_COMMAND="update_ps1"
+fi
+alias vim=nvim
