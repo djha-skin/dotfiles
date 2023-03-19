@@ -19,25 +19,25 @@ windows_path_to_msys2() {
 # To make this true in msys2, edit the /etc/nsswitch.conf file, see
 # the file `dotfiles/Windows/etc/nsswitch.conf`
 export HOME="$(windows_path_to_msys2 "${USERPROFILE}")"
-export XDG_CONFIG_HOME="$(windows_path_to_msys2 "${LOCALAPPDATA}")/msys2-bash/config"
-export XDG_DATA_HOME="$(windows_path_to_msys2 "${LOCALAPPDATA}")/msys2-bash/data"
-export XDG_STATE_HOME="$(windows_path_to_msys2 "${LOCALAPPDATA}")/msys2-bash/state"
-export XDG_CACHE_HOME="$(windows_path_to_msys2 "${temp}")/msys2-bash/cache"
-export XDG_DESKTOP_DIR="$HOME/Desktop"
-export XDG_DOCUMENTS_DIR="$HOME/Documents"
-export XDG_DOWNLOAD_DIR="$HOME/Downloads"
-export XDG_MUSIC_DIR="$HOME/Music"
-export XDG_PICTURES_DIR="$HOME/Pictures"
-export XDG_PUBLICSHARE_DIR="$HOME/Public"
-export XDG_TEMPLATES_DIR="$HOME/Templates"
-export XDG_VIDEOS_DIR="$HOME/Videos"
-export HOME_PREFIX="${XDG_DATA_HOME}"
-export HOME_BINDIR="${XDG_DATA_HOME}/bin"
+#export XDG_CONFIG_HOME="$(windows_path_to_msys2 "${LOCALAPPDATA}")/msys2-bash/config"
+#export XDG_DATA_HOME="$(windows_path_to_msys2 "${LOCALAPPDATA}")/msys2-bash/data"
+#export XDG_STATE_HOME="$(windows_path_to_msys2 "${LOCALAPPDATA}")/msys2-bash/state"
+#export XDG_CACHE_HOME="$(windows_path_to_msys2 "${temp}")/msys2-bash/cache"
+#export XDG_DESKTOP_DIR="$HOME/Desktop"
+#export XDG_DOCUMENTS_DIR="$HOME/Documents"
+#export XDG_DOWNLOAD_DIR="$HOME/Downloads"
+#export XDG_MUSIC_DIR="$HOME/Music"
+#export XDG_PICTURES_DIR="$HOME/Pictures"
+#export XDG_PUBLICSHARE_DIR="$HOME/Public"
+#export XDG_TEMPLATES_DIR="$HOME/Templates"
+#export XDG_VIDEOS_DIR="$HOME/Videos"
+export HOME_BINDIR="${HOME}/Executables"
 
 export home_altprefix="${HOME}/Software"
 
 # Set up PATH
-export PATH="export PATH=/c/Users/ProgramData/chocolatey/bin:/c/Windows/System32/:/c/Windows/System32/Wbem:/c/Windows/System32/WindowsPowerShell/v1.0/:${HOME}/scoop/shims:${HOME}/Executables:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
+export PATH="/c/Users/ProgramData/chocolatey/bin:/c/Windows/System32/:/c/Windows/System32/Wbem:/c/Windows/System32/WindowsPowerShell/v1.0/:${HOME}/scoop/shims:${HOME}/Executables:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
+
 export LANG="en_US.UTF-8"
 export LOCALE="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
@@ -98,7 +98,7 @@ export GOBIN="${HOME}/Executables"
 
 if [ -n "${JAVA_HOME}" ]
 then
-    export PATH="${JAVA_HOME}/bin:${PATH}"
+    export PATH="$(windows_path_to_msys2 ${JAVA_HOME})/bin:${PATH}"
 fi
 
 #. <(rtx env)
@@ -135,7 +135,7 @@ export WORKING_LOCATION_FILE="${HOME}/.wdh.txt"
 pchanged() {
     if [ -n "${WORKING_LOCATION_FILE:-}" -a -f "${WORKING_LOCATION_FILE:-}" ]
     then
-        cd "$(python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" peek)"
+        cd "$(python3 "${HOME_BINDIR}/wdh.py" -p "${WORKING_LOCATION_FILE}" peek)"
     else
         echo "No directory on stack" >&2
     fi
@@ -144,8 +144,8 @@ pchanged() {
 ppopd() {
     if [ -n "${WORKING_LOCATION_FILE:-}" -a -f "${WORKING_LOCATION_FILE:-}" ]
     then
-        python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" pop
-        cd "$(python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" peek)"
+        python3 "${HOME_BINDIR}/wdh.py" -p "${WORKING_LOCATION_FILE}" pop
+        cd "$(python3 "${HOME_BINDIR}/wdh.py" -p "${WORKING_LOCATION_FILE}" peek)"
     else
         echo "No directory on stack" >&2
     fi
@@ -153,19 +153,19 @@ ppopd() {
 
 
 ppushd() {
-    python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" push "${1}"
-    cd "$(python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" peek)"
+    python3 "${HOME_BINDIR}/wdh.py" -p "${WORKING_LOCATION_FILE}" push "${1}"
+    cd "$(python3 "${HOME_BINDIR}/wdh.py" -p "${WORKING_LOCATION_FILE}" peek)"
 }
 
 psetd() {
-    python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" set "${1}"
-    cd "$(python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" peek)"
+    python3 "${HOME_BINDIR}/wdh.py" -p "${WORKING_LOCATION_FILE}" set "${1}"
+    cd "$(python3 "${HOME_BINDIR}/wdh.py" -p "${WORKING_LOCATION_FILE}" peek)"
 }
 
 plistd() {
     if [ -n "${WORKING_LOCATION_FILE:-}" -a -f "${WORKING_LOCATION_FILE:-}" ]
     then
-        python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" list
+        python3 "${HOME_BINDIR}/wdh.py" -p "${WORKING_LOCATION_FILE}" list
     else
         echo "No directory on stack" >&2
     fi

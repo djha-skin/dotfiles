@@ -1,7 +1,7 @@
-(require "asdf")
+(require '#:asdf)
 
-(defun dir-pkg (pkg)
-  (loop for s being the external-symbols of pkg do (print s)))
+#+ecl
+(require '#:cmp)
 
 ;;; The following lines added by ql:add-to-init-file:
 ;;#-quicklisp
@@ -10,38 +10,22 @@
 ;;  (when (probe-file quicklisp-init)
 ;;    (load quicklisp-init)))
 ;;
-
-(defun nvim (fname) (uiop:run-program (list "nvim-qt" fname)))
+(defun nvim (fname) 
+  (multiple-value-bind (uiop:run-program (list "nvim-qt" fname))
+    (out err code)
+    (eql code 0)))
 
 #+sbcl
 (push #'nvim *ed-functions*)
 
-#+windows
-(progn
-  (asdf:load-system "cffi")
-  (pushnew (make-pathname
-             :device "C"
-             :directory '(:absolute
-                           "Users"
-                           "bhw"
-                           "Code"
-                           "cmake"
-                           "bin"))
-           cffi:*FOREIGN-LIBRARY-DIRECTORIES*)
-  (pushnew (make-pathname
-             :device "C"
-             :directory '(:absolute
-                           "Windows"
-                           "System32"))
-           cffi:*FOREIGN-LIBRARY-DIRECTORIES*))
 
-#+(and ecl windows)
+#+ecl
 (progn
   (defpackage "C")
   (in-package "C")
   (defvar *CC* "cl.exe")
   (defvar *USER-CC-FLAGS* "")
-  (export '*CC*)
-  (export '*USER-CC-FLAGS*)
+  (export 'C:*CC*)
+  (export 'C:*USER-CC-FLAGS*)
   (in-package #:cl-user)
   )

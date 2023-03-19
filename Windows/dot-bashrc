@@ -1,145 +1,1185 @@
-BASHRC_INCLUDED=1
-PROMPT_COMMAND=
+cd
+ls
+himalaya
+himalaya read 327
+himalaya read 322
+exit
+export MSYS="off"
+cd /c/
+cd Users/bhw/
+ls
+cd /mingw32
+ls
+cd include
+ls
+cd glib-2.0/
+ls
+cd glib/
+ls
+cd .
+cd ..
+cd ..
+find . -name libintl.h
+ls /mingw32/bin/gcc.exe
+ /mingw32/bin/gcc.exe barf.c
+ /mingw32/bin/gcc.exe -std=c99 barf.c
+make barf.exe
+cd ..
+cd ..
+cd c
+cd Users/bhw/
+cd Code
+ls
+cd groupme-purple/
+ls
+make barf.exe
+make
+echo $?
+make
+echo $?
+/mingw32/bin/gcc -O2 -g -ggdb -shared -o libgroupme.dll libgroupme.c -I/mingw32/include/libpurple/ -I/mingw32/include -I/mingw32/include/json-glib-1.0/ -I/mingw32/include/pidgin/win32 -I/mingw32/include/pidgin/ -I/mingw32/lib/glib-2.0/include/ -I/mingw32/include/glib-2.0/ -O2 -g -pipe -Wall -std=c99 -DENABLE_NLS -DGROUPME_PLUGIN_VERSION='"0.9.2023.02.12.git.178393b"' -Wall -Wextra -Wno-deprecated-declarations -Wno-unused-parameter -fno-strict-aliasing -Wformat  -lpurple -lintl -lglib-2.0 -lgobject-2.0 -ljson-glib-1.0 -g -ggdb -static-libgcc -lz -Ipurple2compat\
+/mingw32/bin/gcc -O2 -g -ggdb -shared -o libgroupme.dll libgroupme.c -I/mingw32/include/libpurple/ -I/mingw32/include -I/mingw32/include/json-glib-1.0/ -I/mingw32/include/pidgin/win32 -I/mingw32/include/pidgin/ -I/mingw32/lib/glib-2.0/include/ -I/mingw32/include/glib-2.0/ -O2 -g -pipe -Wall -std=c99 -DENABLE_NLS -DGROUPME_PLUGIN_VERSION='"0.9.2023.02.12.git.178393b"' -Wall -Wextra -Wno-deprecated-declarations -Wno-unused-parameter -fno-strict-aliasing -Wformat  -lpurple -lintl -lglib-2.0 -lgobject-2.0 -ljson-glib-1.0 -g -ggdb -static-libgcc -lz -Ipurple2compat
+echo $?
+/mingw32/bin/gcc -O2 -g -ggdb -shared -o libgroupme.dll libgroupme.c -I/mingw32/include/libpurple/ -I/mingw32/include -I/mingw32/include/json-glib-1.0/ -I/mingw32/include/pidgin/win32 -I/mingw32/include/pidgin/ -I/mingw32/lib/glib-2.0/include/ -I/mingw32/include/glib-2.0/ -v -O2 -g -pipe -Wall -std=c99 -DENABLE_NLS -DGROUPME_PLUGIN_VERSION='"0.9.2023.02.12.git.178393b"' -Wall -Wextra -Wno-deprecated-declarations -Wno-unused-parameter -fno-strict-aliasing -Wformat  -lpurple -lintl -lglib-2.0 -lgobject-2.0 -ljson-glib-1.0 -g -ggdb -static-libgcc -lz -Ipurple2compat
+echo $?
+ls
+ C:/Users/bhw/scoop/apps/msys2/2022-09-04/mingw32/bin/../lib/gcc/i686-w64-mingw32/12.2.0/../../../../i686-w64-mingw32/bin/as.exe -v -I C:/Users/bhw/scoop/apps/msys2/2022-09-04/mingw32/include/libpurple/ -I C:/Users/bhw/scoop/apps/msys2/2022-09-04/mingw32/include -I C:/Users/bhw/scoop/apps/msys2/2022-09-04/mingw32/include/json-glib-1.0/ -I C:/Users/bhw/scoop/apps/msys2/2022-09-04/mingw32/include/pidgin/win32 -I C:/Users/bhw/scoop/apps/msys2/2022-09-04/mingw32/include/pidgin/ -I C:/Users/bhw/scoop/apps/msys2/2022-09-04/mingw32/lib/glib-2.0/include/ -I C:/Users/bhw/scoop/apps/msys2/2022-09-04/mingw32/include/glib-2.0/ -I purple2compat --gdwarf-5 -o C:\Users\bhw\scoop\apps\msys2\2022-09-04\tmp\ccssES1D.o
+echo $?
+make barf.exe
+/mingw32/bin/gcc barf.c
+/mingw32/bin/gcc -o barf.dll -shared barf.c
+/mingw32/bin/gcc -o barf.dll -shared barf.c -I/mingw32/include/libpurple 
+/mingw32/bin/gcc -o barf.dll -shared barf.c -I/mingw32/include/libpurple -I/mingw32/include
+/mingw32/bin/gcc -o barf.dll -shared barf.c -I/mingw32/include/libpurple -I/mingw32/include -I/mingw32/include/json-glib-1.0/
+/mingw32/bin/gcc -o barf.dll -shared barf.c -I/mingw32/include/libpurple -I/mingw32/include -I/mingw32/include/json-glib-1.0/ -I/mingw32/include/pidgin/win32
+/mingw32/bin/gcc -o barf.dll -shared barf.c -I/mingw32/include/libpurple -I/mingw32/include -I/mingw32/include/json-glib-1.0/ -I/mingw32/include/pidgin/win32 -I/mingw32/include/pidgin/
+/mingw32/bin/gcc -o barf.dll -shared barf.c -I/mingw32/include/libpurple -I/mingw32/include -I/mingw32/include/json-glib-1.0/ -I/mingw32/include/pidgin/win32 -I/mingw32/include/pidgin/ -I/mingw32/lib/glib-2.0/include/ -I/mingw32/include/glib-2.0/ -O2
+/mingw32/bin/gcc -o barf.dll -shared barf.c -I/mingw32/include/libpurple -I/mingw32/include -I/mingw32/include/json-glib-1.0/ -I/mingw32/include/pidgin/win32 -I/mingw32/include/pidgin/ -I/mingw32/lib/glib-2.0/include/ -I/mingw32/include/glib-2.0/ -O2 -g pipe
+/mingw32/bin/gcc -o barf.dll -shared barf.c -I/mingw32/include/libpurple -I/mingw32/include -I/mingw32/include/json-glib-1.0/ -I/mingw32/include/pidgin/win32 -I/mingw32/include/pidgin/ -I/mingw32/lib/glib-2.0/include/ -I/mingw32/include/glib-2.0/ -O2 -g pipe -Wall
+/mingw32/bin/gcc -o barf.dll -shared barf.c -I/mingw32/include/libpurple -I/mingw32/include -I/mingw32/include/json-glib-1.0/ -I/mingw32/include/pidgin/win32 -I/mingw32/include/pidgin/ -I/mingw32/lib/glib-2.0/include/ -I/mingw32/include/glib-2.0/ -O2 -g pipe -Wall -std=c99 -DENABLE_NL
+/mingw32/bin/gcc -o barf.dll -shared barf.c -I/mingw32/include/libpurple -I/mingw32/include -I/mingw32/include/json-glib-1.0/ -I/mingw32/include/pidgin/win32 -I/mingw32/include/pidgin/ -I/mingw32/lib/glib-2.0/include/ -I/mingw32/include/glib-2.0/ -O2 -g pipe -Wall -std=c99 -DENABLE_NLS
+/mingw32/bin/gcc -o barf.dll -shared barf.c -I/mingw32/include/libpurple -I/mingw32/include -I/mingw32/include/json-glib-1.0/ -I/mingw32/include/pidgin/win32 -I/mingw32/include/pidgin/ -I/mingw32/lib/glib-2.0/include/ -I/mingw32/include/glib-2.0/ -O2 -g pipe -Wall -std=c99 -DENABLE_NLS -DGROUPME_PLUGIN_VERSION='"0.9.2023.02.12.git.178393b"' -Wall -Wextra
+/mingw32/bin/gcc -o barf.dll -shared barf.c -I/mingw32/include/libpurple -I/mingw32/include -I/mingw32/include/json-glib-1.0/ -I/mingw32/include/pidgin/win32 -I/mingw32/include/pidgin/ -I/mingw32/lib/glib-2.0/include/ -I/mingw32/include/glib-2.0/ -O2 -g pipe -Wall -std=c99 -DENABLE_NLS -DGROUPME_PLUGIN_VERSION='"0.9.2023.02.12.git.178393b"' -Wall -Wextra -Wno-deprecated-declarations
+/mingw32/bin/gcc -o barf.dll -shared barf.c -I/mingw32/include/libpurple -I/mingw32/include -I/mingw32/include/json-glib-1.0/ -I/mingw32/include/pidgin/win32 -I/mingw32/include/pidgin/ -I/mingw32/lib/glib-2.0/include/ -I/mingw32/include/glib-2.0/ -O2 -g pipe -Wall -std=c99 -DENABLE_NLS -DGROUPME_PLUGIN_VERSION='"0.9.2023.02.12.git.178393b"' -Wall -Wextra -Wno-deprecated-declarations -Wno-unused-parameter
+/mingw32/bin/gcc -o barf.dll -shared barf.c -I/mingw32/include/libpurple -I/mingw32/include -I/mingw32/include/json-glib-1.0/ -I/mingw32/include/pidgin/win32 -I/mingw32/include/pidgin/ -I/mingw32/lib/glib-2.0/include/ -I/mingw32/include/glib-2.0/ -O2 -g pipe -Wall -std=c99 -DENABLE_NLS -DGROUPME_PLUGIN_VERSION='"0.9.2023.02.12.git.178393b"' -Wall -Wextra -Wno-deprecated-declarations -Wno-unused-parameter -fno-strict-aliasing
+/mingw32/bin/gcc -o barf.dll -shared barf.c -I/mingw32/include/libpurple -I/mingw32/include -I/mingw32/include/json-glib-1.0/ -I/mingw32/include/pidgin/win32 -I/mingw32/include/pidgin/ -I/mingw32/lib/glib-2.0/include/ -I/mingw32/include/glib-2.0/ -O2 -g pipe -Wall -std=c99 -DENABLE_NLS -DGROUPME_PLUGIN_VERSION='"0.9.2023.02.12.git.178393b"' -Wall -Wextra -Wno-deprecated-declarations -Wno-unused-parameter -fno-strict-aliasing -Wformat
+/mingw32/bin/gcc -o barf.dll -shared barf.c -I/mingw32/include/libpurple -I/mingw32/include -I/mingw32/include/json-glib-1.0/ -I/mingw32/include/pidgin/win32 -I/mingw32/include/pidgin/ -I/mingw32/lib/glib-2.0/include/ -I/mingw32/include/glib-2.0/ -O2 -g pipe -Wall -std=c99 -DENABLE_NLS -DGROUPME_PLUGIN_VERSION='"0.9.2023.02.12.git.178393b"' -Wall -Wextra -Wno-deprecated-declarations -Wno-unused-parameter -fno-strict-aliasing -Wformat -lpurple
+/mingw32/bin/gcc -o barf.dll -shared barf.c -I/mingw32/include/libpurple -I/mingw32/include -I/mingw32/include/json-glib-1.0/ -I/mingw32/include/pidgin/win32 -I/mingw32/include/pidgin/ -I/mingw32/lib/glib-2.0/include/ -I/mingw32/include/glib-2.0/ -O2 -g pipe -Wall -std=c99 -DENABLE_NLS -DGROUPME_PLUGIN_VERSION='"0.9.2023.02.12.git.178393b"' -Wall -Wextra -Wno-deprecated-declarations -Wno-unused-parameter -fno-strict-aliasing -Wformat -lpurple -lintl
+make barf.exe
+make
+make barf.exe
+make barf.exe
+make barf.exe
+make barf.exe
+make barf.exe
+make barf.exer
+make barf.exe
+make barf.exe
+make barf.exe
+/mingw32/bin/gcc -O2 -shared -o barf.exe barf.c -I/mingw32/include/libpurple/ -I/mingw32/include -I/mingw32/include/json-glib-1.0/ -I/mingw32/include/pidgin/win32 -I/mingw32/include/pidgin/ -I/mingw32/lib/glib-2.0/include/ -I/mingw32/include/glib-2.0/ -O2 -g -pipe -Wall -std=c99 -DENABLE_NLS -DGROUPME_PLUGIN_VERSION='"0.9.2023.02.12.git.178393b"' -Wall -Wextra -Wno-deprecated-declarations -Wno-unused-parameter -fno-strict-aliasing -Wformat  barf.c 
+echo $?
+make
+make barf.c
+make barf.exe
+echo $?
+/mingw32/bin/gcc -O2 -shared -o barf.exe barf.c -I/mingw32/include/libpurple/ -I/mingw32/include -I/mingw32/include/json-glib-1.0/ -I/mingw32/include/pidgin/win32  barf.c 
+barf.c
+/mingw32/bin/gcc -O2 -shared -o barf.exe barf.c -I/mingw32/include/libpurple/ -I/mingw32/include -I/mingw32/include/json-glib-1.0/ -I/mingw32/include/pidgin/win32  barf.c 
+echo $?
+/mingw32/bin/gcc -O2 -o barf.exe barf.c -I/mingw32/include/libpurple/ -I/mingw32/include -I/mingw32/include/json-glib-1.0/ -I/mingw32/include/pidgin/win32  barf.c 
+echo $?
+/mingw32/bin/gcc -O2 -o barf.exe barf.c 
+echo $?
+/mingw32/bin/gcc -O2 barf.c 
+echo $?
+gcc -O2 barf.c 
+echo $?
+which gcc
+/mingw32/bin/gcc -O2 barf.c 
+which gcc
+echo $?
+which gcc
+make barf.exe
+/mingw32/bin/gcc -O2 barf.c 
+rm a.exe
+/mingw32/bin/gcc -O2 barf.c 
+echo $?
+ls
+vim barf.c c
+vim barf.c 
+cat barf.c
+exit
+cd Codq
+ls
+cd Code
+ls
+cd hut
+make
+scoop
+vim Makefile 
+cd ..
+cd ..
+mkdir Software
+cd Code/hut
+vim $profile
+exit
+pwd
+cp /home/bhw/.inputrc /home/bhw/.bashrc /home/bhw/.profile .
+exit
+exit
+cd Code/
+cd purple-matrix
+ls
+export PATH=../win32-dev/mingw-4.7.2/bin:${PATH}
+which pkg-config
+pacman -Ss sqlite3
+
+ls
+make -f Makefile.mingw 
+vim Makefile
+vim Makefile.mingw 
+make -f Makefile.mingw 
+ls ../win32-dev/glib-2.28.8/include/
+make -f Makefile.mingw 
+vim Makefile.mingw 
+vim Makefile.mingw 
+make
+make -f Makefile.mingw 
+pacman -Ss http-parser
+pacman -S mingw32/mingw-w64-i686-http-parser
+pacman -S mingw32/mingw-w64-i686-http-parser
+pacman -S mingw32/mingw-w64-i686-http-parser
+pacman -S mingw32/mingw-w64-i686-http-parser
+make -f Makefile.mingw 
+pacman -Fy 'http_parser.h'
+vim Makefile.mingw 
+make
+make -f Makefile.mingw 
+pacman -Fy 'olm.h'
+pacman -Fy 'olm/olm.h'
+pacman -Fy 'olm'
+pacman -Ss 'olm'
+ls
+vim Makefile.mingw 
+ls
+vim Makefile.mingw 
+MATRIX_NO_E2E=1 make -f Makefile.mingw 
+vim Makefile.mingw 
+grep -r 'Werror' .
+vim Makefile.common 
+make
+MATRIX_NO_E2E=1 make -f Makefile.mingw 
+vim Makefile.common 
+vim Makefile.mingw 
+ls /mingw32/lib'
 
+ls /mingw32/lib
+vim Makefile.mingw 
+make
+MATRIX_NO_E2E=1 make -f Makefile.mingw 
+ls ../win32-dev/glib-2.28.8/lib/
+ls
+vim Makefile.mingw 
+MATRIX_NO_E2E=1 make -f Makefile.mingw 
+ls ../win32-dev/glib-2.28.8/
+ls ../win32-dev/glib-2.28.8/lib
+ls ../win32-dev/glib-2.28.8/lib/glib-2.0
+ls ../win32-dev/glib-2.28.8/lib
+ls ../win32-dev/glib-2.28.8/
+ls ../win32-dev/glib-2.28.8/
+pacman -Ss glib2
+pacman -Ss ming32/mingw-w64-i686-glib2
+pacman -Ss ming32/mingw-w64-i686-glib2
+pacman -S ming32/mingw-w64-i686-glib2
+pacman -S mingw32/mingw-w64-i686-glib2
+clear
+ls
+cd ..
+ls
+clear
+ls
+tmux
+ls
+rm ~/.profile
+rm .profile
+exit
+ls
+ls
+ros use sbcl
+. ~/.bashrc
+tmux
+echo $PWD
+cd Code/lisp/cl-i/
+ls
+vim tools/repl.sh 
+vim tools/repl.sh 
+. ~/.bashrc
+vim tools/repl.sh 
+vim tools/repl.sh 
+tools/repl.sh
+vim tools/repl.sh 
+tools/repl.sh
+exit
+. ~/.bashrc
+ls
+cd Code/
+ls
+cd lisp/cl-i
+ls
+git status
+docker-compose up
+echo $PATH
+ecl
+ecl2
+ls
+git log -- tools/preload.lisp
+git show
+git show f8fce4a46ac4f90c88f7815e366636e054f50d1e
+vim tools/preload.lisp 
+ecl2
+vim tools/preload.lisp 
+ls .bundle-libs/
+vim tools/preload.lisp 
+vim tools/preload.lisp 
+vim tools/repl.bat 
+tools\repl.bat
+tools/bat
+tools/repl.bat
+vim tools/preload.lisp 
+vim tools\repl.bat
+vim tools/repl.bat
+vim tools/preload.lisp 
+vim tools/preload.lisp 
+ls
+tools/repl.bat
+ecl -help
+ecl2 -help
+vim ~/.eclrc 
+vim ~/.eclr`
+vim ~/.eclrc 
+ls
+tools/repl.bat
+vim ~/.eclrc 
+tools/repl.bat
+vim ~/.eclrc 
+vim ~/.eclrc 
+tools/repl.bat
+vim tools/repl.bat 
+tools/repl.bat
+vim tools/preload.lisp 
+vim ~/.eclrc
+vim tools/preload.lisp 
+tools/repl.bat
+vim tools/repl.sh 
+ros use sbcl]
+ros use sbcl
+ls
+vim tools/preload.lisp 
+tools/repl.sh
+vim tools/repl.sh 
+qlot exec ros run -S . -- --load tools/preload.lisp
+echo $?
+*default-pathname-defaults*
+ecl2
+echo $CL_SOURCE_REGISTRY
+vim tools\repl.bat
+vim tools/repl.bat 
+vim ~/.config/common-lisp/source-registry.conf.d/asdf.conf 
+vim ~/.config/common-lisp/source-registry.conf.d/asdf.conf 
+vim tools/repl.bat 
+exit
+ls
+cd Code/lisp
+cd cl-i
+ls
+vim tools/preload.lisp 
+. ~/.bashrc
+vim tools/preload.lisp 
+exit
+exit
+tmux attach
+exit
+vim ~/.bashrc
+. ~/.bashrc
+vim ~/.bashrc 
+ecl
+exit
+. ~/.bashrc
+which ecl
+which ecl2
+ls /c/Users/bhw/Software/ecl
+which ecl
+ls /c/Users/bhw/Software/ecl
+. ~/.bashrc
+tools/repl.sh
+vim tools/repl.sh 
+ls
+vim a.bat
+qlot exec a.bat
+./a.bat
+qlot exec a.bat
+man qlot
+qlot --help
+vim a.sh
+qlot exec a.sh
+echo $SHELL
+/c/Users/bhw/scoop/shims/msys2 
+vim src/main.lisp 
+. ~/.bashrc 
+vim src/main.lisp 
+vim ~/.tmux.conf
+ls
+vim src/main.lisp 
 
-if [ "${PROFILE_INCLUDED:-0}" -eq 0 ]
-then
-    . ${HOME}/.profile
-fi
+vim 
+vim 
+vim 
+vim src/main.lisp 
+vim ~/.roswell/lisp/quicklisp/bin/qlot.ros 
+vim ~/.roswell/lisp/quicklisp/bin/qlot.ros 
+. ~/.bashrc
+vim ~/.roswell/lisp/quicklisp/bin/qlot.ros 
+echo $CL_SOURCE_REGISTRY
+ros run
+vim ~/.roswell/lisp/quicklisp/bin/qlot.ros 
+vim ros-script 
+mv ros-script ros-script.bat
+ls
+vim ~/.roswell/lisp/quicklisp/bin/qlot.ros 
+ls
+sbcl
+sbcl --eval '(asdf:system-source-directory :qlot)'
+sbcl 
+vim a.bat
+sbcl
+ls
+vim a.bat
+pwd
+vim tools/msys2-repl.sh
+sh tools/msys2-repl.sh 
+vim tools/msys2-repl.sh 
+vim tools/repl.sh 
+tools/repl.sh
+vim ~/.sbclrc 
+vim tools/repl.sh 
+vim ~/.sbclrc 
+vim tools/repl.sh 
+ls ~/AppData/Local/config/common-lisp/source-registry.conf.d/asdf.conf 
+cat ~/AppData/Local/config/common-lisp/source-registry.conf.d/asdf.conf 
+ls ../asdf
+ls .qlot
+tools/repl.sh
+ls
+rm a
+ls
+mv ~/Executables/ecl.bat ~/Code/dotfiles/Windows/Executables/
+which ecl
+rm -rf /mingw64/bin/ecl
+which ecl
+ls
+ros install ecl
+. ~/.bashrc
+ros install ecl
+cd Code
+ls
+cd lisp
+git clone git@github.com:fukamachi/dexador.git
+cd pixie/
+ls
+git status
+ls
+ls -lah .bundle-libs
+ls -lah
+vim src/groupme.lisp
+cd src
+ls
+vim groupme.lisp 
+git status
+git add groupme.lisp 
+git add main.lisp 
+git commit -am "Setting up gropume API client"
+ls
+ros install ecl
+vim ~/scoop/apps/roswell/current/lisp/install.ros 
+vim ~/scoop/apps/roswell/current/lisp/install-ecl.lisp 
+vim ~/scoop/apps/roswell/current/lisp/install-ecl.lisp 
+ls
+mkdir chat-clients
+vim chat-client
+vim chat-client.lisp 
+ls
+vim chat-client.lisp
+ls
+cd ~/Code/dotfiles/
+ls
+cd Windows/
+ls
+git pull
+vim ~/.bashrc 
+cp dot-profile ~/.profile
+vim ~/.bashrc 
+cp dot-bashrc ~/.bashrc 
+vim ~/.bashrc 
+vim ~/.profile 
+vim /etc/nsswitch.conf 
+vim ~/.profile 
+vim etc/nsswitch.conf 
+ls
+vim ~/.bashrc 
+vim ~/.profile 
+vim ~/.bashrc 
+vim ~/.profile 
+vim ~/.bashrc 
+ls
+vim ~/.bashrc 
+cp ~/.bashrc dot-bashrc 
+cp ~/.profile dot-profile
+. ~/.bashrc
+vim ~/.profile 
+. ~/.bashrc
+vim ~/.bashrc 
+. `/.bashrc
+. ~/.bashrc
+vim ~/.profile 
+. ~/.profile
+. ~/.bashrc
+vim ~/.bashrc 
+vim ~/.profile 
+vim ~/.bashrc 
+cp ~/.bashrc dot-bashrc 
+cp ~/.profile dot-profile
+git status
+vim ../dot-bashrc 
+vim dot-bashrc 
+. ~/.bashrc
+vim ~/.bashrc 
+vim ../dot-bashrc 
+vim dot-bashrc 
+cp dot-bashrc ~/.bashrc
+. ~/.bashrc
+vim ~/.bashrc 
+. ~/.bashrc
+vim ~/.profile 
+vim ~/.bashrc 
+vim ~/.profile 
+. ~/.bashrc 
+which rtx
+vim ~/.profile 
+mkdir ~/AppData/Local/msys2-bash
+mkdir ~/AppData/Local/msys2-bash/state
+mkdir ~/AppData/Local/msys2-bash/data
+mkdir ~/AppData/Local/msys2-bash/cache
+mkdir ~/AppData/Local/msys2-bash/data/bin
+cp -af ~/Executables/wdh.py ~/AppData/Local/msys2-bash/data/bin
+. ~/.profile
+. ~/.bashrc 
+vim ~/.bashrc 
+. ~/.bashrc 
+vim ~/.bashrc 
+vim ~/.profile 
+echo $XDG_CONFIG_HOME
+vim ~/.bashrc 
+vim ~/.profile 
+. ~/.profile
+. ~/.bashrc
+vim ~/.bashrc 
+. ~/.bashrc
+vim a
+ls
+vim tmux-setup.sh 
+exit
+. ~/.profile
+. `/.bashrc
+. ~/.bashrc
+ls
+cp ~/.bashrc ~/.profile /home/bhw
+vim /etc/nsswitch.conf 
+exit
+tmux
+tmux
+exit
+vim /etc/nsswitch.conf
+nvim-qt /etc/nsswitch-.conf
 
-if [ -e ${HOME}/.pijulconfig/bash ]
-then
-    . ${HOME}/.pijulconfig/bash
-fi
-
-eval "$(${HOME_BINDIR}/rtx activate -s bash)"
-
-[ -z "$PS1" ] && return
-export PS1='\W 🠺 '
-
-# don't put duplicate lines in the history. See bash(1) for more options
-# ... or force ignoredups and ignorespace
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-if [ "$TERM" = "linux" ]; then
-    echo -en "\e]P0222222" #black
-    echo -en "\e]P8222222" #darkgrey
-    echo -en "\e]P1803232" #darkred
-    echo -en "\e]P9982b2b" #red
-    echo -en "\e]P25b762f" #darkgreen
-    echo -en "\e]PA89b83f" #green
-    echo -en "\e]P3aa9943" #brown
-    echo -en "\e]PBefef60" #yellow
-    echo -en "\e]P4324c80" #darkblue
-    echo -en "\e]PC2b4f98" #blue
-    echo -en "\e]P5706c9a" #darkmagenta
-    echo -en "\e]PD826ab1" #magenta
-    echo -en "\e]P692b19e" #darkcyan
-    echo -en "\e]PEa1cdcd" #cyan
-    echo -en "\e]P7ffffff" #lightgrey
-    echo -en "\e]PFdedede" #white
-    clear #for background artifacting
-fi
-
-command -v vg >/dev/null 2>&1 && eval "$(vg eval --shell bash)"
-
-#source <(${XDG_DATA_HOME}/rtx/installs/kubectl/1.24.10/bin/kubectl completion bash)
-. /usr/share/bash-completion/completions/git
-# added by travis gem
-[ -f ${HOME}/.travis/travis.sh ] && source ${HOME}/.travis/travis.sh
-
-PATH="${HOME}/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="${HOME}/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="${HOME}/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"${HOME}/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=${HOME}/perl5"; export PERL_MM_OPT;
-
+nvim-qt /etc/nsswitch.conf
+exit
+vim /etc/profile.d/bash_completion.sh 
+mv /etc/profile.d/bash_completion.sh /home/bhw
+exit
+vim ~/.bash_profile
+nvim-qt ~/.bash_profile
+exit
+plistd
+cd ..
+vim ~/.bashrc 
+. `/.bashr
+. ~/.bashrc
+clear
+ls
+cd ~/Code/dotfiles/
+git pull
+cp dot-local/bin/wdh.py ~/Executables/
+plistd
+cp dot-local/bin/wdh.py ~/Windows/Executables
+cp dot-local/bin/wdh.py Windows/Executables
+git status
+cp ~/.bash_profile Windows/dot-bash_profile
+git status
+cd Windows/etc/
+ls
+vim nsswitch.conf 
+git status
+cd ..
+ls
+git status
+vim ../dot-roswell/init.lisp 
+git add .
+git add ..
+git commit -am "Windows definitions"
+it pusgh
+git push
+clear
+ls
+cd ~/.roswell/lisp/quicklisp/dists
+ls
+cd ..
+cd bin/
+ls
+cd ..
+ls
+cd ..
+ls
+cd
+ros install ecl
+exit
+ros run
+which gcc
+exit
+cd ~/scoop/apps/roswell/current/lisp/
+ls
+diff -u install-ecl.lisp barf.lisp 
+diff -u util.lisp ~/Code/roswell/lisp/list
+diff -u util.lisp ~/Code/roswell/lisp/util.lisp 
+ecl
+which ecl
+cd ~/Code/
+ls
+cd ecl
+ls
+./configure --help
+ls
+pacman -Ss libffi
+ls
+vim build/
+vim build.sh
+ls
+vim build.sh
+pacman -Ss gmp
+vim build.sh 
+pacman -Ss gmp-devel
+vim build.sh 
+pacman -Ss texlive
+vim build.sh 
+./build.sh 
+vim ~/.profile 
+nvim-qt ~/.profile
+. ~/.bashrc 
+vim ~/.profile
+nvim-qt ~/.profile
+/c/Users/bhw/scoop/shims/nvim-qt ~/.profile 
+. ~/.profile
+. ~/.bashrc
+vim ~/.bashrc 
+plistd
+ppopd
+cd quri/
+psetd .
+ls
+plistd
+ls
+ros run
+git status
+git diff
+git status
+git add src
+git branch
+git checkout -b djhaskin987/support-msvc-ecl
+git status
+git commit -am "Support MSVC on ECL"
+git remote add djh987 git@github.com:djhaskin987/quri.git
+git push --set-upstream djh987 djhaskin987/support-msvc-ecl
+ls
+git status
+git branch
+cd ..
+cd cl-i/
+ls
+vim qlfile
+git status
+git log
+git show
+ls
+vim src/main.lisp 
+exit
+htop
+cd src
+ls
+vim etld.lisp 
+ls
+vim ../data/effective_tld_names.dat 
+cd ..
+cd data/
+ls
+mkdir effective_tld_names
+vim effective_tld_names
+vim effective_tld_names.dat 
+cd effective_tld_names
+ls
+mkdir icann
+mv icann_a.dat icann/a.dat
+cd icann/a.dat 
+vim icann/a.dat 
+vim ../effective_tld_names.dat 
+ls
+cd icann/
+ls
+mv f.dat e.dat
+cd ..
+vim ../effective_tld_names.dat 
+cd icann/
+ls -lah
+vim ../../effective_tld_names.dat 
+vim ../../effective_tld_names
+vim ../../effective_tld_names.dat 
+ls -lah
+rm wxyz.dat
+ls -alh
+vim ../../effective_tld_names.dat 
+vim x.dat 
+vim ../../effective_tld_names.dat 
+vim a.dat 
+vim b.dat
+vim c.dat 
+vim d.dat
+vim e.dat
+vim f.dat
+vim a.dat 
+vim b.dat
+vim c.dat
+vim d.dat
+vim e.dat
+vim f.dat
+vim g.dat
+vim h.dat
+vim i.dat
+vim i.dat 
+vim j.dat
+vim k.dat
+vim l.dat
+vim m.dat
+vim n.dat 
+vim a.dat 
+vim
+vim a.dat 
+vim b.dat
+vim c.dat
+vim d.dat
+vim e.dat
+vim d.dat
+vim f.dat
+vim g.dat
+vim h.dat
+vim i.dat
+vim j.dat
+vim k.dat
+vim l.dat
+vim m.dat
+vim n.dat
+vim o.dat
+vim p.dat
+vim q.dat
+vim r.dat
+vim s.dat
+vim t.dat
+vim t.dat 
+vim u.dat
+vim v.dat
+vim w.dat 
+vim x.dat
+vim y.dat
+vim z.dat 
+git status
+ls
+cd ..
+mv icann/* .
+ls
+rmdir icann
+ls
+cd ..
+rm effective_tld_names.dat 
+ls
+cd ..
+ls
+cd src
+ls
+vim etld.lisp 
+git diff
+ls
+git status
+vim etld.lisp 
+ls
+vim etld.lisp 
+ls
+cd ..
+vim etld.lisp
+ls
+vim src/etld.lisp 
+git diff
+vim src/etld.lisp 
+ls
+cd ..
+cd cl-i
+grep -r 'hash-key' .
+ros run
+exit
+ppopd
+ls
+vim src/main.lisp 
+vim 
+ls
+vim 
+ls
+vim fie.dan 
+ls
+vim ~/.tmux.conf
+ls
+cp ~/Code/dotfiles/dot-tmux.conf ~/.tmux.conf
+exit
+vim C:/Users/bhw/AppData/Local/cache/common-lisp/ecl-21.2.1-0a3c4f53-win-x64/C/Users/bhw/Code/lisp/quri/src/etld.data
+ls
+git status
+git checkout -- .
+git status
+mv data/effective_tld_names ..
+ls
+git status
+vim src/etld.lisp 
+cd ..
+cd cl-i
+ls
+ros run
+eixt
+exit
+vim C:/Users/bhw/AppData/Local/cache/common-lisp/ecl-21.2.1-0a3c4f53-win-x64/C/Users/bhw/Code/lisp/quri/src/etld.c
+exit
+vim src/main.lisp 
+exit
+ls
+which ecl.bat
+vim src/main.lisp 
+~/scoop/shims/nvim src/main.lisp 
+mv ~/foo ~/.bashrc
+vim ~/.bashrc 
+. ~/.bashrc 
+vim ~/.bashrc 
+vim src/main.lisp 
+exit
+vim src/main.lisp 
+ls
+vim a.log 
+ls
+rm '$HOME'
+rm -r '$HOME'
+ls
+vim src/main.lisp 
+ls '$HOME'
+ls
+ls -lah '$HOME'
+vim a.log 
+ls
+which nvim
+ls /usr/bin
+ls /usr/bin/nvim
+pacman -Ss nvim
+tmux --help
+man tmux
+vim
+vim ~/AppData/Local/nvim/plugged/vim-slime/autoload/slime.vim 
+vim src/main.lisp 
+vim a.log 
+vim src/main.lisp 
+cd ~/AppData/Local/nvim/plugged/vim-slime/autoload/slime.vim 
+cd ~/AppData/Local/nvim/plugged/vim-slime/autoload/
+vim slime.vim 
+ls
+cd $OLD_PWD
+ls
+cd Code/lisp/cl-i
+ls
+vim src/main.lisp 
+ls
+nvim-qt src/main.lisp 
+echo $SHELL
+export SHELL="C:/Users/bhw/scoop/apps/msys2/current/usr/bin/bash"
+vim src/main.lisp 
+ls
+echo $SHELL
+ls /usr/bin/bash
+exit
+echo $SHELL
+export SHELL=bash
+ls
+vim src/main.lisp 
+cat a.log 
+where
+where bash
+export SHEL'C:\Users\bhw\scoop\apps\msys2\2022-09-04\usr\bin\bash.exe'
+export SHE=\'C:\Users\bhw\scoop\apps\msys2\2022-09-04\usr\bin\bash.exe'
+export SHELL='C:\Users\bhw\scoop\apps\msys2\2022-09-04\usr\bin\bash.exe'
+export SLLH=\'C:\Users\bhw\scoop\apps\msys2\2022-09-04\usr\bin\bash.ex
+echo $SHELL
+exporSHELL=\'C:\Users\bhw\scoop\apps\msys2\2022-09-04\usr\bin\bash.ex
+echo $SHELL
+export SHELL='C:\Users\bhw\scoop\apps\msys2\2022-09-04\usr\bin\bash.exe'
+echo $SHELL
+vim src/main.lisp 
+vim a.log 
+vim 
+vim src/main.lisp 
+vim a.log 
+vim src/main.lisp 
+ls
+ls -lah '$HOME'
+rm '$HOME'
+rm -rf '$HOME'
+vim
+ls
+nvim --version
+which nvim
+scoop update nvim
+scoop update neovim
+nvim --version
+which vim
+ls
+git status
+git add qlfile
+git add tests
+git add src
+vim src/main.lisp 
+exit
+:q
+vim ~/.tmux.conf 
+ls
+ros run
+ls /tmp
+ls /tmp/tmux-197631/
+ls /tmp/tmux-197631/default 
+echo 'hi' | /tmp/tmux-197631/default
+echo 'hi' tee /tmp/tmux-197631/default
+echo 'hi' | tee /tmp/tmux-197631/default
+ros run
+mv ~/.bashrc ~/foo
+ros run
+vim src/main.lisp 
+ros run
+exit
+plistd
+ppushd ../
+git clone git@github.com:fukamachi/quri.git
+ppushd ~/Code/dotfiles/
+ls
+cp Windows/Executables/ecl.bat ~/Executables/
+which ecl
+vim ~/.profile 
+cp ~/.profile Windows/dot-profile 
+. ~/.profile
+which java
+vim ~/.profile 
+which java
+vim ~/.profile 
+which ecl
+which ecl.bat
+. ~/.bashrc
+which bat
+. ~/.profile
+which ecl
+ls ~/Executables/
+ecl.bat
+ls
+ros use ecl/system
+vim ~/.roswell/init.lisp 
+vim ~/.eclrc 
+rm ~/.eclrc
+vim ~/.roswell/init.lisp 
+ros run
+vim ~/.roswell/init.lisp 
+ros use ecl/system
+ecl.bat
+rm -rf ../lisp/cl-i/.qlot
+vim ~/.roswell/init.lisp 
+ros use ecl/system
+vim ~/.roswell/init.lisp 
+ros use ecl/system
+vim ~/.roswell/init.lisp 
+ros use ecl/system
+vim ~/.roswell/init.lisp 
+cp ~/.roswell/init.lisp ~/.eclrc
+ecl.bat
+vim ~/.eclrc 
+ecl.bat
+vim ~/.eclrc 
+mv ~/.eclrc ~/.roswell/init.lisp 
+ros use ecl/system
+ros run
+ls
+cd ..
+cd lisp
+ls
+cd quri/
+ls
+tmux
+clear
+plistd
 pchanged
-
-update_ps1() {
-    __ups1_lastcmd="${?}"
-    __ups1_default_colors='\\[\\e[1m\\]'
-    __ups1_reset_colors='\\[\\e[0m\\]'
-    __ups1_red='\\[\\e[31m\\]'
-    __ups1_blue='\\[\\e[34m\\]'
-    git status >/dev/null 2>&1
-    __ups1_info=""
-    __ups1_info_pref=""
-    __ups1_info_suff=""
-    if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ]
-    then
-        __ups1_info="$(git branch --color=never | \
-                awk '/^[*]/{print $2}' | \
-                sed \
-                -e 's|\([[:alpha:]]\)[[:alpha:]]*\([^[:alpha:]]\)|\1\2|g' \
-                -e 's|\([^[:alpha:]]\)\([[:alpha:]]\)[[:alpha:]]*|\1\2|g' \
-                -e 's|^[^/]\{1,\}/||g' \
-                -e 's|^\(.\{6\}\).\{2,\}$|\1*|' | \
-                tr '[A-Z]' '[a-z]')"
-    fi
-
-    if [ "${__ups1_lastcmd}" -eq 0 ]
-    then
-        __ups1_stat_pref=""
-        __ups1_stat_suff=""
-    else
-        __ups1_stat_pref="${__ups1_red}"
-        __ups1_stat_suff="${__ups1_reset_colors}${__ups1_default_colors}"
-    fi
-
-    if which rtx >/dev/null 2>&1
-    then
-        eval "$(rtx env -s bash)"
-    fi
-    __ups1_time_width=5
-    __ups1_time="$(date -u +'%M:%S')"
-    if [ -n "${__ups1_info}" ]
-    then
-        __ups1_info_pref="${__ups1_blue}"
-        __ups1_info_suff="${__ups1_reset_colors}${__ups1_default_colors}"
-        __ups1_info_width=8 # including the space
-        __ups1_dir_width=15 # not including the space
-        __ups1_dir=$(echo "${PWD}" | sed \
-            -e 's|/*$||' \
-            -e "s|^${HOME}|~|" \
-            -e 's|\([^/]\)\([^/]*\)\(/\)|\1/|g' \
-            -e 's|\(.\{2,\}\)\(.\{14\}\)$|*\2|')
-    else
-        __ups1_info_width=0 # including the space
-        __ups1_dir_width=24 # not including the space
-        __ups1_dir=$(echo "${PWD}" | sed \
-            -e 's|/*$||' \
-            -e "s|^${HOME}|~|" \
-            -e 's|\([^/]\)\([^/]*\)\(/\)|\1/|g' \
-            -e 's|\(.\{2,\}\)\(.\{18\}\)$|*\2|')
-    fi
-
-    PS1="$(printf \
-        "${__ups1_default_colors}${__ups1_stat_pref}%3d${__ups1_stat_suff} %${__ups1_time_width}s ${__ups1_info_pref}%-${__ups1_info_width}s${__ups1_info_suff}%${__ups1_dir_width}s \\\\\$${__ups1_reset_colors} " \
-        "${__ups1_lastcmd}" \
-        "${__ups1_time}" \
-        "${__ups1_info}" \
-        "${__ups1_dir}")"
-
-
-    return "${__ups1_lastcmd}"
-}
-if [ -n "${PROMPT_COMMAND:-}" ]
-then
-    export PROMPT_COMMAND="{PROMPT_COMMAND};update_ps1"
-else
-    export PROMPT_COMMAND="update_ps1"
-fi
-alias vim=nvim
+tmux
+exit
+ros run
+exit
+vim src/main.lisp 
+vim a.log 
+vim 
+ls
+vim ~/.tmux.conf 
+cd ~/Code/dotfiles
+git log dot-local/nvim/init.vim
+git log -- dot-local/nvin/init.vim
+echo $TERM
+export TERM=screen-256color
+git log -- dot-local/nvim/init.vim
+cd ..
+cd lisp/
+cd cl-i/
+ls
+vim src/main.lisp 
+vim
+ls
+exit
+ls
+vim repl.lisp 
+tmux
+exit
+vim ~/.bashrc 
+. ~/.bashrc
+ls
+ros run
+ls
+rm a.log
+rm -rf '$HOME'
+vim qlfile
+vim cl-i.asd 
+ls
+qlot install
+vim qlfile
+qlot install
+ls
+qlot bundle
+vim qlfile
+qlot install
+qlot bundle
+cd .bundle-libs/
+ls
+cd software/
+ls
+ls quri
+ls quri*
+ls -d quri*
+cd ..
+rm -rf .bundle-libs/
+ls
+rm qlfile.lock 
+vim qlfile 
+qlot install
+rm -rf .qlot
+qlot install
+cd ..
+cd quri
+ls
+git status
+git branch
+git push djh987 djhaskin987/support-msvc-ecl
+cd ..
+cd cl-i
+ls
+vim qlfile 
+qlot install
+git ls-remote git@github.com:djhaskin987/quri.git
+ls
+vim qlfile 
+qlot install
+ls
+git status
+rm Makefile.common releases.atom 
+ls
+git status
+git add cl-i.asd 
+git add qlfile
+git add qlfile.lock 
+git add src
+git add test
+git add tests
+git status
+git commit -am "Rough draft: cl-yaml is back; quri is fixed"
+git push
+ros run
+exit
+which cl
+vim ~/.profile 
+. ~/.bashrc
+which cl
+echo %PATH%
+exit
+vim vcvarsall.sh
+exit
+vim vcvarsall.sh 
+. vcvarsall.sh 
+which link
+vim vcvarsall.sh 
+vim ~/.profile 
+. ~/.profile 
+. ~/.profile
+. /home/bhw/.profile 
+. ~/.bashrc
+which cl
+which link
+ls
+sh windows.sh
+cd src\libffi
+cd src/libffi/
+ls
+sh windows.sh 
+vim x86_64-w64-msys/config.log 
+ls
+pwd
+vim msvcc.sh 
+vim windows.sh 
+sh windows.sh 
+vim x86_64-w64-msys/config.log 
+which lib/cpp
+which /lib/cpp
+vim configure
+vim windows.sh 
+cl
+vim configure
+vim windows.sh 
+vim configure
+vim windows.sh 
+which cl
+sh windows.sh 
+make
+exit
+ls
+cd ..
+ls
+cd ..
+ls
+vim vcvarsall.sh 
+rm vcvarsall.sh 
+ls
+vim build
+ls
+vim build.sh
+pacman -Ss texlive
+vim build.sh
+pacman -Ss libatomic
+vim build.sh 
+pacman -h
+pacman -S -h
+vim build.sh 
+sh build.sh 
+pacman -Ss texlive-latex-recommended
+vim build.sh 
+sh build.sh 
+make clean
+cd ../
+cd ..
+cd ecl
+cd libffi
+cd src\libffi
+ls
+cd src
+cd libffi
+ls
+./configure --help
+sh windows.sh
+vim configure
+./configure --help
+vim windows.sh 
+sh windows.sh 
+vim README.md 
+vim configure
+ls
+vim windows.sh 
+mdkir ~/Software/libffi
+mkdir ~/Software/libffi
+ls
+sh windows.sh 
+vim windows.sh 
+vim config
+vim configure
+vim 
+./configure 
+vim windows.sh 
+sh windows.sh 
+./configure 
+vim configure
+vim README.md 
+ls
+vim configure
+grep -r 'mingw32' .
+vim config.guess 
+grep -r 'mingw32' .
+vim ltmain.sh 
+ls
+vim windows.sh 
+sh windows.sh 
+vim x86_64-w64-msys/config.log 
+cd ..
+ls
+cd ..
+vim README.md 
+ls
+cd msvc
+ls
+cd util
+ls
+cd ..
+ls
+cd ..
+ls
+cd src
+cd libffi
+ls
+vim windows.sh 
+vim msvcc.sh 
+. ~/.bashrc 
+which cl
+which link
+cd ..
+cd ecl/
+ppushd .
+./configure 
+cd src/libffi/
+sh windows.sh 
+vim x86_64-w64-msys/config.log 
+which ecl
+ls /usr/bin/ecl
+ls /usr/local/bin/ecl
+cd
+vim ~/.profile 
+cd Code/ecl/src/libffi/
+vim windows.sh 
+ls
+sh windows.sh 
+plistd
+ppushd .
+tmux
