@@ -11,8 +11,11 @@
 ;;    (load quicklisp-init)))
 ;;
 (defun nvim (fname) 
-  (multiple-value-bind (uiop:run-program (list "nvim-qt" fname))
+  (multiple-value-bind 
     (out err code)
+    (uiop:run-program (list "nvim-qt" fname))
+    (declare (ignore out)
+             (ignore err))
     (eql code 0)))
 
 #+sbcl
