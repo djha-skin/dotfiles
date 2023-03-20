@@ -1,8 +1,10 @@
 let mapleader="\<SPACE>"
+"if has('win32')
+"    let &shell = '"C:\WINDOWS\system32\cmd.exe"'
+"    let g:python3_post_prog = 'C:\Python39\python.exe'
+"    set shellcmdflag=/c
+"endif
 
-if has('win32')
-    let g:python3_post_prog = 'C:\Python39\python.exe'
-endif
 
 let g:black_linelength = 79
 let g:vim_markdown_auto_insert_bullets = 0
@@ -36,7 +38,7 @@ call plug#end()
 let g:sexp_enable_insert_mode_mappings = 0
 let g:paredit_mode=0
 
-lua << EOF
+lua <<EOF
 require'lspconfig'.clojure_lsp.setup{}
 require'lspconfig'.pylsp.setup{}
 require'lspconfig'.terraformls.setup{}
@@ -46,7 +48,6 @@ function str2file(str, fname)
   f:write(str)
   f:close()
 end
-
 EOF
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
@@ -95,7 +96,6 @@ set showmatch
 
 "let g:slime_target = "neovim"
 set background=light
-colorscheme NeoSolarized
 
 if exists('+termguicolors')
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -104,17 +104,21 @@ set termguicolors
 endif
 
 if executable('tmux')
-    set -g default-terminal "tmux-256color"
-    set -ga terminal-overrides ",*256col*:Tc"
+    if has('win32')
+        let &shell = "C:/Users/bhw/scoop/apps/msys2/current/usr/bin/bash"
+        set shellcmdflag=-c
+        set shellquote=
+        set shellxquote=
+        let g:slime_paste_file = "/c/Users/bhw/.slime_paste"
+        colorscheme delek
+        let g:slime_default_config = {"socket_name": "default", "target_pane": ":.0"}
+    else
+        let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.0"}
+    endif
     let g:slime_target = "tmux"
-    let g:slime_paste_file = "$HOME/.slime_paste"
-    let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.0"}
-    let g:slime_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}
-    "let g:slime_window_name = "repl"
-    "let g:slime_session_name= "ergo"
-    "let b:slime_config = {"sessionname": "ergo", "windowname": "repl"}
-    "let g:slime_paste_file = "$HOME/.slime_paste"
+    let g:slime_paste_file = expand(".slime_paste")
 else
+    colorscheme NeoSolarized
     let g:slime_target = "conemu"
 endif
 
