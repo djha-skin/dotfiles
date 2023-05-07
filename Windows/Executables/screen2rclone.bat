@@ -34,21 +34,21 @@ goto endmain
     set "fname=%date:~10%-%date:~4,2%-%date:~7,2%T%time:~0,2%-%time:~3,2%-%time:~6,2%.png"
     set "fpath=%fdir%\%fname%"
     rem REQUIRES ksnip for this to work.
-    ksnip -r -p "%fpath%" 
-    set "fdest=%remote%:/Screenshots/%fname%"
+    ksnip -r -p "%fpath%"
+    set "fdest=%remote%:/Screenshots"
     rclone copy "%fpath%" "%fdest%"
-    for /f "tokens=*" %%i in ('rclone link %fdest%') do ( set "url=%%i" )
+    for /f "tokens=*" %%i in ('rclone link %fdest%/%fname%') do ( set "url=%%i" )
 
-    REM if NOT "%raw%" == "true" (
-    REM     for /f "tokens=2 delims==" %%i in ("%url%") do (
-    REM         set "fid=%%i"
-    REM         set "url=https://drive.google.com/uc?id=%fid%^^^&filename=%fname%"
-    REM     )
-    REM )
+    if NOT "%raw%" == "true" (
+        for /f "tokens=2 delims==" %%i in ("%url%") do (
+            set "fid=%%i"
+            set "url=https://drive.google.com/uc?export=view^^^&id=%fid%^^^&filename=%fname%"
+        )
+    )
 
     echo %url% | clip
 
-    start "" cmd /c "echo Copied `%fpath%` to `%fdest%`, link in clipboard.&echo(&pause"
+    msg %USERNAME% " Copied `%fpath%` to `%fdest%`, link in clipboard."
     goto :eof
 :endmain
 
