@@ -64,25 +64,20 @@ PERL_MM_OPT="INSTALL_BASE=${HOME}/perl5"; export PERL_MM_OPT;
 pchanged
 
 update_ps1() {
+
     __ups1_lastcmd="${?}"
-    __ups1_default_colors='\\[\\e[1m\\]'
-    __ups1_reset_colors='\\[\\e[0m\\]'
-    __ups1_red='\\[\\e[31m\\]'
-    __ups1_blue='\\[\\e[34m\\]'
-    git status >/dev/null 2>&1
+    __ups1_default_colors='\[\e[1m\]'
+    __ups1_underlined='\[\e[4m\]'
+    __ups1_reset_colors='\[\e[0m\]'
+    __ups1_red='\[\e[31m\]'
+    __ups1_blue='\[\e[34m\]'
     __ups1_info=""
     __ups1_info_pref=""
     __ups1_info_suff=""
     if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ]
     then
         __ups1_info="$(git branch --color=never | \
-                awk '/^[*]/{print $2}' | \
-                sed \
-                -e 's|\([[:alpha:]]\)[[:alpha:]]*\([^[:alpha:]]\)|\1\2|g' \
-                -e 's|\([^[:alpha:]]\)\([[:alpha:]]\)[[:alpha:]]*|\1\2|g' \
-                -e 's|^[^/]\{1,\}/||g' \
-                -e 's|^\(.\{6\}\).\{2,\}$|\1*|' | \
-                tr '[A-Z]' '[a-z]')"
+            awk '/^[*]/{print $2}')"
     fi
 
     if [ "${__ups1_lastcmd}" -eq 0 ]
@@ -98,35 +93,32 @@ update_ps1() {
     then
         eval "$(rtx env -s bash)"
     fi
-    __ups1_time_width=5
-    __ups1_time="$(date -u +'%M:%S')"
+    __ups1_time_width=8
+    __ups1_time="$(date +'%H:%M:%S')"
+    __ups1_dir=$(echo "${PWD}" | sed \
+        -e 's|/*$||' \
+        -e "s|^${HOME}|~|")
     if [ -n "${__ups1_info}" ]
     then
-        __ups1_info_pref="${__ups1_blue}"
+        __ups1_info_pref="${__ups1_underlined}"
         __ups1_info_suff="${__ups1_reset_colors}${__ups1_default_colors}"
-        __ups1_info_width=8 # including the space
-        __ups1_dir_width=15 # not including the space
-        __ups1_dir=$(echo "${PWD}" | sed \
-            -e 's|/*$||' \
-            -e "s|^${HOME}|~|" \
-            -e 's|\([^/]\)\([^/]*\)\(/\)|\1/|g' \
-            -e 's|\(.\{2,\}\)\(.\{14\}\)$|*\2|')
+        PS1="$(printf "\n%s%s%s\n%s\n%s%-3d%s %s \\$ " \
+                "${__ups1_info_pref}" \
+                "${__ups1_info}" \
+                "${__ups1_info_suff}" \
+                "${__ups1_dir}" \
+                "${__ups1_stat_pref}" \
+                "${__ups1_lastcmd}" \
+                "${__ups1_stat_suff}" \
+                "${__ups1_time}")"
     else
-        __ups1_info_width=0 # including the space
-        __ups1_dir_width=24 # not including the space
-        __ups1_dir=$(echo "${PWD}" | sed \
-            -e 's|/*$||' \
-            -e "s|^${HOME}|~|" \
-            -e 's|\([^/]\)\([^/]*\)\(/\)|\1/|g' \
-            -e 's|\(.\{2,\}\)\(.\{18\}\)$|*\2|')
+        PS1="$(printf "\n%s\n%s%-3d%s %s \\$ " \
+                "${__ups1_dir}" \
+                "${__ups1_stat_pref}" \
+                "${__ups1_lastcmd}" \
+                "${__ups1_stat_suff}" \
+                "${__ups1_time}")"
     fi
-
-    PS1="$(printf \
-        "${__ups1_default_colors}${__ups1_stat_pref}%3d${__ups1_stat_suff} %${__ups1_time_width}s ${__ups1_info_pref}%-${__ups1_info_width}s${__ups1_info_suff}%${__ups1_dir_width}s \\\\\$${__ups1_reset_colors} " \
-        "${__ups1_lastcmd}" \
-        "${__ups1_time}" \
-        "${__ups1_info}" \
-        "${__ups1_dir}")"
 
 
     return "${__ups1_lastcmd}"
