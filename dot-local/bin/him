@@ -1,8 +1,12 @@
 #!/bin/sh
 
 . /home/danielhaskin/.profile
+
 export RUST_LOG=debug
 export NO_COLOR=true
+
+# For some reason without this deadlock occurs
+sleep 2
 
 echo "Started operation \`himalaya ${@}\` at \`$(date)\`" | tee -a ~/.himalaya-log
 himalaya "${@}" 2>&1 | tee -a ~/.himalaya-log
