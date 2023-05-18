@@ -102,7 +102,8 @@ update_ps1() {
     then
         __ups1_info_pref="${__ups1_underlined}"
         __ups1_info_suff="${__ups1_reset_colors}${__ups1_default_colors}"
-        PS1="$(printf "\n%s%s%s\n%s\n%s%-3d%s %s \\$ " \
+        PS1="$(printf "%s\n%s%s%s\n%s\n%s%-3d%s %s \\$ %s" \
+                "${__ups1_default_colors}" \
                 "${__ups1_info_pref}" \
                 "${__ups1_info}" \
                 "${__ups1_info_suff}" \
@@ -110,7 +111,9 @@ update_ps1() {
                 "${__ups1_stat_pref}" \
                 "${__ups1_lastcmd}" \
                 "${__ups1_stat_suff}" \
-                "${__ups1_time}")"
+                "${__ups1_time}" \
+                "${__ups1_reset_colors}" \
+                        )"
     else
         PS1="$(printf "\n%s\n%s%-3d%s %s \\$ " \
                 "${__ups1_dir}" \
