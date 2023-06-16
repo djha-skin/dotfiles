@@ -1,0 +1,8 @@
+#!/bin/sh
+
+. /home/danielhaskin/.profile
+export RUST_LOG=debug
+export NO_COLOR=true
+
+echo "Started operation \`comodoro ${@}\` at \`$(date)\`" | tee -a ~/.comodoro.log
+comodoro "${@}" 2>&1 | tee -a ~/.comodoro.log

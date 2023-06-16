@@ -1,0 +1,14 @@
+# ~/.config/systemd/user/himalaya-watch.service
+
+[Unit]
+Description=Himalaya watcher for skin
+After=network.target
+
+[Service]
+ExecStart=/home/danielhaskin/.local/bin/com server start skin-pom tcp
+Environment=RUST_LOG=debug
+Restart=always
+RestartSec=41
+
+[Install]
+WantedBy=default.target

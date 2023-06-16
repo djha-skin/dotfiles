@@ -1,0 +1,18 @@
+#!/bin/sh
+set -ex
+. "${HOME}/.profile"
+
+duration="0"
+if [ "${1}" = "Blast" ]
+then
+    duration=1441
+elif [ "${1}" = "Pacer" ]
+then
+    duration=61
+elif [ "${1}" = "Break" ]
+then
+    duration=301
+fi
+
+echo "$(date '+%s') + ${duration}" | bc | tee "${HOME}/.config/comodoro/${1}.txt"
+notify-send '🍅 Pomodoro' "${1}!"

@@ -1,0 +1,10 @@
+#!/bin/sh
+. "${HOME}/.profile"
+
+w | awk '/tmux\([0-9]*\)/ { print $2 }' | while read trm
+do
+    printf '\033]2;%s: %s\033\\' \
+        "${1}" \
+        "$(date '+%M:%S' -d "@$(( $(cat "${HOME}/.config/comodoro/${1}.txt") - $(date '+%s') ))")" \
+        | tee "/dev/${trm}"
+done
