@@ -9,7 +9,7 @@ then
 elif [ "${1}" = "Pacer" ]
 then
     duration=61
-elif [ "${1}" = "Break" ]
+elif [ "${1}" = "Rest" ]
 then
     duration=301
 fi
