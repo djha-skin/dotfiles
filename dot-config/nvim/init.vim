@@ -203,6 +203,8 @@ elseif has("win32")
     nnoremap <Leader>V :r "C:\\Users\\bhw\\AppData\\Local\\Temp\\vim-exchange.txt"<CR>
 endif
 nnoremap <Leader>o :FZF<CR>
+nnoremap <Leader>w :s/\[ \]/[x]/g<CR>:let @/=""<CR>
+nnoremap <Leader>e :s/\[x\]/[ ]/g<CR>:let @/=""<CR>
 nnoremap <Leader>( t(l"pda(hda("pp
 nnoremap <Leader>l :lua vim.diagnostic.setloclist()<CR>
 " the leader f won't work with this, but the leader G will.

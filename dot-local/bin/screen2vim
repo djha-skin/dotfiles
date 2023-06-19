@@ -18,4 +18,26 @@ base=$(echo "${1}" | sed -e 's|[^/]*/||g' -e 's| |_|g' -e 's|\.md$||')
 
 fname="${base}_${now}.png"
 screenshot-region "${dest}/${fname}"
-printf "![](${2}/${fname})"
+
+
+resolution=$(identify "${dest}/${fname}" | awk '{print $3}')
+
+width="$(printf '%s' "${resolution}" | awk -Fx '{print $1}')"
+height="$(printf '%s' "${resolution}" | awk -Fx '{print $2}')"
+
+
+out="![](${2}/${fname})"
+if [ $(( 3 * ${width} )) -gt $(( 2 * ${height} )) ]
+then
+    if [ "${width}" -gt 432 ]
+    then
+        out="<img src=\"${2}/${fname}\" width=\"432\"/>"
+    fi
+else
+    if [ "${height}" -gt 648 ]
+    then
+        out="<img src=\"${2}/${fname}\" height=\"648\"/>"
+    fi
+fi
+
+printf '%s' "${out}"
