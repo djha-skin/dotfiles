@@ -16,3 +16,4 @@ fi
 
 echo "$(date '+%s') + ${duration}" | bc | tee "${HOME}/.config/comodoro/${1}.txt"
 notify-send '🍅 Pomodoro' "${1}!"
+play -q "${HOME}/Music/ding.wav"
