@@ -23,7 +23,7 @@ do
     esac
 done
 
-dest="${remote}:/Files"
+dest="${remote}:Files"
 path=$(zenity --file-selection --title "Upload to ${remote}")
 fname="$(echo "${path}" | sed -e 's|[^/]*/||g')"
 
@@ -31,7 +31,7 @@ fname="$(echo "${path}" | sed -e 's|[^/]*/||g')"
 #mkdir -p "${src}"
 #rclone mkdir "${dest}"
 
-rclone copy "${path}" "${dest}/"
+rclone copy "${path}" "${dest}/${fname}"
 raw_link=$(rclone link "${dest}/${fname}")
 if [ "${raw}" = "true" ]
 then
