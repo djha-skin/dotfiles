@@ -3,7 +3,7 @@ set -ex
 
 . ~/.profile
 
-dest="${remote}:/Files"
+dest="${remote}:Files"
 path=$(zenity --file-selection --title "Upload to WorkGoogleDrive")
 fname="$(echo "${path}" | sed -e 's|[^/]*/||g')"
 

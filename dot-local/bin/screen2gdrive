@@ -32,7 +32,7 @@ done
 itis=$(date '+%Y-%m-%d-%H-%M-%S')
 fname="${itis}.png"
 src="${HOME:-/home/danielhaskin}/Pictures"
-dest="${remote}:/Screenshots"
+dest="${remote}:Screenshots"
 
 #echo "startup"
 #mkdir -p "${src}"
