@@ -1,0 +1,29 @@
+#!/bin/sh
+
+. "${HOME}/.profile"
+while [ -n "${1}" ]
+do
+    name="${1}"
+    shift
+    duration="${1}"
+    shift
+    seconds=$(( ${duration} * 60 ))
+    end=$(( $(date "+%s") + ${seconds} ))
+    notify-send '⌚ Timer' "${name} (${duration} minutes)"
+    while [ "${seconds}" -ge 0 ]
+    do
+        time_left="$(printf "%02d:%02d" "$(( ${seconds} / 60 ))" "$(( ${seconds} % 60 ))")"
+        w | awk '/tmux\([0-9]*\)/ { print $2 }' | while read trm
+        do
+            printf '\033]2;%s: %s\033\\' \
+                "${name}" \
+                "${time_left}" \
+                | tee "/dev/${trm}"
+        done
+        clear
+        figlet -d "${HOME}/.local/share/figlet" -f timer -cWt "${time_left}"
+        sleep 1
+        seconds="$(( ${end} - $(date "+%s") ))"
+    done
+    play -q "${HOME}/Music/ding.wav"
+done
