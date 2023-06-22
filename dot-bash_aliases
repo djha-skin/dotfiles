@@ -6,5 +6,5 @@ alias homecal='gcalcli --config-folder=~/.config/gcalcli/home --default-calendar
 alias skin='himalaya -a skin'
 alias work='himalaya -a work'
 alias gmail='himalaya -a gmail'
-alias pom='timer Blast 24 Pacer 1 Break 25'
+alias pom='timer Blast 24 Pacer 1 Break 5'
 alias pombreak='timer "Long Break" 30'

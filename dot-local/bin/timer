@@ -10,7 +10,7 @@ do
     seconds=$(( ${duration} * 60 ))
     end=$(( $(date "+%s") + ${seconds} ))
     notify-send '⌚ Timer' "${name} (${duration} minutes)"
-    play -q "${HOME}/Music/gong.wav" &
+    play -q "${HOME}/Music/ding.wav" &
     while [ "${seconds}" -ge 0 ]
     do
         time_left="$(printf "%02d:%02d" "$(( ${seconds} / 60 ))" "$(( ${seconds} % 60 ))")"
@@ -23,8 +23,9 @@ do
         done
         clear
         figlet -d "${HOME}/.local/share/figlet" -f timer -cWt "$(printf '%s\n%s' "${name}" "${time_left}")"
-        sleep 1
+        sleep 0.95
         seconds="$(( ${end} - $(date "+%s") ))"
     done
-    play -q "${HOME}/Music/ding.wav" &
 done
+notify-send '⌚ Timer' "Complete!"
+play -q "${HOME}/Music/ding.wav"
