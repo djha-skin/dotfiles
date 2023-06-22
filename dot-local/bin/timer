@@ -22,7 +22,7 @@ do
                 | tee "/dev/${trm}"
         done
         clear
-        figlet -d "${HOME}/.local/share/figlet" -f timer -cWt "${time_left}"
+        figlet -d "${HOME}/.local/share/figlet" -f timer -cWt "$(printf '%s\n%s' "${name}" "${time_left}")"
         sleep 1
         seconds="$(( ${end} - $(date "+%s") ))"
     done
