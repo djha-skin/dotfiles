@@ -1,23 +1,17 @@
 let mapleader="\<SPACE>"
-"if has('win32')
-"    let &shell = '"C:\WINDOWS\system32\cmd.exe"'
-"    let g:python3_post_prog = 'C:\Python39\python.exe'
-"    set shellcmdflag=/c
-"endif
-
 
 let g:black_linelength = 79
 let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_new_list_item_indent = 2
 
 call plug#begin()
+Plug 'rhysd/vim-grammarous'
 Plug 'jpalardy/vim-slime'
-"Plug 'vlime/vlime', {'rtp': 'vim/'}
-"Plug 'guns/vim-clojure-static'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'psf/black', { 'branch': 'stable' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'frazrepo/vim-rainbow'
+
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -25,14 +19,8 @@ Plug 'nvim-treesitter/playground'
 Plug 'tpope/vim-fireplace'
 Plug 'venantius/vim-cljfmt'
 Plug 'preservim/vim-markdown'
-Plug 'overcache/NeoSolarized'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
-"if has('win32')
-"    Plug 'JulioJu/neovim-qt-colors-solarized-truecolor-only'
-"    Plug 'frankier/neovim-colors-solarized-truecolor-only'
-"else
-"    Plug 'altercation/vim-colors-solarized'
-"endif
+Plug 'overcache/NeoSolarized'
 Plug 'guns/vim-sexp'
 call plug#end()
 let g:sexp_enable_insert_mode_mappings = 0
@@ -43,11 +31,24 @@ require'lspconfig'.clojure_lsp.setup{}
 require'lspconfig'.pylsp.setup{}
 require'lspconfig'.terraformls.setup{}
 
+function clstart( )
+    if ( not started)
+    then
+        started = true
+        vim.lsp.start({
+          name = 'cl-lsp',
+          cmd = {'cl-lsp'},
+          root_dir = vim.fs.dirname(vim.fs.find({'clpmfile'}, { upward = true })[1]),
+        })
+    end
+end
+
 function str2file(str, fname)
   local f = assert(io.open(fname, "w"))
   f:write(str)
   f:close()
 end
+
 EOF
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
@@ -56,7 +57,6 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "set completeopt=menuone,noselect
 "set completeopt-=preview
 " use omni completion provided by lsp
-"
 "autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
 set nofixendofline
@@ -82,37 +82,33 @@ elseif has('win32unix')
     "set backspace=2
     "if that doesn't work, try this:
     set backspace=indent,eol,start
-"http://superuser.com/a/194718/91022
-"elseif has('mac')
-"...
-"elseif has('unix')
-"...
 endif
+colorscheme NeoSolarized
 syntax enable
 
 set formatoptions+=o
 set nojoinspaces
 set showmatch
 
-"let g:slime_target = "neovim"
-set background=light
 
-if exists('+termguicolors')
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-set termguicolors
-endif
 
 if executable('tmux')
     if has('win32')
-        let &shell = "C:/Users/bhw/scoop/apps/msys2/current/usr/bin/bash"
+        if exists('+termguicolors')
+        let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+        let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+        set termguicolors
+        endif
+
+        let &shell = "C:/Users/djh/scoop/apps/msys2/current/usr/bin/bash"
         set shellcmdflag=-c
         set shellquote=
         set shellxquote=
-        let g:slime_paste_file = "/c/Users/bhw/.slime_paste"
+        let g:slime_paste_file = "/c/Users/djh/.slime_paste"
         colorscheme delek
         let g:slime_default_config = {"socket_name": "default", "target_pane": ":.0"}
     else
+        set background=light
         let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.0"}
     endif
     let g:slime_target = "tmux"
@@ -128,8 +124,8 @@ if has('win32')
     setglobal nobomb
 endif
 
-au BufWinEnter * let w:m2=matchadd('ErrorMsg', '/\%>80v.\+/', -1)
 " guard against 80 character length lines.
+au BufWinEnter * let w:m2=matchadd('ErrorMsg', '/\%>80v.\+/', -1)
 hi clear OverLength
 hi clear ExtraWhitespace
 hi ExtraWhitespace ctermbg=red guibg=red
@@ -182,11 +178,6 @@ map <Leader>t :s/\v[[:blank:]][[:blank:]]*$//g<CR>
 map <Leader>T :%s/\v[[:blank:]][[:blank:]]*$//g<CR>
 imap jk <Esc>
 tnoremap jk <C-\><C-n>
-
-
-
-
-
 nnoremap <Leader><space> :let @/=""<CR>
 nnoremap <Leader>d :put =strftime('%FT%T%z')<CR>
 nnoremap <Leader>b :execute "!git blame -L " . line(".") . "," . line(".") . " %"<CR>
@@ -201,23 +192,24 @@ elseif has("win32")
     nnoremap <Leader>c "+y:lua str2file(vim.fn.getreg('+'), "C:\\Users\\bhw\\AppData\\Local\\Temp\\vim-exchange.txt")<CR>
     nnoremap <Leader>v "+]p
     nnoremap <Leader>V :r "C:\\Users\\bhw\\AppData\\Local\\Temp\\vim-exchange.txt"<CR>
+    set background=light
 endif
 nnoremap <Leader>o :FZF<CR>
-nnoremap <Leader>w :s/\[ \]/[x]/g<CR>:let @/=""<CR>
-nnoremap <Leader>e :s/\[x\]/[ ]/g<CR>:let @/=""<CR>
+
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>w :let @/=""<CR>:s/\[ \]/[x]/g<CR>:let @/=""<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>e :let @/=""<CR>:s/\[x\]/[ ]/g<CR>:let @/=""<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>s :let @/=""<CR>:s/^\(  *- \)/\1[ ] /g<CR>:let @/=""<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>d :let @/=""<CR>:s/^\(  *- \)\[ \] /\1/g<CR>:let @/=""<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>f vi(y:execute "!sh -c \"xdg-open '" . shellescape("0",1) . "' && sleep 1\""<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>G :w<CR>:!sh -c "xdg-open '%' && sleep 1"<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>r :lua vim.fn.execute("r!screen2vim '" ..  vim.fn.expand("%:p") .. "' 'img'")<CR>
 nnoremap <Leader>( t(l"pda(hda("pp
 nnoremap <Leader>l :lua vim.diagnostic.setloclist()<CR>
 " the leader f won't work with this, but the leader G will.
-nnoremap <Leader>r :lua vim.fn.execute("r!screen2vim '" ..  vim.fn.expand("%:p") .. "' 'img'")<CR>
 vnoremap <Leader>c "+y
 nnoremap <Leader>v "+]p
 nnoremap <Leader>n :tabn<CR>
 nnoremap <Leader>p :tabp<CR>
-
-nnoremap <Leader>h <C-w>h
-nnoremap <Leader>j <C-w>j
-nnoremap <Leader>k <C-w>k
-nnoremap <Leader>l <C-w>l
 
 "au BufRead,BufNewFile *.c,*.h set makeprg=gcc\ \"%\"
 au BufRead,BufNewFile *.rkt,*.rktl  set filetype=racket
@@ -227,7 +219,7 @@ au BufRead,BufNewFile *.rkt,*.rktl  set filetype=racket
 au BufRead,BufNewFile Jenkinsfile set syntax=groovy
 au BufRead,BufNewFile *.go set tabstop=4 shiftwidth=4 noexpandtab makeprg=go\ build\ .
 au BufRead,BufNewFile *.py set makeprg=pylint\ --reports=n\ --output-format=parseable\ %:p | set errorformat=%f:%l:\ %m
-au BufWritePre *.py execute ':Black'
+"au BufWritePre *.py execute ':Black'
 au BufRead,BufNewFile *.yml set tabstop=2 | set shiftwidth=2 | set indentexpr= | set smartindent
 au BufRead,BufNewFile *.yaml set tabstop=2 | set shiftwidth=2 | set indentexpr= | set smartindent
 au BufRead,BufNewFile *.xml set tabstop=4 | set shiftwidth=4 | map <Leader>F :%!xmllint --format -<CR>
@@ -249,7 +241,7 @@ au BufRead,BufNewFile *.tex set makeprg=pdflatex\ -halt-on-error\ --shell-escape
 au BufRead,BufNewFile SConstruct,SConscript set makeprg=scons
 au BufRead,BufNewFile *.rb set tabstop=2
 au BufRead,BufNewFile *.rb set shiftwidth=2
-"au BufRead,BufNewFile *.lisp lua clstart()
+au BufRead,BufNewFile *.lisp lua clstart()
 "| inoremap <CR> <CR><esc>i
 
 " https://github.com/preservim/vim-markdown/issues/390#issuecomment-578459147
@@ -266,9 +258,9 @@ au BufRead,BufNewFile *.md set shiftwidth=2 | set tabstop=2 | setlocal comments=
 au BufRead,BufNewFile *.hs set shiftwidth=2 | set tabstop=2
 au BufRead,BufNewFile *.mtn set tabstop=8 | set shiftwidth=8 | set noexpandtab
 au BufRead,BufNewFile *.tsv set tabstop=8 | set shiftwidth=8 | set noexpandtab
-au BufWritePost *.tf !terraform fmt %
 au BufRead,BufNewFile *.eml set colorcolumn=75 | map <LocalLeader>m :r!get-message-id %<CR>
 autocmd TermOpen * setlocal nospell
+au BufWritePost *.tf !terraform fmt %
 
 " make pretty formatted use of variables
 "au filetype sh map! $$ ${}OD
@@ -298,10 +290,10 @@ let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_auto_insert_bullets = 1
 
 if exists('g:vscode')
-    nnoremap <Leader>j :call VSCodeNotify('calva.jackIn')<CR>
-    nnoremap <Leader>q :call VSCodeNotify('calva.disconnect')<CR>
-    nnoremap <Leader>f :call VSCodeNotify('calva.loadFile')<CR>
-    nnoremap <Leader>n :call VSCodeNotify('calva.loadNamespace')<CR>
-    nnoremap <Leader>s :call VSCodeNotify('calva.evaluateSelection')<CR>
-    nnoremap <Leader>C :call VSCodeNotify('calva.evaluateCurrentTopLevelForm')<CR>
+    au BufRead,BufNewFile *.clj nnoremap <LocalLeader>j :call VSCodeNotify('calva.jackIn')<CR>
+    au BufRead,BufNewFile *.clj noremap <LocalLeader>q :call VSCodeNotify('calva.disconnect')<CR>
+    au BufRead,BufNewFile *.clj noremap <LocalLeader>f :call VSCodeNotify('calva.loadFile')<CR>
+    au BufRead,BufNewFile *.clj noremap <LocalLeader>n :call VSCodeNotify('calva.loadNamespace')<CR>
+    au BufRead,BufNewFile *.clj noremap <LocalLeader>s :call VSCodeNotify('calva.evaluateSelection')<CR>
+    au BufRead,BufNewFile *.clj noremap <LocalLeader>C :call VSCodeNotify('calva.evaluateCurrentTopLevelForm')<CR>
 endif
