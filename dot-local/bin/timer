@@ -23,7 +23,7 @@ do
         done
         clear
         figlet -d "${HOME}/.local/share/figlet" -f timer -cWt "$(printf '%s\n%s' "${name}" "${time_left}")"
-        sleep 0.95
+        sleep 0.980
         seconds="$(( ${end} - $(date "+%s") ))"
     done
 done
