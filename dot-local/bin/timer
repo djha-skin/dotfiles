@@ -10,6 +10,7 @@ do
     seconds=$(( ${duration} * 60 ))
     end=$(( $(date "+%s") + ${seconds} ))
     notify-send '⌚ Timer' "${name} (${duration} minutes)"
+    play -q "${HOME}/Music/gong.wav" &
     while [ "${seconds}" -ge 0 ]
     do
         time_left="$(printf "%02d:%02d" "$(( ${seconds} / 60 ))" "$(( ${seconds} % 60 ))")"
@@ -25,5 +26,5 @@ do
         sleep 1
         seconds="$(( ${end} - $(date "+%s") ))"
     done
-    play -q "${HOME}/Music/ding.wav"
+    play -q "${HOME}/Music/ding.wav" &
 done
