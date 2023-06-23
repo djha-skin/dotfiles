@@ -27,5 +27,7 @@ do
         seconds="$(( ${end} - $(date "+%s") ))"
     done
 done
+clear
+figlet -d "${HOME}/.local/share/figlet" -f timer -cWt "Complete!"
 notify-send '⌚ Timer' "Complete!"
 play -q "${HOME}/Music/ding.wav"
