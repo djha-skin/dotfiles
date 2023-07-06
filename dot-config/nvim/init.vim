@@ -11,7 +11,7 @@ Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'psf/black', { 'branch': 'stable' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'frazrepo/vim-rainbow'
-
+Plug 'godlygeek/tabular'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -195,11 +195,8 @@ elseif has("win32")
     set background=light
 endif
 nnoremap <Leader>o :FZF<CR>
-
-au BufRead,BufNewFile *.md nnoremap <LocalLeader>w :let @/=""<CR>:s/\[ \]/[x]/g<CR>:let @/=""<CR>
-au BufRead,BufNewFile *.md nnoremap <LocalLeader>e :let @/=""<CR>:s/\[x\]/[ ]/g<CR>:let @/=""<CR>
-au BufRead,BufNewFile *.md nnoremap <LocalLeader>s :let @/=""<CR>:s/^\(  *- \)/\1[ ] /g<CR>:let @/=""<CR>
-au BufRead,BufNewFile *.md nnoremap <LocalLeader>d :let @/=""<CR>:s/^\(  *- \)\[ \] /\1/g<CR>:let @/=""<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>w :let @/=""<CR>:s/^ \{0,2\}\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} */\1  - [x] /g<CR>:let @/=""<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>e :let @/=""<CR>:s/^ \{0,2\}\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} */\1  - [ ] /g<CR>:let @/=""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>f vi(y:execute "!sh -c \"xdg-open '" . shellescape("0",1) . "' && sleep 1\""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>G :w<CR>:!sh -c "xdg-open '%' && sleep 1"<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>r :lua vim.fn.execute("r!screen2vim '" ..  vim.fn.expand("%:p") .. "' 'img'")<CR>
