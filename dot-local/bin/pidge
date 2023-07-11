@@ -1,0 +1,10 @@
+#!/bin/sh
+. /home/danielhaskin/.profile
+
+# For some reason without this deadlock occurs
+sleep 2
+
+mkdir -p ~/.var/log
+
+echo "Started operation \`pidgin ${@}\` at \`$(date)\`" | tee -a ~/.var/log/pidgin-log
+pidgin "${@}" 2>&1 | tee -a ~/.var/log/pidgin.log

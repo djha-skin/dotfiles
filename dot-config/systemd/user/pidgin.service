@@ -1,0 +1,14 @@
+# ~/.config/systemd/user/pidgin.service
+
+[Unit]
+Description=Pidgin auto-restarter
+After=network.target
+
+[Service]
+ExecStart=/home/danielhaskin/.local/bin/pidge
+Environment=
+Restart=always
+RestartSec=31
+
+[Install]
+WantedBy=default.target
