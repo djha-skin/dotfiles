@@ -14,9 +14,9 @@ fname="${itis}.png"
 src="${HOME:-/home/danielhaskin}/Pictures"
 
 
-dest="Screenshots/${itis}.png"
+dest="Screenshots"
 screenshot-region "${src}/${fname}"
-fid=$(gdrive upload --name "${dest}/${fname}" "${src}/${fname}" | \
+fid=$(gdrive upload --name "${dest}" "${src}/${fname}" | \
     sed -n -e '/Uploaded \([^ ]*\).*$/ { s|^ *Uploaded \([^ ]*\).*$|\1|g; p }' 2> ~/.sgd-errors)
 echo "${fid}"
 
