@@ -91,7 +91,6 @@ set nojoinspaces
 set showmatch
 
 set termguicolors
-
 if executable('tmux')
     if has('win32')
         let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -192,9 +191,11 @@ elseif has("win32")
     set background=light
 endif
 nnoremap <Leader>o :FZF<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>q :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} \{1,\}\([^ ].*\) *$/\1\2\3 \~\~\4\~\~/<CR>:let @/=""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>w :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} */\1- [x] /g<CR>:let @/=""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>e :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} */\1- [ ] /g<CR>:let @/=""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>r :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} */\1/g<CR>:let @/=""<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>t :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} *[~]\{2\}\(.*\)[~]\{2\} *$/\1\2\3 \4/<CR>:let @/=""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>f vi(y:execute "!sh -c \"xdg-open '" . shellescape("0",1) . "' && sleep 1\""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>G :w<CR>:!sh -c "xdg-open '%' && sleep 1"<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>s :lua vim.fn.execute("r!screen2vim '" ..  vim.fn.expand("%:p") .. "' 'img'")<CR>
