@@ -1,5 +1,4 @@
 <# : How does this
-:: even
 :: work
 setlocal
 set "me=%~f0"
@@ -68,17 +67,18 @@ goto endmain
     ) else if "%fext%" == ".txt" (
         set "raw=false"
     )
-    set "fdest=%remote%:/Files"
+    set "fdest=%remote%:Files"
     rclone copy "%fpath%" "%fdest%"
     for /f "tokens=*" %%i in ('rclone link %fdest%/%fname%') do ( set "url=%%i" )
 
     if NOT "%raw%" == "true" (
         for /f "tokens=2 delims==" %%i in ("%url%") do (
-            set "url=https://drive.google.com/uc?export=view^^^&id=%%i^^^&filename=%fname%"
+            REM set "url=https://drive.google.com/uc?export=view^^^&id=%%i^^^&filename=%fname%"
+            set "url=https://drive.google.com/uc?id=%fid%&filename=%fname%"
         )
     )
 
-    echo %url% | clip
+    printf "%%s" "%url%" | clip
 
     msg %USERNAME% " Copied `%fpath%` to `%fdest%`, link in clipboard."
     goto :eof
