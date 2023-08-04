@@ -22,5 +22,5 @@ binding "no-return"
     bind "Return" { "insert-at-cursor" ("\n") }
     bind "<ctrl>Return" { "message_send" () }
 }
-widget "*pidgin_conv_entry" binding "my-bindings"
+widget "*pidgin_conv_entry" binding "no-return"
 widget "*pidgin_conv_imhtml" style "*pidgin_conv_imhtml_style"
