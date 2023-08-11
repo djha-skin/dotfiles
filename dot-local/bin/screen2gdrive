@@ -31,7 +31,7 @@ done
 
 itis=$(date '+%Y-%m-%d-%H-%M-%S')
 fname="${itis}.png"
-src="${HOME:-/home/danielhaskin}/Pictures/screenshots"
+src="${HOME:-/home/danielhaskin}/Pictures/Screenshots"
 dest="${remote}:Screenshots"
 
 #echo "startup"
