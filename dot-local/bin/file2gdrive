@@ -40,4 +40,4 @@ else
     file_id=$(printf "${raw_link}" | sed -e 's|^[^?]*[?]id=||')
     printf "https://drive.google.com/uc?id=${file_id}&filename=${fname}" | copy
 fi
-zenity --title "file2gdrive" --info --text "Synced to ${remote}, URL in clipboard"
+notify-send "file2gdrive" "Synced to ${remote}, URL in clipboard"

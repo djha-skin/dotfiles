@@ -12,5 +12,5 @@ alias scr="screen -dRR -S ergo -t djh987"
 alias skin="himalaya -a skin"
 alias vim="nvim"
 alias work="himalaya -a work"
-alias worknotes="cd ~/Dropbox/Markdown/Work'
-alias homenotes="cd ~/Dropbox/Markdown/Home'
+alias worknotes='cd ~/Dropbox/Markdown/Work'
+alias homenotes='cd ~/Dropbox/Markdown/Home'

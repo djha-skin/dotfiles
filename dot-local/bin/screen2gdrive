@@ -1,7 +1,7 @@
 #!/bin/sh
 set -ex
 . ~/.profile
-export PATH="${HOME}/.local/bin:${PATH}"
+
 echo "${@}" > ~/.screen2gdrive.log
 
 raw=false
@@ -31,19 +31,19 @@ done
 
 itis=$(date '+%Y-%m-%d-%H-%M-%S')
 fname="${itis}.png"
-src="${HOME:-/home/danielhaskin}/Pictures/Screenshots"
+src="${HOME:-/home/danielhaskin}/Pictures"
 dest="${remote}:Screenshots"
 
 #echo "startup"
 #mkdir -p "${src}"
 #rclone mkdir "${dest}"
 
-echo "screenshot"  > ~/.screen2gdrive.log 2>&1
-screenshot-region "${src}/${fname}"  > ~/.screen2gdrive.log 2>&1
-echo "copy"  > ~/.screen2gdrive.log 2>&1
-rclone copy "${src}/${fname}" "${dest}/"  > ~/.screen2gdrive.log 2>&1
-echo "clipboard"  > ~/.screen2gdrive.log 2>&1
-#rclone link --expire 4h "${dest}/${fname}" | copy
+echo "screenshot"  >> ~/.screen2gdrive.log 2>&1
+screenshot-region "${src}/${fname}"  >> ~/.screen2gdrive.log 2>&1
+echo "copy"  >> ~/.screen2gdrive.log 2>&1
+rclone copyto "${src}/${fname}" "${dest}/${fname}"  >> ~/.screen2gdrive.log 2>&1
+echo "clipboard"  >> ~/.screen2gdrive.log 2>&1
+rclone link "${dest}/${fname}" | copy
 #printf "https://drive.google.com/uc?id=${download_id}" | ${paste}
 raw_link=$(rclone link "${dest}/${fname}")
 
@@ -58,4 +58,4 @@ else
     file_id=$(printf "${raw_link}" | sed -e 's|^[^?]*[?]id=||')
     printf "https://drive.google.com/uc?id=${file_id}&filename=${fname}" | copy
 fi
-zenity --title "screen2gdrive" --info --text "Synced to ${remote}, URL in clipboard"  > ~/.screen2gdrive.log 2>&1
+notify-send "screen2gdrive" "Synced to ${remote}, URL in clipboard"  >> ~/.screen2gdrive.log 2>&1

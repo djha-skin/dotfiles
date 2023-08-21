@@ -1,17 +1,16 @@
 #!/bin/sh
 set -ex
 
-. ~/.profile
+. /home/skin/.profile
 
 dest="1AqpTViCl7aknwyrb_2Tg-2nToixbVSR_"
 path=$(zenity --file-selection --title "Upload to WorkGoogleDrive")
 fname="$(echo "${path}" | sed -e 's|[^/]*/||g')"
-
 fid=$(gdrive upload --name "${fname}" --parent "${dest}" "${path}" | \
-    sed -n -e '/Uploaded \([^ ]*\).*$/ { s|^ *Uploaded \([^ ]*\).*$|\1|g; p }' 2> ~/.sgd-errors)
-echo "${fid}"
+    sed -n -e '/Uploaded \([^ ]*\).*$/ { s|^ *Uploaded \([^ ]*\).*$|\1|g; p }' 2>> /home/skin/.sgd-errors)
 
-gdrive share --type domain --role commenter --domain ${WORK_DOMAIN:-example.com} "${fid}" 2>~/.sgd-errors
-url=$(gdrive info "${fid}" | awk -F': ' '/ViewUrl/{print $2}' 2>~/.sgd-errors)
+gdrive share --type domain --role commenter --domain ${WORK_DOMAIN:-example.com} "${fid}" 2>>/home/skin/.sgd-errors
+
+url=$(gdrive info "${fid}" | awk -F': ' '/ViewUrl/{print $2}' 2>>/home/skin/.sgd-errors)
 printf "${url}"  | copy
-zenity --title "file2gdrive" --info --text "Synced to Work GDrive, URL in clipboard"
+notify-send "file2gdrive" "Synced to Work GDrive, URL in clipboard"

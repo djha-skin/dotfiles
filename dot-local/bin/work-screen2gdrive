@@ -1,8 +1,7 @@
 #!/bin/sh
 set -ex
 
-. ~/.profile
-
+. /home/skin/.profile
 if [ -z "${WORK_DOMAIN}" ]
 then
     echo "You need to set the work domain." >&2
@@ -18,10 +17,10 @@ dest="1B0s-7v-kmb0PL5dMakqrYW_cHrm1D5kC"
 screenshot-region "${src}/${fname}"
 
 fid=$(gdrive upload --name "${fname}" --parent "${dest}" "${src}/${fname}" | \
-    sed -n -e '/Uploaded \([^ ]*\).*$/ { s|^ *Uploaded \([^ ]*\).*$|\1|g; p }' 2> ~/.sgd-errors)
-echo "${fid}"
+    sed -n -e '/Uploaded \([^ ]*\).*$/ { s|^ *Uploaded \([^ ]*\).*$|\1|g; p }' 2>> /home/skin/.sgd-errors)
+echo "${fid}" >> /home/skin/.sgd-errors
 
-gdrive share --type domain --role commenter --domain "${WORK_DOMAIN:-example.com}" "${fid}" 2>~/.sgd-errors
-url=$(gdrive info "${fid}" | awk -F': ' '/ViewUrl/{print $2}' 2>~/.sgd-errors)
+gdrive share --type domain --role commenter --domain "${WORK_DOMAIN:-example.com}" "${fid}" 2>>/home/skin/.sgd-errors
+url=$(gdrive info "${fid}" | awk -F': ' '/ViewUrl/{print $2}' 2>/home/skin/.sgd-errors)
 printf "${url}"  | copy
-zenity --title "screen2gdrive" --info --text "Synced to Work GDrive, URL in clipboard"
+notify-send "screen2gdrive" "Synced to Work GDrive, URL in clipboard" 2>>/home/skin/.sgd-errors
