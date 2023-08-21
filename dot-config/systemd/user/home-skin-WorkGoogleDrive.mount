@@ -1,0 +1,11 @@
+[Unit]
+Description=OCaml Fuse mount for Google Drive Work
+After=network.target
+
+[Mount]
+What=gdfuse#WorkGoogleDrive
+Where=/home/skin/WorkGoogleDrive
+Type=fuse.google-drive-ocamlfuse
+
+[Install]
+WantedBy=default.target
