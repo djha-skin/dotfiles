@@ -11,12 +11,13 @@ fi
 
 itis=$(date '+%Y-%m-%d-%H-%M-%S')
 fname="${itis}.png"
-src="${HOME:-/home/danielhaskin}/Pictures/Screenshots"
+src="${HOME:-/home/skin}/Pictures"
 
 
-dest="Screenshots"
+dest="1B0s-7v-kmb0PL5dMakqrYW_cHrm1D5kC"
 screenshot-region "${src}/${fname}"
-fid=$(gdrive upload --name "${dest}" "${src}/${fname}" | \
+
+fid=$(gdrive upload --name "${fname}" --parent "${dest}" "${src}/${fname}" | \
     sed -n -e '/Uploaded \([^ ]*\).*$/ { s|^ *Uploaded \([^ ]*\).*$|\1|g; p }' 2> ~/.sgd-errors)
 echo "${fid}"
 

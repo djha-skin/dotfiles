@@ -3,11 +3,11 @@ set -ex
 
 . ~/.profile
 
-dest="${remote}:Files"
+dest="1AqpTViCl7aknwyrb_2Tg-2nToixbVSR_"
 path=$(zenity --file-selection --title "Upload to WorkGoogleDrive")
 fname="$(echo "${path}" | sed -e 's|[^/]*/||g')"
 
-fid=$(gdrive upload --name "${dest}/${fname}" "${path}" | \
+fid=$(gdrive upload --name "${fname}" --parent "${dest}" "${path}" | \
     sed -n -e '/Uploaded \([^ ]*\).*$/ { s|^ *Uploaded \([^ ]*\).*$|\1|g; p }' 2> ~/.sgd-errors)
 echo "${fid}"
 
