@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if which zenity >/dev/null 2>&1
+then
+    zenity --file-selection --title "Choose a file"
+elif which osascript >/dev/null 2>&1
+then
+    osascript -e '(POSIX path of (Choose file))' 2>/dev/null
+fi

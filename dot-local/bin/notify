@@ -1,0 +1,8 @@
+
+if which notify-send >/dev/null 2>&1
+then
+    notify-send "${1}" "${2}"
+elif which osascript >/dev/null 2>&1
+then
+    osascript -e "display notification \"${2}\" with title \"${1}\""
+fi

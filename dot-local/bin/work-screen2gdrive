@@ -1,7 +1,14 @@
 #!/bin/sh
 set -ex
 
-. /home/skin/.profile
+if [ -f ~/.profile ]
+then
+    . ~/.profile
+elif [ -f ~/.zprofile ]
+then
+    . ~/.zprofile
+fi
+
 if [ -z "${WORK_DOMAIN}" ]
 then
     echo "You need to set the work domain." >&2
@@ -10,17 +17,17 @@ fi
 
 itis=$(date '+%Y-%m-%d-%H-%M-%S')
 fname="${itis}.png"
-src="${HOME:-/home/skin}/Pictures"
+src="${HOME:-~}/Pictures"
 
 
 dest="1B0s-7v-kmb0PL5dMakqrYW_cHrm1D5kC"
 screenshot-region "${src}/${fname}"
 
 fid=$(gdrive upload --name "${fname}" --parent "${dest}" "${src}/${fname}" | \
-    sed -n -e '/Uploaded \([^ ]*\).*$/ { s|^ *Uploaded \([^ ]*\).*$|\1|g; p }' 2>> /home/skin/.sgd-errors)
-echo "${fid}" >> /home/skin/.sgd-errors
+    sed -n -e '/Uploaded \([^ ]*\).*$/ {' -e 's|^ *Uploaded \([^ ]*\).*$|\1|g' -e 'p' -e '}' 2>> ~/.sgd-errors)
+echo "${fid}" >> ~/.sgd-errors
 
-gdrive share --type domain --role commenter --domain "${WORK_DOMAIN:-example.com}" "${fid}" 2>>/home/skin/.sgd-errors
-url=$(gdrive info "${fid}" | awk -F': ' '/ViewUrl/{print $2}' 2>/home/skin/.sgd-errors)
+gdrive share --type domain --role commenter --domain "${WORK_DOMAIN:-example.com}" "${fid}" 2>>~/.sgd-errors
+url=$(gdrive info "${fid}" | awk -F': ' '/ViewUrl/{print $2}' 2>>~/.sgd-errors)
 printf "${url}"  | copy
-notify-send "screen2gdrive" "Synced to Work GDrive, URL in clipboard" 2>>/home/skin/.sgd-errors
+notify "screen2gdrive" "Synced to Work GDrive, URL in clipboard" 2>>~/.sgd-errors

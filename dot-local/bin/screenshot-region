@@ -1,6 +1,6 @@
 #!/bin/sh
 
-
+set -ex
 if [ -z "${1}" ]
 then
     clipboard=1
@@ -16,7 +16,7 @@ then
     else
         spectacle -n -r -b -o "${1}"
     fi
-elif which screencapture >/dev/null 2&>1
+elif which screencapture >/dev/null 2>&1
 then
     if [ "${clipboard}" -ne 0 ]
     then

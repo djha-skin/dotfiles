@@ -5,13 +5,13 @@ CASE_SENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
 export ZVM_VI_ESCAPE_BINDKEY=jk
-plugins=(git gh github )
+plugins=(git gh github asdf)
 #aliases alias-finder aws bgnotify chucknorris colored-man-pages colorize command-not-found docker docker-compose forklift fossil gh git git-auto-fetch git-escape-magic git-extras gitfast git-flow git-flow-avh github git-hubflow gitignore git-lfs git-prompt gnu-utils golang gpg-agent helm history history-substring-search isodate jira kubectl lein minikube nmap pip poetry postgres pyenv pylint python rsync sudo systemadmin systemd terraform themes ubuntu ufw universalarchive urltools vagrant vagrant-prompt vault vim-interaction virtualenv zsh-vi-mode)
 DISABLE_AUTO_TITLE="true"
 source $ZSH/oh-my-zsh.sh
 source ~/.profile
 source ~/.zsh_aliases
-. $HOME/.asdf/asdf.sh
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
 source <(kubectl completion zsh)
 
 if [ -e "${WORKING_LOCATION_FILE}" ]

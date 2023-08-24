@@ -1,9 +1,17 @@
 #!/bin/sh
-set -ex
 
+set -e
 
-raw=false
-remote=HomeGoogleDrive
+if [ -f ~/.profile ]
+then
+    . ~/.profile
+elif [ -f ~/.zprofile ]
+then
+    . ~/.zprofile
+fi
+
+raw=true
+remote=WorkGoogleDrive
 while [ -n "${1}" ]
 do
     case "${1}" in
@@ -24,7 +32,7 @@ do
 done
 
 dest="${remote}:Files"
-path=$(zenity --file-selection --title "Upload to ${remote}")
+path="$(choose-file 2>/dev/null)"
 fname="$(echo "${path}" | sed -e 's|[^/]*/||g')"
 
 #echo "startup"
@@ -40,4 +48,4 @@ else
     file_id=$(printf "${raw_link}" | sed -e 's|^[^?]*[?]id=||')
     printf "https://drive.google.com/uc?id=${file_id}&filename=${fname}" | copy
 fi
-notify-send "file2gdrive" "Synced to ${remote}, URL in clipboard"
+notify "file2gdrive" "Synced to ${remote}, URL in clipboard"

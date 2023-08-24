@@ -1,6 +1,12 @@
 #!/bin/sh
 set -ex
-. ~/.profile
+if [ -f ~/.profile ]
+then
+    . ~/.profile
+elif [ -f ~/.zprofile ]
+then
+    . ~/.zprofile
+fi
 
 echo "${@}" > ~/.screen2gdrive.log
 
@@ -58,4 +64,4 @@ else
     file_id=$(printf "${raw_link}" | sed -e 's|^[^?]*[?]id=||')
     printf "https://drive.google.com/uc?id=${file_id}&filename=${fname}" | copy
 fi
-notify-send "screen2gdrive" "Synced to ${remote}, URL in clipboard"  >> ~/.screen2gdrive.log 2>&1
+notify "screen2gdrive" "Synced to ${remote}, URL in clipboard"  >> ~/.screen2gdrive.log 2>&1
