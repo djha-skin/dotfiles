@@ -1,9 +1,9 @@
 alias vim=nvim
-alias scr='screen -dRR -S ergo -t djha-skin'
+alias scr='screen -dRR -S ergo -t skin'
 alias driveup='rclone copy /home/danielhaskin/HomeGoogleDrive/ HomeGoogleDrive:/'
 alias drivedown='rclone copy HomeGoogleDrive:/ /home/danielhaskin/HomeGoogleDrive/'
-alias worknotes='cd ~/Dropbox/Markdown/Notes/Work'
-alias homenotes='cd ~/Dropbox/Markdown/Notes/Home'
+alias worknotes='cd ~/Dropbox/Markdown/Work'
+alias homenotes='cd ~/Dropbox/Markdown/Home'
 alias diary='nvim Planning/Diary/$(date +%Y-%m-%d-%A.md)'
 alias stayhere='printf "${PWD}" > ~/.config/shell/gohere'
 alias gothere='cd $(cat ~/.config/shell/gohere)'
