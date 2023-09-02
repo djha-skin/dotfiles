@@ -1,0 +1,7 @@
+#!/bin/sh
+(
+    flock -n 987 || exit 1
+    notify-send 'Pidgin' "${1} matched on ${2}."
+    play /home/skin/Music/whistle.wav
+    sleep 1
+) 987> /home/skin/.pidgin-notify
