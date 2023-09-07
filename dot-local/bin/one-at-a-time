@@ -1,0 +1,9 @@
+#!/bin/sh
+set -x
+if which afplay 2>&1 >/dev/null
+then
+    afplay "${1}"
+else
+    play "${1}"
+fi
+sleep 1

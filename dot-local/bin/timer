@@ -1,6 +1,20 @@
 #!/bin/sh
+if [ -f "${HOME}/.profile" ]
+then
+    . "${HOME}/.profile"
+elif [ -f "${HOME}/.zprofile" ]
+then
+    . "${HOME}/.zprofile"
+fi
 
-. "${HOME}/.profile"
+if uname -a | grep -q 'Darwin'
+then
+    # mac
+    device_prefix="/dev/tty"
+else
+    device_prefix="/dev/"
+fi
+
 while [ -n "${1}" ]
 do
     name="${1}"
@@ -9,25 +23,25 @@ do
     shift
     seconds=$(( ${duration} * 60 ))
     end=$(( $(date "+%s") + ${seconds} ))
-    notify-send '⌚ Timer' "${name} (${duration} minutes)"
-    play -q "${HOME}/Music/ding.wav" &
+    notify '⌚ Timer' "${name} (${duration} minutes)"
+    afplay "${HOME}/Music/ding.wav" &
     while [ "${seconds}" -ge 0 ]
     do
         time_left="$(printf "%02d:%02d" "$(( ${seconds} / 60 ))" "$(( ${seconds} % 60 ))")"
-        w | awk '/tmux\([0-9]*\)/ { print $2 }' | while read trm
+        w | awk '/tmux/ { print $2 }' | while read trm
         do
             printf '\033]2;%s: %s\033\\' \
                 "${name}" \
                 "${time_left}" \
-                | tee "/dev/${trm}"
+                | tee "${device_prefix}${trm}"
         done
         clear
-        figlet -d "${HOME}/.local/share/figlet" -f timer -cWt "$(printf '%s\n%s' "${name}" "${time_left}")"
+        figlet -d "${HOME}/.local/share/figlet" -f timer -cW "$(printf '%s\n%s' "${name}" "${time_left}")"
         sleep 0.980
         seconds="$(( ${end} - $(date "+%s") ))"
     done
 done
 clear
 figlet -d "${HOME}/.local/share/figlet" -f timer -cWt "Complete!"
-notify-send '⌚ Timer' "Complete!"
-play -q "${HOME}/Music/ding.wav"
+notify '⌚ Timer' "Complete!"
+afplay -q "${HOME}/Music/ding.wav"
