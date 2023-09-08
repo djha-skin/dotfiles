@@ -1,9 +1,13 @@
 #!/bin/sh
 set -x
-if which afplay 2>&1 >/dev/null
+now=$(date '+%s')
+if [ -f ~/.one-at-a-time ]
 then
-    afplay "${1}"
-else
-    play "${1}"
+    last=$(cat ~/.one-at-a-time)
+    if [ $((now - last)) -lt 10 ]
+    then
+        exit 0
+    fi
 fi
-sleep 1
+printf '%s' "${now}" > ~/.one-at-a-time
+afplay "${1}"

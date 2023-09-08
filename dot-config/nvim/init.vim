@@ -5,6 +5,10 @@ let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_new_list_item_indent = 2
 
 call plug#begin()
+if has('mac')
+    let g:netrw_browser_viewer='open'
+endif
+Plug 'github/copilot.vim'
 Plug 'rhysd/vim-grammarous'
 Plug 'jpalardy/vim-slime'
 Plug 'martinda/Jenkinsfile-vim-syntax'
@@ -104,7 +108,7 @@ if executable('tmux')
         colorscheme delek
         let g:slime_default_config = {"socket_name": "default", "target_pane": ":.0"}
     else
-        set background=light
+        "set background=light
         let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.0"}
     endif
     let g:slime_target = "tmux"
@@ -188,7 +192,7 @@ elseif has("win32")
     nnoremap <Leader>c "+y:lua str2file(vim.fn.getreg('+'), "C:\\Users\\bhw\\AppData\\Local\\Temp\\vim-exchange.txt")<CR>
     nnoremap <Leader>v "+]p
     nnoremap <Leader>V :r "C:\\Users\\bhw\\AppData\\Local\\Temp\\vim-exchange.txt"<CR>
-    set background=light
+    "set background=light
 endif
 nnoremap <Leader>o :FZF<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>q :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} \{1,\}\([^ ].*\) *$/\1\2\3 \~\~\4\~\~/<CR>:let @/=""<CR>
@@ -196,8 +200,8 @@ au BufRead,BufNewFile *.md nnoremap <LocalLeader>w :let @/=""<CR>:s/^\( *\)\(- *
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>e :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} */\1- [ ] /g<CR>:let @/=""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>r :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} */\1/g<CR>:let @/=""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>t :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} *[~]\{2\}\(.*\)[~]\{2\} *$/\1\2\3 \4/<CR>:let @/=""<CR>
-au BufRead,BufNewFile *.md nnoremap <LocalLeader>f vi(y:execute "!sh -c \"xdg-open '" . shellescape("0",1) . "' && sleep 1\""<CR>
-au BufRead,BufNewFile *.md nnoremap <LocalLeader>G :w<CR>:!sh -c "xdg-open '%' && sleep 1"<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>f vi(y:execute "!sh -c \"open '" . shellescape("0",1) . "' && sleep 1\""<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>G :w<CR>:!sh -c 'pandoc '\''%'\'' -o '\''%:r.pdf'\'' && open '\''%:r.pdf'\'' && sleep 1'<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>s :lua vim.fn.execute("r!screen2vim '" ..  vim.fn.expand("%:p") .. "' 'img'")<CR>
 nnoremap <Leader>( t(l"pda(hda("pp
 nnoremap <Leader>l :lua vim.diagnostic.setloclist()<CR>
