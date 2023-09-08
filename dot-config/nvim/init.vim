@@ -7,6 +7,13 @@ let g:vim_markdown_new_list_item_indent = 2
 call plug#begin()
 if has('mac')
     let g:netrw_browser_viewer='open'
+    if len("${ITERM_PROFILE}") > 0
+        if "${ITERM_PROFILE}" == 'Dark'
+            set background=dark
+        else
+            set background=light
+        endif
+    endif
 endif
 Plug 'github/copilot.vim'
 Plug 'rhysd/vim-grammarous'
@@ -29,7 +36,6 @@ Plug 'guns/vim-sexp'
 call plug#end()
 let g:sexp_enable_insert_mode_mappings = 0
 let g:paredit_mode=0
-
 lua <<EOF
 require'lspconfig'.clojure_lsp.setup{}
 require'lspconfig'.pylsp.setup{}
@@ -108,7 +114,6 @@ if executable('tmux')
         colorscheme delek
         let g:slime_default_config = {"socket_name": "default", "target_pane": ":.0"}
     else
-        "set background=light
         let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.0"}
     endif
     let g:slime_target = "tmux"
@@ -192,7 +197,6 @@ elseif has("win32")
     nnoremap <Leader>c "+y:lua str2file(vim.fn.getreg('+'), "C:\\Users\\bhw\\AppData\\Local\\Temp\\vim-exchange.txt")<CR>
     nnoremap <Leader>v "+]p
     nnoremap <Leader>V :r "C:\\Users\\bhw\\AppData\\Local\\Temp\\vim-exchange.txt"<CR>
-    "set background=light
 endif
 nnoremap <Leader>o :FZF<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>q :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} \{1,\}\([^ ].*\) *$/\1\2\3 \~\~\4\~\~/<CR>:let @/=""<CR>
