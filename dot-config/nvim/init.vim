@@ -16,11 +16,13 @@ if has('mac')
     endif
 endif
 Plug 'github/copilot.vim'
+Plug 'gsuuon/llm.nvim'
 Plug 'rhysd/vim-grammarous'
 Plug 'jpalardy/vim-slime'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'psf/black', { 'branch': 'stable' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'ray-x/go.nvim'
 Plug 'frazrepo/vim-rainbow'
 Plug 'godlygeek/tabular'
 Plug 'neovim/nvim-lspconfig'
@@ -58,6 +60,37 @@ function str2file(str, fname)
   f:write(str)
   f:close()
 end
+require('llm').setup({
+prompts = vim.tbl_extend('force', require('llm.prompts.starters'), {
+  llamacpp = {
+    provider = llamacpp,
+    params = {
+      model = 'models/llama-2-13b-chat.ggmlv3.q4_K_M.bin',
+      ['n-gpu-layers'] = 32,
+      threads = 6,
+      ['repeat-penalty'] = 1.2,
+      temp = 0.2,
+      ['ctx-size'] = 4096,
+      ['n-predict'] = -1
+    },
+    builder = function(input)
+      return {
+        prompt = llamacpp.llama_2_format({
+          messages = {
+            input
+          }
+        })
+      }
+    end,
+    options = {
+      path = os.getenv('LLAMACPP_DIR'),
+      main_dir = os.getenv('LLAMACPP_MAIN_DIR')
+    }
+    }
+  })
+})
+
+
 
 EOF
 
@@ -256,7 +289,7 @@ au BufRead,BufNewFile *.lisp lua clstart()
 "https://github.com/preservim/vim-markdown/issues/390#issuecomment-450392655
 "https://github.com/preservim/vim-markdown/pull/375
 "| setlocal comments=bf:>,bf:*,bf:+,bf:- | set formatoptions+=c  | set formatlistpat=^\\s*\\d\\+[.\)]\\s\\+\\\|^\\s*[#*+~-]\\s\\+\\\|^\\(\\\|[*#-~+]\\)\\[^[^\\]]\\+\\]:\\s
-au BufRead,BufNewFile *.md set shiftwidth=2 | set tabstop=2 | setlocal comments=bf:*,bf:+,bf:-,n:> | set formatoptions+=c  | set formatlistpat=^\\s*\\d\\+[.\)]\\s\\+\\\|^\\s*[#*+~-]\\s\\+\\\|^\\(\\\|[*#-~+]\\)\\[^[^\\]]\\+\\]:\\s | set textwidth=80
+au BufRead,BufNewFile *.md set shiftwidth=2 | set tabstop=2 | setlocal comments=bf:*,bf:+,bf:-,n:> | set formatoptions+=c  | set formatlistpat=^\\s*\\d\\+[.\)]\\s\\+\\\|^\\s*[#*+~-]\\s\\+\\\|^\\(\\\|[*#-~+]\\)\\[^[^\\]]\\+\\]:\\s | set textwidth=80 | set autoindent
 
 
 au BufRead,BufNewFile *.hs set shiftwidth=2 | set tabstop=2
