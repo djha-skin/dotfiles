@@ -1,0 +1,45 @@
+#!/bin/sh
+
+set -e
+
+if [ -f ~/.profile ]
+then
+    . ~/.profile
+elif [ -f ~/.zprofile ]
+then
+    . ~/.zprofile
+fi
+
+raw=true
+remote=HomeDropbox
+while [ -n "${1}" ]
+do
+    case "${1}" in
+        --raw)
+            raw=true
+            shift
+            ;;
+        --remote)
+            shift
+            remote="${1}"
+            shift
+            ;;
+        *)
+            echo "Nope." >&2
+            exit 1
+            ;;
+    esac
+done
+
+dest="${remote}:/Files"
+path="$(choose-file 2>/dev/null)"
+fname="$(echo "${path}" | sed -e 's|[^/]*/||g')"
+
+#echo "startup"
+#mkdir -p "${src}"
+#rclone mkdir "${dest}"
+
+rclone copy "${path}" "${dest}/${fname}"
+raw_link=$(rclone link "${dest}/${fname}")
+printf "${raw_link}" | copy
+notify "file2dropbox" "Synced to ${remote}, URL in clipboard"
