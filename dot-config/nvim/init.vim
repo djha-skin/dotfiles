@@ -7,8 +7,17 @@ let g:vim_markdown_new_list_item_indent = 2
 call plug#begin()
 if has('mac')
     let g:netrw_browser_viewer='open'
-    if len("${ITERM_PROFILE}") > 0
-        if "${ITERM_PROFILE}" == 'Dark'
+    if len($ITERM_PROFILE) > 0
+        if $ITERM_PROFILE == 'Dark'
+            set background=dark
+        else
+            set background=light
+        endif
+    endif
+else
+    "let g:netrw_browser_viewer='xdg-open'
+    if len($TERMINAL_PROFILE) > 0
+        if $TERMINAL_PROFILE == 'Dark'
             set background=dark
         else
             set background=light
@@ -237,8 +246,13 @@ au BufRead,BufNewFile *.md nnoremap <LocalLeader>w :let @/=""<CR>:s/^\( *\)\(- *
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>e :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} */\1- [ ] /g<CR>:let @/=""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>r :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} */\1/g<CR>:let @/=""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>t :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} *[~]\{2\}\(.*\)[~]\{2\} *$/\1\2\3 \4/<CR>:let @/=""<CR>
-au BufRead,BufNewFile *.md nnoremap <LocalLeader>f vi(y:execute "!sh -c \"open '" . shellescape("0",1) . "' && sleep 1\""<CR>
-au BufRead,BufNewFile *.md nnoremap <LocalLeader>G :w<CR>:!sh -c 'pandoc '\''%'\'' -o '\''%:r.pdf'\'' && open '\''%:r.pdf'\'' && sleep 1'<CR>
+if has('mac')
+    au BufRead,BufNewFile *.md nnoremap <LocalLeader>f vi(y:execute "!sh -c \"open '" . shellescape("0",1) . "' && sleep 1\""<CR>
+    au BufRead,BufNewFile *.md nnoremap <LocalLeader>G :w<CR>:!sh -c 'pandoc '\''%'\'' -o '\''%:r.pdf'\'' && open '\''%:r.pdf'\'' && sleep 1'<CR>
+else
+    au BufRead,BufNewFile *.md nnoremap <LocalLeader>f vi(y:execute "!sh -c \"xdg-open '" . shellescape("0",1) . "' && sleep 1\""<CR>
+    au BufRead,BufNewFile *.md nnoremap <LocalLeader>G :w<CR>:!sh -c 'pandoc '\''%'\'' -o '\''%:r.pdf'\'' && xdg-open '\''%:r.pdf'\'' && sleep 1'<CR>
+fi
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>s :lua vim.fn.execute("r!screen2vim '" ..  vim.fn.expand("%:p") .. "' 'img'")<CR>
 nnoremap <Leader>( t(l"pda(hda("pp
 nnoremap <Leader>l :lua vim.diagnostic.setloclist()<CR>
