@@ -5,3 +5,5 @@
 .#*
 \#*
 
+# Don't commit purple's accounts.xml, always only its encrypted counterpart.
+*/accounts.xml
