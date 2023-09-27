@@ -249,10 +249,10 @@ au BufRead,BufNewFile *.md nnoremap <LocalLeader>t :let @/=""<CR>:s/^\( *\)\(- *
 
 if has('mac')
     au BufRead,BufNewFile *.md nnoremap <LocalLeader>f vi(y:execute "!sh -c \"open '" . shellescape("0",1) . "' && sleep 1\""<CR>
-    au BufRead,BufNewFile *.md nnoremap <LocalLeader>G :w<CR>:!sh -c 'pandoc '\''%'\'' -o '\''%:r.pdf'\'' && open '\''%:r.pdf'\'' && sleep 1'<CR>
+    au BufRead,BufNewFile *.md nnoremap <LocalLeader>G :w<CR>:!sh -c 'pandoc -t html '\''%'\'' -o '\''%:r.pdf'\'' && open '\''%:r.pdf'\'' && sleep 1'<CR>
 else
     au BufRead,BufNewFile *.md nnoremap <LocalLeader>f vi(y:execute "!sh -c \"xdg-open '" . shellescape("0",1) . "' && sleep 1\""<CR>
-    au BufRead,BufNewFile *.md nnoremap <LocalLeader>G :w<CR>:!sh -c 'pandoc '\''%'\'' -o '\''%:r.pdf'\'' && xdg-open '\''%:r.pdf'\'' && sleep 1'<CR>
+    au BufRead,BufNewFile *.md nnoremap <LocalLeader>G :w<CR>:!sh -c 'pandoc -t html '\''%'\'' -o '\''%:r.pdf'\'' && xdg-open '\''%:r.pdf'\'' && sleep 1'<CR>
 endif
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>s :lua vim.fn.execute("r!screen2vim '" ..  vim.fn.expand("%:p") .. "' 'img'")<CR>
 nnoremap <Leader>( t(l"pda(hda("pp
