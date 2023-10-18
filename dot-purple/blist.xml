@@ -2,59 +2,6 @@
 
 <purple version='1.0'>
 	<blist>
-		<group name='Discord'>
-			<setting name='collapsed' type='bool'>1</setting>
-			<contact>
-				<buddy account='me@djha.skin' proto='prpl-eionrobb-discord'>
-					<name>kenflartenhugen_07726#0000</name>
-					<alias>kenflartenhugen_07726</alias>
-					<setting name='buddy_icon' type='string'>e2c11a2b81667af5f7b705b14dd5df1384849af4.png</setting>
-					<setting name='icon_checksum' type='string'>35cba1792717e5e945c7c398cb0d6ead</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='me@djha.skin' proto='prpl-eionrobb-discord'>
-					<name>jennhaskin814#0000</name>
-					<alias>jennhaskin814</alias>
-					<setting name='last_message_id_low' type='int'>1560543243</setting>
-					<setting name='icon_checksum' type='string'>6c5996770c985bcd6e5b68131ff2ba04</setting>
-					<setting name='last_message_id_high' type='int'>268322989</setting>
-					<setting name='buddy_icon' type='string'>beeb07983b2080c1299a3413ed19d3cc754afe44.png</setting>
-					<setting name='last_seen' type='int'>1694391667</setting>
-				</buddy>
-				<setting name='gtk-mute-sound' type='bool'>0</setting>
-			</contact>
-			<contact>
-				<buddy account='me@djha.skin' proto='prpl-eionrobb-discord'>
-					<name>eljeffesenior#0000</name>
-					<alias>eljeffesenior</alias>
-					<setting name='last_seen' type='int'>1693677496</setting>
-				</buddy>
-			</contact>
-		</group>
-		<group name='UniteAI: Text Channels'>
-			<setting name='collapsed' type='bool'>1</setting>
-			<setting name='id' type='string'>1140874616911437874</setting>
-			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
-				<alias>info</alias>
-				<component name='id'>1141069296970248202</component>
-				<component name='name'>info</component>
-			</chat>
-			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
-				<alias>general</alias>
-				<component name='id'>1140874616911437876</component>
-				<component name='name'>general</component>
-				<setting name='last_message_id_low' type='int'>-62648269</setting>
-				<setting name='last_message_id_high' type='int'>268775797</setting>
-			</chat>
-			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
-				<alias>development</alias>
-				<component name='id'>1141087726511333407</component>
-				<component name='name'>development</component>
-				<setting name='last_message_id_low' type='int'>2139357184</setting>
-				<setting name='last_message_id_high' type='int'>269067394</setting>
-			</chat>
-		</group>
 		<group name='Lisp: 🔹Server🔹'>
 			<setting name='collapsed' type='bool'>1</setting>
 			<setting name='id' type='string'>570593240185569320</setting>
@@ -77,15 +24,13 @@
 				<alias>welcome</alias>
 				<component name='id'>665722925344751617</component>
 				<component name='name'>welcome</component>
-				<setting name='last_message_id_low' type='int'>8663062</setting>
-				<setting name='last_message_id_high' type='int'>269110890</setting>
+				<setting name='last_message_id_low' type='int'>461643776</setting>
+				<setting name='last_message_id_high' type='int'>270954828</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>readme</alias>
 				<component name='id'>299948610387312640</component>
 				<component name='name'>readme</component>
-				<setting name='last_message_id_low' type='int'>214188062</setting>
-				<setting name='last_message_id_high' type='int'>252600485</setting>
 			</chat>
 		</group>
 		<group name='Lisp: 🔹Lobby🔹'>
@@ -95,36 +40,30 @@
 				<alias>live-streaming</alias>
 				<component name='id'>479454150464372737</component>
 				<component name='name'>live-streaming</component>
-				<setting name='last_message_id_low' type='int'>-33284066</setting>
-				<setting name='last_message_id_high' type='int'>268474382</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>general-off-topic</alias>
 				<component name='id'>297478485000192010</component>
 				<component name='name'>general-off-topic</component>
-				<setting name='last_message_id_low' type='int'>79974532</setting>
-				<setting name='last_message_id_high' type='int'>269109030</setting>
+				<setting name='last_message_id_low' type='int'>948191327</setting>
+				<setting name='last_message_id_high' type='int'>271068960</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>introductions</alias>
 				<component name='id'>297478281278652417</component>
 				<component name='name'>introductions</component>
-				<setting name='last_message_id_low' type='int'>1564741682</setting>
-				<setting name='last_message_id_high' type='int'>268225076</setting>
+				<setting name='last_message_id_low' type='int'>319049758</setting>
+				<setting name='last_message_id_high' type='int'>270774995</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>meta</alias>
 				<component name='id'>300629636709351424</component>
 				<component name='name'>meta</component>
-				<setting name='last_message_id_low' type='int'>-532402065</setting>
-				<setting name='last_message_id_high' type='int'>266260662</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>bot-usage</alias>
 				<component name='id'>299959018687037441</component>
 				<component name='name'>bot-usage</component>
-				<setting name='last_message_id_low' type='int'>-1543241708</setting>
-				<setting name='last_message_id_high' type='int'>268307925</setting>
 			</chat>
 		</group>
 		<group name='Lisp: 🔹General Programming🔹'>
@@ -134,15 +73,11 @@
 				<alias>tooling</alias>
 				<component name='id'>405450723791208448</component>
 				<component name='name'>tooling</component>
-				<setting name='last_message_id_low' type='int'>1170477087</setting>
-				<setting name='last_message_id_high' type='int'>268322097</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>low-level</alias>
 				<component name='id'>601478473000681473</component>
 				<component name='name'>low-level</component>
-				<setting name='last_message_id_low' type='int'>-318500754</setting>
-				<setting name='last_message_id_high' type='int'>266669000</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>ui</alias>
@@ -153,55 +88,51 @@
 				<alias>algorithms</alias>
 				<component name='id'>457360011258101770</component>
 				<component name='name'>algorithms</component>
-				<setting name='last_message_id_low' type='int'>1019482112</setting>
-				<setting name='last_message_id_high' type='int'>268118422</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>compiler-theory</alias>
 				<component name='id'>665722412318326801</component>
 				<component name='name'>compiler-theory</component>
-				<setting name='last_message_id_low' type='int'>1912873010</setting>
-				<setting name='last_message_id_high' type='int'>268827506</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>language-design</alias>
 				<component name='id'>505106106649935900</component>
 				<component name='name'>language-design</component>
-				<setting name='last_message_id_low' type='int'>-1887154046</setting>
-				<setting name='last_message_id_high' type='int'>268647713</setting>
+				<setting name='last_message_id_low' type='int'>298070126</setting>
+				<setting name='last_message_id_high' type='int'>270975805</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>web</alias>
 				<component name='id'>665719883648073802</component>
 				<component name='name'>web</component>
-				<setting name='last_message_id_low' type='int'>-1429995440</setting>
-				<setting name='last_message_id_high' type='int'>268632735</setting>
+				<setting name='last_message_id_low' type='int'>931418192</setting>
+				<setting name='last_message_id_high' type='int'>271063447</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>ai</alias>
 				<component name='id'>548251934704926741</component>
 				<component name='name'>ai</component>
+				<setting name='last_message_id_low' type='int'>-1241251820</setting>
+				<setting name='last_message_id_high' type='int'>270793789</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>showcase</alias>
 				<component name='id'>665719437285916690</component>
 				<component name='name'>showcase</component>
-				<setting name='last_message_id_low' type='int'>1606692954</setting>
-				<setting name='last_message_id_high' type='int'>268134016</setting>
+				<setting name='last_message_id_low' type='int'>-272363500</setting>
+				<setting name='last_message_id_high' type='int'>270993257</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>general-programming</alias>
 				<component name='id'>503574823281229864</component>
 				<component name='name'>general-programming</component>
-				<setting name='last_message_id_low' type='int'>-2029772800</setting>
-				<setting name='last_message_id_high' type='int'>267450636</setting>
+				<setting name='last_message_id_low' type='int'>-1476116399</setting>
+				<setting name='last_message_id_high' type='int'>270993086</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>graphics</alias>
 				<component name='id'>665719552994181120</component>
 				<component name='name'>graphics</component>
-				<setting name='last_message_id_low' type='int'>-1560014828</setting>
-				<setting name='last_message_id_high' type='int'>268544168</setting>
 			</chat>
 		</group>
 		<group name='Lisp: 🔹Lisp Programming🔹'>
@@ -211,43 +142,41 @@
 				<alias>lisp-gamedev</alias>
 				<component name='id'>336534493500407819</component>
 				<component name='name'>lisp-gamedev</component>
-				<setting name='last_message_id_low' type='int'>-981192653</setting>
-				<setting name='last_message_id_high' type='int'>268590384</setting>
+				<setting name='last_message_id_low' type='int'>1166295100</setting>
+				<setting name='last_message_id_high' type='int'>270844050</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>emacs-lisp</alias>
 				<component name='id'>297478411738284032</component>
 				<component name='name'>emacs-lisp</component>
-				<setting name='last_message_id_low' type='int'>1061429359</setting>
-				<setting name='last_message_id_high' type='int'>268961926</setting>
+				<setting name='last_message_id_low' type='int'>893669406</setting>
+				<setting name='last_message_id_high' type='int'>270949846</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>racket</alias>
 				<component name='id'>297478394969325569</component>
 				<component name='name'>racket</component>
-				<setting name='last_message_id_low' type='int'>-1744555952</setting>
-				<setting name='last_message_id_high' type='int'>269068381</setting>
+				<setting name='last_message_id_low' type='int'>209981460</setting>
+				<setting name='last_message_id_high' type='int'>270877805</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>scheme</alias>
 				<component name='id'>297478374220234764</component>
 				<component name='name'>scheme</component>
-				<setting name='last_message_id_low' type='int'>1803816970</setting>
-				<setting name='last_message_id_high' type='int'>268839645</setting>
+				<setting name='last_message_id_low' type='int'>419713114</setting>
+				<setting name='last_message_id_high' type='int'>270891137</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>clojure</alias>
 				<component name='id'>297478442113302528</component>
 				<component name='name'>clojure</component>
-				<setting name='last_message_id_low' type='int'>1623470091</setting>
-				<setting name='last_message_id_high' type='int'>268416958</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>common-lisp</alias>
 				<component name='id'>297478350145060875</component>
 				<component name='name'>common-lisp</component>
-				<setting name='last_message_id_low' type='int'>-1027321836</setting>
-				<setting name='last_message_id_high' type='int'>269102302</setting>
+				<setting name='last_message_id_low' type='int'>-712753142</setting>
+				<setting name='last_message_id_high' type='int'>271058209</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>cl-cdr</alias>
@@ -262,22 +191,18 @@
 				<alias>beginner-resources</alias>
 				<component name='id'>665717711766028299</component>
 				<component name='name'>beginner-resources</component>
-				<setting name='last_message_id_low' type='int'>-675008482</setting>
-				<setting name='last_message_id_high' type='int'>264120150</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>beginner-showcase</alias>
 				<component name='id'>665717806305902615</component>
 				<component name='name'>beginner-showcase</component>
-				<setting name='last_message_id_low' type='int'>-960229366</setting>
-				<setting name='last_message_id_high' type='int'>267041185</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>beginner-questions</alias>
 				<component name='id'>569524818991644692</component>
 				<component name='name'>beginner-questions</component>
-				<setting name='last_message_id_low' type='int'>1824800918</setting>
-				<setting name='last_message_id_high' type='int'>268958274</setting>
+				<setting name='last_message_id_low' type='int'>-1614544865</setting>
+				<setting name='last_message_id_high' type='int'>270993201</setting>
 			</chat>
 		</group>
 		<group name='Lisp: 🔹Interests🔹'>
@@ -287,22 +212,20 @@
 				<alias>operating-systems</alias>
 				<component name='id'>405450802388271104</component>
 				<component name='name'>operating-systems</component>
-				<setting name='last_message_id_low' type='int'>637808761</setting>
-				<setting name='last_message_id_high' type='int'>263992875</setting>
+				<setting name='last_message_id_low' type='int'>-1769734134</setting>
+				<setting name='last_message_id_high' type='int'>271069706</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>hardware</alias>
 				<component name='id'>313136305133453322</component>
 				<component name='name'>hardware</component>
-				<setting name='last_message_id_low' type='int'>-1601941483</setting>
-				<setting name='last_message_id_high' type='int'>267444969</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>music</alias>
 				<component name='id'>537010828382306345</component>
 				<component name='name'>music</component>
-				<setting name='last_message_id_low' type='int'>105119756</setting>
-				<setting name='last_message_id_high' type='int'>268955664</setting>
+				<setting name='last_message_id_low' type='int'>1229205714</setting>
+				<setting name='last_message_id_high' type='int'>270648477</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>linguistics-and-languages</alias>
@@ -313,30 +236,23 @@
 				<alias>art</alias>
 				<component name='id'>532344856731975690</component>
 				<component name='name'>art</component>
-				<setting name='last_message_id_low' type='int'>532942918</setting>
-				<setting name='last_message_id_high' type='int'>267281188</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>books</alias>
 				<component name='id'>559112179886850068</component>
 				<component name='name'>books</component>
-				<setting name='last_message_id_low' type='int'>-1547419596</setting>
-				<setting name='last_message_id_high' type='int'>265817412</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>memes</alias>
 				<component name='id'>299903314596855808</component>
 				<component name='name'>memes</component>
-				<setting name='last_message_id_low' type='int'>1346650142</setting>
-				<setting name='last_message_id_high' type='int'>269113891</setting>
+				<setting name='last_message_id_low' type='int'>2130980884</setting>
+				<setting name='last_message_id_high' type='int'>271043417</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>programming-languages</alias>
 				<component name='id'>440230126605828106</component>
 				<component name='name'>programming-languages</component>
-				<setting name='last_message_id_low' type='int'>-284938230</setting>
-				<setting name='gtk-mute-sound' type='bool'>0</setting>
-				<setting name='last_message_id_high' type='int'>269109670</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>日本語（nihongo）</alias>
@@ -347,112 +263,41 @@
 				<alias>mathematics</alias>
 				<component name='id'>377481417334063105</component>
 				<component name='name'>mathematics</component>
-				<setting name='last_message_id_low' type='int'>109314091</setting>
-				<setting name='last_message_id_high' type='int'>268938392</setting>
 			</chat>
 		</group>
-		<group name='Salt Lake City Go: Locations'>
+		<group name='UniteAI: Text Channels'>
 			<setting name='collapsed' type='bool'>1</setting>
-			<setting name='id' type='string'>1120553039992979538</setting>
+			<setting name='id' type='string'>1140874616911437874</setting>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
-				<alias>weber-and-davis-counties</alias>
-				<component name='id'>1120551670070395002</component>
-				<component name='name'>weber-and-davis-counties</component>
-				<setting name='last_message_id_low' type='int'>881066115</setting>
-				<setting name='last_message_id_high' type='int'>266452477</setting>
-			</chat>
-			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
-				<alias>utah-county</alias>
-				<component name='id'>1120551358391664720</component>
-				<component name='name'>utah-county</component>
-				<setting name='last_message_id_low' type='int'>-901496722</setting>
-				<setting name='last_message_id_high' type='int'>266615449</setting>
-			</chat>
-		</group>
-		<group name='Salt Lake City Go: Community'>
-			<setting name='collapsed' type='bool'>1</setting>
-			<setting name='id' type='string'>1120553204896243782</setting>
-			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
-				<alias>where-we-are-meeting-this-week</alias>
-				<component name='id'>1099394735493349408</component>
-				<component name='name'>where-we-are-meeting-this-week</component>
-			</chat>
-			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
-				<alias>announcements</alias>
-				<component name='id'>1102243488894038056</component>
-				<component name='name'>announcements</component>
-				<setting name='last_message_id_low' type='int'>914620506</setting>
-				<setting name='gtk-mute-sound' type='bool'>0</setting>
-				<setting name='last_message_id_high' type='int'>267705294</setting>
-			</chat>
-		</group>
-		<group name='Salt Lake City Go: Text Channels'>
-			<setting name='collapsed' type='bool'>1</setting>
-			<setting name='id' type='string'>917159486760833056</setting>
-			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
-				<alias>go-weqei-and-baduk</alias>
-				<component name='id'>917159622308163684</component>
-				<component name='name'>go-weqei-and-baduk</component>
-				<setting name='last_message_id_low' type='int'>-1782300642</setting>
-				<setting name='last_message_id_high' type='int'>252205020</setting>
-			</chat>
-			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
-				<alias>streaming</alias>
-				<component name='id'>1044153677671309342</component>
-				<component name='name'>streaming</component>
-				<setting name='last_message_id_low' type='int'>398737550</setting>
-				<setting name='last_message_id_high' type='int'>267772914</setting>
-			</chat>
-			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
-				<alias>online-go-discussion</alias>
-				<component name='id'>944453373963431946</component>
-				<component name='name'>online-go-discussion</component>
-				<setting name='last_message_id_low' type='int'>-1560018924</setting>
-				<setting name='last_message_id_high' type='int'>267526523</setting>
-			</chat>
-			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
-				<alias>lessons</alias>
-				<component name='id'>974085904287268924</component>
-				<component name='name'>lessons</component>
-			</chat>
-			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
-				<alias>tournament-organization</alias>
-				<component name='id'>997989266107941044</component>
-				<component name='name'>tournament-organization</component>
-				<setting name='last_message_id_low' type='int'>-452702107</setting>
-				<setting name='last_message_id_high' type='int'>260616275</setting>
-			</chat>
-			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
-				<alias>friday-go</alias>
-				<component name='id'>1116884090373816421</component>
-				<component name='name'>friday-go</component>
-				<setting name='last_message_id_low' type='int'>-1748750315</setting>
-				<setting name='last_message_id_high' type='int'>267720033</setting>
-			</chat>
-			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
-				<alias>ogs-kgs-usernames</alias>
-				<component name='id'>1099397914243125369</component>
-				<component name='name'>ogs-kgs-usernames</component>
-				<setting name='last_message_id_low' type='int'>1971601510</setting>
-				<setting name='last_message_id_high' type='int'>264073402</setting>
+				<alias>info</alias>
+				<component name='id'>1141069296970248202</component>
+				<component name='name'>info</component>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>general</alias>
-				<component name='id'>917159486760833059</component>
+				<component name='id'>1140874616911437876</component>
 				<component name='name'>general</component>
-				<setting name='last_message_id_low' type='int'>772026410</setting>
-				<setting name='last_message_id_high' type='int'>268151371</setting>
+				<setting name='last_message_id_low' type='int'>704917594</setting>
+				<setting name='last_message_id_high' type='int'>270688031</setting>
+			</chat>
+			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
+				<alias>development</alias>
+				<component name='id'>1141087726511333407</component>
+				<component name='name'>development</component>
 			</chat>
 		</group>
 		<group name='Haskin: Text Channels'>
 			<setting name='collapsed' type='bool'>1</setting>
 			<setting name='id' type='string'>1143713013128495157</setting>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
+				<alias>utah-county</alias>
+				<component name='id'>1145135036329369742</component>
+				<component name='name'>utah-county</component>
+			</chat>
+			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>all-of-us</alias>
 				<component name='id'>1143934486489354240</component>
 				<component name='name'>all-of-us</component>
-				<setting name='last_message_id_low' type='int'>780419082</setting>
-				<setting name='last_message_id_high' type='int'>266890232</setting>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>cousins</alias>
@@ -460,70 +305,78 @@
 				<component name='name'>cousins</component>
 			</chat>
 			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
-				<alias>utah-county</alias>
-				<component name='id'>1145135036329369742</component>
-				<component name='name'>utah-county</component>
-			</chat>
-			<chat proto='prpl-eionrobb-discord' account='me@djha.skin'>
 				<alias>dj-haskin-family-group</alias>
 				<component name='id'>1143713013128495159</component>
 				<component name='name'>dj-haskin-family-group</component>
-				<setting name='last_message_id_low' type='int'>1287925760</setting>
-				<setting name='last_message_id_high' type='int'>266353952</setting>
 			</chat>
 		</group>
-		<group name='Matrix'>
-			<setting name='collapsed' type='bool'>0</setting>
-			<chat proto='prpl-matrix' account='skin'>
-				<alias>janet-language/community</alias>
-				<component name='room_id'>!VtzfelfNGDtNkQKvpF:gitter.im</component>
-				<setting name='gtk-persistent' type='bool'>1</setting>
-			</chat>
-			<chat proto='prpl-matrix' account='skin'>
-				<alias>Common Lisp</alias>
-				<component name='room_id'>!ZSyPiftXUdlyuPIrKs:ponies.im</component>
+		<group name='Discord'>
+			<setting name='collapsed' type='bool'>1</setting>
+			<contact>
+				<buddy account='me@djha.skin' proto='prpl-eionrobb-discord'>
+					<name>kenflartenhugen_07726#0000</name>
+					<alias>kenflartenhugen_07726</alias>
+					<setting name='buddy_icon' type='string'>e2c11a2b81667af5f7b705b14dd5df1384849af4.png</setting>
+					<setting name='icon_checksum' type='string'>35cba1792717e5e945c7c398cb0d6ead</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='me@djha.skin' proto='prpl-eionrobb-discord'>
+					<name>jennhaskin814#0000</name>
+					<alias>jennhaskin814</alias>
+					<setting name='buddy_icon' type='string'>beeb07983b2080c1299a3413ed19d3cc754afe44.png</setting>
+					<setting name='icon_checksum' type='string'>6c5996770c985bcd6e5b68131ff2ba04</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='me@djha.skin' proto='prpl-eionrobb-discord'>
+					<name>eljeffesenior#0000</name>
+					<alias>eljeffesenior</alias>
+					<setting name='last_seen' type='int'>1697496365</setting>
+				</buddy>
+			</contact>
+		</group>
+		<group name='Matrix'/>
+		<group name='IRC'>
+			<setting name='collapsed' type='bool'>1</setting>
+			<chat proto='prpl-irc' account='skin/libera@chat.sr.ht'>
+				<component name='channel'>#commonlisp</component>
 				<setting name='gtk-mute-sound' type='bool'>0</setting>
+				<setting name='gtk-autojoin' type='bool'>1</setting>
 				<setting name='gtk-persistent' type='bool'>1</setting>
 			</chat>
-			<chat proto='prpl-matrix' account='skin'>
-				<alias>Comodoro</alias>
-				<component name='room_id'>!snTJrqwDjqVsEuikSd:matrix.org</component>
-				<setting name='gtk-persistent' type='bool'>1</setting>
-			</chat>
-			<chat proto='prpl-matrix' account='skin'>
-				<alias>Plus St Community</alias>
-				<component name='room_id'>!jDFwwKSaqrkpOBSsCS:plus.st</component>
-				<setting name='gtk-persistent' type='bool'>1</setting>
-			</chat>
-			<chat proto='prpl-matrix' account='skin'>
-				<alias>Himalaya</alias>
-				<component name='room_id'>!YoksPkuRbToNNITgZQ:matrix.org</component>
-				<setting name='gtk-persistent' type='bool'>1</setting>
-			</chat>
-			<chat proto='prpl-matrix' account='skin'>
-				<alias>Pimalaya</alias>
-				<component name='room_id'>!hERaQjNdFXZrpvrbkJ:matrix.org</component>
+			<chat proto='prpl-irc' account='skin/libera@chat.sr.ht'>
+				<component name='channel'>#janet</component>
 				<setting name='gtk-mute-sound' type='bool'>0</setting>
+				<setting name='gtk-autojoin' type='bool'>1</setting>
 				<setting name='gtk-persistent' type='bool'>1</setting>
 			</chat>
-			<chat proto='prpl-matrix' account='skin'>
-				<alias>!jZbkXjJqihvwADQnsi:matrix.org</alias>
-				<component name='room_id'>!jZbkXjJqihvwADQnsi:matrix.org</component>
+			<chat proto='prpl-irc' account='skin/libera@chat.sr.ht'>
+				<component name='channel'>#ffmpeg</component>
 				<setting name='gtk-mute-sound' type='bool'>0</setting>
-				<setting name='gtk-persistent' type='bool'>1</setting>
 			</chat>
 		</group>
 		<group name='GroupMe Chats'>
-			<setting name='collapsed' type='bool'>0</setting>
+			<setting name='collapsed' type='bool'>1</setting>
 			<chat proto='prpl-alyssarosenzweig-groupme' account='djhaskin987@gmail.com'>
-				<alias>Utah People</alias>
-				<component name='id'>52632738</component>
-				<component name='name'>Utah People</component>
+				<alias>Mom Dad Dan Jen</alias>
+				<component name='id'>62090979</component>
+				<component name='name'>Mom Dad Dan Jen</component>
+			</chat>
+			<chat proto='prpl-alyssarosenzweig-groupme' account='djhaskin987@gmail.com'>
+				<alias>Highland Haskin</alias>
+				<component name='id'>52607876</component>
+				<component name='name'>Highland Haskin</component>
 			</chat>
 			<chat proto='prpl-alyssarosenzweig-groupme' account='djhaskin987@gmail.com'>
 				<alias>Jay and Bette Haskin Family</alias>
 				<component name='id'>52607498</component>
 				<component name='name'>Jay and Bette Haskin Family</component>
+			</chat>
+			<chat proto='prpl-alyssarosenzweig-groupme' account='djhaskin987@gmail.com'>
+				<alias>Utah People</alias>
+				<component name='id'>52632738</component>
+				<component name='name'>Utah People</component>
 			</chat>
 			<chat proto='prpl-alyssarosenzweig-groupme' account='djhaskin987@gmail.com'>
 				<alias>Strasburg Neighborhood News &amp; Chat</alias>
@@ -534,11 +387,6 @@
 				<alias>Test</alias>
 				<component name='id'>77822563</component>
 				<component name='name'>Test</component>
-			</chat>
-			<chat proto='prpl-alyssarosenzweig-groupme' account='djhaskin987@gmail.com'>
-				<alias>Highland Haskin</alias>
-				<component name='id'>52607876</component>
-				<component name='name'>Highland Haskin</component>
 			</chat>
 			<chat proto='prpl-alyssarosenzweig-groupme' account='djhaskin987@gmail.com'>
 				<alias>Haskins + Toneys</alias>
@@ -560,11 +408,6 @@
 				<component name='id'>90783217</component>
 				<component name='name'>Utah Haskin Brothers</component>
 			</chat>
-			<chat proto='prpl-alyssarosenzweig-groupme' account='djhaskin987@gmail.com'>
-				<alias>Mom Dad Dan Jen</alias>
-				<component name='id'>62090979</component>
-				<component name='name'>Mom Dad Dan Jen</component>
-			</chat>
 		</group>
 		<group name='GroupMe'>
 			<setting name='collapsed' type='bool'>1</setting>
@@ -572,442 +415,503 @@
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>50989001</name>
 					<alias>RoseAnne Haskin Hunsaker</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
-					<name>27792043</name>
-					<alias>Kathryn Wenzel</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>74505315</name>
 					<alias>Jeff Haskin</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>74505346</name>
 					<alias>James Toney</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>74505345</name>
 					<alias>Tina Reisner</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>74580109</name>
 					<alias>Jeff Haskin</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
-					<name>38399663</name>
-					<alias>Jay Haskin</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>58085767</name>
 					<alias>Bette Haskin</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
+					<name>38399663</name>
+					<alias>Jay Haskin</alias>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
+					<name>27792043</name>
+					<alias>Katie Wenzel</alias>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>72851865</name>
 					<alias>Jennifer Haskin</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
-					<name>74505314</name>
-					<alias>Daniel Haskin</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>110379173</name>
 					<alias>Nick Reisner 2</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>45403567</name>
 					<alias>Nick Reisner</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>70217061</name>
 					<alias>Joseph Lee Hunsaker</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
+					<name>74505314</name>
+					<alias>Daniel Haskin</alias>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>99437970</name>
 					<alias>Hyrum hunsaker</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>24966551</name>
 					<alias>Liz Stevenson</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>25722353</name>
 					<alias>April Slade</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>50989002</name>
 					<alias>Susan Saunders</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>53791085</name>
 					<alias>Angrla richards</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>72852475</name>
 					<alias>Anna Meyers</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>37144082</name>
 					<alias>Lexi Mecham</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>81790499</name>
 					<alias>Seann McWhorter</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>72852266</name>
 					<alias>Camille Lewis</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>99390621</name>
 					<alias>Esther Hunsaker</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>50989004</name>
 					<alias>Julie Hendricks</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>51401252</name>
 					<alias>Grant Ellingson</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>31328639</name>
 					<alias>Devlin Daley</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>54449482</name>
 					<alias>Michelle Toney</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>52239832</name>
 					<alias>Roy Buhler</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>60384045</name>
 					<alias>JaNell Child</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>33672521</name>
 					<alias>Paul Child1</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>53120227</name>
 					<alias>Annie Child</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>64039957</name>
 					<alias>Alexis Jacobson</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>36051613</name>
 					<alias>Stephanie Child deGraffenoid</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>94254986</name>
 					<alias>Brandt Justensen</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>94254983</name>
 					<alias>Bonnie Child Hulon</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>94254981</name>
 					<alias>Tina Reisner</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>52369955</name>
 					<alias>Heather Haskin</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>94254980</name>
 					<alias>Chris child</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
-					<name>99347906</name>
-					<alias>June Haskin</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
-					<name>44566953</name>
-					<alias>Whitney  Haskin</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
-					<name>60692482</name>
-					<alias>Erik Wenzel</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>94261521</name>
 					<alias>Dustin Eaton</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>99576609</name>
 					<alias>Steven Dowdle</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>99580953</name>
 					<alias>Michael Pan</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>38491341</name>
 					<alias>Damien Moreno</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>67291298</name>
 					<alias>Mark Hadlock</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>20132763</name>
 					<alias>Russell Lewis</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>715154</name>
 					<alias>Brad Weber</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>91702395</name>
 					<alias>Joeen Hill</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>7004544</name>
 					<alias>Parker Anderson</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>43546534</name>
 					<alias>Lynn Ruff</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>42447379</name>
 					<alias>Spencer Mecham</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>98890592</name>
 					<alias>Jubal Myers</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>36130057</name>
 					<alias>Derek Richards</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>61172092</name>
 					<alias>Greg Slade</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>98880618</name>
 					<alias>Dave Stevenson</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>23212502</name>
 					<alias>Cody Campbell</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>38882060</name>
 					<alias>Ryan Rich</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>86392836</name>
 					<alias>Brett Sanford</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>95129398</name>
 					<alias>Barry Zundel</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
+					<name>44566953</name>
+					<alias>Whitney  Haskin</alias>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
 					<name>108138058</name>
 					<alias>Jacob Caulfield</alias>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
+					<name>99347906</name>
+					<alias>June</alias>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='djhaskin987@gmail.com' proto='prpl-alyssarosenzweig-groupme'>
+					<name>60692482</name>
+					<alias>Erik Wenzel</alias>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 		</group>
-		<group name='IRC'>
-			<setting name='collapsed' type='bool'>1</setting>
-			<chat proto='prpl-irc' account='skin/libera@chat.sr.ht'>
-				<alias>janet</alias>
-				<component name='channel'>#janet</component>
-				<setting name='gtk-autojoin' type='bool'>1</setting>
-				<setting name='gtk-persistent' type='bool'>1</setting>
-			</chat>
-		</group>
 		<group name='Angel Studios'>
 			<setting name='slack' type='string'>T0735HTFA</setting>
-			<setting name='collapsed' type='bool'>1</setting>
+			<setting name='collapsed' type='bool'>0</setting>
+			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
+				<alias>mpdm-daniel.haskin--jonathan.vansickle--collinbarkdull-1</alias>
+				<component name='name'>mpdm-daniel.haskin--jonathan.vansickle--collinbarkdull-1</component>
+				<setting name='slack' type='string'>C061FK43CAG</setting>
+			</chat>
+			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
+				<alias>mpdm-kevin.crook--ngraves--daniel.haskin-1</alias>
+				<component name='name'>mpdm-kevin.crook--ngraves--daniel.haskin-1</component>
+				<setting name='slack' type='string'>C060PGNM469</setting>
+			</chat>
+			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
+				<alias>pov-angel-studios</alias>
+				<component name='name'>pov-angel-studios</component>
+				<setting name='slack' type='string'>C0604JHRE3D</setting>
+			</chat>
+			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
+				<alias>mpdm-doran.barton--tanner.nash--daniel.haskin--caleb.salt--bron.kimball-1</alias>
+				<component name='name'>mpdm-doran.barton--tanner.nash--daniel.haskin--caleb.salt--bron.kimball-1</component>
+				<setting name='slack' type='string'>C060B36PUMU</setting>
+			</chat>
+			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
+				<alias>mpdm-bron.kimball--daniel.haskin--caleb.salt-1</alias>
+				<component name='name'>mpdm-bron.kimball--daniel.haskin--caleb.salt-1</component>
+				<setting name='slack' type='string'>C060H3VRFMZ</setting>
+			</chat>
+			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
+				<alias>mpdm-doran.barton--daniel.haskin--kevin.crook--alex.lutz-1</alias>
+				<component name='name'>mpdm-doran.barton--daniel.haskin--kevin.crook--alex.lutz-1</component>
+				<setting name='slack' type='string'>C060G0W5L8Y</setting>
+			</chat>
+			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
+				<alias>mpdm-alex.lutz--daniel.haskin--maxwell.bogh-1</alias>
+				<component name='name'>mpdm-alex.lutz--daniel.haskin--maxwell.bogh-1</component>
+				<setting name='slack' type='string'>C05UU8PCF99</setting>
+			</chat>
+			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
+				<alias>mpdm-alex.lutz--daniel.haskin--maxwell.bogh--kevin.crook-1</alias>
+				<component name='name'>mpdm-alex.lutz--daniel.haskin--maxwell.bogh--kevin.crook-1</component>
+				<setting name='slack' type='string'>C05UDR8PGJ3</setting>
+			</chat>
+			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
+				<alias>devops-alex</alias>
+				<component name='name'>devops-alex</component>
+				<setting name='slack' type='string'>C05UU8Q2K5Z</setting>
+			</chat>
+			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
+				<alias>marketing-all</alias>
+				<component name='name'>marketing-all</component>
+				<setting name='slack' type='string'>C02FQD5N7C5</setting>
+			</chat>
+			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
+				<alias>ffmpeg-that</alias>
+				<component name='name'>ffmpeg-that</component>
+				<setting name='slack' type='string'>C05V6P8T8PJ</setting>
+			</chat>
+			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
+				<alias>cdn-guild</alias>
+				<component name='name'>cdn-guild</component>
+				<setting name='slack' type='string'>C05U9CQRYS1</setting>
+			</chat>
+			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
+				<alias>bitmovin-angel</alias>
+				<component name='name'>bitmovin-angel</component>
+				<setting name='slack' type='string'>C04T1NAR4AG</setting>
+			</chat>
+			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
+				<alias>ext-angel-studios-optimizely</alias>
+				<component name='name'>ext-angel-studios-optimizely</component>
+				<setting name='slack' type='string'>C034NTN4XSR</setting>
+			</chat>
 			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
 				<alias>mpdm-marcus.tanner--james.mayfield--swecker--daniel.haskin-1</alias>
 				<component name='name'>mpdm-marcus.tanner--james.mayfield--swecker--daniel.haskin-1</component>
@@ -1032,21 +936,6 @@
 				<alias>asset-automator</alias>
 				<component name='name'>asset-automator</component>
 				<setting name='slack' type='string'>C05RCA2RQS1</setting>
-			</chat>
-			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
-				<alias>brown-bags</alias>
-				<component name='name'>brown-bags</component>
-				<setting name='slack' type='string'>C05DNS29LT0</setting>
-			</chat>
-			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
-				<alias>bitmovin-angel</alias>
-				<component name='name'>bitmovin-angel</component>
-				<setting name='slack' type='string'>C04T1NAR4AG</setting>
-			</chat>
-			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
-				<alias>ext-angel-studios-optimizely</alias>
-				<component name='name'>ext-angel-studios-optimizely</component>
-				<setting name='slack' type='string'>C034NTN4XSR</setting>
 			</chat>
 			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
 				<alias>mpdm-khalterman--daniel.haskin--david.christensen-1</alias>
@@ -1169,6 +1058,11 @@
 				<setting name='slack' type='string'>C05FP2A3R8S</setting>
 			</chat>
 			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
+				<alias>brown-bags</alias>
+				<component name='name'>brown-bags</component>
+				<setting name='slack' type='string'>C05DNS29LT0</setting>
+			</chat>
+			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
 				<alias>temp-team-lunch-fund-announcement</alias>
 				<component name='name'>temp-team-lunch-fund-announcement</component>
 				<setting name='slack' type='string'>C05DDSM810S</setting>
@@ -1284,11 +1178,6 @@
 				<setting name='slack' type='string'>C04TZ5HP3RV</setting>
 			</chat>
 			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
-				<alias>sow-summit-success</alias>
-				<component name='name'>sow-summit-success</component>
-				<setting name='slack' type='string'>C04S80EKLNR</setting>
-			</chat>
-			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
 				<alias>angel-mobile-drybar</alias>
 				<component name='name'>angel-mobile-drybar</component>
 				<setting name='slack' type='string'>C04RHAXQR38</setting>
@@ -1377,6 +1266,7 @@
 				<alias>celebrations</alias>
 				<component name='name'>celebrations</component>
 				<setting name='slack' type='string'>C040ANBJCN4</setting>
+				<setting name='gtk-mute-sound' type='bool'>0</setting>
 			</chat>
 			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
 				<alias>echo-channel</alias>
@@ -1557,6 +1447,7 @@
 				<alias>devops-alerts</alias>
 				<component name='name'>devops-alerts</component>
 				<setting name='slack' type='string'>C035C2679ML</setting>
+				<setting name='gtk-mute-sound' type='bool'>0</setting>
 			</chat>
 			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
 				<alias>studio-team</alias>
@@ -1647,6 +1538,7 @@
 				<alias>localemployees</alias>
 				<component name='name'>localemployees</component>
 				<setting name='slack' type='string'>CDQR1HUJ0</setting>
+				<setting name='gtk-mute-sound' type='bool'>0</setting>
 			</chat>
 			<chat proto='prpl-slack' account='U02K7FJEXEY%angelstudiosteam.slack.com'>
 				<alias>tech-talky-talky</alias>
@@ -1665,29 +1557,11 @@
 			</chat>
 			<contact>
 				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>alex.lutz</name>
-					<setting name='slack' type='string'>D05NA6BCZND</setting>
-					<setting name='buddy_icon' type='string'>69d15ce5d2fb1ba1daf4b3cc94dffd55f8f2c787.png</setting>
-					<setting name='icon_checksum' type='string'>0d69739f7252</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>jeff.haskin</name>
-					<setting name='slack' type='string'>D05MHURRZUP</setting>
-					<setting name='buddy_icon' type='string'>cadc5b46b3334af648dd41530cc71a55876b250f.png</setting>
-					<setting name='icon_checksum' type='string'>90663634e684</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>ngraves</name>
-					<setting name='slack' type='string'>D05L92A1G87</setting>
-					<setting name='buddy_icon' type='string'>85524f42c89f9bd211f5c3fd84844bcc290c8e97.png</setting>
-					<setting name='icon_checksum' type='string'>7405bcbf68c1</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<name>shyler.johnson</name>
+					<setting name='slack' type='string'>D05RDLPCK2P</setting>
+					<setting name='buddy_icon' type='string'>0c391f38954a514bbdfbaab390e4d3e1a52170af.png</setting>
+					<setting name='icon_checksum' type='string'>7f38dc3abe8c</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1696,7 +1570,7 @@
 					<setting name='slack' type='string'>D05K2TA92BV</setting>
 					<setting name='buddy_icon' type='string'>073100150f9ee91d6150720a2d52d46bb2382878.png</setting>
 					<setting name='icon_checksum' type='string'>d087adfb8005</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1705,7 +1579,7 @@
 					<setting name='slack' type='string'>D05J9U50K62</setting>
 					<setting name='buddy_icon' type='string'>e95b857b79a62eadc9d9e1cade42689bc905b64a.jpg</setting>
 					<setting name='icon_checksum' type='string'>413e466c5e9c</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1714,7 +1588,7 @@
 					<setting name='slack' type='string'>D05G6CA04DC</setting>
 					<setting name='buddy_icon' type='string'>751ab692c7e41bdcaf8176f990e1f500bc4745f5.jpg</setting>
 					<setting name='icon_checksum' type='string'>21d8b771e131</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1723,25 +1597,7 @@
 					<setting name='slack' type='string'>D05FVQPD8SJ</setting>
 					<setting name='buddy_icon' type='string'>c959585d65967d20bec548fa038ac8cf26acf8ff.jpg</setting>
 					<setting name='icon_checksum' type='string'>f31fdde19562</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>johnathon.hornby</name>
-					<setting name='slack' type='string'>D05FSGDGS1J</setting>
-					<setting name='buddy_icon' type='string'>3d0452fd76c80172c0e743188b0c72555628b57c.jpg</setting>
-					<setting name='icon_checksum' type='string'>fe58bd397ca6</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>alec.fullmer</name>
-					<setting name='slack' type='string'>D05C8GQC3RS</setting>
-					<setting name='buddy_icon' type='string'>79e390f5aa3e423e37c69bbf7bac732f9423a80f.jpg</setting>
-					<setting name='icon_checksum' type='string'>5e26d9941f98</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1750,7 +1606,7 @@
 					<setting name='slack' type='string'>D05C64B7MS6</setting>
 					<setting name='buddy_icon' type='string'>fa7c602b88dbe565126716ca70123bed1422b19f.png</setting>
 					<setting name='icon_checksum' type='string'>a256c6182b19</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1759,7 +1615,7 @@
 					<setting name='slack' type='string'>D05C6072GNP</setting>
 					<setting name='buddy_icon' type='string'>83a0a635e1069e82053dc61b733aebe21b028b12.png</setting>
 					<setting name='icon_checksum' type='string'>8168bd64b02e</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1768,7 +1624,7 @@
 					<setting name='slack' type='string'>D05BFNSFLDP</setting>
 					<setting name='buddy_icon' type='string'>d6a7eca504ba3d36d6469b77174fbc8dd8226aba.png</setting>
 					<setting name='icon_checksum' type='string'>105e300c1ee2</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1777,7 +1633,7 @@
 					<setting name='slack' type='string'>D05ALH69ZEW</setting>
 					<setting name='buddy_icon' type='string'>18ca793f08bd311c7af090662479ad03a2c6ac23.png</setting>
 					<setting name='icon_checksum' type='string'>5d709883a819</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1786,16 +1642,7 @@
 					<setting name='slack' type='string'>D05A95SNJCQ</setting>
 					<setting name='buddy_icon' type='string'>19076018fb205aebc90b87fce5c892ae03dd4ac4.jpg</setting>
 					<setting name='icon_checksum' type='string'>6740de0fa56d</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>alex.ahlstrom</name>
-					<setting name='slack' type='string'>D059Y5Q7H55</setting>
-					<setting name='buddy_icon' type='string'>dd90c1ab74343adf9ead7ad8c6ece8d451957d61.jpg</setting>
-					<setting name='icon_checksum' type='string'>87a25b80cd1d</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1804,7 +1651,7 @@
 					<setting name='slack' type='string'>D059FCBFTEZ</setting>
 					<setting name='buddy_icon' type='string'>a2675cc7e05523060e450255f1890807efd66fac.jpg</setting>
 					<setting name='icon_checksum' type='string'>62131d7162c6</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1813,7 +1660,7 @@
 					<setting name='slack' type='string'>D0589U49PLN</setting>
 					<setting name='buddy_icon' type='string'>3d14ca60c3aee6f09ebb95cf246b5bd9a5a704c3.jpg</setting>
 					<setting name='icon_checksum' type='string'>cca228d9c2c4</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1822,7 +1669,7 @@
 					<setting name='slack' type='string'>D057RL7F153</setting>
 					<setting name='buddy_icon' type='string'>9fe834fcc773a598ba4a849b1ffe49b5b66d7b0f.jpg</setting>
 					<setting name='icon_checksum' type='string'>320b098b2a96</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1831,7 +1678,7 @@
 					<setting name='slack' type='string'>D056VALHN2Z</setting>
 					<setting name='buddy_icon' type='string'>df9a385c533f4bfa4726a0d148bcffa3bdddec6b.jpg</setting>
 					<setting name='icon_checksum' type='string'>14fb3da0d7d2</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1840,7 +1687,7 @@
 					<setting name='slack' type='string'>D054261QN8K</setting>
 					<setting name='buddy_icon' type='string'>2257e3f2cf7b5b4686b61a1d29f0c63885dab534.png</setting>
 					<setting name='icon_checksum' type='string'>7353b94f6b94</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1849,7 +1696,7 @@
 					<setting name='slack' type='string'>D053F044UG0</setting>
 					<setting name='buddy_icon' type='string'>f89412c149076641f4145b47b16407cb3302e57a.jpg</setting>
 					<setting name='icon_checksum' type='string'>59902eeae7d8</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1858,7 +1705,7 @@
 					<setting name='slack' type='string'>D053CAAD2TV</setting>
 					<setting name='buddy_icon' type='string'>4be13291cf681106c6924058ae67b7fadafb8a46.png</setting>
 					<setting name='icon_checksum' type='string'>55c17751c09e</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1867,16 +1714,7 @@
 					<setting name='slack' type='string'>D051ZB3TGMQ</setting>
 					<setting name='buddy_icon' type='string'>28ecb1b49ac1c808223c46b817b275ed3251c656.jpg</setting>
 					<setting name='icon_checksum' type='string'>a6bf0ffaf11d</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>abarlow</name>
-					<setting name='slack' type='string'>D051VSWPRRA</setting>
-					<setting name='buddy_icon' type='string'>6a3eb6ddab5810bb78d615cc37cf326c4e7c5bfa.png</setting>
-					<setting name='icon_checksum' type='string'>9079f3c3bce2</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1885,7 +1723,7 @@
 					<setting name='slack' type='string'>D04PN9A8LEP</setting>
 					<setting name='buddy_icon' type='string'>edbef82d0dc049c17c51714993eb5fa2afbecb11.jpg</setting>
 					<setting name='icon_checksum' type='string'>fc45f0c436e0</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1894,7 +1732,7 @@
 					<setting name='slack' type='string'>D04M9UKLA1K</setting>
 					<setting name='buddy_icon' type='string'>9e42449fa63fe9f2b5efe71201b014633fa83d2d.jpg</setting>
 					<setting name='icon_checksum' type='string'>57cdad62dc19</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1903,7 +1741,7 @@
 					<setting name='slack' type='string'>D04JQJGSCMQ</setting>
 					<setting name='buddy_icon' type='string'>bb7efaa24a05ad74ae2ce4389c5b69c7c714c5e3.png</setting>
 					<setting name='icon_checksum' type='string'>2c6007bfe119</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1912,7 +1750,7 @@
 					<setting name='slack' type='string'>D04HLD7EWNQ</setting>
 					<setting name='buddy_icon' type='string'>b788dbf543f377f373357daed493c47d78986992.png</setting>
 					<setting name='icon_checksum' type='string'>30bb6bf7b936</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1921,7 +1759,7 @@
 					<setting name='slack' type='string'>D04HFLW7H4Y</setting>
 					<setting name='buddy_icon' type='string'>93151cb3f8f0461b3287bb4cf5c309e258d9d420.jpg</setting>
 					<setting name='icon_checksum' type='string'>291ac419bc94</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1930,7 +1768,7 @@
 					<setting name='slack' type='string'>D04E1MF7TRR</setting>
 					<setting name='buddy_icon' type='string'>9ab064ac19cd369cc6cbbfd3c14a88c1e00e7e32.jpg</setting>
 					<setting name='icon_checksum' type='string'>b82b9aaaa966</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1939,7 +1777,7 @@
 					<setting name='slack' type='string'>D04D5J8QX54</setting>
 					<setting name='buddy_icon' type='string'>30940b3c16415b2dd9533ea0cc7efc9a27b0ecc3.png</setting>
 					<setting name='icon_checksum' type='string'>b23f22ef3034</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1948,7 +1786,7 @@
 					<setting name='slack' type='string'>D04C6BJQJ3W</setting>
 					<setting name='buddy_icon' type='string'>92b0f6324e6fd0e4296dfd3ef832b55858195424.png</setting>
 					<setting name='icon_checksum' type='string'>9e772d9540ff</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1957,16 +1795,7 @@
 					<setting name='slack' type='string'>D04ASLKAJ2Y</setting>
 					<setting name='buddy_icon' type='string'>83f1a61d4d0d21c531d59209e41c9251f27db67d.png</setting>
 					<setting name='icon_checksum' type='string'>845ee7d04aea</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>tim.middleton</name>
-					<setting name='slack' type='string'>D04ANJ5NLHM</setting>
-					<setting name='buddy_icon' type='string'>231172064e1ccd6d995db80a8910f2612458811e.png</setting>
-					<setting name='icon_checksum' type='string'>2d515524b0ca</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1975,7 +1804,7 @@
 					<setting name='slack' type='string'>D04AJ76U2AY</setting>
 					<setting name='buddy_icon' type='string'>040ae4459020b644184b0821ec9f0c8aad6bf845.png</setting>
 					<setting name='icon_checksum' type='string'>f4fb29b63bb4</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1984,7 +1813,7 @@
 					<setting name='slack' type='string'>D049KT2H479</setting>
 					<setting name='buddy_icon' type='string'>497929e497934ec987580255b59a2e2157bc32a7.jpg</setting>
 					<setting name='icon_checksum' type='string'>2ebb7e9b89cc</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -1993,7 +1822,7 @@
 					<setting name='slack' type='string'>D0495B4PN9K</setting>
 					<setting name='buddy_icon' type='string'>ab177e144593e8a8e5552c1836fd5613085a3e8d.jpg</setting>
 					<setting name='icon_checksum' type='string'>9f32b021033e</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2002,7 +1831,7 @@
 					<setting name='slack' type='string'>D048U1X0GV9</setting>
 					<setting name='buddy_icon' type='string'>19852d21fc2e466768af44c3e784c15d54677a39.jpg</setting>
 					<setting name='icon_checksum' type='string'>128876c42609</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2011,7 +1840,7 @@
 					<setting name='slack' type='string'>D0480A21NPM</setting>
 					<setting name='buddy_icon' type='string'>5442783111a6c74d997d6cdd0a5f0611d03b116f.jpg</setting>
 					<setting name='icon_checksum' type='string'>ef61421a4e3a</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2020,7 +1849,7 @@
 					<setting name='slack' type='string'>D045QP9KTJQ</setting>
 					<setting name='buddy_icon' type='string'>ed0db2b5712750a4dd0a758042d7dda387bf728b.jpg</setting>
 					<setting name='icon_checksum' type='string'>4208d0a5604a</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2029,7 +1858,7 @@
 					<setting name='slack' type='string'>D04336ZHA05</setting>
 					<setting name='buddy_icon' type='string'>5ae6e2b9aac76358ff1af08cb31ee0dd4fb5c3d9.jpg</setting>
 					<setting name='icon_checksum' type='string'>a330d4978b03</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2038,7 +1867,7 @@
 					<setting name='slack' type='string'>D0431V76C6S</setting>
 					<setting name='buddy_icon' type='string'>bfa14a3bfa021c7143afa9620b4d108c0a0f5107.jpg</setting>
 					<setting name='icon_checksum' type='string'>6f7e27e2f4a5</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2047,7 +1876,7 @@
 					<setting name='slack' type='string'>D04135E3MCZ</setting>
 					<setting name='buddy_icon' type='string'>8651ce6790ff934c775ccdc6bca51e9f16718720.jpg</setting>
 					<setting name='icon_checksum' type='string'>959b87a751b7</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2056,7 +1885,7 @@
 					<setting name='slack' type='string'>D040NSBDDT2</setting>
 					<setting name='buddy_icon' type='string'>c8c2fd9d2a2b7b9a4e7e8cb62c9068e2feeaf5b1.jpg</setting>
 					<setting name='icon_checksum' type='string'>e14c3c745b02</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2065,7 +1894,7 @@
 					<setting name='slack' type='string'>D03VBF8QVA7</setting>
 					<setting name='buddy_icon' type='string'>de71ba902d41d218cce0faaba69f92ee9c9520fb.png</setting>
 					<setting name='icon_checksum' type='string'>5e40a1479a85</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2074,7 +1903,7 @@
 					<setting name='slack' type='string'>D03T6LACT2M</setting>
 					<setting name='buddy_icon' type='string'>99953e5daef5d2f4f00de04137e0a0055f50bb73.png</setting>
 					<setting name='icon_checksum' type='string'>bc60227ce26b</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2083,7 +1912,7 @@
 					<setting name='slack' type='string'>D03SZTUSSEP</setting>
 					<setting name='buddy_icon' type='string'>9944a807d77d2237cd409f2d5d37632af3185e74.jpg</setting>
 					<setting name='icon_checksum' type='string'>3bc81e3f4544</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2092,7 +1921,7 @@
 					<setting name='slack' type='string'>D03SU323EMQ</setting>
 					<setting name='buddy_icon' type='string'>de3362cf0fc709222a20043099213a68f84dbddd.gif</setting>
 					<setting name='icon_checksum' type='string'>19d5a02a5806</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2101,7 +1930,7 @@
 					<setting name='slack' type='string'>D03RN7NRDGX</setting>
 					<setting name='buddy_icon' type='string'>483dea3cee83d4eb57ca6997bad68b814c191f39.png</setting>
 					<setting name='icon_checksum' type='string'>63e6d75fedaa</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2110,7 +1939,7 @@
 					<setting name='slack' type='string'>D03RM6BQEGZ</setting>
 					<setting name='buddy_icon' type='string'>6cb1f3de7707907a4b3df64ab73a059f3bf9ccef.png</setting>
 					<setting name='icon_checksum' type='string'>b0f165a39eec</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2119,7 +1948,7 @@
 					<setting name='slack' type='string'>D03NF8N8B7X</setting>
 					<setting name='buddy_icon' type='string'>62975517acf12fcdfabe7cb3e3c8aaa1b2fa0170.png</setting>
 					<setting name='icon_checksum' type='string'>019af5d94d89</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2128,7 +1957,7 @@
 					<setting name='slack' type='string'>D03MRCX1X5X</setting>
 					<setting name='buddy_icon' type='string'>2538aec99f47bf17475c7a8cdb38f5f785f25400.jpg</setting>
 					<setting name='icon_checksum' type='string'>6ec10679413f</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2137,7 +1966,7 @@
 					<setting name='slack' type='string'>D03M3TH609X</setting>
 					<setting name='buddy_icon' type='string'>f42c2b193e41c37e8530b281cf605217c0f0fee7.png</setting>
 					<setting name='icon_checksum' type='string'>dfa1f70101ee</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2146,7 +1975,7 @@
 					<setting name='slack' type='string'>D03LNMBV63Z</setting>
 					<setting name='buddy_icon' type='string'>160192b7bbe962028fd34be34ed63ca165d55ff3.jpg</setting>
 					<setting name='icon_checksum' type='string'>e21c518ec208</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2155,17 +1984,18 @@
 					<setting name='slack' type='string'>D03KVH22GRG</setting>
 					<setting name='buddy_icon' type='string'>d9924dc2a20a3e5aa1cdb2c6b6e46fa47f65b15b.png</setting>
 					<setting name='icon_checksum' type='string'>c58d74a07386</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
 					<name>felipe.nuila</name>
 					<setting name='slack' type='string'>D03KUDNK2LS</setting>
-					<setting name='buddy_icon' type='string'>47871d53fbb50b3ec233a17dd9758bcee02aed1a.png</setting>
-					<setting name='icon_checksum' type='string'>ae5e5c31bc18</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='buddy_icon' type='string'>4d5b3b19d3caa8ad1d69d6aff0d8fb556bdc3909.png</setting>
+					<setting name='icon_checksum' type='string'>b975c415e091</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
+				<setting name='gtk-mute-sound' type='bool'>0</setting>
 			</contact>
 			<contact>
 				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
@@ -2173,7 +2003,7 @@
 					<setting name='slack' type='string'>D03KRGRQYNR</setting>
 					<setting name='buddy_icon' type='string'>726741fadaac89f4b969dac5c55d70a08b8365a9.jpg</setting>
 					<setting name='icon_checksum' type='string'>4d9bbe172943</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2182,7 +2012,7 @@
 					<setting name='slack' type='string'>D03JVQP86LA</setting>
 					<setting name='buddy_icon' type='string'>a6ecdb3277fe77585cfbf357c3e374941e74beda.jpg</setting>
 					<setting name='icon_checksum' type='string'>0b3e7369d8a5</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2191,7 +2021,7 @@
 					<setting name='slack' type='string'>D03J4221K4L</setting>
 					<setting name='buddy_icon' type='string'>6c96fa5943531a94aa95eb5d1347376c463c0000.jpg</setting>
 					<setting name='icon_checksum' type='string'>ee20181e8101</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2200,16 +2030,7 @@
 					<setting name='slack' type='string'>D03HNBWL1U5</setting>
 					<setting name='buddy_icon' type='string'>a314e02b386bcca6f46e97540d518d7126a52e8d.jpg</setting>
 					<setting name='icon_checksum' type='string'>60397f76030c</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>michael.collier</name>
-					<setting name='slack' type='string'>D03HMCA9RFH</setting>
-					<setting name='buddy_icon' type='string'>43adc7482de5682d58b58bd250178823250b7434.png</setting>
-					<setting name='icon_checksum' type='string'>288e9ec60f5c</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2218,16 +2039,7 @@
 					<setting name='slack' type='string'>D03FL9CQBJT</setting>
 					<setting name='buddy_icon' type='string'>edd8f4a780f582abf2913b17a35bf4536284137e.png</setting>
 					<setting name='icon_checksum' type='string'>8611b6f6d668</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>adustinparker</name>
-					<setting name='slack' type='string'>D03FAB8U5GV</setting>
-					<setting name='buddy_icon' type='string'>0f1f5111e530a2428188512ee3122b9a765f6b5d.jpg</setting>
-					<setting name='icon_checksum' type='string'>318f9c286340</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2236,7 +2048,7 @@
 					<setting name='slack' type='string'>D03F880BLBV</setting>
 					<setting name='buddy_icon' type='string'>d9520cffe5e5094146b0a3027ffd7394e4164eb9.jpg</setting>
 					<setting name='icon_checksum' type='string'>05a386716b83</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2245,7 +2057,7 @@
 					<setting name='slack' type='string'>D03EWC8RM9R</setting>
 					<setting name='buddy_icon' type='string'>545edcd24603caebfb46896326555ab391735036.jpg</setting>
 					<setting name='icon_checksum' type='string'>6e534a91f157</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2254,7 +2066,7 @@
 					<setting name='slack' type='string'>D03EB0R5JFN</setting>
 					<setting name='buddy_icon' type='string'>b339a5f59287b9c9c91417e3676b7d6e9f1711e6.png</setting>
 					<setting name='icon_checksum' type='string'>8fe97b7d1f8c</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2263,7 +2075,7 @@
 					<setting name='slack' type='string'>D03DNPVL4LU</setting>
 					<setting name='buddy_icon' type='string'>bfb31c5b25c6f8aac91d92b515a3893e6f952d5d.jpg</setting>
 					<setting name='icon_checksum' type='string'>6cf5d8997313</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2272,16 +2084,7 @@
 					<setting name='slack' type='string'>D03DK77BAG1</setting>
 					<setting name='buddy_icon' type='string'>401db3a133a4d1ee26d45e712c2dd93a52145595.jpg</setting>
 					<setting name='icon_checksum' type='string'>7101d529a020</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>david.christensen</name>
-					<setting name='slack' type='string'>D03D12VRUP5</setting>
-					<setting name='buddy_icon' type='string'>99ec7119cf69ed3c759dc8c8105e755a8016b174.png</setting>
-					<setting name='icon_checksum' type='string'>7ce344d1c346</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2290,7 +2093,7 @@
 					<setting name='slack' type='string'>D03CHKWEL31</setting>
 					<setting name='buddy_icon' type='string'>17720d9d376d055289e5b462547cd382ae4d089d.jpg</setting>
 					<setting name='icon_checksum' type='string'>c042f15d3638</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2299,7 +2102,7 @@
 					<setting name='slack' type='string'>D03CGA3S6HF</setting>
 					<setting name='buddy_icon' type='string'>1170f6f5503bce1b6f97a4defe0078ab297021d1.jpg</setting>
 					<setting name='icon_checksum' type='string'>b5e98002418c</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2308,7 +2111,7 @@
 					<setting name='slack' type='string'>D03BKBFG51R</setting>
 					<setting name='buddy_icon' type='string'>2808cf5a97ccf0ccb2028e9255f834e0e586dfca.jpg</setting>
 					<setting name='icon_checksum' type='string'>7f02d6725b76</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2317,16 +2120,7 @@
 					<setting name='slack' type='string'>D039NFKHMGD</setting>
 					<setting name='buddy_icon' type='string'>87b1958429682f8e943fe36194c3e932e507ffb3.jpg</setting>
 					<setting name='icon_checksum' type='string'>0bee9edb75b1</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>alex.nielsen</name>
-					<setting name='slack' type='string'>D038F21JC4Q</setting>
-					<setting name='buddy_icon' type='string'>0fc463cd2f9acce824d3c204336ea243cc2e54c9.jpg</setting>
-					<setting name='icon_checksum' type='string'>dd99911bbc43</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2335,7 +2129,7 @@
 					<setting name='slack' type='string'>D031LQ6TCKE</setting>
 					<setting name='buddy_icon' type='string'>30d449d7bda7436b4e1c087db08363295b27a5d0.jpg</setting>
 					<setting name='icon_checksum' type='string'>1bdb26a26b3d</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2344,7 +2138,7 @@
 					<setting name='slack' type='string'>D031LBWKXFU</setting>
 					<setting name='buddy_icon' type='string'>bc8ee2532b6e3c47e8840ee7fc635ed32439312d.png</setting>
 					<setting name='icon_checksum' type='string'>531432a7791d</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2353,7 +2147,7 @@
 					<setting name='slack' type='string'>D031ESY3DKN</setting>
 					<setting name='buddy_icon' type='string'>9853d5f1a99ff4be0c081ac29eb0cb607077c11a.png</setting>
 					<setting name='icon_checksum' type='string'>6844cbe5ac5b</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2362,7 +2156,7 @@
 					<setting name='slack' type='string'>D030YNS2CF8</setting>
 					<setting name='buddy_icon' type='string'>1c88759dfc282a1a7a40a3e7cc7809bf22121de9.png</setting>
 					<setting name='icon_checksum' type='string'>f1d86426a2ae</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2371,7 +2165,7 @@
 					<setting name='slack' type='string'>D030TN0LDJS</setting>
 					<setting name='buddy_icon' type='string'>70a7e92c2702b2827401f664b800c41853d6e6d6.png</setting>
 					<setting name='icon_checksum' type='string'>52ba3ecb1e5d</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2380,16 +2174,7 @@
 					<setting name='slack' type='string'>D02UGMHU83S</setting>
 					<setting name='buddy_icon' type='string'>1d883128dfebe6ae41d3d96abfd6e26d6129c990.jpg</setting>
 					<setting name='icon_checksum' type='string'>e66565189bbe</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>jonathan.vansickle</name>
-					<setting name='slack' type='string'>D02UANDPE5C</setting>
-					<setting name='buddy_icon' type='string'>5b9bc9ee043fc4e5cba57f0d2e5e56989ca98fd2.jpg</setting>
-					<setting name='icon_checksum' type='string'>676fc322c238</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2398,7 +2183,7 @@
 					<setting name='slack' type='string'>D02TFJCJDCM</setting>
 					<setting name='buddy_icon' type='string'>cdf68ddc339e1641a6f76bf31cd0b1299d5ae1be.jpg</setting>
 					<setting name='icon_checksum' type='string'>18b56d228d26</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2407,16 +2192,7 @@
 					<setting name='slack' type='string'>D02R6S2HB6J</setting>
 					<setting name='buddy_icon' type='string'>0047c5eac24d7bcb871af3fe7401bd8d89eb5d19.jpg</setting>
 					<setting name='icon_checksum' type='string'>9da2e6b1d11c</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>cward</name>
-					<setting name='slack' type='string'>D02QVK0AMQB</setting>
-					<setting name='buddy_icon' type='string'>2ebb505e8329c07cf4305781508ff5d172c5e85e.png</setting>
-					<setting name='icon_checksum' type='string'>e965ede68359</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2425,7 +2201,7 @@
 					<setting name='slack' type='string'>D02PUTPPNAW</setting>
 					<setting name='buddy_icon' type='string'>9ded9fb374d47fdfc5153c168e7a23e59b176fc4.png</setting>
 					<setting name='icon_checksum' type='string'>11bd8d354762</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2434,106 +2210,7 @@
 					<setting name='slack' type='string'>D02PUSDBC2F</setting>
 					<setting name='buddy_icon' type='string'>fea78a5c7e124d78e7b26a96a9d5da3990478eea.png</setting>
 					<setting name='icon_checksum' type='string'>4aa27710aae1</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>googledrive</name>
-					<setting name='slack' type='string'>D02P671CQG1</setting>
-					<setting name='buddy_icon' type='string'>56ca46eb449830cb45882208519fea6caa7011ec.png</setting>
-					<setting name='icon_checksum' type='string'>3e152b8d661b</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>notifier</name>
-					<setting name='slack' type='string'>D02N4D2RHA8</setting>
-					<setting name='buddy_icon' type='string'>06a0421a3cbe152a253932875f83de0c7b0eb5a3.png</setting>
-					<setting name='icon_checksum' type='string'>45082b825b60</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>zoom</name>
-					<setting name='slack' type='string'>D02MNJ81E86</setting>
-					<setting name='buddy_icon' type='string'>d341a9da1b2b9aaf4f791f135051842d574eb9e2.png</setting>
-					<setting name='icon_checksum' type='string'>952df27e46a2</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>pto-by-roots</name>
-					<setting name='slack' type='string'>D02LSP7MYHM</setting>
-					<setting name='buddy_icon' type='string'>44a2a424df592b71f7ffd4c478b439c399183e36.png</setting>
-					<setting name='icon_checksum' type='string'>f8d3485f9d17</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>doran.barton</name>
-					<setting name='slack' type='string'>D02LDCR586P</setting>
-					<setting name='buddy_icon' type='string'>6e2dbca1d08e3b96aaa77caf743cdb141f0a17e1.jpg</setting>
-					<setting name='icon_checksum' type='string'>4d308186e85c</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>nworkman</name>
-					<setting name='slack' type='string'>D02L4NW7J8L</setting>
-					<setting name='buddy_icon' type='string'>68fa907469389b935a04cefa6a66fd09e3ec508e.jpg</setting>
-					<setting name='icon_checksum' type='string'>94bda6d88294</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>swecker</name>
-					<setting name='slack' type='string'>D02KURP9LPP</setting>
-					<setting name='buddy_icon' type='string'>a360ad037eaeffaaab1e2eba26a4fc972181b5c4.jpg</setting>
-					<setting name='icon_checksum' type='string'>8620337fa008</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>kevin.crook</name>
-					<setting name='slack' type='string'>D02KGHX9LJY</setting>
-					<setting name='buddy_icon' type='string'>6db193d94590ea1c952990684ac5c435969ac8da.png</setting>
-					<setting name='icon_checksum' type='string'>0fc837458c93</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>polly</name>
-					<setting name='slack' type='string'>D02K6153Z2R</setting>
-					<setting name='buddy_icon' type='string'>4f67b0873218ca392ffa9f59767e5c143a1bafbf.png</setting>
-					<setting name='icon_checksum' type='string'>43bf4fe297c8</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>daniel.haskin</name>
-					<setting name='slack' type='string'>D02K59LPGSF</setting>
-					<setting name='buddy_icon' type='string'>33c56fc478823a70a5a311e5df7bb88120fac1ae.jpg</setting>
-					<setting name='icon_checksum' type='string'>23fb251e1271</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
-				</buddy>
-			</contact>
-			<contact>
-				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>slackbot</name>
-					<setting name='slack' type='string'>D02JQJS4KNK</setting>
-					<setting name='buddy_icon' type='string'>bc3f760a61abe7dcd69cab9d9569e8eedafbaaa6.png</setting>
-					<setting name='icon_checksum' type='string'>sv41d8cd98f0</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2542,25 +2219,106 @@
 					<setting name='slack' type='string'>D02P9HS21M4</setting>
 					<setting name='buddy_icon' type='string'>218efd8e6bb68c068b235255ff9c3043fb426350.jpg</setting>
 					<setting name='icon_checksum' type='string'>855cd32bf28a</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>shyler.johnson</name>
-					<setting name='slack' type='string'>D05RDLPCK2P</setting>
-					<setting name='buddy_icon' type='string'>0c391f38954a514bbdfbaab390e4d3e1a52170af.png</setting>
-					<setting name='icon_checksum' type='string'>7f38dc3abe8c</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<name>googledrive</name>
+					<setting name='slack' type='string'>D02P671CQG1</setting>
+					<setting name='buddy_icon' type='string'>56ca46eb449830cb45882208519fea6caa7011ec.png</setting>
+					<setting name='icon_checksum' type='string'>3e152b8d661b</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
 				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
-					<name>collinbarkdull</name>
-					<setting name='slack' type='string'>D05RQBSHQKG</setting>
-					<setting name='buddy_icon' type='string'>6a147f123c2322e7ee3c2f4ea5ecd66f40c82069.jpg</setting>
-					<setting name='icon_checksum' type='string'>2babce4f1fb0</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<name>notifier</name>
+					<setting name='slack' type='string'>D02N4D2RHA8</setting>
+					<setting name='buddy_icon' type='string'>06a0421a3cbe152a253932875f83de0c7b0eb5a3.png</setting>
+					<setting name='icon_checksum' type='string'>45082b825b60</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>zoom</name>
+					<setting name='slack' type='string'>D02MNJ81E86</setting>
+					<setting name='buddy_icon' type='string'>d341a9da1b2b9aaf4f791f135051842d574eb9e2.png</setting>
+					<setting name='icon_checksum' type='string'>952df27e46a2</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>pto-by-roots</name>
+					<setting name='slack' type='string'>D02LSP7MYHM</setting>
+					<setting name='buddy_icon' type='string'>44a2a424df592b71f7ffd4c478b439c399183e36.png</setting>
+					<setting name='icon_checksum' type='string'>f8d3485f9d17</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>nworkman</name>
+					<setting name='slack' type='string'>D02L4NW7J8L</setting>
+					<setting name='buddy_icon' type='string'>68fa907469389b935a04cefa6a66fd09e3ec508e.jpg</setting>
+					<setting name='icon_checksum' type='string'>94bda6d88294</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>swecker</name>
+					<setting name='slack' type='string'>D02KURP9LPP</setting>
+					<setting name='buddy_icon' type='string'>a360ad037eaeffaaab1e2eba26a4fc972181b5c4.jpg</setting>
+					<setting name='icon_checksum' type='string'>8620337fa008</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>polly</name>
+					<setting name='slack' type='string'>D02K6153Z2R</setting>
+					<setting name='buddy_icon' type='string'>4f67b0873218ca392ffa9f59767e5c143a1bafbf.png</setting>
+					<setting name='icon_checksum' type='string'>43bf4fe297c8</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>daniel.haskin</name>
+					<setting name='slack' type='string'>D02K59LPGSF</setting>
+					<setting name='buddy_icon' type='string'>33c56fc478823a70a5a311e5df7bb88120fac1ae.jpg</setting>
+					<setting name='icon_checksum' type='string'>23fb251e1271</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>slackbot</name>
+					<setting name='slack' type='string'>D02JQJS4KNK</setting>
+					<setting name='buddy_icon' type='string'>bc3f760a61abe7dcd69cab9d9569e8eedafbaaa6.png</setting>
+					<setting name='icon_checksum' type='string'>sv41d8cd98f0</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>alex.ahlstrom</name>
+					<setting name='slack' type='string'>D059Y5Q7H55</setting>
+					<setting name='buddy_icon' type='string'>dd90c1ab74343adf9ead7ad8c6ece8d451957d61.jpg</setting>
+					<setting name='icon_checksum' type='string'>87a25b80cd1d</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>johnathon.hornby</name>
+					<setting name='slack' type='string'>D05FSGDGS1J</setting>
+					<setting name='buddy_icon' type='string'>3d0452fd76c80172c0e743188b0c72555628b57c.jpg</setting>
+					<setting name='icon_checksum' type='string'>fe58bd397ca6</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -2569,16 +2327,205 @@
 					<setting name='slack' type='string'>D05T2142Z8A</setting>
 					<setting name='buddy_icon' type='string'>71b9be00319cb139ba609b97acfc5d261fb0e71f.jpg</setting>
 					<setting name='icon_checksum' type='string'>67a45551cca7</setting>
-					<setting name='last_seen' type='int'>1695594727</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>alec.fullmer</name>
+					<setting name='slack' type='string'>D05C8GQC3RS</setting>
+					<setting name='buddy_icon' type='string'>79e390f5aa3e423e37c69bbf7bac732f9423a80f.jpg</setting>
+					<setting name='icon_checksum' type='string'>5e26d9941f98</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>alex.nielsen</name>
+					<setting name='slack' type='string'>D038F21JC4Q</setting>
+					<setting name='buddy_icon' type='string'>0fc463cd2f9acce824d3c204336ea243cc2e54c9.jpg</setting>
+					<setting name='icon_checksum' type='string'>dd99911bbc43</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>cward</name>
+					<setting name='slack' type='string'>D02QVK0AMQB</setting>
+					<setting name='buddy_icon' type='string'>2ebb505e8329c07cf4305781508ff5d172c5e85e.png</setting>
+					<setting name='icon_checksum' type='string'>e965ede68359</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>collinbarkdull</name>
+					<setting name='slack' type='string'>D05RQBSHQKG</setting>
+					<setting name='buddy_icon' type='string'>6a147f123c2322e7ee3c2f4ea5ecd66f40c82069.jpg</setting>
+					<setting name='icon_checksum' type='string'>2babce4f1fb0</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>jessica.bastean</name>
+					<setting name='slack' type='string'>D05UWBGP58D</setting>
+					<setting name='buddy_icon' type='string'>913a66b04067fed8d07f9318f64a0b8af39c8086.png</setting>
+					<setting name='icon_checksum' type='string'>ffab17387b1b</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>doran.barton</name>
+					<setting name='slack' type='string'>D02LDCR586P</setting>
+					<setting name='buddy_icon' type='string'>6e2dbca1d08e3b96aaa77caf743cdb141f0a17e1.jpg</setting>
+					<setting name='icon_checksum' type='string'>4d308186e85c</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>abarlow</name>
+					<setting name='slack' type='string'>D051VSWPRRA</setting>
+					<setting name='buddy_icon' type='string'>6a3eb6ddab5810bb78d615cc37cf326c4e7c5bfa.png</setting>
+					<setting name='icon_checksum' type='string'>9079f3c3bce2</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>ngraves</name>
+					<setting name='slack' type='string'>D05L92A1G87</setting>
+					<setting name='buddy_icon' type='string'>88c5fca18df68bf1787650546bba80644b2a70e3.png</setting>
+					<setting name='icon_checksum' type='string'>26f114eb6594</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>tim.middleton</name>
+					<setting name='slack' type='string'>D04ANJ5NLHM</setting>
+					<setting name='buddy_icon' type='string'>231172064e1ccd6d995db80a8910f2612458811e.png</setting>
+					<setting name='icon_checksum' type='string'>2d515524b0ca</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>kevin.crook</name>
+					<setting name='slack' type='string'>D02KGHX9LJY</setting>
+					<setting name='buddy_icon' type='string'>6db193d94590ea1c952990684ac5c435969ac8da.png</setting>
+					<setting name='icon_checksum' type='string'>0fc837458c93</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>michael.collier</name>
+					<setting name='slack' type='string'>D03HMCA9RFH</setting>
+					<setting name='buddy_icon' type='string'>43adc7482de5682d58b58bd250178823250b7434.png</setting>
+					<setting name='icon_checksum' type='string'>288e9ec60f5c</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>chandler.mcarthur</name>
+					<setting name='slack' type='string'>D060QH9QYUS</setting>
+					<setting name='buddy_icon' type='string'>735e3b188e40249f8af715a213a22e0168e3ad62.jpg</setting>
+					<setting name='icon_checksum' type='string'>a5d940ef889c</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>alex.garibay</name>
+					<setting name='slack' type='string'>D060G1V4V0Q</setting>
+					<setting name='buddy_icon' type='string'>ca701c0637aef7113b70c58ecfc2df1c4e1a3fd7.jpg</setting>
+					<setting name='icon_checksum' type='string'>b284b013f572</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>alex.lutz</name>
+					<setting name='slack' type='string'>D05NA6BCZND</setting>
+					<setting name='buddy_icon' type='string'>69d15ce5d2fb1ba1daf4b3cc94dffd55f8f2c787.png</setting>
+					<setting name='icon_checksum' type='string'>0d69739f7252</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>adustinparker</name>
+					<setting name='slack' type='string'>D03FAB8U5GV</setting>
+					<setting name='buddy_icon' type='string'>0f1f5111e530a2428188512ee3122b9a765f6b5d.jpg</setting>
+					<setting name='icon_checksum' type='string'>318f9c286340</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>austin.wilson</name>
+					<setting name='slack' type='string'>D05UU4RQB5H</setting>
+					<setting name='buddy_icon' type='string'>38d4ad4f136a86e342880db241c6b426a6de1833.png</setting>
+					<setting name='icon_checksum' type='string'>d607a4088025</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>bryn.turner</name>
+					<setting name='slack' type='string'>D05UUBM5PNX</setting>
+					<setting name='buddy_icon' type='string'>8743c3f5a4e278a6867636a0015abe77b7ce7f22.png</setting>
+					<setting name='icon_checksum' type='string'>06a783684de2</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>david.christensen</name>
+					<setting name='slack' type='string'>D03D12VRUP5</setting>
+					<setting name='buddy_icon' type='string'>99ec7119cf69ed3c759dc8c8105e755a8016b174.png</setting>
+					<setting name='icon_checksum' type='string'>7ce344d1c346</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>bron.kimball</name>
+					<setting name='slack' type='string'>D05UC8L4BBM</setting>
+					<setting name='buddy_icon' type='string'>c4c1a6338b57510563d76f73f2c7732efe88f277.png</setting>
+					<setting name='icon_checksum' type='string'>595c64dc8b61</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>jonathan.vansickle</name>
+					<setting name='slack' type='string'>D02UANDPE5C</setting>
+					<setting name='buddy_icon' type='string'>5b9bc9ee043fc4e5cba57f0d2e5e56989ca98fd2.jpg</setting>
+					<setting name='icon_checksum' type='string'>676fc322c238</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='U02K7FJEXEY%angelstudiosteam.slack.com' proto='prpl-slack'>
+					<name>jeff.haskin</name>
+					<setting name='slack' type='string'>D05MHURRZUP</setting>
+					<setting name='buddy_icon' type='string'>cadc5b46b3334af648dd41530cc71a55876b250f.png</setting>
+					<setting name='icon_checksum' type='string'>90663634e684</setting>
+					<setting name='last_seen' type='int'>1697645776</setting>
 				</buddy>
 			</contact>
 		</group>
 	</blist>
 	<privacy>
-		<account proto='prpl-slack' name='U02K7FJEXEY%angelstudiosteam.slack.com' mode='1'/>
-		<account proto='prpl-irc' name='skin/libera@chat.sr.ht' mode='1'/>
 		<account proto='prpl-alyssarosenzweig-groupme' name='djhaskin987@gmail.com' mode='1'/>
-		<account proto='prpl-matrix' name='skin' mode='1'/>
+		<account proto='prpl-slack' name='U02K7FJEXEY%angelstudiosteam.slack.com' mode='1'/>
+		<account proto='prpl-matrix' name='djha-skin' mode='1'/>
 		<account proto='prpl-eionrobb-discord' name='me@djha.skin' mode='1'/>
+		<account proto='prpl-irc' name='skin/libera@chat.sr.ht' mode='1'/>
 	</privacy>
 </purple>

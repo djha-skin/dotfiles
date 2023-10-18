@@ -42,10 +42,10 @@
 			</pref>
 		</pref>
 		<pref name='savedstatus'>
-			<pref name='default' type='int' value='1693674132'/>
+			<pref name='default' type='int' value='1697645263'/>
 			<pref name='startup' type='int' value='0'/>
 			<pref name='startup_current_status' type='bool' value='1'/>
-			<pref name='idleaway' type='int' value='1693675136'/>
+			<pref name='idleaway' type='int' value='1697645528'/>
 			<pref name='isidleaway' type='bool' value='0'/>
 		</pref>
 		<pref name='conversations'>
@@ -79,13 +79,13 @@
 			<pref name='socks4_remotedns' type='bool' value='0'/>
 		</pref>
 		<pref name='sound'>
-			<pref name='while_status' type='int' value='1'/>
+			<pref name='while_status' type='int' value='3'/>
 		</pref>
 	</pref>
 	<pref name='plugins'>
 		<pref name='core'>
 			<pref name='core-plugin_pack-autoaccept'>
-				<pref name='path' type='string' value='/home/skin/.purple/autoaccept'/>
+				<pref name='path' type='string' value='/home/danielhaskin/.purple/autoaccept'/>
 				<pref name='notify' type='bool' value='1'/>
 				<pref name='newdir' type='bool' value='1'/>
 				<pref name='escape' type='bool' value='1'/>
@@ -119,16 +119,13 @@
 				<pref name='notify_signon' type='bool' value='1'/>
 			</pref>
 			<pref name='skin-string-notifier'>
-				<pref name='command' type='string' value='/home/skin/.local/bin/pidgin-notify'/>
-				<pref name='conversations' type='string' value='Jennifer,Sugar Boogar,devops'/>
-				<pref name='senders' type='string' value='david.christensen,jennhaskin814,doran.barton,kevin.crook'/>
-				<pref name='keywords' type='string' value='ops,devops,daniel,Daniel,DevOps,Ops'/>
-				<pref name='buzz-conversations' type='string' value='david.christensen,jennhaskin814'/>
+				<pref name='buzz-conversations' type='string' value='jennhaskin814,Sugar Boogar,Jennifer Haskin,tech-911'/>
 				<pref name='buzz-senders' type='string' value=''/>
-				<pref name='buzz-keywords' type='string' value='daniel,Daniel'/>
+				<pref name='buzz-keywords' type='string' value='bunny'/>
+				<pref name='command' type='string' value='/home/danielhaskin/.local/bin/pidgin-notify'/>
 				<pref name='cmd-conversations' type='string' value='devops'/>
-				<pref name='cmd-senders' type='string' value='zulu.inuoe,.sigue.,doran.barton,kevin.crook'/>
-				<pref name='cmd-keywords' type='string' value='ops'/>
+				<pref name='cmd-senders' type='string' value='kevin.crook,doran.barton'/>
+				<pref name='cmd-keywords' type='string' value='@ops'/>
 			</pref>
 			<pref name='vvconfig'>
 				<pref name='audio'>
@@ -172,7 +169,7 @@
 					<pref name='method_count' type='bool' value='1'/>
 					<pref name='method_count_xprop' type='bool' value='1'/>
 					<pref name='method_raise' type='bool' value='1'/>
-					<pref name='notify_focus' type='bool' value='1'/>
+					<pref name='notify_focus' type='bool' value='0'/>
 					<pref name='notify_click' type='bool' value='1'/>
 					<pref name='notify_type' type='bool' value='1'/>
 					<pref name='notify_send' type='bool' value='1'/>
@@ -289,18 +286,18 @@
 				<pref name='bl_solid_onfocus' type='bool' value='0'/>
 				<pref name='bl_always_on_top' type='bool' value='0'/>
 			</pref>
+			<pref name='window_merge'>
+				<pref name='blist_height' type='int' value='300'/>
+				<pref name='blist_width' type='int' value='1149'/>
+				<pref name='convs_side' type='string' value='right'/>
+			</pref>
 			<pref name='libnotify'>
 				<pref name='newmsg' type='bool' value='1'/>
 				<pref name='blocked' type='bool' value='1'/>
 				<pref name='newconvonly' type='bool' value='0'/>
-				<pref name='signon' type='bool' value='0'/>
+				<pref name='signon' type='bool' value='1'/>
 				<pref name='signoff' type='bool' value='0'/>
 				<pref name='only_available' type='bool' value='0'/>
-			</pref>
-			<pref name='window_merge'>
-				<pref name='blist_height' type='int' value='300'/>
-				<pref name='blist_width' type='int' value='274'/>
-				<pref name='convs_side' type='string' value='right'/>
 			</pref>
 			<pref name='vvconfig'>
 				<pref name='video'>
@@ -321,47 +318,44 @@
 		<pref name='plugins'>
 			<pref name='loaded' type='pathlist'>
 				<item value='/usr/lib64/purple-2/autoaccept.so'/>
-				<item value='/usr/lib64/pidgin/gtkbuddynote.so'/>
-				<item value='/usr/lib64/purple-2/buddynote.so'/>
 				<item value='/usr/lib64/pidgin/extplacement.so'/>
 				<item value='/usr/lib64/pidgin/history.so'/>
 				<item value='/usr/lib64/purple-2/joinpart.so'/>
-				<item value='/usr/lib64/purple-2/pidgin-libnotify.so'/>
 				<item value='/usr/lib64/pidgin/markerline.so'/>
 				<item value='/usr/lib64/pidgin/notify.so'/>
 				<item value='/usr/lib64/purple-2/ssl-nss.so'/>
 				<item value='/usr/lib64/purple-2/newline.so'/>
-				<item value='/usr/lib64/pidgin/pidginrc.so'/>
+				<item value='/usr/lib64/pidgin/themeedit.so'/>
 				<item value='/usr/lib64/purple-2/psychic.so'/>
 				<item value='/usr/lib64/purple-2/ssl.so'/>
 				<item value='/usr/lib64/pidgin/sendbutton.so'/>
 				<item value='/usr/lib64/purple-2/libstringnotifier.so'/>
+				<item value='/usr/lib64/pidgin/indicator.so'/>
 				<item value='/usr/lib64/pidgin/vvconfig.so'/>
-				<item value='/usr/lib64/pidgin/window_merge.so'/>
 			</pref>
 		</pref>
 		<pref name='blist'>
 			<pref name='show_buddy_icons' type='bool' value='0'/>
-			<pref name='show_empty_groups' type='bool' value='0'/>
+			<pref name='show_empty_groups' type='bool' value='1'/>
 			<pref name='show_idle_time' type='bool' value='1'/>
 			<pref name='show_offline_buddies' type='bool' value='1'/>
 			<pref name='show_protocol_icons' type='bool' value='0'/>
 			<pref name='list_visible' type='bool' value='1'/>
-			<pref name='list_maximized' type='bool' value='1'/>
+			<pref name='list_maximized' type='bool' value='0'/>
 			<pref name='sort_type' type='string' value='alphabetical'/>
-			<pref name='x' type='int' value='300'/>
-			<pref name='y' type='int' value='0'/>
-			<pref name='width' type='int' value='1066'/>
-			<pref name='height' type='int' value='571'/>
+			<pref name='x' type='int' value='7799'/>
+			<pref name='y' type='int' value='3490'/>
+			<pref name='width' type='int' value='3960'/>
+			<pref name='height' type='int' value='3454'/>
 			<pref name='theme' type='string' value=''/>
 		</pref>
 		<pref name='filelocations'>
 			<pref name='last_save_folder' type='path' value=''/>
 			<pref name='last_open_folder' type='path' value=''/>
-			<pref name='last_icon_folder' type='path' value='/home/skin/Pictures'/>
+			<pref name='last_icon_folder' type='path' value=''/>
 		</pref>
 		<pref name='smileys'>
-			<pref name='theme' type='string' value='Default'/>
+			<pref name='theme' type='string' value='Slack Emoji Theme'/>
 		</pref>
 		<pref name='vvconfig'>
 			<pref name='audio'>
@@ -386,8 +380,8 @@
 			<pref name='filterlevel' type='int' value='0'/>
 			<pref name='style' type='int' value='3'/>
 			<pref name='toolbar' type='bool' value='1'/>
-			<pref name='width' type='int' value='450'/>
-			<pref name='height' type='int' value='250'/>
+			<pref name='width' type='int' value='1996'/>
+			<pref name='height' type='int' value='3023'/>
 			<pref name='regex' type='string' value=''/>
 			<pref name='filter' type='bool' value='0'/>
 			<pref name='invert' type='bool' value='0'/>
@@ -417,7 +411,7 @@
 				<pref name='left_chat' type='bool' value='0'/>
 				<pref name='send_chat_msg' type='bool' value='0'/>
 				<pref name='chat_msg_recv' type='bool' value='0'/>
-				<pref name='nick_said' type='bool' value='0'/>
+				<pref name='nick_said' type='bool' value='1'/>
 				<pref name='pounce_default' type='bool' value='1'/>
 				<pref name='sent_attention' type='bool' value='1'/>
 				<pref name='got_attention' type='bool' value='1'/>
@@ -449,7 +443,7 @@
 				<pref name='width' type='int' value='520'/>
 				<pref name='height' type='int' value='321'/>
 			</pref>
-			<pref name='buddyicon' type='path' value='/home/skin/Pictures/slack-me.png'/>
+			<pref name='buddyicon' type='path' value=''/>
 		</pref>
 		<pref name='conversations'>
 			<pref name='use_smooth_scrolling' type='bool' value='1'/>
@@ -475,17 +469,17 @@
 			<pref name='scrollback_lines' type='int' value='4000'/>
 			<pref name='chat'>
 				<pref name='entry_height' type='int' value='54'/>
-				<pref name='userlist_width' type='int' value='0'/>
+				<pref name='userlist_width' type='int' value='479'/>
 				<pref name='x' type='int' value='0'/>
 				<pref name='y' type='int' value='0'/>
 				<pref name='width' type='int' value='340'/>
 				<pref name='height' type='int' value='390'/>
 			</pref>
 			<pref name='im'>
-				<pref name='x' type='int' value='509'/>
-				<pref name='y' type='int' value='152'/>
-				<pref name='width' type='int' value='348'/>
-				<pref name='height' type='int' value='390'/>
+				<pref name='x' type='int' value='7799'/>
+				<pref name='y' type='int' value='0'/>
+				<pref name='width' type='int' value='3960'/>
+				<pref name='height' type='int' value='3443'/>
 				<pref name='animate_buddy_icons' type='bool' value='1'/>
 				<pref name='entry_height' type='int' value='54'/>
 				<pref name='show_buddy_icons' type='bool' value='1'/>
@@ -515,9 +509,9 @@
 		</pref>
 		<pref name='docklet'>
 			<pref name='blink' type='bool' value='0'/>
-			<pref name='show' type='string' value='always'/>
+			<pref name='show' type='string' value='never'/>
 			<pref name='gtk'>
-				<pref name='embedded' type='bool' value='1'/>
+				<pref name='embedded' type='bool' value='0'/>
 			</pref>
 		</pref>
 	</pref>
