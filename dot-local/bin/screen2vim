@@ -31,12 +31,12 @@ if [ $(( 16 * ${width} )) -gt $(( 9 * ${height} )) ]
 then
     if [ "${width}" -gt 720 ]
     then
-        out="<img src=\"${2}/${fname}\" width=\"720\"/>"
+        out="![](${2}/${fname}){width=720}"
     fi
 else
     if [ "${height}" -gt 1280 ]
     then
-        out="<img src=\"${2}/${fname}\" height=\"1280\"/>"
+        out="![](${2}/${fname}}{height=1280}"
     fi
 fi
 
