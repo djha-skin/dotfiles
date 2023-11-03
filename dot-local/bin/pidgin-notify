@@ -1,7 +1,23 @@
 #!/bin/sh
+conversation_title="${1}"
+shift
+sender="${1}"
+shift
+check_name="${1}"
+shift
+matched="${1}"
+shift
+
+message=$(cat <<EOF
+In:         ${conversation_title}
+From:       ${sender}
+Check:      ${check_name}
+Matched on: ${matched}
+EOF)
+
 (
     flock -n 987 || exit 1
-    notify-send 'Pidgin' "${1} matched on ${2}."
-    play /home/skin/Music/whistle.wav
+    notify-send 'Pidgin' "${message}"
+    play /home/danielhaskin/Music/string-notifier.wav
     sleep 1
-) 987> /home/skin/.pidgin-notify
+) 987> /home/danielhaskin/.pidgin-notify
