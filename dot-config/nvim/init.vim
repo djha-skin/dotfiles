@@ -7,15 +7,24 @@ let g:vim_markdown_new_list_item_indent = 2
 call plug#begin()
 if has('mac')
     let g:netrw_browser_viewer='open'
-    if len($ITERM_PROFILE) > 0
+    if len($TERM_PROFILE) > 0
         if $ITERM_PROFILE == 'Dark'
             set background=dark
         else
             set background=light
         endif
     endif
+elseif has('win32')
+    let g:netrw_browser_viewer='start'
+    if len($TERMINAL_PROFILE) > 0
+        if $TERMINAL_PROFILE == 'Dark'
+            set background=dark
+        else
+            set background=light
+        endif
+    endif
 else
-    "let g:netrw_browser_viewer='xdg-open'
+    let g:netrw_browser_viewer='xdg-open'
     if len($TERMINAL_PROFILE) > 0
         if $TERMINAL_PROFILE == 'Dark'
             set background=dark
@@ -24,14 +33,18 @@ else
         endif
     endif
 endif
-Plug 'github/copilot.vim'
+Plug 'ycm-core/YouCompleteMe'
 Plug 'gsuuon/llm.nvim'
+Plug 'bakpakin/janet.vim'
+Plug 'github/copilot.vim'
+Plug 'vlime/vlime', {'rtp': 'vim/'}
 Plug 'rhysd/vim-grammarous'
 Plug 'jpalardy/vim-slime'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'psf/black', { 'branch': 'stable' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'ray-x/go.nvim'
+"Plug 'ray-x/go.nvim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'frazrepo/vim-rainbow'
 Plug 'godlygeek/tabular'
 Plug 'neovim/nvim-lspconfig'
@@ -46,11 +59,29 @@ Plug 'overcache/NeoSolarized'
 Plug 'guns/vim-sexp'
 call plug#end()
 let g:sexp_enable_insert_mode_mappings = 0
-let g:paredit_mode=0
+let g:paredit_mode=1
+nnoremap <Leader>w <C-w>
+nnoremap <Leader>ww <C-w><C-w>
+" For Jpalardy's vim-slime
+nnoremap <Leader>r <C-c><C-c>
+
+
+let g:ycm_language_server = 
+\ [ 
+\   {
+\     'name': 'common-lisp',
+\     'cmdline': [ 'cl-lsp', '--stdio' ],
+\     'filetypes': [ 'lisp' ]
+\   }
+\ ]
+
+
 lua <<EOF
-require'lspconfig'.clojure_lsp.setup{}
-require'lspconfig'.pylsp.setup{}
-require'lspconfig'.terraformls.setup{}
+
+require 'lspconfig'.clojure_lsp.setup{}
+require 'lspconfig'.pylsp.setup{}
+require 'lspconfig'.terraformls.setup{}
+require 'lspconfig'.gopls.setup{}
 
 function clstart( )
     if ( not started)
@@ -59,7 +90,9 @@ function clstart( )
         vim.lsp.start({
           name = 'cl-lsp',
           cmd = {'cl-lsp'},
-          root_dir = vim.fs.dirname(vim.fs.find({'clpmfile'}, { upward = true })[1]),
+          root_dir = vim.fs.dirname(vim.fs.find(function(name, path)
+              return name:match('%.*.asd$')
+            end, { upward = true })[1]),
         })
     end
 end
@@ -173,17 +206,24 @@ endif
 
 " guard against 80 character length lines.
 au BufWinEnter * let w:m2=matchadd('ErrorMsg', '/\%>80v.\+/', -1)
+"au BufWinEnter *.lisp let w:m2=matchadd('ErrorMsg', '/\%>100v.\+/', -1)
 hi clear OverLength
 hi clear ExtraWhitespace
 hi ExtraWhitespace ctermbg=red guibg=red
 hi link OverLength Error
-match OverLength '\%>80v.\+'
+
+au BufWinEnter * match OverLength '\%>80v.\+'
+"au BufWinEnter *.lisp match OverLength '\%>100v.\+'
 2match ExtraWhitespace '\s\+\%#\@<!$'
 if exists('+colorcolumn')
-    set colorcolumn=80
+    au BufWinEnter * set colorcolumn=80
+    "au BufWinEnter *.lisp set colorcolumn=100
 else
     au BufWinEnter * let w:m2=matchadd('OverLength', '/\%>80v.\+/', -1)
+    "au BufWinEnter *.lisp let w:m2=matchadd('OverLength', '/\%>100v.\+/', -1)
 endif
+au BufWinEnter * set textwidth=80
+"au BufWinEnter *.lisp set textwidth=100
 
 set expandtab
 set tabstop=4
@@ -200,7 +240,7 @@ set hlsearch
 map!  u03bb
 
 " enable unicode
-if has('multi_byte')
+if has("multi_byte")
   if &termencoding == ""
     let &termencoding = &encoding
   endif
@@ -229,12 +269,12 @@ nnoremap <Leader><space> :let @/=""<CR>
 nnoremap <Leader>d :put =strftime('%FT%T%z')<CR>
 nnoremap <Leader>b :execute "!git blame -L " . line(".") . "," . line(".") . " %"<CR>
 " Easier copy/pasta
-if has('unix')
+if has("unix")
     vnoremap <Leader>c "+y:lua str2file(vim.fn.getreg('+'), '/tmp/screen-exchange')<CR>
     nnoremap <Leader>c "+y:lua str2file(vim.fn.getreg('+'), '/tmp/screen-exchange')<CR>
     nnoremap <Leader>v "+]p
     nnoremap <Leader>V :r /tmp/screen-exchange<CR>
-elseif has('win32')
+elseif has("win32")
     vnoremap <Leader>c "+y:lua str2file(vim.fn.getreg('+'), "C:\\Users\\bhw\\AppData\\Local\\Temp\\vim-exchange.txt")<CR>
     nnoremap <Leader>c "+y:lua str2file(vim.fn.getreg('+'), "C:\\Users\\bhw\\AppData\\Local\\Temp\\vim-exchange.txt")<CR>
     nnoremap <Leader>v "+]p
@@ -246,14 +286,8 @@ au BufRead,BufNewFile *.md nnoremap <LocalLeader>w :let @/=""<CR>:s/^\( *\)\(- *
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>e :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} */\1- [ ] /g<CR>:let @/=""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>r :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} */\1/g<CR>:let @/=""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>t :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} *[~]\{2\}\(.*\)[~]\{2\} *$/\1\2\3 \4/<CR>:let @/=""<CR>
-
-if has('mac')
-    au BufRead,BufNewFile *.md nnoremap <LocalLeader>f vi(y:execute "!sh -c \"open '" . shellescape("0",1) . "' && sleep 1\""<CR>
-    au BufRead,BufNewFile *.md nnoremap <LocalLeader>G :w<CR>:!sh -c 'pandoc -V 'margin-left=1in' -V 'margin-right=1in' -V 'margin-bottom=1in' -V 'margin-top=1in' -V 'papersize=Letter' -t html '\''%'\'' -o '\''%:r.pdf'\'' && open '\''%:r.pdf'\'' && sleep 1'<CR>
-else
-    au BufRead,BufNewFile *.md nnoremap <LocalLeader>f vi(y:execute "!sh -c \"xdg-open '" . shellescape("0",1) . "' && sleep 1\""<CR>
-    au BufRead,BufNewFile *.md nnoremap <LocalLeader>G :w<CR>:!sh -c 'pandoc -V 'margin-left=1in' -V 'margin-right=1in' -V 'margin-bottom=1in' -V 'margin-top=1in' -V 'papersize=Letter' -t html '\''%'\'' -o '\''%:r.pdf'\'' && xdg-open '\''%:r.pdf'\'' && sleep 1'<CR>
-endif
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>f vi(y:execute "!sh -c \"open '" . shellescape("0",1) . "' && sleep 1\""<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>G :w<CR>:!sh -c 'pandoc '\''%'\'' -o '\''%:r.pdf'\'' && open '\''%:r.pdf'\'' && sleep 1'<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>s :lua vim.fn.execute("r!screen2vim '" ..  vim.fn.expand("%:p") .. "' 'img'")<CR>
 nnoremap <Leader>( t(l"pda(hda("pp
 nnoremap <Leader>l :lua vim.diagnostic.setloclist()<CR>
@@ -287,13 +321,15 @@ au BufRead,BufNewFile *.rs   set makeprg=cargo\ build
 au BufRead,BufNewFile *.clj set makeprg=lein\ compile | map <Leader>F :!cljstyle fix %<CR>
 au BufRead,BufNewFile *.clj nnoremap <Leader>u t(l"ada(da(h"a]p
 au BufRead,BufNewFile *.clj nnoremap <Leader>U dt xjkhxt)lx
-au BufRead,BufNewFile *.clj nnoremap <Leader>d i(util/dbg <Esc>l])a)<Esc>
-au BufRead,BufNewFile *.clj nnoremap <Leader>D bi(util/dbg <Esc>lea)<Esc>
+au BufRead,BufNewFile *.clj nnoremap <LocalLeader>d i(util/dbg <Esc>l])a)<Esc>
+au BufRead,BufNewFile *.clj nnoremap <LocalLeader>D bi(util/dbg <Esc>lea)<Esc>
 au BufRead,BufNewFile *.tex set makeprg=pdflatex\ -halt-on-error\ --shell-escape\ -interaction=nonstopmode\ \"%\"
 au BufRead,BufNewFile SConstruct,SConscript set makeprg=scons
 au BufRead,BufNewFile *.rb set tabstop=2
 au BufRead,BufNewFile *.rb set shiftwidth=2
 au BufRead,BufNewFile *.lisp lua clstart()
+au BufRead,BufNewFile *.lisp nnoremap <LocalLeader>d i(print <Esc>l])a)<Esc>
+au BufRead,BufNewFile *.lisp nnoremap <LocalLeader>D bi(print <Esc>lea)<Esc>
 "| inoremap <CR> <CR><esc>i
 
 " https://github.com/preservim/vim-markdown/issues/390#issuecomment-578459147
@@ -349,3 +385,11 @@ if exists('g:vscode')
     au BufRead,BufNewFile *.clj noremap <LocalLeader>s :call VSCodeNotify('calva.evaluateSelection')<CR>
     au BufRead,BufNewFile *.clj noremap <LocalLeader>C :call VSCodeNotify('calva.evaluateCurrentTopLevelForm')<CR>
 endif
+
+let g:vlime_cl_impl = "ros"
+
+function! VlimeBuildServerCommandFor_ros(vlime_loader, vlime_eval)
+    return ["/home/skin/.local/bin/ros", "run",
+              \ "--load", a:vlime_loader,
+              \ "--eval", a:vlime_eval]
+endfunction
