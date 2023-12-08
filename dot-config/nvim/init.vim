@@ -33,7 +33,7 @@ else
         endif
     endif
 endif
-Plug 'ycm-core/YouCompleteMe'
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clangd-completer --go-completer --ts-completer --rust-completer --java-completer' }
 Plug 'gsuuon/llm.nvim'
 Plug 'bakpakin/janet.vim'
 Plug 'github/copilot.vim'
@@ -66,12 +66,17 @@ nnoremap <Leader>ww <C-w><C-w>
 nnoremap <Leader>r <C-c><C-c>
 
 
-let g:ycm_language_server = 
-\ [ 
+let g:ycm_language_server =
+\ [
 \   {
 \     'name': 'common-lisp',
 \     'cmdline': [ 'cl-lsp', '--stdio' ],
 \     'filetypes': [ 'lisp' ]
+\   },
+\   {
+\     'name': 'terraform',
+\     'cmdline': [ 'terraform-lsp', 'serve' ],
+\     'filetypes': [ 'terraform' ]
 \   }
 \ ]
 
