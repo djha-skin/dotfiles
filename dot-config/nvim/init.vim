@@ -57,13 +57,13 @@ Plug 'preservim/vim-markdown'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'overcache/NeoSolarized'
 Plug 'guns/vim-sexp'
+Plug 'https://git.sr.ht/~skin/roswell-sbcl.vim'
 call plug#end()
 let g:sexp_enable_insert_mode_mappings = 0
 let g:paredit_mode=1
 nnoremap <Leader>w <C-w>
 nnoremap <Leader>ww <C-w><C-w>
 " For Jpalardy's vim-slime
-nnoremap <Leader>r <C-c><C-c>
 
 
 let g:ycm_language_server =
@@ -96,7 +96,7 @@ function clstart( )
           name = 'cl-lsp',
           cmd = {'cl-lsp'},
           root_dir = vim.fs.dirname(vim.fs.find(function(name, path)
-              return name:match('%.*.asd$')
+              return name:match('.asd$')
             end, { upward = true })[1]),
         })
     end
@@ -137,7 +137,7 @@ prompts = vim.tbl_extend('force', require('llm.prompts.starters'), {
   })
 })
 
-
+-- "
 
 EOF
 
@@ -170,7 +170,7 @@ if has('win32')
 elseif has('win32unix')
     "Cygwin options
     "set backspace=2
-    "if that doesn't work, try this:
+    "if that doesnt work, try this:
     set backspace=indent,eol,start
 endif
 colorscheme NeoSolarized
@@ -202,6 +202,11 @@ else
     colorscheme NeoSolarized
     let g:slime_target = "conemu"
 endif
+
+let g:slime_no_mappings = 1
+xmap <Leader>r <Plug>SlimeRegionSend
+nmap <Leader>r <Plug>SlimeParagraphSend
+nmap <Leader>t <Plug>SlimeConfig
 
 if has('win32')
     set backspace=2
@@ -274,12 +279,12 @@ nnoremap <Leader><space> :let @/=""<CR>
 nnoremap <Leader>d :put =strftime('%FT%T%z')<CR>
 nnoremap <Leader>b :execute "!git blame -L " . line(".") . "," . line(".") . " %"<CR>
 " Easier copy/pasta
-if has("unix")
+if has('unix')
     vnoremap <Leader>c "+y:lua str2file(vim.fn.getreg('+'), '/tmp/screen-exchange')<CR>
     nnoremap <Leader>c "+y:lua str2file(vim.fn.getreg('+'), '/tmp/screen-exchange')<CR>
     nnoremap <Leader>v "+]p
     nnoremap <Leader>V :r /tmp/screen-exchange<CR>
-elseif has("win32")
+elseif has('win32')
     vnoremap <Leader>c "+y:lua str2file(vim.fn.getreg('+'), "C:\\Users\\bhw\\AppData\\Local\\Temp\\vim-exchange.txt")<CR>
     nnoremap <Leader>c "+y:lua str2file(vim.fn.getreg('+'), "C:\\Users\\bhw\\AppData\\Local\\Temp\\vim-exchange.txt")<CR>
     nnoremap <Leader>v "+]p
@@ -291,14 +296,16 @@ au BufRead,BufNewFile *.md nnoremap <LocalLeader>w :let @/=""<CR>:s/^\( *\)\(- *
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>e :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} */\1- [ ] /g<CR>:let @/=""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>r :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} */\1/g<CR>:let @/=""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>t :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} *[~]\{2\}\(.*\)[~]\{2\} *$/\1\2\3 \4/<CR>:let @/=""<CR>
-au BufRead,BufNewFile *.md nnoremap <LocalLeader>f vi(y:execute "!sh -c \"open '" . shellescape("0",1) . "' && sleep 1\""<CR>
-au BufRead,BufNewFile *.md nnoremap <LocalLeader>G :w<CR>:!sh -c 'pandoc '\''%'\'' -o '\''%:r.pdf'\'' && open '\''%:r.pdf'\'' && sleep 1'<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>f vi(y:execute "!sh -c \"xdg-open '" . shellescape("0",1) . "' && sleep 1\""<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>G :w<CR>:!sh -c 'pandoc '\''%'\'' -o '\''%:r.pdf'\'' && xdg-open '\''%:r.pdf'\'' && sleep 1'<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>s :lua vim.fn.execute("r!screen2vim '" ..  vim.fn.expand("%:p") .. "' 'img'")<CR>
 nnoremap <Leader>( t(l"pda(hda("pp
 nnoremap <Leader>l :lua vim.diagnostic.setloclist()<CR>
 " the leader f won't work with this, but the leader G will.
 vnoremap <Leader>c "+y
+"
 nnoremap <Leader>v "+]p
+"
 nnoremap <Leader>n :tabn<CR>
 nnoremap <Leader>p :tabp<CR>
 
@@ -398,3 +405,5 @@ function! VlimeBuildServerCommandFor_ros(vlime_loader, vlime_eval)
               \ "--load", a:vlime_loader,
               \ "--eval", a:vlime_eval]
 endfunction
+
+au BufRead,BufNewFile *.lisp compiler roswell-sbcl
