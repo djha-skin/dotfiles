@@ -1,3 +1,4 @@
+set spell spelllang=en
 let mapleader="\<SPACE>"
 
 let g:black_linelength = 79
@@ -53,7 +54,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 Plug 'tpope/vim-fireplace'
 Plug 'venantius/vim-cljfmt'
-Plug 'preservim/vim-markdown'
+"Plug 'preservim/vim-markdown'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'overcache/NeoSolarized'
 Plug 'guns/vim-sexp'
@@ -353,8 +354,6 @@ au BufRead,BufNewFile *.lisp nnoremap <LocalLeader>D bi(print <Esc>lea)<Esc>
 "https://github.com/preservim/vim-markdown/pull/375
 "| setlocal comments=bf:>,bf:*,bf:+,bf:- | set formatoptions+=c  | set formatlistpat=^\\s*\\d\\+[.\)]\\s\\+\\\|^\\s*[#*+~-]\\s\\+\\\|^\\(\\\|[*#-~+]\\)\\[^[^\\]]\\+\\]:\\s
 au BufRead,BufNewFile *.md set shiftwidth=2 | set tabstop=2 | setlocal comments=bf:*,bf:+,bf:-,n:> | set formatoptions+=c  | set formatlistpat=^\\s*\\d\\+[.\)]\\s\\+\\\|^\\s*[#*+~-]\\s\\+\\\|^\\(\\\|[*#-~+]\\)\\[^[^\\]]\\+\\]:\\s | set textwidth=80 | set autoindent
-au BufRead,BufNewFile *.md setlocal spell spelllang=en_us
-
 
 au BufRead,BufNewFile *.hs set shiftwidth=2 | set tabstop=2
 au BufRead,BufNewFile *.mtn set tabstop=8 | set shiftwidth=8 | set noexpandtab
@@ -408,3 +407,4 @@ function! VlimeBuildServerCommandFor_ros(vlime_loader, vlime_eval)
 endfunction
 
 au BufRead,BufNewFile *.lisp compiler roswell-sbcl
+au BufRead,BufNewFile *.asd compiler roswell-sbcl
