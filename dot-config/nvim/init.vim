@@ -171,7 +171,7 @@ if has('win32')
 elseif has('win32unix')
     "Cygwin options
     "set backspace=2
-    "if that doesnt work, try this:
+    "if that doesn't work, try this:
     set backspace=indent,eol,start
 endif
 colorscheme NeoSolarized
@@ -182,7 +182,7 @@ set nojoinspaces
 set showmatch
 
 set termguicolors
-if executable('tmux')
+if executable("tmux")
     if has('win32')
         let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
         let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -251,7 +251,7 @@ set hlsearch
 map!  u03bb
 
 " enable unicode
-if has("multi_byte")
+if has('multi_byte')
   if &termencoding == ""
     let &termencoding = &encoding
   endif
@@ -297,8 +297,8 @@ au BufRead,BufNewFile *.md nnoremap <LocalLeader>w :let @/=""<CR>:s/^\( *\)\(- *
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>e :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} */\1- [ ] /g<CR>:let @/=""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>r :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} */\1/g<CR>:let @/=""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>t :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} *[~]\{2\}\(.*\)[~]\{2\} *$/\1\2\3 \4/<CR>:let @/=""<CR>
-au BufRead,BufNewFile *.md nnoremap <LocalLeader>f vi(y:execute "!sh -c \"xdg-open '" . shellescape("0",1) . "' && sleep 1\""<CR>
-au BufRead,BufNewFile *.md nnoremap <LocalLeader>G :w<CR>:!sh -c 'pandoc '\''%'\'' -o '\''%:r.pdf'\'' && xdg-open '\''%:r.pdf'\'' && sleep 1'<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>f vi(y:execute '!sh -c \"' . g:netrw_browser_viewer . ' ' .  shellescape("0",1) . ' && sleep 1\"'<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>G :w<CR>:execute "!sh -c \"pandoc '%' -o '%:r.pdf' && " . g:netrw_browser_viewer . " '%:r.pdf' && sleep 1\""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>s :lua vim.fn.execute("r!screen2vim '" ..  vim.fn.expand("%:p") .. "' 'img'")<CR>
 nnoremap <Leader>( t(l"pda(hda("pp
 nnoremap <Leader>l :lua vim.diagnostic.setloclist()<CR>
@@ -367,9 +367,9 @@ au BufWritePost *.tf !terraform fmt %
 " enclose any variable within a line in quotes
 "au filetype sh map \" :.s/\v(^\|[[:blank:]])(\$[^[:blank:]]*)([[:blank:]]\|$)/\1"\2"\3/g
 
-"if has("terminal")
+"if has('terminal')
 "    let g:slime_target="vimterminal"
-"    if has("win32")
+"    if has('win32')
 "        let g:slime_vimterminal_cmd = "powershell"
 "    else
 "        let g:slime_vimterminal_cmd = "bash"
