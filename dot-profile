@@ -8,17 +8,29 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 export PROFILE_INCLUDED=1
-export HOME="/home/djha-skin"
+if [ -d /mingw64 ]
+then
+    export HOME="/home/bhw"
+else
+    export HOME="/home/skin"
+fi
 export home_altprefix="${HOME}/.apps"
 # Set up PATH
-export PATH="${HOME}/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+if [ -d /mingw64 ]
+then
+    export PATH="${HOME}/.local/bin:/mingw64/bin:/usr/local/bin:/usr/bin:/bin:/c/Windows/System32:/c/Windows:/c/Windows/System32/Wbem:/c/Windows/System32/WindowsPowerShell/v1.0/:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/c/Users/bhw/.roswell/lisp/quicklisp/bin"
+    export C_INCLUDE_PATH=/mingw64/include:/usr/include
+    export LIBRARY_PATH=/mingw64/lib64:/mingw64/lib:/usr/lib64:/usr/lib
+else
+    export PATH="${HOME}/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+    export C_INCLUDE_PATH=/usr/include
+    export LIBRARY_PATH=/usr/lib64:/usr/lib
+fi
 export LANG="en_US.UTF-8"
 export LOCALE="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export LANGUAGE="en_US:"
 export RLWRAP_EDITOR="nvim '+call cursor(%L,%C)'"
-export C_INCLUDE_PATH=/usr/include
-export LIBRARY_PATH=/usr/lib64:/usr/lib
 
 #export LD_LIBRARY_PATH=${HOME}/.local/lib64:${HOME}/.local/lib:/usr/local/lib64:/usr/local/lib:/usr/lib64:/usr/lib
 
@@ -160,3 +172,30 @@ pcleard() {
     rm -f "${WORKING_LOCATION_FILE}"
     touch "${WORKING_LOCATION_FILE}"
 }
+if [ -d /mingw64 ]
+then
+    export LANG=$(locale -uU)
+
+    agm2() {
+      local MINGW_DIRS="mingw32 mingw64"
+      local AG_FIND=
+
+      for dir in ${MINGW_DIRS}; do
+        if type -p /${dir}/bin/ag >/dev/null; then
+          AG_FIND=/${dir}/bin/ag
+        fi
+      done
+
+      if ! type -p /usr/bin/git >/dev/null; then
+        echo "bash: git: command not found. Please install \"git\" package."
+        exit 1
+      fi
+
+      if [ -n "$AG_FIND" ]; then
+        $AG_FIND --makepkg --depth 1 "$@" $(git rev-parse --show-toplevel)
+      else
+        echo "bash: ag: conmmand not found. Please install \"mingw-w64-i686-ag\" or \"mingw-w64-x86_64-ag\" package."
+        exit 1
+      fi
+    }
+fi

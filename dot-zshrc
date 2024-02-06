@@ -1,18 +1,20 @@
+
 export ZSH="$HOME/.oh-my-zsh"
-export GOHERE="${HOME}/.config/shell/pwd"
-ZSH_THEME="robbyrussell"
+ZSH_THEME="simple"
 CASE_SENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
 export ZVM_VI_ESCAPE_BINDKEY=jk
-plugins=(git gh github asdf)
+plugins=(git)
 #aliases alias-finder aws bgnotify chucknorris colored-man-pages colorize command-not-found docker docker-compose forklift fossil gh git git-auto-fetch git-escape-magic git-extras gitfast git-flow git-flow-avh github git-hubflow gitignore git-lfs git-prompt gnu-utils golang gpg-agent helm history history-substring-search isodate jira kubectl lein minikube nmap pip poetry postgres pyenv pylint python rsync sudo systemadmin systemd terraform themes ubuntu ufw universalarchive urltools vagrant vagrant-prompt vault vim-interaction virtualenv zsh-vi-mode)
 DISABLE_AUTO_TITLE="true"
 source $ZSH/oh-my-zsh.sh
-source ~/.profile
+
+if [ -f ~/.profile -a -z "${PROFILE_INCLUDED:-}" ]
+then
+    source ~/.profile
+fi
 source ~/.zsh_aliases
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-source <(kubectl completion zsh)
 
 if [ -e "${WORKING_LOCATION_FILE}" ]
 then
