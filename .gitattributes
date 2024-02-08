@@ -1,3 +1,14 @@
+# Vim sources
+*.vim text
+# Conf files
+*.conf text
+*.txt text
+dot-* text
+# systemd
+*.service text
+*.socket text
+*.mount text
+
 # Java sources
 *.java          text diff=java
 *.clj          text diff=clojure
