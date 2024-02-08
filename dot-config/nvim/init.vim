@@ -34,8 +34,8 @@ else
         endif
     endif
 endif
-Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clangd-completer --go-completer --ts-completer --rust-completer --java-completer' }
-Plug 'gsuuon/llm.nvim'
+"Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clangd-completer --go-completer --ts-completer --rust-completer --java-completer' }
+"Plug 'gsuuon/llm.nvim'
 Plug 'bakpakin/janet.vim'
 Plug 'github/copilot.vim'
 Plug 'vlime/vlime', {'rtp': 'vim/'}
@@ -108,35 +108,35 @@ function str2file(str, fname)
   f:write(str)
   f:close()
 end
-require('llm').setup({
-prompts = vim.tbl_extend('force', require('llm.prompts.starters'), {
-  llamacpp = {
-    provider = llamacpp,
-    params = {
-      model = 'models/llama-2-13b-chat.ggmlv3.q4_K_M.bin',
-      ['n-gpu-layers'] = 32,
-      threads = 6,
-      ['repeat-penalty'] = 1.2,
-      temp = 0.2,
-      ['ctx-size'] = 4096,
-      ['n-predict'] = -1
-    },
-    builder = function(input)
-      return {
-        prompt = llamacpp.llama_2_format({
-          messages = {
-            input
-          }
-        })
-      }
-    end,
-    options = {
-      path = os.getenv('LLAMACPP_DIR'),
-      main_dir = os.getenv('LLAMACPP_MAIN_DIR')
-    }
-    }
-  })
-})
+-- require('llm').setup({
+-- prompts = vim.tbl_extend('force', require('llm.prompts.starters'), {
+--   llamacpp = {
+--     provider = llamacpp,
+--     params = {
+--       model = 'models/llama-2-13b-chat.ggmlv3.q4_K_M.bin',
+--       ['n-gpu-layers'] = 32,
+--       threads = 6,
+--       ['repeat-penalty'] = 1.2,
+--       temp = 0.2,
+--       ['ctx-size'] = 4096,
+--       ['n-predict'] = -1
+--     },
+--     builder = function(input)
+--       return {
+--         prompt = llamacpp.llama_2_format({
+--           messages = {
+--             input
+--           }
+--         })
+--       }
+--     end,
+--     options = {
+--       path = os.getenv('LLAMACPP_DIR'),
+--       main_dir = os.getenv('LLAMACPP_MAIN_DIR')
+--     }
+--     }
+--   })
+-- })
 
 -- "
 
@@ -174,7 +174,8 @@ elseif has('win32unix')
     "if that doesn't work, try this:
     set backspace=indent,eol,start
 endif
-colorscheme NeoSolarized
+"colorscheme NeoSolarized
+colorscheme simple
 syntax enable
 
 set formatoptions+=o
@@ -187,20 +188,22 @@ if executable("tmux")
         let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
         let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-        let &shell = "C:/Users/djh/scoop/apps/msys2/current/usr/bin/bash"
+        "let &shell = "C:/Users/bhw/scoop/apps/msys2/current/usr/bin/bash"
+        set shellslash
+
         set shellcmdflag=-c
         set shellquote=
         set shellxquote=
-        let g:slime_paste_file = "/c/Users/djh/.slime_paste"
-        colorscheme delek
+        let g:slime_paste_file = "/c/Users/bhw/.slime_paste"
+        "colorscheme delek
         let g:slime_default_config = {"socket_name": "default", "target_pane": ":.0"}
     else
         let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.0"}
+        let g:slime_paste_file = expand(".slime_paste")
     endif
     let g:slime_target = "tmux"
-    let g:slime_paste_file = expand(".slime_paste")
 else
-    colorscheme NeoSolarized
+    "colorscheme NeoSolarized
     let g:slime_target = "conemu"
 endif
 
