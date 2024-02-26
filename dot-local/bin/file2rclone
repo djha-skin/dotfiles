@@ -11,7 +11,7 @@ then
 fi
 
 raw=true
-remote=HomeDropbox
+remote=OneDrive
 while [ -n "${1}" ]
 do
     case "${1}" in
@@ -31,7 +31,7 @@ do
     esac
 done
 
-dest="${remote}:/Files"
+dest="${remote}:Files"
 path="$(choose-file 2>/dev/null)"
 fname="$(echo "${path}" | sed -e 's|[^/]*/||g')"
 
@@ -41,5 +41,5 @@ fname="$(echo "${path}" | sed -e 's|[^/]*/||g')"
 
 rclone copy "${path}" "${dest}/${fname}"
 raw_link=$(rclone link "${dest}/${fname}")
-printf "${raw_link}" | copy
-notify "file2dropbox" "Synced to ${remote}, URL in clipboard"
+printf "${raw_link}" | copy >/dev/null 2>/dev/null
+notify "file2rclone" "Synced to ${remote}, URL in clipboard"

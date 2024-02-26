@@ -8,11 +8,11 @@ then
     . ~/.zprofile
 fi
 
-echo "${@}" > ~/.screen2dropbox.log
+echo "${@}" > ~/.screen2rclone.log
 
 raw=false
 viewport=false
-remote=HomeDropbox
+remote=OneDrive
 while [ -n "${1}" ]
 do
     case "${1}" in
@@ -44,13 +44,13 @@ dest="${remote}:/Screenshots"
 #mkdir -p "${src}"
 #rclone mkdir "${dest}"
 
-echo "screenshot"  >> ~/.screen2dropbox.log 2>&1
-screenshot-region "${src}/${fname}"  >> ~/.screen2dropbox.log 2>&1
-echo "copy"  >> ~/.screen2dropbox.log 2>&1
-rclone copyto "${src}/${fname}" "${dest}/${fname}"  >> ~/.screen2dropbox.log 2>&1
-echo "clipboard"  >> ~/.screen2dropbox.log 2>&1
+echo "screenshot"  >> ~/.screen2rclone.log 2>&1
+screenshot-region "${src}/${fname}"  >> ~/.screen2rclone.log 2>&1
+echo "copy"  >> ~/.screen2rclone.log 2>&1
+rclone copyto "${src}/${fname}" "${dest}/${fname}"  >> ~/.screen2rclone.log 2>&1
+echo "clipboard"  >> ~/.screen2rclone.log 2>&1
 rclone link "${dest}/${fname}" | copy
 #printf "https://drive.google.com/uc?id=${download_id}" | ${paste}
 raw_link=$(rclone link "${dest}/${fname}")
-printf "${raw_link}" | copy
-notify "screen2dropbox" "Synced to ${remote}, URL in clipboard"  >> ~/.screen2dropbox.log 2>&1
+printf "${raw_link}" | copy >/dev/null 2>/dev/null
+notify "screen2rclone" "Synced to ${remote}, URL in clipboard"  >> ~/.screen2rclone.log 2>&1
