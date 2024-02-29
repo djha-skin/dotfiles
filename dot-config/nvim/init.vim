@@ -36,11 +36,11 @@ else
 endif
 "Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clangd-completer --go-completer --ts-completer --rust-completer --java-completer' }
 "Plug 'gsuuon/llm.nvim'
+Plug 'jpalardy/vim-slime'
 Plug 'bakpakin/janet.vim'
 Plug 'github/copilot.vim'
 Plug 'vlime/vlime', {'rtp': 'vim/'}
 Plug 'rhysd/vim-grammarous'
-Plug 'jpalardy/vim-slime'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'psf/black', { 'branch': 'stable' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -64,23 +64,23 @@ let g:sexp_enable_insert_mode_mappings = 0
 let g:paredit_mode=1
 nnoremap <Leader>w <C-w>
 nnoremap <Leader>ww <C-w><C-w>
-" For Jpalardy's vim-slime
+vnoremap <Leader>r y<C-w>wpa<CR><C-\><C-n><C-w>p
 
-
-let g:ycm_language_server =
-\ [
-\   {
-\     'name': 'common-lisp',
-\     'cmdline': [ 'cl-lsp', '--stdio' ],
-\     'filetypes': [ 'lisp' ]
-\   },
-\   {
-\     'name': 'terraform',
-\     'cmdline': [ 'terraform-lsp', 'serve' ],
-\     'filetypes': [ 'terraform' ]
-\   }
-\ ]
-
+let g:slime_target = "conemu"
+"let g:ycm_language_server =
+"\ [
+"\   {
+"\     'name': 'common-lisp',
+"\     'cmdline': [ 'cl-lsp', '--stdio' ],
+"\     'filetypes': [ 'lisp' ]
+"\   },
+"\   {
+"\     'name': 'terraform',
+"\     'cmdline': [ 'terraform-lsp', 'serve' ],
+"\     'filetypes': [ 'terraform' ]
+"\   }
+"\ ]
+"
 
 lua <<EOF
 
@@ -174,7 +174,6 @@ elseif has('win32unix')
     "if that doesn't work, try this:
     set backspace=indent,eol,start
 endif
-"colorscheme NeoSolarized
 colorscheme simple
 syntax enable
 
@@ -183,34 +182,7 @@ set nojoinspaces
 set showmatch
 
 set termguicolors
-if executable("tmux")
-    if has('win32')
-        let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-        let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-        "let &shell = "C:/Users/bhw/scoop/apps/msys2/current/usr/bin/bash"
-        set shellslash
-
-        set shellcmdflag=-c
-        set shellquote=
-        set shellxquote=
-        let g:slime_paste_file = "/c/Users/bhw/.slime_paste"
-        "colorscheme delek
-        let g:slime_default_config = {"socket_name": "default", "target_pane": ":.0"}
-    else
-        let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.0"}
-        let g:slime_paste_file = expand(".slime_paste")
-    endif
-    let g:slime_target = "tmux"
-else
-    "colorscheme NeoSolarized
-    let g:slime_target = "conemu"
-endif
-
-let g:slime_no_mappings = 1
-xmap <Leader>r <Plug>SlimeRegionSend
-nmap <Leader>r <Plug>SlimeParagraphSend
-nmap <Leader>t <Plug>SlimeConfig
 
 if has('win32')
     set backspace=2
@@ -343,7 +315,7 @@ au BufRead,BufNewFile *.tex set makeprg=pdflatex\ -halt-on-error\ --shell-escape
 au BufRead,BufNewFile SConstruct,SConscript set makeprg=scons
 au BufRead,BufNewFile *.rb set tabstop=2
 au BufRead,BufNewFile *.rb set shiftwidth=2
-au BufRead,BufNewFile *.lisp lua clstart()
+"au BufRead,BufNewFile *.lisp lua clstart()
 au BufRead,BufNewFile *.lisp nnoremap <LocalLeader>d i(print <Esc>l])a)<Esc>
 au BufRead,BufNewFile *.lisp nnoremap <LocalLeader>D bi(print <Esc>lea)<Esc>
 "| inoremap <CR> <CR><esc>i
@@ -370,15 +342,7 @@ au BufWritePost *.tf !terraform fmt %
 " enclose any variable within a line in quotes
 "au filetype sh map \" :.s/\v(^\|[[:blank:]])(\$[^[:blank:]]*)([[:blank:]]\|$)/\1"\2"\3/g
 
-"if has('terminal')
-"    let g:slime_target="vimterminal"
-"    if has('win32')
-"        let g:slime_vimterminal_cmd = "powershell"
-"    else
-"        let g:slime_vimterminal_cmd = "bash"
-"    endif
-"else
-"endif
+
 
 let g:go_disable_autoinstall = 0
 
