@@ -206,6 +206,7 @@ endif
 " guard against 80 character length lines.
 au BufWinEnter * let w:m2=matchadd('ErrorMsg', '/\%>80v.\+/', -1)
 "au BufWinEnter *.lisp let w:m2=matchadd('ErrorMsg', '/\%>100v.\+/', -1)
+
 hi clear OverLength
 hi clear ExtraWhitespace
 hi ExtraWhitespace ctermbg=red guibg=red
@@ -331,6 +332,7 @@ au BufRead,BufNewFile *.rb set shiftwidth=2
 "au BufRead,BufNewFile *.lisp lua clstart()
 au BufRead,BufNewFile *.lisp nnoremap <LocalLeader>d i(print <Esc>l])a)<Esc>
 au BufRead,BufNewFile *.lisp nnoremap <LocalLeader>D bi(print <Esc>lea)<Esc>
+au BufWritePre *.lisp lua vim.lsp.buf.format()
 "| inoremap <CR> <CR><esc>i
 
 " https://github.com/preservim/vim-markdown/issues/390#issuecomment-578459147
@@ -386,5 +388,57 @@ function! VlimeBuildServerCommandFor_ros(vlime_loader, vlime_eval)
               \ "--eval", a:vlime_eval]
 endfunction
 
+" Restore cursor position, window position, and last search after running a
+" command.
+function! Preserve(command)
+  " Save the last search.
+  let search = @/
+
+  " Save the current cursor position.
+  let cursor_position = getpos('.')
+
+  " Save the current window position.
+  normal! H
+  let window_position = getpos('.')
+  call setpos('.', cursor_position)
+
+  " Execute the command.
+  execute a:command
+
+  " Restore the last search.
+  let @/ = search
+
+  " Restore the previous window position.
+  call setpos('.', window_position)
+  normal! zt
+
+  " Restore the previous cursor position.
+  call setpos('.', cursor_position)
+endfunction
+
+" Re-indent the whole buffer.
+function! Indent()
+  call Preserve('normal gg=G')
+endfunction
+
 au BufRead,BufNewFile *.lisp compiler roswell-sbcl
+au BufWritePre *.lisp call Indent()
 au BufRead,BufNewFile *.asd compiler roswell-sbcl
+
+if len($TMUX) > 0
+    if has('win32')
+        let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+        let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+        let &shell = "C:/Users/bhw/scoop/apps/msys2/current/usr/bin/bash"
+        set shellcmdflag=-c
+        set shellquote=
+        set shellxquote=
+        let g:slime_paste_file = "/c/Users/djh/.slime_paste"
+        let g:slime_default_config = {"socket_name": "default", "target_pane": ":.0"}
+    else
+        let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.0"}
+    endif
+    let g:slime_target = "tmux"
+    let g:slime_paste_file = expand(".slime_paste")
+endif
