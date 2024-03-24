@@ -1,0 +1,26 @@
+set imap_user = dan@djhaskin.com
+set folder = imaps://imap.migadu.com/
+set imap_user = dan@djhaskin.com
+set imap_pass = "`multipass imaps://imap.migadu.com:993/`"
+set spoolfile=+INBOX
+set imap_check_subscribed
+mailboxes = +INBOX
+
+set header_cache = ~/.cache/mutt
+set message_cachedir = "~/.cache/mutt"
+set postponed = +Drafts
+unset imap_passive
+set imap_keepalive = 300
+set mail_check = 120
+set ssl_force_tls = yes
+
+set record = +Sent
+
+set realname = 'Daniel Jay Haskin'
+set from = dan@djhaskin.com
+set use_from = yes
+set sendmail="/mingw64/bin/msmtp -a migadu"
+source ~/.muttrc
+set crypt_use_gpgme
+#source ~/.mutt/gpg-migadu.rc
+#source ~/.mutt/smime-migadu.rc

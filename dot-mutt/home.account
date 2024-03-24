@@ -1,0 +1,12 @@
+set imap_user = "djhaskin987@gmail.com"
+set folder = "imaps://imap.gmail.com/"
+set spoolfile="+INBOX"
+set postponed = "+[Gmail]/Drafts"
+set record = "+[Gmail]/Sent Mail"
+set trash = "+[Gmail]/Trash"
+set imap_pass = `multipass imaps://imap.gmail.com:993/`
+
+set realname = "Daniel Jay Haskin"
+set from="djhaskin987@gmail.com"
+set sendmail="/mingw64/bin/msmtp -a home"
+source ~/.muttrc
