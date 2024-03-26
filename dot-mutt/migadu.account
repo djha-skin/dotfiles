@@ -19,8 +19,16 @@ set record = +Sent
 set realname = 'Daniel Jay Haskin'
 set from = dan@djhaskin.com
 set use_from = yes
-set sendmail="/mingw64/bin/msmtp -a migadu"
+#set sendmail="/mingw64/bin/msmtp -a migadu"
+
+set smtp_url=smtps://dan@djhaskin.com@smtp.migadu.com:465/
+set smtp_pass = "`multipass smtps://smtp.migadu.com:465/`"
+
+set header_cache = "~/.cache/muttdirs/header-cache/home"
+set message_cachedir = "~/.cache/muttdirs/message-cachedir/home"
+
 source ~/.muttrc
 set crypt_use_gpgme
 #source ~/.mutt/gpg-migadu.rc
 #source ~/.mutt/smime-migadu.rc
+

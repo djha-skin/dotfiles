@@ -4,9 +4,16 @@ set spoolfile="+INBOX"
 set postponed = "+[Gmail]/Drafts"
 set record = "+[Gmail]/Sent Mail"
 set trash = "+[Gmail]/Trash"
-set imap_pass = `multipass imaps://imap.gmail.com:993/`
+set imap_pass = "`multipass imaps://imap.gmail.com:993/ djhaskin987@gmail.com`"
+
+set smtp_url=smtps://djhaskin987@gmail.com@smtp.gmail.com:465/
+set smtp_pass = "`multipass smtps://smtp.gmail.com:465/ djhaskin987@gmail.com`"
 
 set realname = "Daniel Jay Haskin"
 set from="djhaskin987@gmail.com"
-set sendmail="/mingw64/bin/msmtp -a home"
+#set sendmail="/mingw64/bin/msmtp -a home"
+
+set header_cache = "~/.cache/muttdirs/header-cache/home"
+set message_cachedir = "~/.cache/muttdirs/message-cachedir/home"
+
 source ~/.muttrc
