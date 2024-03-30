@@ -31,4 +31,3 @@ source ~/.muttrc
 set crypt_use_gpgme
 #source ~/.mutt/gpg-migadu.rc
 #source ~/.mutt/smime-migadu.rc
-
