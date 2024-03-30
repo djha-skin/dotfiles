@@ -4,6 +4,38 @@ let mapleader="\<SPACE>"
 let g:black_linelength = 79
 let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_new_list_item_indent = 2
+let g:slime_target = "conemu"
+let b:slime_target = "conemu"
+let b:slime_debug = 1
+let g:slime_debug = 1
+let g:slime_no_mappings = 1
+let g:slime_default_config = {"HWND": "0"}
+xmap <Leader>g <Plug>SlimeRegionSend
+nmap <Leader>g <Plug>SlimeParagraphSend
+nmap <Leader>G <Plug>SlimeConfig
+
+
+if len($TMUX) > 0
+    if has('win32')
+        let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+        let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+        let &shell = "C:/Users/bhw/scoop/apps/msys2/current/usr/bin/bash"
+        set shellcmdflag=-c
+        set shellquote=
+        set shellxquote=
+        let g:slime_paste_file = "/c/Users/bhw/.slime_paste"
+        let g:slime_default_config = {"socket_name": "default", "target_pane": ":.0"}
+        let b:slime_default_config = {"socket_name": "default", "target_pane": ":.0"}
+    else
+        let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.0"}
+        let b:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.0"}
+    endif
+    let g:slime_target = "tmux"
+    let b:slime_target = "tmux"
+    let g:slime_paste_file = expand(".slime_paste")
+    let b:slime_paste_file = expand(".slime_paste")
+endif
 
 call plug#begin()
 if has('mac')
@@ -16,6 +48,7 @@ if has('mac')
         endif
     endif
 elseif has('win32')
+    set shellslash
     let g:netrw_browser_viewer='start'
     if len($TERMINAL_PROFILE) > 0
         if $TERMINAL_PROFILE == 'Dark'
@@ -79,7 +112,6 @@ nnoremap <Leader>w <C-w>
 nnoremap <Leader>ww <C-w><C-w>
 vnoremap <Leader>r y<C-w>wpa<CR><C-\><C-n><C-w>p
 
-let g:slime_target = "conemu"
 "let g:ycm_language_server =
 "\ [
 "\   {
@@ -422,23 +454,8 @@ function! Indent()
 endfunction
 
 au BufRead,BufNewFile *.lisp compiler roswell-sbcl
-au BufWritePre *.lisp call Indent()
+"au BufWritePre *.lisp call Indent()"
 au BufRead,BufNewFile *.asd compiler roswell-sbcl
 
-if len($TMUX) > 0
-    if has('win32')
-        let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-        let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-        let &shell = "C:/Users/bhw/scoop/apps/msys2/current/usr/bin/bash"
-        set shellcmdflag=-c
-        set shellquote=
-        set shellxquote=
-        let g:slime_paste_file = "/c/Users/djh/.slime_paste"
-        let g:slime_default_config = {"socket_name": "default", "target_pane": ":.0"}
-    else
-        let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.0"}
-    endif
-    let g:slime_target = "tmux"
-    let g:slime_paste_file = expand(".slime_paste")
-endif
+
