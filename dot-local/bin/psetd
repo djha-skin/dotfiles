@@ -1,3 +1,0 @@
-#!/bin/sh
-python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" set "${@}"
-cd "$(python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" peek "${@}")"
