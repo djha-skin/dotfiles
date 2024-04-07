@@ -14,7 +14,6 @@ set from="djhaskin987@gmail.com"
 
 set header_cache = "~/.cache/muttdirs/header-cache/home"
 set message_cachedir = "~/.cache/muttdirs/message-cachedir/home"
-set sendmail="/mingw64/bin/msmtp -a home"
 
 set crypt_use_gpgme
 set pgp_default_key="443A163BD11CEAE798BAAB94D7268D49D06594F4"

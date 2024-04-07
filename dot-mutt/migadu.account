@@ -1,7 +1,7 @@
 set imap_user = dan@djhaskin.com
 set folder = imaps://imap.migadu.com/
 set imap_user = dan@djhaskin.com
-set imap_pass = "`multipass imaps://imap.migadu.com:993/`"
+set imap_pass = "`multipass imaps://imap.migadu.com:993/ dan@djhaskin.com`"
 set spoolfile=+INBOX
 set imap_check_subscribed
 mailboxes = +INBOX
@@ -19,10 +19,9 @@ set record = +Sent
 set realname = 'Daniel Jay Haskin'
 set from = dan@djhaskin.com
 set use_from = yes
-#set sendmail="/mingw64/bin/msmtp -a migadu"
 
 set smtp_url=smtps://dan@djhaskin.com@smtp.migadu.com:465/
-set smtp_pass = "`multipass smtps://smtp.migadu.com:465/`"
+set smtp_pass = "`multipass smtps://smtp.migadu.com:465/ dan@djhaskin.com`"
 
 set header_cache = "~/.cache/muttdirs/header-cache/home"
 set message_cachedir = "~/.cache/muttdirs/message-cachedir/home"
