@@ -1,0 +1,3 @@
+#!/bin/sh
+rm -f "${WORKING_LOCATION_FILE}"
+touch "${WORKING_LOCATION_FILE}"

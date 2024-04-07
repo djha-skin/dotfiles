@@ -1,2 +1,3 @@
-text/html; w3m -I %{charset} -T text/html; copiousoutput;
+#text/html; w3m -I %{charset} -T text/html; copiousoutput;
+text/html; tidy -quiet -%{charset} %s; copiousoutput; description=HTML Text; nametemplate=%s.html
 application/pdf; pdftotext %s -; copiousoutput;

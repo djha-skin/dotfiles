@@ -2,7 +2,6 @@
 # Variables need to be set in ~/.private_profile.
 cal="${1}"
 shift
-set -ex
 
 
 if  [ "${cal}" = "work" ]

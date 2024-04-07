@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ -n "${WORKING_LOCATION_FILE:-}" -a -f "${WORKING_LOCATION_FILE:-}" ]
+then
+    python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" pop "${@}"
+    cd "$(python3 "${HOME}/.local/bin/wdh.py" -p "${WORKING_LOCATION_FILE}" peek "${@}")"
+else
+    echo "No directory on stack" >&2
+fi
