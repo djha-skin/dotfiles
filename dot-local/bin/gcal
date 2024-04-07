@@ -1,0 +1,37 @@
+#!/bin/sh
+# Variables need to be set in ~/.private_profile.
+cal="${1}"
+shift
+set -ex
+
+
+if  [ "${cal}" = "work" ]
+then
+    another=""
+    if [ "${1}" != "add" -a "${1}" != "import" -a -n "${ALTERNATE_WORK_CALENDAR:-}" ]
+    then
+        another="--calendar ${ALTERNATE_WORK_CALENDAR}"
+    fi
+
+    gcalcli \
+        --config-folder "${HOME}/.config/gcalcli/${cal}" \
+        --client-id "${WORK_GCALCLI_CLIENTID}" \
+        --client-secret "${WORK_GCALCLI_SECRET}" \
+        --default-calendar "${WORK_EMAIL}" \
+        ${another} \
+        "${@}"
+else
+    another=""
+    if [ "${1}" != "add" -a "${1}" != "import" -a -n "${ALTERNATE_HOME_CALENDAR:-}" ]
+    then
+        another="--calendar ${ALTERNATE_HOME_CALENDAR}"
+    fi
+    gcalcli \
+        --config-folder "${HOME}/.config/gcalcli/${cal}" \
+        --client-id "${HOME_GCALCLI_CLIENTID}" \
+        --client-secret "${HOME_GCALCLI_SECRET}" \
+        --default-calendar "${HOME_EMAIL}" \
+        --calendar "${HOME_EMAIL}" \
+        ${another} \
+        "${@}"
+fi
