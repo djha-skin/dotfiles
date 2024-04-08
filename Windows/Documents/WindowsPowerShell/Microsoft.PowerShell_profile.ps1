@@ -6,7 +6,7 @@ if (-not (Test-Path Alias:\ll)) {
     Set-Alias -name ll -Value Get-ChildItem
 }
 if (-not (Test-Path Alias:\vim)) {
-    Set-Alias -name vim -Value nvim-qt
+    Set-Alias -name vim -Value nvim
 }
 if (-not (Test-Path Alias:which)) {
     Set-Alias -name which -Value Get-Command
@@ -88,4 +88,22 @@ function plistd {
     }
 }
 
+if (-not ($Env:PATH -match "C:\\Users\\bhw\\Executables")) {
+    $Env:PATH = "$Env:PATH;C:\\Users\\bhw\\Executables"
+}
+
+
+function procmon {
+    while (1) {
+        cls
+        Write-Host "Name`tId`tCPU`tMemory"
+        ps | `
+        sort -descending -property WS | `
+        select-object -first 40 -property Name,CPU,WS,Id | `
+        foreach-object { Write-Host "$($_.Name)`t$($_.Id)`t$($_.CPU)`t$($_.WS / 1048576.0)"  }
+        sleep 4
+    }
+}
 pchanged
+
+
