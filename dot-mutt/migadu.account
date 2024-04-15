@@ -7,7 +7,6 @@ set imap_check_subscribed
 mailboxes = +INBOX
 
 set header_cache = ~/.cache/mutt
-set message_cachedir = "~/.cache/mutt"
 set postponed = +Drafts
 unset imap_passive
 set imap_keepalive = 300
@@ -22,9 +21,6 @@ set use_from = yes
 
 set smtp_url=smtps://dan@djhaskin.com@smtp.migadu.com:465/
 set smtp_pass = "`multipass smtps://smtp.migadu.com:465/ dan@djhaskin.com`"
-
-set header_cache = "~/.cache/muttdirs/header-cache/home"
-set message_cachedir = "~/.cache/muttdirs/message-cachedir/home"
 
 source ~/.muttrc
 set crypt_use_gpgme
