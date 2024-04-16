@@ -22,6 +22,9 @@ set use_from = yes
 set smtp_url=smtps://dan@djhaskin.com@smtp.migadu.com:465/
 set smtp_pass = "`multipass smtps://smtp.migadu.com:465/ dan@djhaskin.com`"
 
+set crypt_use_gpgme
+set pgp_default_key="A1F9E6A2696D3CAADEDB203C3812FEA997B503B6"
+
 source ~/.muttrc
 set crypt_use_gpgme
 #source ~/.mutt/gpg-migadu.rc
