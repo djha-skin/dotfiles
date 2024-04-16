@@ -38,6 +38,7 @@ for i in $(ls -1A "${home_altprefix}")
 do
     if [ -d "${home_altprefix}/${i}" ]
     then
+        export PATH="${home_altprefix}/${i}:${PATH}"
         if [ -d "${home_altprefix}/${i}/bin" ]
         then
             export PATH="${home_altprefix}/${i}/bin:${PATH}"
@@ -45,8 +46,6 @@ do
             then
                 export JAVA_HOME="${home_altprefix}/${i}"
             fi
-        else
-            export PATH="${home_altprefix}/${i}:${PATH}"
         fi
         if [ -d "${home_altprefix}/${i}/lib64" ]
         then
@@ -58,6 +57,12 @@ do
         fi
     fi
 done
+
+export CARGO_HOME="${HOME}/.cargo"
+if [ -n "${CARGO_HOME}" ]
+then
+    export PATH="${CARGO_HOME}/bin:${PATH}"
+fi
 
 if [ -n "${GEM_HOME}" ]
 then
