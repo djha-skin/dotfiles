@@ -7,3 +7,9 @@ alias nil $*
 alias find *find $*
 alias add $*
 alias keycode $*
+alias worknotes cd ~/OneDrive/Markdown/Work
+alias homenotes cd ~/OneDrive/Markdown/Home
+alias diary nvim Planning/Diary/$(date +%Y-%m-%d-%A.md)
+alias pom timer Blast 24 Pacer 1 Break 5
+alias pombreak timer "Long Break" 30
+alias mutt neomutt $*

@@ -8,13 +8,46 @@
 ;;                 '("marmalade" .
 ;;                         "http://marmalade-repo.org/packages/"))
 
+(add-to-list 'default-frame-alist
+             '(font . "Fira Code-12"))
+
 (add-to-list 'package-archives
                  '("melpa" . "http://melpa.org/packages/") t)
 (add-to-list 'package-archives
                  '("gnu" . "http://elpa.gnu.org/packages/") t)
 
-(package-initialize)
+(setq frame-resize-pixelwise t)
+(toggle-frame-maximized)
+;; (package-initialize)
+;; (package-refresh-contents)
 
+;; (setq packages '(groovy-imports
+;;                  groovy-mode
+;;                  psysh
+;;                  json-mode
+;;                  itail
+;;                  xterm-color
+;;                  eshell-did-you-mean
+;;                  eshell-up
+;;                  vagrant-tramp
+;;                  magit
+;;                  tuareg
+;;                  shell-switcher
+;;                  real-auto-save
+;;                  quack
+;;                  python-mode
+;;                  go-mode
+;;                  gnuplot-mode
+;;                  gnuplot
+;;                  cmake-mode
+;;                  cider
+;;                  auto-complete
+;;                  auctex))
+;;
+;; (dolist (package packages)
+;;   (when (not (package-installed-p package))
+;;     (package-install package)))
+;;
 ;; Why would they even HAVE this lever
 (setq ring-bell-function 'ignore)
 
@@ -29,26 +62,7 @@
 (setq search-slow-window-lines 10)
 
 ;; This is needed on Mac OS X
-(exec-path-from-shell-initialize)
-
-;; Mac OS X steals this.
-(setenv "SSH_AUTH_SOCK"
-        (let ((gpg-agent-possibilities
-                (list
-                  (concat "/run/user/"
-                          (number-to-string
-                            (user-real-uid))
-                          "/gnupg/S.gpg-agent.ssh")
-                  (concat (getenv "HOME")
-                          "/.gnupg/S.gpg-agent.ssh"))))
-          (let ((candidate (car gpg-agent-possibilities)))
-            (while (and (not (null gpg-agent-possibilities))
-                        (not (file-exists-p candidate)))
-                   (setq candidate (car gpg-agent-possibilities))
-                   (setq gpg-agent-possibilities (cdr gpg-agent-possibilities)))
-            (if (file-exists-p candidate)
-              candidate
-              nil))))
+;;(exec-path-from-shell-initialize)
 
 (setenv "EDITOR" "/usr/local/bin/emacsclient")
 (setenv "ALTERNATE_EDITOR" "")
@@ -68,19 +82,26 @@
               alist))
 
 ;; (require 'color-theme)
-;; (require 'color-theme-djha-skin-console)
-(require 'djha-skin-untab-to-tab-stop)
-(require 'djha-skin-unindent-rigidly)
-(require 'djha-skin-indent-rigidly)
-(require 'djha-skin-clear-kill-ring)
+;; (require 'color-theme-djhaskin987-console)
+(require 'djhaskin987-untab-to-tab-stop)
+(require 'djhaskin987-unindent-rigidly)
+(require 'djhaskin987-indent-rigidly)
+(require 'djhaskin987-clear-kill-ring)
+
+;; line numbering
+;; (require 'linum+)
+;;(setq global-linum-mode t)
+;; (global-linum-mode 1)
+
+
 (require 'em-tramp)
 (setq color-theme-is-global t)
 (setq cmake-tab-width 4)
 
 (define-key global-map (kbd "C-c C-r") 'rename-buffer)
-;; (color-theme-djha-skin-console)
+;; (color-theme-djhaskin987-console)
 (setq custom-theme-directory "~/.emacs.d/themes")
-(load-theme 'djha-skin-midnight t)
+(load-theme 'djhaskin987-midnight t)
 
 ;; Set default character encoding to UTF-8.
 (set-language-environment "UTF-8")
@@ -106,26 +127,23 @@
 
 ;(define-key global-map (kbd "RET") 'newline-and-indent)
 ;(define-key global-map (kbd "C-j") 'newline)
-(define-key global-map (kbd "M-j") 'djha-skin-untab-to-tab-stop)
-(define-key global-map (kbd "C-x M-TAB") 'djha-skin-unindent-rigidly)
-(define-key global-map (kbd "C-x TAB") 'djha-skin-indent-rigidly)
-(define-key global-map (kbd "C-|") 'djha-skin-clear-kill-ring)
+(define-key global-map (kbd "M-j") 'djhaskin987-untab-to-tab-stop)
+(define-key global-map (kbd "C-x M-TAB") 'djhaskin987-unindent-rigidly)
+(define-key global-map (kbd "C-x TAB") 'djhaskin987-indent-rigidly)
+(define-key global-map (kbd "C-|") 'djhaskin987-clear-kill-ring)
 
-;; line numbering
-(require 'linum+)
-(global-linum-mode 1)
-
-(defun djha-skin-yank-reverse-pop ()
+(defun djhaskin987-yank-reverse-pop ()
   (interactive)
   (yank-pop -1))
 
+
 ;; change of keys, default behavior, etc.
 (define-key global-map (kbd "M-k") 'delete-region)
-(define-key global-map (kbd "C-M-y") 'djha-skin-yank-reverse-pop)
+(define-key global-map (kbd "C-M-y") 'djhaskin987-yank-reverse-pop)
 (define-key global-map (kbd "M-g") 'goto-line)
 (define-key global-map (kbd "M-%") 'query-replace-regexp)
 
-(defun djha-skin-save-buffers-kill-emacs (&optional arg)
+(defun djhaskin987-save-buffers-kill-emacs (&optional arg)
   "Offer to save each buffer (once only), then kill this Emacs process.
   With prefix ARG, silently save all file-visiting buffers, then kill."
   (interactive "P")
@@ -147,7 +165,7 @@
        (or (null confirm-kill-emacs)
            (funcall confirm-kill-emacs "Really exit Emacs? "))
        (kill-emacs)))
-(fset 'save-buffers-kill-emacs 'djha-skin-save-buffers-kill-emacs)
+(fset 'save-buffers-kill-emacs 'djhaskin987-save-buffers-kill-emacs)
 ;(setq system-uses-terminfo nil)
 
 ;; 80 characters, people.
@@ -157,6 +175,7 @@
 (global-whitespace-mode t)
 
 ;; Let me know where I am in the file
+(global-display-line-numbers-mode)
 (setq column-number-mode t)
 (setq line-number-mode t)
 (define-key function-key-map "\e[z2a" [?\C-=])
@@ -233,17 +252,6 @@
 
 (setq TeX-PDF-mode t)
 
-;; proof general
-(load-file "~/.emacs.d/ProofGeneral-4.2/generic/proof-site.el")
-;; XXX make these local to the proof mode
-;; proof-display-three-b
-;; proof-shell-exit
-;; proof-process-buffer
-;; proof-activate-scripting
-(global-set-key (kbd "M-.") 'proof-goto-point)
-(global-set-key (kbd "M-?") 'proof-undo-last-successful-command)
-(global-set-key (kbd "M-/") 'proof-assert-next-command-interactive)
-
 ;; Insert date
 (defun datestamp ()
   (interactive)
@@ -281,30 +289,26 @@
  '(eshell-prefer-lisp-functions t)
  '(eshell-prefer-lisp-variables nil)
  '(eshell-show-lisp-completions t)
- '(eshell-visual-commands (quote ("ssh" "less" "top" "screen" "vim")))
- '(eshell-visual-subcommands (quote (("vagrant" "ssh"))))
+ '(eshell-visual-commands '("ssh" "less" "top" "screen" "vim"))
+ '(eshell-visual-subcommands '(("vagrant" "ssh")))
  '(evil-mode nil)
- '(exec-path-from-shell-variables (quote ("PATH" "MANPATH" "GOPATH")))
+ '(exec-path-from-shell-variables '("PATH" "MANPATH" "GOPATH"))
  '(inhibit-startup-screen t)
  '(markdown-unordered-list-item-prefix "- ")
  '(org-agenda-files
-   (quote
-    ("~/Dropbox/Workspace/GTD/index.org" "/Performance/planning/inventory.org" "/Performance/planning/diary.org")))
+   '("~/Dropbox/Workspace/GTD/index.org" "/Performance/planning/inventory.org" "/Performance/planning/diary.org"))
  '(org-startup-indented t)
  '(org-todo-keywords
-   (quote
-    ((sequence "TODO" "DOING" "FEEDBACK" "STALLED" "|" "DONE" "INCOMPLETE" "CANCELLED" "DEFERRED"))))
+   '((sequence "TODO" "DOING" "FEEDBACK" "STALLED" "|" "DONE" "INCOMPLETE" "CANCELLED" "DEFERRED")))
  '(package-selected-packages
-   (quote
-    (groovy-imports groovy-mode psysh json-mode itail xterm-color eshell-did-you-mean eshell-up vagrant-tramp magit tuareg shell-switcher real-auto-save quack python-mode icicles go-mode gnuplot-mode gnuplot cmake-mode cider auto-complete auctex)))
+   '(groovy-imports groovy-mode psysh json-mode itail xterm-color eshell-did-you-mean eshell-up vagrant-tramp magit tuareg shell-switcher real-auto-save quack python-mode go-mode gnuplot-mode gnuplot cmake-mode cider auto-complete auctex))
  '(password-cache t)
  '(password-cache-expiry nil)
  '(rst-compile-toolsets
-   (quote
-    ((html "rst2html5" ".html" nil)
-     (pdf "rst2pdf" ".pdf" nil))))
- '(send-mail-function (quote mailclient-send-it))
- '(shell-switcher-new-shell-function (quote shell-switcher-make-eshell))
+   '((html "rst2html5" ".html" nil)
+     (pdf "rst2pdf" ".pdf" nil)))
+ '(send-mail-function 'mailclient-send-it)
+ '(shell-switcher-new-shell-function 'shell-switcher-make-eshell)
  '(tab-width 4))
 
 (custom-set-faces
@@ -312,7 +316,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 180 :width normal :foundry "nil" :family "Courier New")))))
+ '(default ((t (:inherit nil :extend nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight regular :height 120 :width normal :foundry "CTDB" :family "Fira Code")))))
 (put 'erase-buffer 'disabled nil)
 
 (defun eshell-brace-expansion (str)
