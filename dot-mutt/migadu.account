@@ -6,7 +6,8 @@ set spoolfile=+INBOX
 set imap_check_subscribed
 mailboxes = +INBOX
 
-set header_cache = ~/.cache/mutt
+set header_cache = "~/.cache/muttdirs/header-cache/migadu"
+set message_cachedir = "~/.cache/muttdirs/message-cachedir/migadu"
 set postponed = +Drafts
 unset imap_passive
 set imap_keepalive = 300
