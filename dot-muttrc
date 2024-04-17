@@ -5,8 +5,6 @@ auto_view text/html
 set mailcap_path = ~/.mailcap
 unset markers
 set envelope_from=yes
-set header_cache = "~/.mutt/cache/headers"
-set message_cachedir = "~/.mutt/cache/bodies"
 set maildir_header_cache_verify = yes
 
 set sidebar_visible = yes
