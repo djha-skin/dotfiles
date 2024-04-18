@@ -25,19 +25,28 @@ resolution=$(identify "${dest}/${fname}" | awk '{print $3}')
 width="$(printf '%s' "${resolution}" | awk -Fx '{print $1}')"
 height="$(printf '%s' "${resolution}" | awk -Fx '{print $2}')"
 
+wmultiplier=$(echo "${width}/720" | bc -l )
+hmultiplier=$(echo "${height}/1280" | bc -l )
+
+wwidth=720
+wheight=$(echo "${height}/${wmultiplier}" | bc)
+
+hheight=1280
+hwidth=$(echo "${width}/${hmultiplier}" | bc)
+
+
+
+if [ "${width}" -gt "${height}" ]
+then
+    width="${wwidth}"
+    height="${wheight}"
+else
+    width="${hwidth}"
+    height="${hheight}"
+fi
+
+convert "${dest}/${fname}" -resize "${width}x${height}" "${dest}/${fname}"
 
 out="![](${2}/${fname})"
-if [ $(( 16 * ${width} )) -gt $(( 9 * ${height} )) ]
-then
-    if [ "${width}" -gt 720 ]
-    then
-        out="![](${2}/${fname}){width=720}"
-    fi
-else
-    if [ "${height}" -gt 1280 ]
-    then
-        out="![](${2}/${fname}}{height=1280}"
-    fi
-fi
 
 printf '%s' "${out}"
