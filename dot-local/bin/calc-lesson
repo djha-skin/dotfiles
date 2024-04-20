@@ -1,0 +1,36 @@
+#!/bin/sh
+#|-*- mode:lisp -*-|#
+#|
+exec ros -Q -- $0 "$@"
+|#
+(progn ;;init forms
+  (ros:ensure-asdf)
+  #+quicklisp(ql:quickload '() :silent t)
+  )
+
+(defpackage :ros.script.calc.3922391639
+  (:use :cl))
+(in-package :ros.script.calc.3922391639)
+
+(defun main (&rest argv)
+  (declare (ignorable argv))
+  (loop for i from 1 to 100
+        for decimal-length = (random 10)
+        for whole-number-length = (random 10)
+        for operator = (random 4)
+        do
+        (cond ((= operator 0) (write-char #\+))
+              ((= operator 1) (write-char #\-))
+              ((= operator 2) (write-char #\*))
+              ((= operator 3) (write-char #\/)))
+        (loop for j from 1 to whole-number-length
+              do (write-char (code-char (+ (char-code #\0) (random 10)))))
+        (if (zerop decimal-length)
+          (terpri)
+          (progn
+            (write-char #\.)
+            (loop for j from 1 to decimal-length
+                  do (write-char (code-char (+ (char-code #\0) (random 10)))))
+            (terpri)))))
+
+;;; vim: set ft=lisp lisp:
