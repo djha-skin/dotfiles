@@ -8,7 +8,10 @@ mailboxes = +INBOX
 
 set header_cache = "~/.cache/muttdirs/header-cache/migadu"
 set message_cachedir = "~/.cache/muttdirs/message-cachedir/migadu"
-set postponed = +Drafts
+set postponed = "imaps://dan@djhaskin.com@imap.migadu.com/Drafts"
+set trash = "imaps://dan@djhaskin.com@imap.migadu.com/Trash"
+set record = "imaps://dan@djhaskin.com@imap.migadu.com/Sent"
+
 unset imap_passive
 set imap_keepalive = 300
 set mail_check = 120
