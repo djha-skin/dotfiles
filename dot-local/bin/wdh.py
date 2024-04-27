@@ -25,6 +25,9 @@ def pushd(directory, wdh_path, **kwargs):
 
     if full_dir.exists():
         dirs = read_dirs(wdh_path)
+        for dir in dirs:
+            if dir == new_entry:
+                dirs.remove(dir)
         after_index = (index + len(dirs) + 1) % (len(dirs) + 1)
         dirs.insert(after_index, new_entry)
         write_dirs(wdh_path, dirs)
