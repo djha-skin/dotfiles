@@ -1,0 +1,13 @@
+#!/bin/sh
+
+while true
+do
+    clear
+    figlet -d "${HOME}/.local/share/figlet" -f djhaskin -cW "HOME"
+    gcal home calw
+    figlet -d "${HOME}/.local/share/figlet" -f djhaskin -cW "WORK"
+    gcal work calw
+    gcal home remind 10 'notify '\''⌚ Timer'\'' '\''Complete!'\'
+    gcal work remind 10 'notify '\''⌚ Timer'\'' '\''Complete!'\'
+    sleep 300
+done

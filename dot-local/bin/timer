@@ -24,7 +24,12 @@ do
     seconds=$(( ${duration} * 60 ))
     end=$(( $(date "+%s") + ${seconds} ))
     notify '⌚ Timer' "${name} (${duration} minutes)"
-    afplay "${HOME}/Music/ding.wav" &
+    if uname -a | grep -q 'Darwin'
+    then
+        afplay "${HOME}/Music/ding.wav" &
+    else
+        aplay "${HOME}/Music/ding.wav" &
+    fi
     while [ "${seconds}" -ge 0 ]
     do
         time_left="$(printf "%02d:%02d" "$(( ${seconds} / 60 ))" "$(( ${seconds} % 60 ))")"
@@ -36,12 +41,17 @@ do
                 | tee "${device_prefix}${trm}"
         done
         clear
-        figlet -d "${HOME}/.local/share/figlet" -f timer -cW "$(printf '%s\n%s' "${name}" "${time_left}")"
+        figlet -d "${HOME}/.local/share/figlet" -f djhaskin -cW "$(printf '%s\n%s' "${name}" "${time_left}")"
         sleep 0.980
         seconds="$(( ${end} - $(date "+%s") ))"
     done
 done
 clear
-figlet -d "${HOME}/.local/share/figlet" -f timer -cWt "Complete!"
+figlet -d "${HOME}/.local/share/figlet" -f djhaskin -cWt "Complete!"
 notify '⌚ Timer' "Complete!"
-afplay -q "${HOME}/Music/ding.wav"
+if uname -a | grep -q 'Darwin'
+then
+    afplay -q "${HOME}/Music/ding.wav"
+else
+    aplay -q "${HOME}/Music/ding.wav"
+fi
