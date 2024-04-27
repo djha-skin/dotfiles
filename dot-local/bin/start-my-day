@@ -2,6 +2,7 @@
 
 usage() {
     echo "Usage: start-my-day [-r|--reset]" >&2
+    echo "  -p, --play     After-hours mode" >&2
     echo "  -r, --reset    Reset the environment before starting" >&2
     echo "  -h, --help     Display this help message" >&2
     exit 1
@@ -9,11 +10,16 @@ usage() {
 
 
 reset=0
+play=0
 while [ -n "${1}" ]
 do
     case "${1}" in
         -r|--reset)
             reset=1
+            shift
+            ;;
+        -p|--play)
+            play=1
             shift
             ;;
         -h|--help)
@@ -43,15 +49,23 @@ tmux send-keys -l -t :.1 "pom"
 tmux new-window
 tmux rename-window "Email"
 tmux split-window
-tmux send-keys -l -t :.0 "mutt -F ~/.mutt/home.account"
-tmux send-keys -l -t :.1 "mutt -F ~/.mutt/migadu.account"
+tmux send-keys -l -t :.0 "mutt -F ~/.mutt/home.accountOd"
+if [ "${play}" -ne 0 ]
+then
+    tmux send-keys -l -t :.1 "mutt -F ~/.mutt/migadu.accountOd"
+else
+    tmux send-keys -l -t :.1 "mutt -F ~/.mutt/work.accountOd"
+fi
 tmux new-window
 tmux rename-window "Calendar"
 tmux send-keys -l -t :.0 "display-calendar"
+if [ "${play}" -eq 0 ]
+then
+    tmux new-window
+    tmux rename-window "VPN"
+    tmux send-keys -l -t :.0 "vpndirgo run ./server.go"
+    tmux split-window
+    tmux send-keys -l -t :.1 "vpndir./aws-connect.sh"
+fi
 tmux new-window
-tmux rename-window "VPN"
-tmux send-keys -l -t :.0 "vpndirgo run ./server.go"
-tmux split-window
-tmux send-keys -l -t :.1 "vpndir./aws-connect.sh"
-tmux new-window
-tmux rename-window "Work"
+tmux rename-window "Lab"
