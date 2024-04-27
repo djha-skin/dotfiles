@@ -44,7 +44,12 @@ fi
 
 tmux rename-window "Planner"
 tmux split-window
-tmux send-keys -l -t :.0 "worknotesppushd -i 0 .diary dkki# "
+if [ "${play}" -ne 0 ]
+then
+    tmux send-keys -l -t :.0 "homenotesppushd -i 0 .diary dkki# "
+else
+    tmux send-keys -l -t :.0 "worknotesppushd -i 0 .diary dkki# "
+fi
 tmux send-keys -l -t :.1 "pom"
 tmux new-window
 tmux rename-window "Email"
