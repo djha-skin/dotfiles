@@ -1,3 +1,4 @@
-#text/html; w3m -I %{charset} -T text/html; copiousoutput;
-text/html; tidy -quiet -%{charset} %s; copiousoutput; description=HTML Text; nametemplate=%s.html
+text/html; w3m -I %{charset} -T text/html -o display_link_number=1; copiousoutput;
 application/pdf; pdftotext %s -; copiousoutput;
+text/calendar; mutt-ics; copiousoutput
+application/ics; mutt-ics; copiousoutput
