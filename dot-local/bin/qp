@@ -1,0 +1,16 @@
+#!/usr/bin/python3
+import quopri
+import sys
+
+def decode_quoted_printable():
+    # Read input from standard input
+    input_data = sys.stdin.buffer.read()
+
+    # Decode Quoted-Printable data
+    decoded_data = quopri.decodestring(input_data)
+
+    # Write the decoded data to standard output
+    sys.stdout.buffer.write(decoded_data)
+
+if __name__ == "__main__":
+    decode_quoted_printable()
