@@ -1,9 +1,9 @@
 set imap_user = "djhaskin987@gmail.com"
 set folder = "imaps://imap.gmail.com/"
 set spoolfile="+INBOX"
-set postponed = "imaps://djhaskin987@gmail.com@imap.gmail.com/[Gmail]/Drafts"
+set postponed = "+[Gmail]/Drafts"
 unset record
-set trash = "imaps://djhaskin987@gmail.com@imap.gmail.com/[Gmail]/Trash"
+set trash = "+[Gmail]/Trash"
 set imap_pass = "`multipass imaps://imap.gmail.com:993/ djhaskin987@gmail.com`"
 
 set smtp_url=smtps://djhaskin987@gmail.com@smtp.gmail.com:465/
