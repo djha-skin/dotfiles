@@ -107,7 +107,7 @@ fi
 
 export EDITOR="nvim"
 export ALTERNATE_EDITOR=""
-export BROWSER="firefox"
+export BROWSER="qutebrowser"
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 export HISTCONTROL=ignoredups:ignorespace

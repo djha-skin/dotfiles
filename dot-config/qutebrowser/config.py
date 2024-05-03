@@ -1,0 +1,8 @@
+config.load_autoconfig()
+config.bind('<Alt-Shift-u>', 'spawn --userscript qute-keepassxc --key 228CA5F330765A3EC42F2DA1D1248652961B5ECA', mode='insert')
+config.bind('<Alt-u>', 'spawn --userscript qute-keepassxc --key 228CA5F330765A3EC42F2DA1D1248652961B5ECA --connection home.key', mode='insert')
+config.bind('pw', 'spawn --userscript qute-keepassxc --key 228CA5F330765A3EC42F2DA1D1248652961B5ECA --connection home.key', mode='normal')
+config.bind('PW', 'spawn --userscript qute-keepassxc --key 228CA5F330765A3EC42F2DA1D1248652961B5ECA', mode='normal')
+config.bind('pt', 'spawn --userscript qute-keepassxc --key 228CA5F330765A3EC42F2DA1D1248652961B5ECA --connection home.key --totp', mode='normal')
+config.bind('PT', 'spawn --userscript qute-keepassxc --key 228CA5F330765A3EC42F2DA1D1248652961B5ECA --totp', mode='normal')
+config.bind('jk', 'leave-mode', mode='insert')
