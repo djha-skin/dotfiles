@@ -61,4 +61,9 @@ color sidebar_spool_file color207 default
 color sidebar_unread color136 default
 # --------------------------------------------------------------------------
 set imap_check_subscribed = yes
+
+set beep = no
+set beep_new = yes
+
 # vim: syntax=neomuttrc
+
