@@ -71,6 +71,9 @@ then
     tmux send-keys -l -t :.0 "vpndirgo run ./server.go"
     tmux split-window
     tmux send-keys -l -t :.1 "vpndir./aws-connect.sh"
+    sleep 30
+    tmux send-keys -l -t :.0 ""
+    tmux send-keys -l -t :.0 "./dns.sh"
 fi
 tmux new-window
 tmux rename-window "Lab"
