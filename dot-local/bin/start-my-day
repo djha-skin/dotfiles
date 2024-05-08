@@ -63,7 +63,7 @@ else
 fi
 tmux new-window
 tmux rename-window "Calendar"
-tmux send-keys -l -t :.0 "display-calendar"
+tmux send-keys -l -t :.0 "display-calendar"
 if [ "${play}" -eq 0 ]
 then
     tmux new-window
