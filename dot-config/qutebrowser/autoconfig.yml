@@ -14,11 +14,24 @@ settings:
     https://meet.google.com: true
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: true
+  editor.command:
+    global:
+    - nvim-qt
+    - '{file}'
+    - --
+    - -c
+    - normal {line}G{column0}l
+  qt.environ:
+    global:
+      QT_ENABLE_HIGHDPI_SCALING: '1'
+      QT_SCALE_FACTOR_ROUNDING_POLICY: Round
+  qt.highdpi:
+    global: true
   url.default_page:
-    global: https://blog.djhaskin.com/
+    global: https://sr.ht/
   url.searchengines:
     global:
-      DEFAULT: https://search.brave.com/search?q={}
-      wa: https://wiki.archlinux.org/?search={}
+      DEFAULT: https://google.com/search?q={}
+      ddg: https://duckduckgo.com/?q={}
   url.start_pages:
     global: https://github.com/
