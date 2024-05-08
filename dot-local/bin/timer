@@ -1,4 +1,5 @@
 #!/bin/sh
+#set -ex
 if [ -f "${HOME}/.profile" ]
 then
     . "${HOME}/.profile"
@@ -12,7 +13,7 @@ then
     # mac
     device_prefix="/dev/tty"
 else
-    device_prefix="/dev/"
+    device_prefix="/dev/pts/"
 fi
 
 while [ -n "${1}" ]
@@ -33,7 +34,13 @@ do
     while [ "${seconds}" -ge 0 ]
     do
         time_left="$(printf "%02d:%02d" "$(( ${seconds} / 60 ))" "$(( ${seconds} % 60 ))")"
-        w | awk '/tmux/ { print $2 }' | while read trm
+        if uname -a | grep -q 'Darwin'
+        then
+            trms="$(w | awk '/tmux/ { print $2 }')"
+        else
+            trms="$(ls -1A "${device_prefix}" | awk '/^[1-9][0-9]*$/ { print $0 }')"
+        fi
+        echo "${trms}" | while read trm
         do
             printf '\033]2;%s: %s\033\\' \
                 "${name}" \
