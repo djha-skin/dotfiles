@@ -24,6 +24,7 @@ set sidebar_on_right = no
 set sidebar_divider_char = '|'
 set mail_check = 90
 set timeout = 15
+unset imap_passive
 
 set sidebar_sort_method = path
 
