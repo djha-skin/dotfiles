@@ -1,10 +1,13 @@
+#!/bin/sh
+set -ex
 for i in dot-*
 do
-    dest=$(echo "${i}" | sed 's|^dot-||')
+    dest=$(echo "${i}" | sed 's|^dot-|.|')
     if [ -d "${i}" ]
     then
         rsync -avHAX "${i}/" "${HOME}/${dest}/"
     else
         rsync -avHAX "${i}" "${HOME}/${dest}"
     fi
+
 done
