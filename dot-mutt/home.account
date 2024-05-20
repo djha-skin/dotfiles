@@ -18,6 +18,19 @@ set message_cachedir = "~/.cache/muttdirs/message-cachedir/home"
 set crypt_use_gpgme
 set pgp_default_key="443A163BD11CEAE798BAAB94D7268D49D06594F4"
 
+# https://jonathanh.co.uk/blog/mutt-setup/
+##############
+#  Contacts  #
+##############
+# When looking for contacts, use this command
+set query_command= "abook -f ~/.mutt/home-contacts.abook --mutt-query '%s'"
+# Add current sender to address book
+macro index,pager  a "<pipe-message>abook -f ~/.mutt/home-contacts.abook --add-email-quiet<return>" "Add this sender to Abook"
+# Auto-complete email addresses by pushing tab
+bind editor <Tab> complete-query
 
 source ~/.muttrc
+
+set header_cache = "~/.cache/muttdirs/header-cache/home"
+set message_cachedir = "~/.cache/muttdirs/message-cachedir/home"
 # vim: syntax=neomuttrc

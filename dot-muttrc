@@ -26,7 +26,6 @@ set sidebar_on_right = no
 set sidebar_divider_char = '|'
 set mail_check = 90
 set timeout = 15
-unset imap_passive
 
 set sidebar_sort_method = path
 set sort = threads
@@ -75,6 +74,9 @@ set query_command="lbdbq '%s'" # calling lbdbq
 macro alias Q "!lbdbq ." "lbdb query"
 # vim: syntax=neomuttrc
 
+set new_mail_command="~/.local/bin/notify 'New email in %f' '%n new messages, %u unread'"
+
 # https://unix.stackexchange.com/a/108809/9696
 macro compose \e5 "F pandoc -s -f markdown -t html \ny^T^Utext/html; charset=utf-8\n"
 set wait_key=no
+
