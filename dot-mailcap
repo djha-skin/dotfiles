@@ -1,4 +1,5 @@
-text/html; w3m -I %{charset} -T text/html -o display_link_number=1; copiousoutput;
+#text/html; qutebrowser %s; nametemplate=%s.html;
+text/html; pandoc --reference-links --reference-location=document -f html -t markdown -i %s; nametemplate=%s.html; needsterminal; copiousoutput
 application/pdf; pdftotext %s -; copiousoutput;
 text/calendar; mutt-ics; copiousoutput
 application/ics; mutt-ics; copiousoutput
