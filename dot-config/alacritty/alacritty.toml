@@ -1,0 +1,6 @@
+import = [
+    "~/.config/alacritty/themes/themes/xterm.toml"
+]
+[font]
+normal = { "family" = "Fira Code", "style" = "Regular" }
+size = 10
