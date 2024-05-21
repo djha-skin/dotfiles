@@ -21,3 +21,4 @@ Create Both
 Expunge Both
 Patterns * !"[Gmail]/All Mail" !"[Gmail]/Important" !"[Gmail]/Starred" !"[Gmail]/Bin"
 SyncState *
+#CopyArrivalDate yes
