@@ -1,0 +1,18 @@
+set folder = "~/Mail/migadu"
+set spoolfile="+INBOX"
+set postponed="+Drafts"
+set record="+Sent"
+set mbox_type = Maildir
+set trash = "+Trash"
+mailboxes +INBOX
+
+
+set sendmail="msmtp -a migadu"
+
+set realname = "Daniel Jay Haskin"
+set from="dan@djhaskin.com"
+
+set crypt_use_gpgme
+
+source ~/.muttrc
+# vim: syntax=neomuttrc

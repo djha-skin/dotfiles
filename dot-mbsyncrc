@@ -1,0 +1,23 @@
+IMAPAccount home
+Host imap.gmail.com
+Port 993
+User djhaskin987@gmail.com
+PassCmd "multipass imaps://imap.gmail.com:993/ djhaskin987@gmail.com"
+TLSType IMAPS
+AuthMechs LOGIN
+
+IMAPStore home-remote
+Account home
+
+MaildirStore home-local
+Subfolders Verbatim
+Path ~/Mail/home/
+Inbox ~/Mail/home/INBOX/
+
+Channel home
+Far :home-remote:
+Near :home-local:
+Create Both
+Expunge Both
+Patterns * !"[Gmail]/All Mail" !"[Gmail]/Important" !"[Gmail]/Starred" !"[Gmail]/Bin"
+SyncState *

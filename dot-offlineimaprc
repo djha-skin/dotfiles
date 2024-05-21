@@ -1,0 +1,32 @@
+[general]
+accounts = home
+
+[Account home]
+localrepository = home-local
+remoterepository = home-remote
+
+[Repository home-local]
+type = Maildir
+localfolders = ~/Mail/home
+
+[Repository home-remote]
+type = IMAP
+remotehost = imap.gmail.com
+remoteuser = djhaskin987@gmail.com
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+folderfilter = lambda foldername: foldername not in ["[Gmail]/All Mail", "[Gmail]/Important", "[Gmail/Starred"]
+
+[Account migadu]
+localrepository = migadu-local
+remoterepository = migadu-remote
+
+[Repository migadu-local]
+type = Maildir
+localfolders = ~/Mail/migadu
+
+[Repository migadu-remote]
+type = IMAP
+remotehost = imap.migadu.com
+remoteuser = dan@djhaskin.com
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+

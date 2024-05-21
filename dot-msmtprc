@@ -1,0 +1,23 @@
+defaults
+auth on
+tls on
+tls_trust_file /etc/ssl/certs/ca-bundle.crt
+logfile ~/.msmtp.log
+
+account home
+host smtp.gmail.com
+port 465
+tls_starttls off
+from djhaskin987@gmail.com
+user djhaskin987@gmail.com
+passwordeval "multipass smtps://smtp.gmail.com:465/ djhaskin987@gmail.com"
+
+account migadu
+host smtp.migadu.com
+port 465
+tls_starttls off
+from dan@djhaskin.com
+user dan@djhaskin.com
+passwordeval "multipass smtps://smtp.migadu.com:465/ dan@djhaskin.com"
+
+account default: home
