@@ -26,6 +26,8 @@ set timeout = 15
 unset imap_passive
 
 set sidebar_sort_method = path
+set sort = threads
+set sort_aux = reverse-date
 
 bind index,pager \Cp sidebar-prev
 bind index,pager \Cn sidebar-next
@@ -68,6 +70,7 @@ set mail_check_stats
 set beep = no
 set beep_new = yes
 set index_format = "%4C %Z %{%Y %b %d} %-15.15L (%?l?%4l&%4c?) %s"
+set timeout=300
 
 # https://unix.stackexchange.com/a/108809/9696
 macro compose \e5 "F pandoc -s -f markdown -t html \ny^T^Utext/html; charset=utf-8\n"
