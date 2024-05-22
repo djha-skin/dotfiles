@@ -16,7 +16,7 @@ type = IMAP
 remotehost = imap.gmail.com
 remoteuser = djhaskin987@gmail.com
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-folderfilter = lambda foldername: foldername not in ["[Gmail]/All Mail", "[Gmail]/Important", "[Gmail/Starred"]
+folderfilter = lambda foldername: foldername not in ["[Gmail]/All Mail", "[Gmail]/Important", "[Gmail]/Starred", "[Gmail]/Spam"]
 nametrans = lambda folder: re.sub('/', '~', re.sub(r'^\[Gmail\]', 'gmail', folder))
 remotepasseval = multipass("imaps://imap.gmail.com:993/", "djhaskin987@gmail.com")
 
@@ -49,6 +49,6 @@ type = IMAP
 remotehost = imap.gmail.com
 remoteuser = daniel.haskin@angel.com
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-folderfilter = lambda foldername: foldername not in ["[Gmail]/All Mail", "[Gmail]/Important", "[Gmail/Starred"]
+folderfilter = lambda foldername: foldername not in ["[Gmail]/All Mail", "[Gmail]/Important", "[Gmail]/Starred", "[Gmail]/Spam"]
 nametrans = lambda folder: re.sub('/', '~', re.sub(r'^\[Gmail\]', 'gmail', folder))
 remotepasseval = multipass("imaps://imap.gmail.com:993/", "daniel.haskin@angel.com")

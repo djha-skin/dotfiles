@@ -1,0 +1,17 @@
+set folder = "~/Mail/home"
+set spoolfile="+INBOX"
+set postponed="+gmail~Drafts"
+unset record
+set mbox_type = Maildir
+set trash = "+gmail~Trash"
+mailboxes +INBOX +Archives "+Coupons~Papa Johns" +Family +gmail~Chats +gmail~Drafts "+gmail~Sent Mail" +gmail~Starred +gmail~Trash +gmail~Trash~Politics "+Highland Ward" "+Kids School" "+Local Politics" "+Mailing Lists" "+Mailing Lists~Home Bot App" +Recruiters +Transactions +Work
+
+set sendmail="msmtp -a home"
+
+set realname = "Daniel Jay Haskin"
+set from="djhaskin987@gmail.com"
+
+set crypt_use_gpgme
+
+source ~/.muttrc
+# vim: syntax=neomuttrc
