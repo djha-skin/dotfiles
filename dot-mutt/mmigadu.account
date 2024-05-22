@@ -9,6 +9,8 @@ mailboxes +INBOX
 
 set sendmail="msmtp -a migadu"
 
+set nm_default_url = "notmuch://$HOME/Mail/migadu"
+
 set realname = "Daniel Jay Haskin"
 set from="dan@djhaskin.com"
 

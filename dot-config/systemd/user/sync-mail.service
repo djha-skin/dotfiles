@@ -1,0 +1,14 @@
+[Unit]
+Description=Mailbox synchronization service
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/skin/.local/bin/sync-mail
+TimeoutStopSec=150
+
+[Unit]
+Description=Himalaya watcher for skin
+
+[Install]
+WantedBy=default.target
