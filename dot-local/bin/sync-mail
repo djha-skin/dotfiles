@@ -1,8 +1,18 @@
 #!/bin/sh
 
 . ${HOME}/.profile
+(
+flock -n 9
+if [ "${!}" -ne 0 ]
+then
+    echo "Another instance is running." >&2
+    exit 0
+fi
 
 offlineimap -a home
 notmuch --config=${HOME}/Mail/home/.notmuch-config new
+offlineimap -a work
+notmuch --config=${HOME}/Mail/work/.notmuch-config new
 offlineimap -a migadu
 notmuch --config=${HOME}/Mail/migadu/.notmuch-config new
+) 9>~/.cache/sync-mail-lock
