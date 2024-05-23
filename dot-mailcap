@@ -1,5 +1,5 @@
-#text/html; qutebrowser %s; nametemplate=%s.html;
-text/html; pandoc --reference-links --reference-location=document -f html -t markdown -i %s; nametemplate=%s.html; needsterminal; copiousoutput
+text/html; $BROWSER %s;
+text/html; pandoc --reference-links --reference-location=document -f html -t markdown_mmd -i %s; nametemplate=%s.html; compose=$EDITOR %s; edit=$EDITOR %s; needsterminal; copiousoutput
 application/pdf; pdftotext %s -; copiousoutput;
 text/calendar; mutt-ics; copiousoutput
 application/ics; mutt-ics; copiousoutput

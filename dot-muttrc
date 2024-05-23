@@ -1,7 +1,7 @@
 set move = no
 set confirmappend = no
 alternative_order text/plain text/html
-auto_view text/html
+#auto_view text/html
 set mailcap_path = ~/.mailcap
 unset markers
 set envelope_from=yes
@@ -73,8 +73,19 @@ set index_format = "%4C %Z %{%Y %b %d} %-15.15L (%?l?%4l&%4c?) %s"
 set timeout=300
 
 # https://unix.stackexchange.com/a/108809/9696
-macro compose \e5 "F pandoc -s -f markdown -t html \ny^T^Utext/html; charset=utf-8\n"
+macro compose \e5 "F pandoc -s -f markdown_mmd -t html \ny^T^Utext/html; charset=utf-8\n"
 set wait_key=no
 
-# vim: syntax=neomuttrc
+macro index,pager \e7 "<tag-pattern>~f security@angel.com<enter><tag-prefix><save-message>+Security<enter>"
 
+macro index A \
+    "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" \
+    "mark all new as read"
+bind compose M view-pager
+set allow_8bit = no
+set attribution_intro = "On %d, %n wrote:\n"
+set forward_quote = yes
+set forwarded_references = yes
+set forward_attribution_intro = "On %d, %n (%f) wrote:\n"
+
+# vim: syntax=neomuttrc
