@@ -85,7 +85,14 @@ bind compose M view-pager
 set allow_8bit = no
 set attribution_intro = "On %d, %n wrote:\n"
 set forward_quote = yes
-set forwarded_references = yes
+set forward_references = yes
 set forward_attribution_intro = "On %d, %n (%f) wrote:\n"
+macro compose Y "<first-entry><enter-command>set wait_key=no<enter> \
+    <pipe-entry>pandoc -f markdown -t html --o /tmp/neomutt-alternative.html<enter> \
+    <attach-file>/tmp/neomutt-alternative.html<enter> \
+    <toggle-unlink><toggle-disposition> \
+    <tag-entry><first-entry><tag-entry><group-alternatives> \
+    <enter-command>set wait_key=yes<enter>" \
+    "prepare the message as 'multipart/alternative'"
 
 # vim: syntax=neomuttrc
