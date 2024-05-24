@@ -137,6 +137,8 @@ export WORKING_LOCATION_FILE="${HOME}/.wdh.txt"
 unset SSH_AGENT_PID
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
+export QT_SCALE_FACTOR_ROUNDING_POLICY=Round
+export QT_ENABLE_HIGHDPI_SCALING=1
 gpgconf --launch gpg-agent
 
 pchanged() {
