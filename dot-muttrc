@@ -1,7 +1,7 @@
 set move = no
 set confirmappend = no
 alternative_order text/plain text/html
-#auto_view text/html
+auto_view text/html
 set mailcap_path = ~/.mailcap
 unset markers
 set envelope_from=yes
