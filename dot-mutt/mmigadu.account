@@ -4,8 +4,7 @@ set postponed="+Drafts"
 set record="+Sent"
 set mbox_type = Maildir
 set trash = "+Trash"
-mailboxes +INBOX
-
+mailboxes +Archive +Drafts +INBOX +Junk +Kagi +Sent +Transactions +Trash
 
 set sendmail="msmtp -a migadu"
 
