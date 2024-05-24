@@ -1,7 +1,7 @@
 alias vim=nvim
 alias scr='screen -dRR -S ergo -t skin'
-alias driveup='rclone copy /home/skin/HomeGoogleDrive/ HomeGoogleDrive:/'
-alias drivedown='rclone copy HomeGoogleDrive:/ /home/skin/HomeGoogleDrive/'
+alias driveup='rclone copy /home/skin/OneDrive/ OneDrive:/'
+alias drivedown='rclone copy OneDrive:/ /home/skin/OneDrive/'
 alias worknotes='cd ~/OneDrive/Markdown/Work'
 alias homenotes='cd ~/OneDrive/Markdown/Home'
 alias diary='nvim Planning/Diary/$(date +%Y-%m-%d-%A.md)'

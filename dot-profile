@@ -134,6 +134,11 @@ export PARINIT="rTbgqR B=*/-.,?'_A_a_@ Q=_s>| W=_S"
 
 export WORKING_LOCATION_FILE="${HOME}/.wdh.txt"
 
+unset SSH_AGENT_PID
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+
+gpgconf --launch gpg-agent
+
 pchanged() {
     if [ -n "${WORKING_LOCATION_FILE:-}" -a -f "${WORKING_LOCATION_FILE:-}" ]
     then
