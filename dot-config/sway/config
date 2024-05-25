@@ -80,8 +80,8 @@ input type:pointer {
 
 bindsym XF86Calculator exec rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '{result}' | copy" -kb-accept-custom 'control+KP_Enter'
 bindsym $mod+m exec warpd --hint2 --click 1
-bindsym $mod+comma exec warpd --hint
-bindsym $mod+period exec warpd --normal
+bindsym $mod+comma exec warpd --hint2 --click 2
+bindsym $mod+period exec warpd --normal --oneshot
 
 ### Input configuration
 #
@@ -204,6 +204,33 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+o mode "resize" # The `o` is for "order"
+
+mode Mouse {
+    bindsym a mode default, exec 'wl-kbptr-sway-active-win; swaymsg mode Mouse'
+    bindsym Shift+a mode default, exec 'wl-kbptr; swaymsg mode Mouse'
+
+    # Mouse move
+    bindsym h seat seat0 cursor move -15 0
+    bindsym j seat seat0 cursor move 0 15
+    bindsym k seat seat0 cursor move 0 -15
+    bindsym l seat seat0 cursor move 15 0
+
+    # Left button
+    bindsym m seat seat0 cursor press button1
+    bindsym --release m seat seat0 cursor release button1
+
+    # Middle button
+    bindsym comma seat seat0 cursor press button2
+    bindsym --release comma seat seat0 cursor release button2
+
+    # Right button
+    bindsym period seat seat0 cursor press button3
+    bindsym --release period seat seat0 cursor release button3
+
+    bindsym Escape mode default
+}
+
+bindsym $mod+m mode Mouse
 
 # Include configs from 3 locations:
 #  - /usr/share/sway/config.d
