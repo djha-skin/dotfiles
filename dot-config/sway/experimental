@@ -1,0 +1,176 @@
+# Read `man 5 sway` for a complete reference.
+
+### Variables
+#
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+# Logo key is only on one hand
+
+
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $term kitty
+set $browser qutebrowser
+
+focus_on_window_activation focus
+# Your preferred application launcher
+# Note: pass the final command to swaymsg so that the resulting window can be opened
+# on the original workspace that the command was run on.
+# Recommends: rofi-wayland
+set $rofi_cmd rofi \
+        -terminal '$term'
+# Shows a combined list of the applications with desktop files and
+# executables from PATH.
+# TODO: add window with the next release of rofi-wayland
+set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
+
+### Output configuration
+#
+# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+# Requires: desktop-backgrounds-compat, swaybg
+output * bg /usr/share/backgrounds/default.png fill
+
+output 'HP Inc. HP VH240a 6CM01304VL' resolution 1920x1080
+output 'HP Inc. HP VH240a 6CM01304VL' transform 270
+output 'HP Inc. HP VH240a 6CM01304VL' position 0 0
+
+output 'AU Optronics 0x5E2D Unknown' resolution 1920x1080
+output 'AU Optronics 0x5E2D Unknown' scale 1.5
+output 'AU Optronics 0x5E2D Unknown' position 1080 900
+
+output 'HP Inc. HP VH240a 6CM01319L1' resolution 1920x1080
+output 'HP Inc. HP VH240a 6CM01319L1' transform 270
+output 'HP Inc. HP VH240a 6CM01319L1' position 2360 0
+
+#
+# Example configuration:
+#
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+
+### Idle configuration
+#
+# Example configuration:
+#
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         before-sleep 'swaylock -f -c 000000'
+
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+}
+
+input type:pointer {
+    natural_scroll enabled
+}
+
+bindsym XF86Calculator exec rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '{result}' | copy" -kb-accept-custom 'control+KP_Enter'
+
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
+bindsym $mod+Return fullscreen
+bindsym $mod+Shift+u floating toggle
+bindsym $mod+u focus mode_toggle
+
+mode Nav {
+    bindsym r reload
+    bindsym i mode default
+    bindsym Shift+Z exec swaylock -f -c 000000
+    bindsym Return exec $term
+    bindsym Shift+Return exec $browser
+    bindsym d kill
+    bindsym e exec $menu mode default
+    bindsym q exit
+    bindsym h focus left
+    bindsym j focus down
+    bindsym k focus up
+    bindsym l focus right
+    bindsym Shift+h move left
+    bindsym Shift+j move down
+    bindsym Shift+k move up
+    bindsym Shift+l move right
+
+    bindsym w focus child
+    bindsym b focus parent
+    bindsym n focus next
+    bindsym Shift+n focus prev
+
+    # Switch to workspace
+    bindsym 7 workspace number 1
+    bindsym 8 workspace number 8
+    bindsym 9 workspace number 9
+    bindsym 0 workspace number 0
+
+    # Move focused container to workspace
+    bindsym Shift+7 move container to workspace number 1
+    bindsym Shift+8 move container to workspace number 8
+    bindsym Shift+9 move container to workspace number 9
+    bindsym Shift+0 move container to workspace number 0
+
+    bindsym bracketleft splith
+    bindsym bracketright splitv
+
+    bindsym o layout toggle all # "next"
+
+    bindsym y move scratchpad
+    bindsym p scratchpad show
+    bindsym v exec grimshot --cursor savecopy
+
+}
+bindsym $mod+Space mode "Nav"
+
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    bindsym Escape mode "default"
+}
+bindsym $mod+o mode "resize" # The `o` is for "order"
+
+
+
+
+
+
+# Include configs from 3 locations:
+#  - /usr/share/sway/config.d
+#  - /etc/sway/config.d
+#  - $XDG_CONFIG_HOME/sway/config.d ($HOME/.config/sway/config.d)
+#
+# If multiple directories contain the files with the same name, the later
+# directory takes precedence; `$XDG_CONFIG_HOME/sway/config.d/20-swayidle.conf`
+# will always be loaded instead of `/usr/share/sway/config.d/20-swayidle.conf`
+# or `/etc/sway/config.d/20-swayidle.conf`
+#
+# This mechanism permits overriding our default configuration per-system
+# (/etc) or per-user ($XDG_CONFIG_HOME) basis. Just create the file you
+# want to modify/override in the higher-level directory.
+#
+# For example, to disable the default bar from Fedora configs, you'll need to
+#     $ echo -n > "$HOME/.config/sway/config.d/90-bar.conf"
+#
+# Note the quoting, the $() and the arguments quoting. All the parts are equally
+# important to make the magic work. And if you want to learn the secret behind
+# the trick, it's all in the `wordexp(3)`.
+#
+include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
