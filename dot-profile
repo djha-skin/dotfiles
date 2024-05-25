@@ -15,6 +15,7 @@ else
     export HOME="/home/skin"
 fi
 export home_altprefix="${HOME}/.apps"
+export WARP_ENABLE_WAYLAND=1
 # Set up PATH
 if [ -d /mingw64 ]
 then
@@ -31,7 +32,7 @@ export LOCALE="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export LANGUAGE="en_US:"
 export RLWRAP_EDITOR="nvim '+call cursor(%L,%C)'"
-
+export LESS="-Q --no-vbell --use-color -r"
 #export LD_LIBRARY_PATH=${HOME}/.local/lib64:${HOME}/.local/lib:/usr/local/lib64:/usr/local/lib:/usr/lib64:/usr/lib
 
 for i in $(ls -1A "${home_altprefix}")
@@ -134,12 +135,12 @@ export PARINIT="rTbgqR B=*/-.,?'_A_a_@ Q=_s>| W=_S"
 
 export WORKING_LOCATION_FILE="${HOME}/.wdh.txt"
 
+gpgconf --launch gpg-agent
 unset SSH_AGENT_PID
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 export QT_SCALE_FACTOR_ROUNDING_POLICY=Round
 export QT_ENABLE_HIGHDPI_SCALING=1
-gpgconf --launch gpg-agent
 
 pchanged() {
     if [ -n "${WORKING_LOCATION_FILE:-}" -a -f "${WORKING_LOCATION_FILE:-}" ]
