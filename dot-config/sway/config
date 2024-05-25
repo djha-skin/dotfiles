@@ -39,7 +39,7 @@ output 'HP Inc. HP VH240a 6CM01304VL' transform 270
 output 'HP Inc. HP VH240a 6CM01304VL' position 0 0
 
 output 'AU Optronics 0x5E2D Unknown' resolution 1920x1080
-output 'AU Optronics 0x5E2D Unknown' scale 1.5
+#output 'AU Optronics 0x5E2D Unknown' scale 1.5
 output 'AU Optronics 0x5E2D Unknown' position 1080 900
 
 output 'HP Inc. HP VH240a 6CM01319L1' resolution 1920x1080
@@ -62,6 +62,9 @@ exec swayidle -w \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock -f -c 000000'
 
+exec nm-applet
+
+
 # The `o` is for "out"
 bindsym $mod+Shift+o exec swaylock -f -c 000000
 
@@ -79,9 +82,10 @@ input type:pointer {
 }
 
 bindsym XF86Calculator exec rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '{result}' | copy" -kb-accept-custom 'control+KP_Enter'
-bindsym $mod+m exec warpd --hint2 --click 1
-bindsym $mod+comma exec warpd --hint2 --click 2
-bindsym $mod+period exec warpd --normal --oneshot
+# buggy
+#bindsym $mod+m exec warpd --hint2 --click 1
+#bindsym $mod+comma exec warpd --hint2 --click 2
+#bindsym $mod+period exec warpd --normal --oneshot
 
 ### Input configuration
 #
@@ -162,7 +166,7 @@ bindsym $mod+Space exec $menu
     bindsym $mod+bracketright splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+n layout toggle all # "next"
+    bindsym $mod+n layout toggle all
 
     # Make the current focus fullscreen
     # Focus "Up"

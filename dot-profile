@@ -14,8 +14,13 @@ then
 else
     export HOME="/home/skin"
 fi
+
+# systemctl --user enable gpg-agent.socket
+# systemctl --user start gpg-agent-ssh.sockket
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 export home_altprefix="${HOME}/.apps"
 export WARP_ENABLE_WAYLAND=1
+
 # Set up PATH
 if [ -d /mingw64 ]
 then
@@ -135,13 +140,13 @@ export PARINIT="rTbgqR B=*/-.,?'_A_a_@ Q=_s>| W=_S"
 
 export WORKING_LOCATION_FILE="${HOME}/.wdh.txt"
 
-gpgconf --launch gpg-agent
-unset SSH_AGENT_PID
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 export QT_SCALE_FACTOR_ROUNDING_POLICY=Round
 export QT_ENABLE_HIGHDPI_SCALING=1
 
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_PICTURES_DIR="${HOME}/Pictures"
+export XDG_SCREENSHOTS_DIR="${HOME}/Pictures/Screenshots"
 pchanged() {
     if [ -n "${WORKING_LOCATION_FILE:-}" -a -f "${WORKING_LOCATION_FILE:-}" ]
     then
