@@ -20,6 +20,9 @@ fi
 export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 export home_altprefix="${HOME}/.apps"
 export WARP_ENABLE_WAYLAND=1
+export QT_STYLE_OVERRIDE=Adwaita-Dark
+export GTK_THEME=Adwaita:dark
+
 
 # Set up PATH
 if [ -d /mingw64 ]
