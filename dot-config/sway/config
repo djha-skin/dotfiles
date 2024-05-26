@@ -39,7 +39,8 @@ output 'HP Inc. HP VH240a 6CM01304VL' transform 270
 output 'HP Inc. HP VH240a 6CM01304VL' position 0 0
 
 output 'AU Optronics 0x5E2D Unknown' resolution 1920x1080
-#output 'AU Optronics 0x5E2D Unknown' scale 1.5
+bindsym $mod+equal output 'AU Optronics 0x5E2D Unknown' scale 1.0
+bindsym $mod+Shift+equal output 'AU Optronics 0x5E2D Unknown' scale 1.5
 output 'AU Optronics 0x5E2D Unknown' position 1080 900
 
 output 'HP Inc. HP VH240a 6CM01319L1' resolution 1920x1080
