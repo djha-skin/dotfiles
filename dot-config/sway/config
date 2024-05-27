@@ -28,6 +28,8 @@ set $rofi_cmd rofi \
 # TODO: add window with the next release of rofi-wayland
 set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 
+set $main_display eDP-1
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
@@ -38,14 +40,13 @@ output 'HP Inc. HP VH240a 6CM01304VL' resolution 1920x1080
 output 'HP Inc. HP VH240a 6CM01304VL' transform 270
 output 'HP Inc. HP VH240a 6CM01304VL' position 0 0
 
-output 'AU Optronics 0x5E2D Unknown' resolution 1920x1080
-bindsym $mod+equal output 'AU Optronics 0x5E2D Unknown' scale 1.0
-bindsym $mod+Shift+equal output 'AU Optronics 0x5E2D Unknown' scale 1.5
-output 'AU Optronics 0x5E2D Unknown' position 1080 900
+bindsym $mod+equal exec scalemon up
+bindsym $mod+Shift+equal exec scalemon down
+output $main_display position 1080 0
 
 output 'HP Inc. HP VH240a 6CM01319L1' resolution 1920x1080
 output 'HP Inc. HP VH240a 6CM01319L1' transform 270
-output 'HP Inc. HP VH240a 6CM01319L1' position 2360 0
+output 'HP Inc. HP VH240a 6CM01319L1' position 2476 0
 
 #
 # Example configuration:
