@@ -65,10 +65,11 @@ exec swayidle -w \
 
 exec nm-applet
 
-exec pidgin
+exec /home/skin/.local/bin/OneDriveGUI
 
 # The `o` is for "out"
-bindsym $mod+Shift+o exec swaylock -f -c 000000
+bindsym $mod+o exec swaylock -f -c 000000
+bindsym $mod+Shift+o exec systemctl suspend-then-hibernate
 
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
@@ -209,7 +210,7 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+o mode "resize" # The `o` is for "order"
+bindsym $mod+Shift+u mode "resize" # The `u` is for "unit"
 
 mode Mouse {
     bindsym a mode default, exec 'wl-kbptr-sway-active-win; swaymsg mode Mouse'
