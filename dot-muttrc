@@ -100,4 +100,9 @@ macro compose U "<first-entry><enter-command>set wait_key=no<enter> \
     <enter-command>set wait_key=yes<enter>" \
     "prepare the message as 'multipart/alternative' in reverse"
 
+set pipe_sep = "\n--- next email ---\n"
+
+macro index B "<tag-thread><tag-prefix><pipe-message>b4 shazam -m - --stdin-pipe-sep='\\n--- next email ---\\n'<enter>" "pipe the message to shazam"
+
 # vim: syntax=neomuttrc
+#
