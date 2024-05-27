@@ -1,0 +1,17 @@
+[Desktop Entry]
+Comment[en_US]=
+Comment=
+Exec=/home/danielhaskin/.local/bin/OneDriveGUI
+GenericName[en_US]=One Drive GUI
+GenericName=One Drive GUI
+Icon=/home/danielhaskin/.local/share/icons/OneDriveGUI.png
+MimeType=
+Name[en_US]=OneDriveGUI
+Name=OneDriveGUI
+Path=/home/danielhaskin/
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=
