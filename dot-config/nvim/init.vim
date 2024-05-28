@@ -320,7 +320,7 @@ au BufRead,BufNewFile *.md nnoremap <LocalLeader>r :let @/=""<CR>:s/^\( *\)\(- *
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>t :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} *[~]\{2\}\(.*\)[~]\{2\} *$/\1\2\3 \4/<CR>:let @/=""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>f vi(y:execute '!sh -c \"zathura ' .  shellescape("0",1) . ' && sleep 1\"'<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>f :w<CR>:execute "!sh -c \"zathura '%' && sleep 1\""<CR>
-au BufRead,BufNewFile *.md nnoremap <LocalLeader>G :w<CR>:execute "!sh -c \"pandoc -f commonmark -t pdf --pdf-engine=xelatex -V 'sansfont=Iosevka Aile' -V 'mainfont=Iosevka Etoile' -V 'monofont=Iosevka Term' -V colorlinks=true -V 'fontsize=12pt' -V 'geometry=margin=1in' '%' -o '%:r.pdf' && zathura '%:r.pdf' && sleep 5\""<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>G :w<CR>:execute "!sh -c \"pandoc -f commonmark -t pdf --pdf-engine=xelatex -V 'sansfont=Iosevka Aile' -V 'mainfont=Iosevka Etoile' -V 'monofont=Iosevka Term' -V colorlinks=true -V 'fontsize=12pt' -V 'geometry=margin=1in' '%' -o '%:r.pdf' && zathura '%:r.pdf' && sleep 1\""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>f :w<CR>:execute "!sh -c \"zathura '%' && sleep 1\""<CR>
 
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>s :lua vim.fn.execute("r!screen2vim '" ..  vim.fn.expand("%:p") .. "' 'img'")<CR>

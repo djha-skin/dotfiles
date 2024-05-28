@@ -7,8 +7,15 @@ then
 else
     clipboard=0
 fi
-
-if which spectacle >/dev/null 2>&1
+if which grimshot >/dev/null 2>&1
+then
+    if [ "${clipboard}" -ne 0 ]
+    then
+        grimshot --cursor savecopy area | copy
+    else
+        grimshot --cursor save area "${1}"
+    fi
+elif which spectacle >/dev/null 2>&1
 then
     if [ "${clipboard}" -ne 0 ]
     then

@@ -239,6 +239,8 @@ mode Mouse {
 }
 
 bindsym $mod+m mode Mouse
+bindsym $mod+comma exec screenshot-region
+
 
 for_window [app_id="qutebrowser"] mark Browser
 
