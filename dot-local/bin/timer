@@ -45,7 +45,7 @@ do
             printf '\033]2;%s: %s\033\\' \
                 "${name}" \
                 "${time_left}" \
-                | tee "${device_prefix}${trm}"
+                | tee "${device_prefix}${trm}" 2>/dev/null
         done
         clear
         figlet -d "${HOME}/.local/share/figlet" -f djhaskin -cW "$(printf '%s\n%s' "${name}" "${time_left}")"
