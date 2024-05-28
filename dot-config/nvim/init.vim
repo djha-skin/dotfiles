@@ -318,9 +318,9 @@ au BufRead,BufNewFile *.md nnoremap <LocalLeader>w :let @/=""<CR>:s/^\( *\)\(- *
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>e :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} */\1- [ ] /g<CR>:let @/=""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>r :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} */\1/g<CR>:let @/=""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>t :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} *[~]\{2\}\(.*\)[~]\{2\} *$/\1\2\3 \4/<CR>:let @/=""<CR>
-au BufRead,BufNewFile *.md nnoremap <LocalLeader>f vi(y:execute '!sh -c \"' . g:netrw_browser_viewer . ' ' .  shellescape("0",1) . ' && sleep 1\"'<CR>
-au BufRead,BufNewFile *.md nnoremap <LocalLeader>f :w<CR>:execute "!sh -c \"" . g:netrw_browser_viewer . " '%' && sleep 1\""<CR>
-au BufRead,BufNewFile *.md nnoremap <LocalLeader>G :w<CR>:execute "!sh -c \"pandoc '%' -o '%:r.pdf' && " . g:netrw_browser_viewer . " '%:r.pdf' && sleep 1\""<CR>+au BufRead,BufNewFile *.md nnoremap <LocalLeader>f :w<CR>:execute "!sh -c \"" . g:netrw_browser_viewer . " '%' && sleep 1\""<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>f vi(y:execute '!sh -c \"zathura ' .  shellescape("0",1) . ' && sleep 1\"'<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>f :w<CR>:execute "!sh -c \"zathura '%' && sleep 1\""<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>G :w<CR>:execute "!sh -c \"pandoc -t commonmark '%' -o '%:r.pdf' && zathura '%:r.pdf' && sleep 1\""<CR>+au BufRead,BufNewFile *.md nnoremap <LocalLeader>f :w<CR>:execute "!sh -c \"" . g:netrw_browser_viewer . " '%' && sleep 1\""<CR>
 
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>s :lua vim.fn.execute("r!screen2vim '" ..  vim.fn.expand("%:p") .. "' 'img'")<CR>
 nnoremap <Leader>( t(l"pda(hda("pp
