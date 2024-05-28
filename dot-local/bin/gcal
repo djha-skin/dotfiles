@@ -7,10 +7,10 @@ shift
 if  [ "${cal}" = "work" ]
 then
     another=""
-    if [ "${1}" != "add" -a "${1}" != "import" -a -n "${ALTERNATE_WORK_CALENDAR:-}" ]
-    then
-        another="--calendar ${ALTERNATE_WORK_CALENDAR}"
-    fi
+    #if [ "${1}" != "add" -a "${1}" != "import" -a -n "${ALTERNATE_WORK_CALENDAR:-}" ]
+    #then
+    #    another="--calendar ${ALTERNATE_WORK_CALENDAR}"
+    #fi
 
     gcalcli \
         --config-folder "${HOME}/.config/gcalcli/${cal}" \
