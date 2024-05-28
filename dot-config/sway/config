@@ -17,7 +17,6 @@ set $term kitty
 set $browser qutebrowser
 
 focus_on_window_activation focus
-font pango:monospace 16
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -43,7 +42,7 @@ output 'HP Inc. HP VH240a 6CM01304VL' position 0 0
 
 bindsym $mod+equal exec scalemon up
 bindsym $mod+Shift+equal exec scalemon down
-output $main_display position 1080 0
+
 
 output 'HP Inc. HP VH240a 6CM01319L1' resolution 1920x1080
 output 'HP Inc. HP VH240a 6CM01319L1' transform 270
@@ -241,6 +240,8 @@ mode Mouse {
 
 bindsym $mod+m mode Mouse
 
+for_window [app_id="qutebrowser"] mark Browser
+
 # Include configs from 3 locations:
 #  - /usr/share/sway/config.d
 #  - /etc/sway/config.d
@@ -261,5 +262,7 @@ bindsym $mod+m mode Mouse
 # Note the quoting, the $() and the arguments quoting. All the parts are equally
 # important to make the magic work. And if you want to learn the secret behind
 # the trick, it's all in the `wordexp(3)`.
-#
+
+include "${XDG_CONFIG_HOME}/sway/private-config"
+
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
