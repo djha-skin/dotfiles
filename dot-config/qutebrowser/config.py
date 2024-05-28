@@ -5,4 +5,3 @@ config.bind('PT', 'spawn --userscript qute-keepassxc --connection work.key --key
 config.bind('<Alt-u>', 'spawn --userscript qute-keepassxc --connection home.key --key A1F9E6A2696D3CAADEDB203C3812FEA997B503B6', mode='insert')
 config.bind('pw', 'spawn --userscript qute-keepassxc --connection home.key --key A1F9E6A2696D3CAADEDB203C3812FEA997B503B6', mode='normal')
 config.bind('pt', 'spawn --userscript qute-keepassxc --connection home.key --key A1F9E6A2696D3CAADEDB203C3812FEA997B503B6 --totp', mode='normal')
-config.bind('jk', 'leave-mode', mode='insert')
