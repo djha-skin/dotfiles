@@ -6,8 +6,6 @@ let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_new_list_item_indent = 2
 let g:slime_target = "conemu"
 let b:slime_target = "conemu"
-let b:slime_debug = 1
-let g:slime_debug = 1
 let g:slime_no_mappings = 1
 let g:slime_default_config = {"HWND": "0"}
 xmap <Leader>g <Plug>SlimeRegionSend
