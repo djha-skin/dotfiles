@@ -64,10 +64,10 @@ settings:
     global: -1
   tabs.padding:
     global:
-      bottom: 5
-      left: 5
-      right: 5
-      top: 5
+      bottom: 8
+      left: 4
+      right: 4
+      top: 8
   tabs.position:
     global: top
   tabs.show:
