@@ -105,6 +105,7 @@ Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'overcache/NeoSolarized'
 Plug 'guns/vim-sexp'
 Plug 'https://git.sr.ht/~skin/roswell-sbcl.vim'
+Plug 'vim-scripts/DrawIt'
 call plug#end()
 let g:sexp_enable_insert_mode_mappings = 0
 let g:paredit_mode=1
