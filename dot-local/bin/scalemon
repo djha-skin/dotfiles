@@ -1,0 +1,20 @@
+#!/bin/sh
+op="*"
+scaleby=1.375
+mon="eDP-1"
+
+if [ "${1}" = "down" ]; then
+    op="/"
+fi
+
+sway output eDP-1 scale $(
+    printf '%.3g' $(
+        printf 'scale=40
+            %s%s%s
+            halt
+            ' "$(
+                swaymsg -t get_outputs |
+                    jq ".[] | select(.name==\"${mon}\") | .scale"
+            )" "${op}" "${scaleby}" | bc -l
+    )
+)
