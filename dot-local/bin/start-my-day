@@ -54,12 +54,12 @@ tmux send-keys -l -t :.1 "pom"
 tmux new-window
 tmux rename-window "Email"
 tmux split-window
-tmux send-keys -l -t :.0 "mutt -F ~/.mutt/home.accountOd"
+tmux send-keys -l -t :.0 "mutt -F ~/.mutt/mhome.accountOd"
 if [ "${play}" -ne 0 ]
 then
-    tmux send-keys -l -t :.1 "mutt -F ~/.mutt/migadu.accountOd"
+    tmux send-keys -l -t :.1 "mutt -F ~/.mutt/mmigadu.accountOd"
 else
-    tmux send-keys -l -t :.1 "mutt -F ~/.mutt/work.accountOd"
+    tmux send-keys -l -t :.1 "mutt -F ~/.mutt/mwork.accountOd"
 fi
 tmux new-window
 tmux rename-window "Calendar"
