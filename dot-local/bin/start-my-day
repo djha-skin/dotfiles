@@ -76,4 +76,10 @@ then
     tmux send-keys -l -t :.0 "./dns.sh"
 fi
 tmux new-window
+tmux rename-window "IRC"
+tmux send-keys -l -t :.0 "senpai"
+tmux new-window
+tmux rename-window "Config"
+tmux send-keys -l -t :.0 "cd ~/Code/skin/dotfiles"
+tmux new-window
 tmux rename-window "Lab"
