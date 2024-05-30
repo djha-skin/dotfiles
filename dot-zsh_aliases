@@ -12,6 +12,7 @@ alias journal='cd ~/OneDrive/Markdown/Journal'
 alias mutt=neomutt
 alias pom='timer Pomodoro 24 && timer Pacer 1 && timer 5 Break'
 alias dotdir='cd ~/Code/skin/dotfiles'
-if [ -f "~/.private_zsh_aliases" ]; then
+alias gpt='chatblade -c gpt-4o -s'
+if [ -f "${HOME}/.private_zsh_aliases" ]; then
     source ~/.private_zsh_aliases
 fi

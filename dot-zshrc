@@ -16,6 +16,8 @@ fi
 source ~/.zsh_aliases
 
 unsetopt BEEP
+unsetopt share_history
+
 export WORKING_LOCATION_FILE="${HOME}/.wdh.txt"
 
 pchanged() {

@@ -48,6 +48,10 @@ output 'HP Inc. HP VH240a 6CM01319L1' resolution 1920x1080
 output 'HP Inc. HP VH240a 6CM01319L1' transform 270
 output 'HP Inc. HP VH240a 6CM01319L1' position 2476 0
 
+bindsym $mod+semicolon exec gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+bindsym $mod+Shift+semicolon exec gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
+
+
 #
 # Example configuration:
 #
