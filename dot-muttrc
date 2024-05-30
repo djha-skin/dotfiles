@@ -104,7 +104,8 @@ set pipe_sep = "\n--- next email ---\n"
 
 macro index B "<tag-thread><tag-prefix><pipe-message>b4 shazam -m - --stdin-pipe-sep='\\n--- next email ---\\n'<enter>" "pipe the message to shazam"
 unbind d
-macro index d "<clear-flag>N<previous-entry><delete-message>" "delete the message and mark as read"
+set resolve=no
+macro index d "<clear-flag>N<delete-message><next-entry>" "delete the message and mark as read"
 set delete_untag = true
 
 # vim: syntax=neomuttrc
