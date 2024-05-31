@@ -8,8 +8,23 @@ config_version: 2
 settings:
   auto_save.session:
     global: true
+  bindings.commands:
+    global:
+      insert:
+        <Alt+Shift+u>: spawn --userscript qute-keepassxc --connection work.key --key
+          A1F9E6A2696D3CAADEDB203C3812FEA997B503B6
+        <Alt+u>: spawn --userscript qute-keepassxc --connection home.key --key A1F9E6A2696D3CAADEDB203C3812FEA997B503B6
+      normal:
+        PT: spawn --userscript qute-keepassxc --connection work.key --key A1F9E6A2696D3CAADEDB203C3812FEA997B503B6
+          --totp
+        PW: spawn --userscript qute-keepassxc --connection work.key --key A1F9E6A2696D3CAADEDB203C3812FEA997B503B6
+        pt: spawn --userscript qute-keepassxc --connection home.key --key A1F9E6A2696D3CAADEDB203C3812FEA997B503B6
+          --totp
+        pw: spawn --userscript qute-keepassxc --connection home.key --key A1F9E6A2696D3CAADEDB203C3812FEA997B503B6
   content.javascript.clipboard:
     global: access-paste
+  content.local_content_can_access_remote_urls:
+    global: true
   content.media.audio_capture:
     https://meet.google.com: true
   content.media.audio_video_capture:
@@ -49,10 +64,10 @@ settings:
     global: -1
   tabs.padding:
     global:
-      bottom: 0
+      bottom: 5
       left: 5
       right: 5
-      top: 0
+      top: 5
   tabs.position:
     global: top
   tabs.show:
