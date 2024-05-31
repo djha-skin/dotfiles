@@ -46,9 +46,9 @@ tmux rename-window "Planner"
 tmux split-window
 if [ "${play}" -ne 0 ]
 then
-    tmux send-keys -l -t :.0 "homenotesppushd -i 0 .diary dkki# "
+    tmux send-keys -l -t :.0 "homenotesppushd -i 0 .diary"
 else
-    tmux send-keys -l -t :.0 "worknotesppushd -i 0 .diary dkki# "
+    tmux send-keys -l -t :.0 "worknotesppushd -i 0 .diary"
 fi
 tmux send-keys -l -t :.1 "pom"
 tmux new-window
