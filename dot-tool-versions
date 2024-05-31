@@ -6,3 +6,5 @@ vault 1.14.2
 awscli 2.13.17
 krew 0.4.4
 python 3.12.2
+k6 0.49.0
+terraform-ls 0.33.1
