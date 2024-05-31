@@ -10,7 +10,7 @@ alias gothere='cd $(cat ~/.config/shell/gohere)'
 alias vlime='sbcl --load ~/.config/nvim/plugged/vlime/lisp/start-vlime.lisp'
 alias journal='cd ~/OneDrive/Markdown/Journal'
 alias mutt=neomutt
-alias pom='timer Pomodoro 24 && timer Pacer 1 && timer 5 Break'
+alias pom='timer Blast 20 && timer Pacer 5 && timer Break 5'
 alias dotdir='cd ~/Code/skin/dotfiles'
 alias gpt='chatblade -c gpt-4o -s'
 if [ -f "${HOME}/.private_zsh_aliases" ]; then
