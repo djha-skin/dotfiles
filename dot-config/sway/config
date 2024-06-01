@@ -1,5 +1,6 @@
 # Read `man 5 sway` for a complete reference.
 
+
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -16,6 +17,9 @@ set $right l
 set $term kitty
 set $browser qutebrowser
 
+font 'pango:Iosevka Aile Medium 16px'
+titlebar_padding 4 8
+
 focus_on_window_activation focus
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
@@ -29,7 +33,6 @@ set $rofi_cmd rofi \
 set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 
 set $main_display eDP-1
-
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
@@ -43,14 +46,12 @@ output 'HP Inc. HP VH240a 6CM01304VL' position 0 0
 bindsym $mod+equal exec scalemon up
 bindsym $mod+Shift+equal exec scalemon down
 
-
 output 'HP Inc. HP VH240a 6CM01319L1' resolution 1920x1080
 output 'HP Inc. HP VH240a 6CM01319L1' transform 270
 output 'HP Inc. HP VH240a 6CM01319L1' position 2476 0
 
 bindsym $mod+semicolon exec gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 bindsym $mod+Shift+semicolon exec gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
-
 
 #
 # Example configuration:
@@ -269,6 +270,7 @@ for_window [app_id="qutebrowser"] mark Browser
 # important to make the magic work. And if you want to learn the secret behind
 # the trick, it's all in the `wordexp(3)`.
 
-include "${XDG_CONFIG_HOME}/sway/private-config"
 
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
+
+include "${XDG_CONFIG_HOME}/sway/private-config"
