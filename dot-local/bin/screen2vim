@@ -2,7 +2,7 @@
 set -e
 
 # In case I want to switch windows
-sleep 1
+sleep 3
 
 
 base_dir=$(echo "${1}" | sed -e 's|/[^/]*$|/|g')
@@ -17,6 +17,7 @@ now=$(date '+%Y-%m-%d-%H-%M-%S')
 base=$(echo "${1}" | sed -e 's|[^/]*/||g' -e 's| |_|g' -e 's|\.md$||')
 
 fname="${base}_${now}.png"
+
 screenshot-region "${dest}/${fname}"
 
 
