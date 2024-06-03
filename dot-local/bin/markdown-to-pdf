@@ -1,0 +1,14 @@
+#!/bin/sh
+
+. ${HOME}/.profile
+
+pandoc -f markdown -t pdf \
+    --pdf-engine=xelatex \
+    -V 'sansfont=Iosevka Aile' \
+    -V 'mainfont=Iosevka Etoile' \
+    -V 'monofont=Iosevka Term' \
+    -V colorlinks=true \
+    -V 'fontsize=12pt' \
+    -V 'geometry=margin=1in' \
+    "${1}" \
+    -o "${2}"

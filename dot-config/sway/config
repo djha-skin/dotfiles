@@ -90,6 +90,7 @@ input type:pointer {
 }
 
 bindsym XF86Calculator exec rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '{result}' | copy" -kb-accept-custom 'control+KP_Enter'
+bindsym $mod+Shift+slash exec rofimoji -a type
 # buggy
 #bindsym $mod+m exec warpd --hint2 --click 1
 #bindsym $mod+comma exec warpd --hint2 --click 2
