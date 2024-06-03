@@ -7,7 +7,7 @@ sleep 1
 
 base_dir=$(echo "${1}" | sed -e 's|/[^/]*$|/|g')
 
-dest="${base_dir}/${2}"
+dest="${base_dir}${2}"
 
 if [ ! -d "${dest}" ]
 then

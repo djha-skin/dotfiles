@@ -13,7 +13,8 @@ then
     then
         grimshot --cursor save area - | swappy -f -
     else
-        grimshot --cursor save area - | swappy -f - -o "${1}"
+        grimshot --cursor save area - | swappy -f -
+        mv ~/Pictures/Screenshots/swappy.png "${1}"
     fi
 elif which grimshot >/dev/null 2>&1
 then
