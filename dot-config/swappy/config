@@ -1,0 +1,10 @@
+[Default]
+save_dir=$HOME/Pictures/Screenshots
+save_filename_format=swappy-%Y%m%dT%H-%M-%S.png
+show_panel=true
+line_size=5
+text_size=24
+text_font=Whitney SSm Medium
+paint_mode=rectangle
+early_exit=true
+fill_shape=false

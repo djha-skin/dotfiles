@@ -7,11 +7,19 @@ then
 else
     clipboard=0
 fi
-if which grimshot >/dev/null 2>&1
+if which grimshot >/dev/null 2>&1 && which swappy >/dev/null 2>&1
 then
     if [ "${clipboard}" -ne 0 ]
     then
-        grimshot --cursor savecopy area >/dev/null 2>&1
+        grimshot --cursor save area - | swappy -f -
+    else
+        grimshot --cursor save area - | swappy -f - -o "${1}"
+    fi
+elif which grimshot >/dev/null 2>&1
+then
+    if [ "${clipboard}" -ne 0 ]
+    then
+        grimshot --cursor copy area >/dev/null 2>&1
     else
         grimshot --cursor save area "${1}" >/dev/null 2>&1
     fi
