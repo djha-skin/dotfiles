@@ -1,0 +1,3 @@
+#!/bin/sh
+
+discordo --token $(multipass https://github.com/ayn2op/discordo dan@djhaskin.com)
