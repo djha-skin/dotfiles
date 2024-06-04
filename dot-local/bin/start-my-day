@@ -76,8 +76,13 @@ then
     tmux send-keys -l -t :.0 "./dns.sh"
 fi
 tmux new-window
-tmux rename-window "IRC"
+tmux rename-window "Chat"
 tmux send-keys -l -t :.0 "senpai"
+tmux split-window
+tmux send-keys -l -t :.1 "discordo"
+tmux split-window
+tmux send-keys -l -t :.2 "iamb"
+tmux select-layout even-vertical
 tmux new-window
 tmux rename-window "Config"
 tmux send-keys -l -t :.0 "cd ~/Code/skin/dotfiles"

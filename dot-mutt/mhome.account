@@ -15,10 +15,8 @@ set crypt_use_gpgme
 
 push "\
 <tag-pattern>~f papajohns<Enter>\
-<tag-prefix-cond><clear-flag>N<end-cond>\
 <tag-prefix-cond><save-message>+Coupons~Papa<quote-char><Space>Johns<Enter><end-cond>\
 <tag-pattern>~f auto-confirm@amazon.com<Enter>\
-<tag-prefix-cond><clear-flag>N<end-cond>\
 <tag-prefix-cond><save-message>+Transactions<Enter><end-cond>\
 <sync-mailbox>"
 
