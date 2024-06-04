@@ -1,0 +1,8 @@
+mouse = true
+
+timestamps = true
+timestamps_before_author = true
+timestamps_format = "3:04PM"
+
+messages_limit = 50
+editor = "nvim"
