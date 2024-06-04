@@ -2,7 +2,7 @@
 
 . ${HOME}/.profile
 
-pandoc -f markdown -t pdf \
+pandoc -f markdown-implicit_figures -t pdf \
     --pdf-engine=xelatex \
     -V 'sansfont=Iosevka Aile' \
     -V 'mainfont=Iosevka Etoile' \
