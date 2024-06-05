@@ -1,0 +1,4 @@
+#!/bin/sh
+
+play ~/Music/notify-bell.wav
+notify "kitty" "bell"
