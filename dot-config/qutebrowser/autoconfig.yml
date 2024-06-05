@@ -15,9 +15,11 @@ settings:
           A1F9E6A2696D3CAADEDB203C3812FEA997B503B6
         <Alt+u>: spawn --userscript qute-keepassxc --connection home.key --key A1F9E6A2696D3CAADEDB203C3812FEA997B503B6
       normal:
+        E: edit-text
         PT: spawn --userscript qute-keepassxc --connection work.key --key A1F9E6A2696D3CAADEDB203C3812FEA997B503B6
           --totp
         PW: spawn --userscript qute-keepassxc --connection work.key --key A1F9E6A2696D3CAADEDB203C3812FEA997B503B6
+        e: edit-url
         pt: spawn --userscript qute-keepassxc --connection home.key --key A1F9E6A2696D3CAADEDB203C3812FEA997B503B6
           --totp
         pw: spawn --userscript qute-keepassxc --connection home.key --key A1F9E6A2696D3CAADEDB203C3812FEA997B503B6
