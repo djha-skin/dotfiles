@@ -37,7 +37,7 @@ done
 
 itis=$(date '+%Y-%m-%d-%H-%M-%S')
 fname="${itis}.png"
-src="${HOME:-/home/danielhaskin}/Pictures/Screenshots"
+src="${HOME:-/home/skin}/Pictures/Screenshots"
 dest="${remote}:Screenshots"
 
 #echo "startup"
@@ -49,6 +49,6 @@ screenshot-region "${src}/${fname}"  >> ~/.screen2rclone.log 2>&1
 echo "copy"  >> ~/.screen2rclone.log 2>&1
 rclone copyto "${src}/${fname}" "${dest}/${fname}"  >> ~/.screen2rclone.log 2>&1
 echo "clipboard"  >> ~/.screen2rclone.log 2>&1
-raw_link=$(rclone link --expire 100y "${dest}/${fname}")
+raw_link=$(rclone link --expire 100y --onedrive-link-type view "${dest}/${fname}")
 printf "${raw_link}" | copy >/dev/null 2>/dev/null
 notify "screen2rclone" "Synced to ${remote}, URL in clipboard"  >> ~/.screen2rclone.log 2>&1
