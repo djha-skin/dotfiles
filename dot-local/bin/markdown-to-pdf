@@ -2,7 +2,7 @@
 
 . ${HOME}/.profile
 
-pandoc -f markdown-implicit_figures -t pdf \
+pandoc -f commonmark-raw_html -t pdf \
     --pdf-engine=xelatex \
     -V 'sansfont=Iosevka Aile' \
     -V 'mainfont=Iosevka Etoile' \
