@@ -4,7 +4,7 @@
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
-set $mod alt+Space
+set $mod Alt
 # Logo keyis only on one hand
 
 
@@ -90,11 +90,7 @@ input type:pointer {
 }
 
 bindsym XF86Calculator exec rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '{result}' | copy" -kb-accept-custom 'control+KP_Enter'
-bindsym $mod+Shift+slash exec rofimoji -a type
-# buggy
-#bindsym $mod+m exec warpd --hint2 --click 1
-#bindsym $mod+comma exec warpd --hint2 --click 2
-#bindsym $mod+period exec warpd --normal --oneshot
+bindsym $mod+Shift+r exec rofimoji -a type # "react"
 
 ### Input configuration
 #
@@ -114,11 +110,22 @@ bindsym $mod+Shift+slash exec rofimoji -a type
 #
 # Basics:
 #
-bindsym $mod+Return exec $term
-bindsym $mod+Shift+Return exec $browser
-bindsym $mod+Shift+Space kill
-bindsym $mod+Space exec $menu
+    # Start a terminal
+    bindsym $mod+Return exec $term
+    bindsym $mod+Shift+Return exec $browser
 
+    # Kill focused window
+    bindsym $mod+Shift+q kill
+
+    # Start your launcher
+    bindsym $mod+d exec $menu
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
@@ -126,38 +133,30 @@ bindsym $mod+Space exec $menu
     # mouse button for dragging.
     floating_modifier Mod4 normal
 
+
     # Reload the configuration file
-    # The `p` is for "pause"
-    bindsym $mod+p  reload
+    bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+p exit
-    #exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec exit
 #
 # Moving around:
 #
     # Move your focus around
     bindsym $mod+$left focus left
-    bindsym left focus left
-
-    bindsym $mod+$down focus downk
+    bindsym $mod+$down focus down
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
-    # The `y` is for "yo"
-    bindsym $mod+y focus parent
-    bindsym $mod+Shift+y focus child
 
     # Move the focused window with the same, but add Shift
     bindsym $mod+Shift+$left move left
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
-
+#
 # Workspaces:
 #
-
     # Switch to workspace
-
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
     bindsym $mod+3 workspace number 3
@@ -167,8 +166,7 @@ bindsym $mod+Space exec $menu
     bindsym $mod+7 workspace number 7
     bindsym $mod+8 workspace number 8
     bindsym $mod+9 workspace number 9
-    bindsym $mod+0 workspace number 0
-
+    bindsym $mod+0 workspace number 10
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace number 1
     bindsym $mod+Shift+2 move container to workspace number 2
@@ -179,29 +177,35 @@ bindsym $mod+Space exec $menu
     bindsym $mod+Shift+7 move container to workspace number 7
     bindsym $mod+Shift+8 move container to workspace number 8
     bindsym $mod+Shift+9 move container to workspace number 9
-    bindsym $mod+Shift+0 move container to workspace number 0
-
+    bindsym $mod+Shift+0 move container to workspace number 10
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+#
 # Layout stuff:
 #
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+bracketleft splith
-    bindsym $mod+bracketright splitv
+    bindsym $mod+b splith
+    bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+n layout toggle all
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
-    # Focus "Up"
-    bindsym $mod+u fullscreen
+    bindsym $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    # Put "on" the tiling
-    bindsym $mod+Shift+i floating toggle
+    bindsym $mod+Shift+space floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+i focus mode_toggle
+    bindsym $mod+space focus mode_toggle
+
+    # Move focus to the parent container
+    bindsym $mod+a focus parent
+    bindsym $mod+Shift+a focus child
 #
 # Scratchpad:
 #
@@ -209,12 +213,12 @@ bindsym $mod+Space exec $menu
     # You can send windows there and get them back later.
 
     # Move the currently focused window to the scratchpad
-
-    bindsym $mod+Shift+minus move scratchpad # the minimize symbol
+    bindsym $mod+Shift+minus move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
+
 # Resizing containers:
 #
 mode "resize" {
@@ -231,7 +235,7 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Shift+u mode "resize" # The `u` is for "unit"
+bindsym $mod+r mode "resize"
 
 mode Mouse {
     bindsym a mode default, exec 'wl-kbptr-sway-active-win; swaymsg mode Mouse'
@@ -259,7 +263,7 @@ mode Mouse {
 }
 
 bindsym $mod+m mode Mouse
-bindsym $mod+comma exec screenshot-region
+bindsym $mod+Shift+s exec screenshot-region
 
 
 for_window [app_id="qutebrowser"] mark Browser
