@@ -4,8 +4,8 @@
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
-set $mod Mod4
-# Logo key is only on one hand
+set $mod alt+Space
+# Logo keyis only on one hand
 
 
 # Home row direction keys, like vim
@@ -124,7 +124,7 @@ bindsym $mod+Space exec $menu
     # Despite the name, also works for non-floating windows.
     # Change normal to inverse to use left mouse button for resizing and right
     # mouse button for dragging.
-    floating_modifier $mod normal
+    floating_modifier Mod4 normal
 
     # Reload the configuration file
     # The `p` is for "pause"
@@ -138,7 +138,9 @@ bindsym $mod+Space exec $menu
 #
     # Move your focus around
     bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
+    bindsym left focus left
+
+    bindsym $mod+$down focus downk
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
     # The `y` is for "yo"
