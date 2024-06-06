@@ -136,7 +136,6 @@ bindsym $mod+Shift+r exec rofimoji -a type # "react"
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
-
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec exit
 #
@@ -263,7 +262,10 @@ mode Mouse {
 }
 
 bindsym $mod+m mode Mouse
+bindsym $mod+comma exec point
 bindsym $mod+Shift+s exec screenshot-region
+bindsym $mod+Shift+d exec screen2rclone
+bindsym $mod+Shift+f exec work-screen2gdrive
 
 
 for_window [app_id="qutebrowser"] mark Browser

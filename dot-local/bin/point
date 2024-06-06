@@ -1,0 +1,4 @@
+#!/bin/sh
+
+wl-kbptr
+sway seat seat0 cursor press button1
