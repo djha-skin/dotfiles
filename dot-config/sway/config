@@ -116,8 +116,11 @@ bindsym Alt+$left seat seat0 cursor move -15 0
 bindsym Alt+$down seat seat0 cursor move 0 15
 bindsym Alt+$up seat seat0 cursor move 0 -15
 bindsym Alt+$right seat seat0 cursor move 15 0
-bindsym a mode Mouse, exec 'wl-kbptr; swaymsg mode default'
-bindsym Shift+a mode Mouse, exec 'wl-kbptr; sway seat seat0 cursor press button1;  swaymsg mode default'
+bindsym Alt+Shift+$left seat seat0 cursor move -480 0
+bindsym Alt+Shift+$down seat seat0 cursor move 0 480
+bindsym Alt+Shift+$up seat seat0 cursor move 0 -480
+bindsym Alt+Shift+$right seat seat0 cursor move 480 0
+
 bindsym m seat seat0 cursor press button1
 bindsym --release m seat seat0 cursor release button1
 
@@ -192,7 +195,6 @@ bindsym Shift+0 move container to workspace number 10
 bindsym i mode "interact"
 
 mode "interact" {
-    bindsym Mod4+m mode Mouse
     bindsym Mod4+comma exec point
     bindsym Mod4+Shift+s exec screenshot-region
     bindsym Mod4+Shift+d exec screen2rclone
@@ -207,11 +209,6 @@ mode "interact" {
     #bindsym $mod+$up focus up
     #bindsym $mod+$right focus right
     bindsym $mod+j mode "default"
-}
-
-mode "Mouse" {
-    bindsym Escape mode default
-
 }
 
 for_window [app_id="qutebrowser"] mark Browser
