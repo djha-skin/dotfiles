@@ -116,10 +116,10 @@ bindsym Alt+$left seat seat0 cursor move -15 0
 bindsym Alt+$down seat seat0 cursor move 0 15
 bindsym Alt+$up seat seat0 cursor move 0 -15
 bindsym Alt+$right seat seat0 cursor move 15 0
-bindsym Alt+Shift+$left seat seat0 cursor move -480 0
-bindsym Alt+Shift+$down seat seat0 cursor move 0 480
-bindsym Alt+Shift+$up seat seat0 cursor move 0 -480
-bindsym Alt+Shift+$right seat seat0 cursor move 480 0
+bindsym Alt+Shift+$left seat seat0 cursor move -120 0
+bindsym Alt+Shift+$down seat seat0 cursor move 0 120
+bindsym Alt+Shift+$up seat seat0 cursor move 0 -120
+bindsym Alt+Shift+$right seat seat0 cursor move 120 0
 
 bindsym m seat seat0 cursor press button1
 bindsym --release m seat seat0 cursor release button1
