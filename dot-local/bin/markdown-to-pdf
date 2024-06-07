@@ -2,11 +2,11 @@
 
 . ${HOME}/.profile
 
-pandoc -f commonmark-raw_html -t pdf \
+pandoc -f commonmark-raw_html+pipe_tables+task_lists+emoji -t pdf \
     --pdf-engine=xelatex \
-    -V 'sansfont=Iosevka Aile' \
-    -V 'mainfont=Iosevka Etoile' \
-    -V 'monofont=Iosevka Term' \
+    -V 'sansfont=Whitney SSm Medium' \
+    -V 'mainfont=Whitney SSm Medium' \
+    -V 'monofont=Fira Code' \
     -V colorlinks=true \
     -V 'fontsize=12pt' \
     -V 'geometry=margin=1in' \
