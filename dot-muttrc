@@ -1,3 +1,4 @@
+source ~/.mutt/dracula.muttrc
 set move = no
 set confirmappend = no
 alternative_order text/plain text/html
