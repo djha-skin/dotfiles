@@ -3,7 +3,7 @@
 . ${HOME}/.profile
 (
 flock -n 9
-if [ "${!}" -ne 0 ]
+if [ "${?}" -ne 0 ]
 then
     echo "Another instance is running." >&2
     exit 0
