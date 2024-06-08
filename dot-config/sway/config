@@ -90,8 +90,8 @@ input type:pointer {
 
 floating_modifier Mod4 normal
 
-bindsym Shift+o workspace number 10, exec $menu
-bindsym o exec $menu
+bindsym Shift+o workspace number 10, exec $menu, mode "interact"
+bindsym o exec $menu, mode "interact"
 # Reload the configuration file
 bindsym Shift+c reload
 # Exit sway (logs you out of your Wayland session)
@@ -136,8 +136,8 @@ bindsym equal exec scalemon up
 bindsym Shift+equal exec scalemon down
 
 bindsym b exec $browser
-bindsym s exec $term
-bindsym t exec swaylock -f -c 000000 -s solid_color
+bindsym t exec $term
+bindsym s exec swaylock -f -c 000000 -s solid_color
 
 bindsym Shift+Apostrophe splith
 bindsym Shift+Backslash splitv
