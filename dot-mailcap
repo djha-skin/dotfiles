@@ -5,6 +5,10 @@ text/calendar; khal printics %s;copiousoutput
 application/ics; khal printics %s;copiousoutput
 image/*; imv %s;
 image/*; identify -verbose %s; copiousoutput
+audio/*; ffplay %s;
+video/*; ffplay %s;
+audio/*; ffprobe %s; copiousoutput
+video/*; ffprobe %s; copiousoutput
 #image/*; convert -geometry 80x80 ~/Pictures/avatar.png - | img2xterm; copiousoutput
 #image/*; sh -c 'img2txt -f utf8 %s'; needsterminal; copiousoutput
 #image/*; kitten icat %s; needsterminal; copiousoutput
