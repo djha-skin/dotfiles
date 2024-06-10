@@ -15,5 +15,6 @@ offlineimap -a work
 notmuch --config=${HOME}/Mail/work/.notmuch-config new
 offlineimap -a migadu
 notmuch --config=${HOME}/Mail/migadu/.notmuch-config new
-vdirsyncer sync
+vdirsyncer sync --no-force-delete
+khal-remind
 ) 9>~/.cache/sync-mail-lock
