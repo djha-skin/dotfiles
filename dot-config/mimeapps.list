@@ -60,6 +60,7 @@ x-scheme-handler/mailto=eu.betterbird.Betterbird.desktop;
 x-scheme-handler/tel=Zoom.desktop;
 application/pdf=org.pwmt.zathura.desktop;
 image/png=imv.desktop;
+image/webp=imv.desktop;
 image/jpeg=imv.desktop;
 image/gif=imv.desktop;
 image/bmp=imv.desktop;
