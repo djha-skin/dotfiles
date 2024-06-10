@@ -174,7 +174,7 @@ bindsym Shift+v exec screen2rclone
 bindsym Control+v exec work-screen2gdrive
 
 bindsym s exec file2rclone
-bindsym Shift+s swaylock -f -c 000000 -s solid_color
+bindsym Shift+s exec swaylock -f -c 000000 -s solid_color
 
 
 bindsym d kill

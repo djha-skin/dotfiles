@@ -66,7 +66,9 @@ tmux rename-window "Calendar"
 tmux send-keys -l -t :.0 "khal interactive"
 if [ "${play}" -eq 0 ]
 then
-    tmux new-window tmux rename-window "VPN" tmux send-keys -l -t :.0 "vpndirgo run ./server.go"
+    tmux new-window
+    tmux rename-window "VPN"
+    tmux send-keys -l -t :.0 "vpndirgo run ./server.go"
     tmux split-window
     tmux send-keys -l -t :.1 "vpndir./aws-connect.sh"
     sleep 30
