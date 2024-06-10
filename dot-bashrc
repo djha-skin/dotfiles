@@ -119,7 +119,7 @@ update_ps1() {
         -e "s|^${HOME}|~|")
     __ups1_dir_pref="${__ups1_magenta}"
     __ups1_dir_suff="${__ups1_reset_colors}${__ups1_default_colors}"
-    __ups1_time_pref="${__ups1_white}"
+    __ups1_time_pref="${__ups1_blue}"
     __ups1_time_suff="${__ups1_reset_colors}${__ups1_default_colors}"
     if [ -n "${__ups1_info}" ]
     then

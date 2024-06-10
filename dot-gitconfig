@@ -1,5 +1,7 @@
 [pager]
     branch = false
+    diff = false
+    log = false
 [user]
 	email = djhaskin987@gmail.com
 	name = Daniel Jay Haskin
