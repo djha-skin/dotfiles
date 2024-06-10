@@ -93,7 +93,7 @@ update_ps1() {
     then
         __ups1_info="$(git branch --color=never | \
             awk '/^[*]/{print $2}')"
-        if git status --porcelain | grep -E -q '^ *[MD?][?]? '
+        if git status --porcelain | grep -E -q '^[CUDMART? ][CUDMART?] '
         then
             __ups1_marker="&"
             __ups1_marker_pref="${__ups1_yellow}"
