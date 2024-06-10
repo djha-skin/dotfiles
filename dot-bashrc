@@ -7,10 +7,10 @@ then
     . ${HOME}/.pijulconfig/bash
 fi
 
-eval "$(~/.local/bin/rtx activate -s bash)"
+#eval "$(~/.local/bin/rtx activate -s bash)"
 
 [ -z "$PS1" ] && return
-export PS1='\W 🠺 '
+export PS1='\W $ '
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
@@ -24,8 +24,8 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f ~/.shell_aliases ]; then
+    . ~/.shell_aliases
 fi
 
 if [ "$TERM" = "linux" ]; then
@@ -50,7 +50,6 @@ fi
 
 command -v vg >/dev/null 2>&1 && eval "$(vg eval --shell bash)"
 
-source <(${HOME}/.local/share/rtx/installs/kubectl/1.24.10/bin/kubectl completion bash)
 . /usr/share/bash-completion/completions/git
 # added by travis gem
 [ -f ${HOME}/.travis/travis.sh ] && source ${HOME}/.travis/travis.sh
@@ -63,29 +62,46 @@ PERL_MM_OPT="INSTALL_BASE=${HOME}/perl5"; export PERL_MM_OPT;
 
 pchanged
 
+. ${HOME}/.config/git-prompt.sh
 update_ps1() {
-
     __ups1_lastcmd="${?}"
-    __ups1_default_colors='\[\e[1m\]'
+    __ups1_default_colors='\[\e[0;34m\]'
+    __ups1_bold='\[\e[1m\]'
     __ups1_underlined='\[\e[4m\]'
     __ups1_reset_colors='\[\e[0m\]'
     __ups1_red='\[\e[31m\]'
     __ups1_blue='\[\e[34m\]'
+    __ups1_black='\[\e[30m\]'
+    __ups1_green='\[\e[32m\]'
+    __ups1_yellow='\[\e[33m\]'
+    __ups1_magenta='\[\e[35m\]'
+    __ups1_cyan='\[\e[36m\]'
+    __ups1_white='\[\e[37m\]'
+
     __ups1_info=""
     __ups1_info_pref=""
     __ups1_info_suff=""
+
+    __ups1_marker_pref="${__ups1_blue}"
+    __ups1_marker="$"
+    __ups1_marker_suff="${__ups1_reset_colors}${__ups1_default_colors}"
     if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ]
     then
         __ups1_info="$(git branch --color=never | \
             awk '/^[*]/{print $2}')"
+        if git status --porcelain | grep -q '^[MD?]'
+        then
+            __ups1_marker="&"
+            __ups1_marker_pref="${__ups1_yellow}"
+        fi
     fi
 
     if [ "${__ups1_lastcmd}" -eq 0 ]
     then
-        __ups1_stat_pref=""
-        __ups1_stat_suff=""
+        __ups1_stat_pref="${__ups1_green}"
+        __ups1_stat_suff="${__ups1_reset_colors}${__ups1_default_colors}"
     else
-        __ups1_stat_pref="${__ups1_red}"
+        __ups1_stat_pref="${__underlined}${__ups1_red}"
         __ups1_stat_suff="${__ups1_reset_colors}${__ups1_default_colors}"
     fi
 
@@ -98,20 +114,31 @@ update_ps1() {
     __ups1_dir=$(echo "${PWD}" | sed \
         -e 's|/*$||' \
         -e "s|^${HOME}|~|")
+    __ups1_dir_pref="${__ups1_magenta}"
+    __ups1_dir_suff="${__ups1_reset_colors}${__ups1_default_colors}"
+    __ups1_time_pref="${__ups1_white}"
+    __ups1_time_suff="${__ups1_reset_colors}${__ups1_default_colors}"
     if [ -n "${__ups1_info}" ]
     then
-        __ups1_info_pref="${__ups1_underlined}"
+        __ups1_info_pref="${__ups1_cyan}${__ups1_bold}"
         __ups1_info_suff="${__ups1_reset_colors}${__ups1_default_colors}"
-        PS1="$(printf "%s\n%s%s%s\n%s\n%s%-3d%s %s \\$ %s" \
+        PS1="$(printf "%s %s%-3d%s %s%s%s %s%s%s %s%s%s %s%s%s %s" \
                 "${__ups1_default_colors}" \
-                "${__ups1_info_pref}" \
-                "${__ups1_info}" \
-                "${__ups1_info_suff}" \
-                "${__ups1_dir}" \
                 "${__ups1_stat_pref}" \
                 "${__ups1_lastcmd}" \
                 "${__ups1_stat_suff}" \
+                "${__ups1_time_pref}" \
                 "${__ups1_time}" \
+                "${__ups1_time_suff}" \
+                "${__ups1_dir_pref}" \
+                "${__ups1_dir}" \
+                "${__ups1_dir_suff}" \
+                "${__ups1_info_pref}" \
+                "${__ups1_info}" \
+                "${__ups1_info_suff}" \
+                "${__ups1_marker_pref}" \
+                "${__ups1_marker}" \
+                "${__ups1_marker_suff}" \
                 "${__ups1_reset_colors}" \
                         )"
     else
@@ -122,8 +149,7 @@ update_ps1() {
                 "${__ups1_stat_suff}" \
                 "${__ups1_time}")"
     fi
-
-
     return "${__ups1_lastcmd}"
 }
+
 export PROMPT_COMMAND="update_ps1${PROMPT_COMMAND:+;$PROMPT_COMMAND}"

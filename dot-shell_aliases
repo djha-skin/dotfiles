@@ -1,5 +1,4 @@
 alias vim=nvim
-alias scr='screen -dRR -S ergo -t skin'
 alias driveup='rclone copy /home/skin/OneDrive/ OneDrive:/'
 alias drivedown='rclone copy OneDrive:/ /home/skin/OneDrive/'
 alias worknotes='cd ~/OneDrive/Markdown/Work'
@@ -11,8 +10,9 @@ alias vlime='sbcl --load ~/.config/nvim/plugged/vlime/lisp/start-vlime.lisp'
 alias journal='cd ~/OneDrive/Markdown/Journal'
 alias mutt=neomutt
 alias pom='timer Blast 20 && timer Pacer 5 && timer Break 5'
+alias pombreak='timer "Long Break" 30'
 alias dotdir='cd ~/Code/skin/dotfiles'
 alias gpt='chatblade -c gpt-4o -s'
-if [ -f "${HOME}/.private_zsh_aliases" ]; then
-    source ~/.private_zsh_aliases
+if [ -f "${HOME}/.private_shell_aliases" ]; then
+    source ~/.private_shell_aliases
 fi
