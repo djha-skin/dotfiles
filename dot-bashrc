@@ -7,9 +7,13 @@ then
     . ${HOME}/.pijulconfig/bash
 fi
 
+if [ -d "${HOME}/.asdf" ]
+then
+    . "${HOME}/.asdf/asdf.sh"
+fi
+
 #eval "$(~/.local/bin/rtx activate -s bash)"
 
-[ -z "$PS1" ] && return
 export PS1='\W $ '
 
 # don't put duplicate lines in the history. See bash(1) for more options
@@ -62,7 +66,6 @@ PERL_MM_OPT="INSTALL_BASE=${HOME}/perl5"; export PERL_MM_OPT;
 
 pchanged
 
-. ${HOME}/.config/git-prompt.sh
 update_ps1() {
     __ups1_lastcmd="${?}"
     __ups1_default_colors='\[\e[0;34m\]'
@@ -121,34 +124,27 @@ update_ps1() {
     if [ -n "${__ups1_info}" ]
     then
         __ups1_info_pref="${__ups1_cyan}${__ups1_bold}"
-        __ups1_info_suff="${__ups1_reset_colors}${__ups1_default_colors}"
-        PS1="$(printf "%s %s%-3d%s %s%s%s %s%s%s %s%s%s %s%s%s %s" \
-                "${__ups1_default_colors}" \
-                "${__ups1_stat_pref}" \
-                "${__ups1_lastcmd}" \
-                "${__ups1_stat_suff}" \
-                "${__ups1_time_pref}" \
-                "${__ups1_time}" \
-                "${__ups1_time_suff}" \
-                "${__ups1_dir_pref}" \
-                "${__ups1_dir}" \
-                "${__ups1_dir_suff}" \
-                "${__ups1_info_pref}" \
-                "${__ups1_info}" \
-                "${__ups1_info_suff}" \
-                "${__ups1_marker_pref}" \
-                "${__ups1_marker}" \
-                "${__ups1_marker_suff}" \
-                "${__ups1_reset_colors}" \
-                        )"
-    else
-        PS1="$(printf "\n%s\n%s%-3d%s %s \\$ " \
-                "${__ups1_dir}" \
-                "${__ups1_stat_pref}" \
-                "${__ups1_lastcmd}" \
-                "${__ups1_stat_suff}" \
-                "${__ups1_time}")"
+        __ups1_info_suff="${__ups1_reset_colors}${__ups1_default_colors} "
     fi
+    PS1="$(printf "%s %s%-3d%s %s%s%s %s%s%s %s%s%s%s%s%s %s" \
+            "${__ups1_default_colors}" \
+            "${__ups1_stat_pref}" \
+            "${__ups1_lastcmd}" \
+            "${__ups1_stat_suff}" \
+            "${__ups1_time_pref}" \
+            "${__ups1_time}" \
+            "${__ups1_time_suff}" \
+            "${__ups1_dir_pref}" \
+            "${__ups1_dir}" \
+            "${__ups1_dir_suff}" \
+            "${__ups1_info_pref}" \
+            "${__ups1_info}" \
+            "${__ups1_info_suff}" \
+            "${__ups1_marker_pref}" \
+            "${__ups1_marker}" \
+            "${__ups1_marker_suff}" \
+            "${__ups1_reset_colors}" \
+                    )"
     return "${__ups1_lastcmd}"
 }
 
