@@ -58,6 +58,8 @@ exec swayidle -w \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock -f -c 000000 -s solid_color'
 
+exec keepassxc
+
 exec nm-applet
 
 exec /home/skin/.local/bin/OneDriveGUI
@@ -137,7 +139,6 @@ bindsym Shift+equal exec scalemon down
 
 bindsym b exec $browser
 bindsym t exec $term
-bindsym s exec swaylock -f -c 000000 -s solid_color
 
 bindsym Shift+Apostrophe splith
 bindsym Shift+Backslash splitv
@@ -172,6 +173,10 @@ bindsym v exec screenshot-region
 bindsym Shift+v exec screen2rclone
 bindsym Control+v exec work-screen2gdrive
 
+bindsym s exec file2rclone
+bindsym Shift+s swaylock -f -c 000000 -s solid_color
+
+
 bindsym d kill
 bindsym 1 workspace number 1
 bindsym 2 workspace number 2
@@ -201,6 +206,8 @@ mode "interact" {
     bindsym Mod4+Shift+s exec screenshot-region
     bindsym Mod4+Shift+d exec screen2rclone
     bindsym Mod4+Shift+a exec work-screen2gdrive
+    bindsym Mod4+Shift+f exec file2rclone
+    bindsym Mod4+Shift+g exec work-file2gdrive
     bindsym Mod4+Return exec $term
     bindsym Mod4+Shift+Return exec $browser
     bindsym XF86Calculator exec rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '{result}' | copy" -kb-accept-custom 'control+KP_Enter'
