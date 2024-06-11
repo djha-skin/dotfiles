@@ -4,7 +4,25 @@ set postponed="+gmail~Drafts"
 unset record
 set mbox_type = Maildir
 set trash = "+gmail~Trash"
-mailboxes +INBOX +Archives "+Coupons~Papa Johns" +Family +gmail~Chats +gmail~Drafts "+gmail~Sent Mail" +gmail~Starred +gmail~Trash +gmail~Trash~Politics "+Highland Ward" "+Kids School" "+Local Politics" "+Mailing Lists" "+Mailing Lists~Home Bot App" +Recruiters +Transactions +Work
+mailboxes -label "Inbox" +INBOX
+mailboxes -nonotify -label "Sent" "+gmail~Sent Mail"
+mailboxes -nonotify +Archives
+mailboxes -nonotify -label "Coupons/Papa Johns" "+Coupons~Papa Johns"
+mailboxes -nonotify +Family
+mailboxes -nonotify -label "Google Chats" +gmail~Chats
+mailboxes -nonotify -label "Drafts" +gmail~Drafts
+#mailboxes -nonotify -label "Starred" +gmail~Starred
+mailboxes -nonotify -label "Trash" +gmail~Trash
+#mailboxes -nonotify +gmail~Trash~Politics
+mailboxes -nonotify "+Highland Ward"
+mailboxes -nonotify "+Kids School"
+mailboxes -nonotify "+Local Politics"
+mailboxes -nonotify "+Mailing Lists"
+mailboxes -nonotify -label "Mailing Lists/Home Bot App" "+Mailing Lists~Home Bot App"
+mailboxes -nonotify +Recruiters
+mailboxes -nonotify +Transactions
+mailboxes -nonotify +Work
+
 
 set sendmail="msmtp -a home"
 
