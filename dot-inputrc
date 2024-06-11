@@ -1,9 +1,20 @@
 set meta-flag on
 set convert-meta off
 set output-meta on
-set bell-style none
+#set bell-style none
 set editing-mode vi
-set enable-bracketed-paste off
+set enable-bracketed-paste on
+
+# https://stackoverflow.com/a/7979417/850326
+$if mode=vi
+    set keymap vi-command
+    "gg": beginning-of-history
+    "G": end-of-history
+    set keymap vi-insert
+    "jk": vi-movement-mode
+    "\C-w": backward-kill-word
+    "\C-p": history-search-backward
+$endif
 
 "\M-e": rlwrap-call-editor
 "\M-o": rlwrap-accept-line-and-forget
