@@ -38,5 +38,7 @@ macro index \e1 "\
 <tag-prefix-cond><save-message>+Transactions<Enter><end-cond>\
 <sync-mailbox>"
 
+set alias_file = "~/.mutt/mhome.aliases"
+
 source ~/.muttrc
 # vim: syntax=neomuttrc

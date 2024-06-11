@@ -22,5 +22,7 @@ set from="dan@djhaskin.com"
 
 set crypt_use_gpgme
 
+set alias_file = "~/.mutt/mmigadu.aliases"
+
 source ~/.muttrc
 # vim: syntax=neomuttrc
