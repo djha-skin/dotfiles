@@ -1,12 +1,14 @@
 #!/bin/sh
 echo "$(date) ${@}" >> ~/.var/log/audit.log || :
 url="${1}"
-username="${2}"
+shift
+username="${1}"
+shift
 
 # Weird bug in vdirsyncer
 url=$(echo "${url}" | sed 's|\([^:/]*\):/\([^/]\)|\1://\2|')
 
 printf 'url=%s\nusername=%s\n' \
     "${url}" "${username}" | \
-    git-credential-keepassxc get | \
+    git-credential-keepassxc get "${@}" | \
     awk -F' *= *' '/^password/ {print $2}'
