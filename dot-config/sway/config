@@ -97,7 +97,9 @@ bindsym o exec $menu, mode "interact"
 # Reload the configuration file
 bindsym Shift+c reload
 # Exit sway (logs you out of your Wayland session)
-bindsym Shift+q exec exit
+bindsym q exec exit
+bindsym Shift+q exec systemctl suspend
+
 
 bindsym $left focus left
 bindsym $down focus down
