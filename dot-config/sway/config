@@ -216,6 +216,10 @@ mode "interact" {
     bindsym Mod4+Shift+Return exec $browser
     bindsym XF86Calculator exec rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '{result}' | copy" -kb-accept-custom 'control+KP_Enter'
     bindsym Mod4+Shift+j exec rofimoji -a type # "react"
+    bindsym Alt+Tab focus right
+    bindsym Alt+Shift+Tab focus left
+    bindsym Control+Tab focus down
+    bindsym Control+Shift+Tab focus up
     # Move your focus around
     #bindsym $mod+$left focus left
     #bindsym $mod+$down focus down
@@ -225,6 +229,8 @@ mode "interact" {
 }
 
 for_window [app_id="qutebrowser"] mark Browser
+
+include "${XDG_CONFIG_HOME}/sway/private-config"
 
 # Include configs from 3 locations:
 #  - /usr/share/sway/config.d
@@ -248,6 +254,6 @@ for_window [app_id="qutebrowser"] mark Browser
 # the trick, it's all in the `wordexp(3)`.
 
 
-include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
 
-include "${XDG_CONFIG_HOME}/sway/private-config"
+
+include "$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")"
