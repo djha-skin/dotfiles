@@ -23,6 +23,10 @@ settings:
         pt: spawn --userscript qute-keepassxc --connection home.key --key A1F9E6A2696D3CAADEDB203C3812FEA997B503B6
           --totp
         pw: spawn --userscript qute-keepassxc --connection home.key --key A1F9E6A2696D3CAADEDB203C3812FEA997B503B6
+  colors.webpage.darkmode.enabled:
+    global: true
+  colors.webpage.darkmode.policy.page:
+    global: smart
   content.javascript.clipboard:
     global: access-paste
   content.local_content_can_access_remote_urls:
@@ -64,6 +68,8 @@ settings:
       QT_SCALE_FACTOR_ROUNDING_POLICY: Round
   qt.highdpi:
     global: true
+  statusbar.show:
+    global: in-mode
   tabs.favicons.scale:
     global: 2.0
   tabs.max_width:
@@ -87,6 +93,6 @@ settings:
   url.searchengines:
     global:
       DEFAULT: https://google.com/search?q={}
-      ddg: https://duckduckgo.com/?q={}
+      clhs: https://google.com/search?q=site:clhs.lisp.se+{}
   url.start_pages:
     global: https://github.com/
