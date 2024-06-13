@@ -106,6 +106,13 @@ set pipe_sep = "\n--- next email ---\n"
 
 macro index B "<tag-thread><tag-prefix><pipe-message>b4 shazam -m - --stdin-pipe-sep='\\n--- next email ---\\n'<enter>" "pipe the message to b4"
 unbind d
+# https://github.com/LukeSmithxyz/mutt-wizard/issues/147
+set query_command= "khard email --parsable --search-in-source-files %s"
+bind editor <Tab> complete-query
+bind editor ^T    complete
+#macro index,pager A \
+#    "<pipe-message>khard add-email<return>" \
+#        "add the sender email address to khard"
 
 # vim: syntax=neomuttrc
 #
