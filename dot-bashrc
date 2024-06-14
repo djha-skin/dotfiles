@@ -117,13 +117,19 @@ update_ps1() {
     __ups1_time="$(date +'%H:%M:%S')"
     __ups1_ancestor_pref="${__ups1_blue}"
     __ups1_ancestor_suff="${__ups1_reset_colors}${__ups1_default_colors}"
-    __ups1_ancestor=$(echo "${PWD}" | sed \
-        -e 's|/*$||' \
-        -e "s|^${HOME}|~|" \
-        -e 's|\([^/]\)[^/]*/|\1/|g' \
-        -e 's|/[^/]*$|/|')
-    __ups1_dir=$(echo "${PWD}" | sed \
-        -e 's|[^/]*/||g')
+    if [ "${PWD}" = "${HOME}" ]
+    then
+        __ups1_dir="~"
+        __ups1_ancestor=""
+    else
+        __ups1_ancestor=$(echo "${PWD}" | sed \
+            -e 's|/*$||' \
+            -e "s|^${HOME}|~|" \
+            -e 's|\([^/]\)[^/]*/|\1/|g' \
+            -e 's|/[^/]*$|/|')
+        __ups1_dir=$(echo "${PWD}" | sed \
+            -e 's|[^/]*/||g')
+    fi
     __ups1_dir_pref="${__ups1_bold}${__ups1_magenta}"
     __ups1_dir_suff="${__ups1_reset_colors}${__ups1_default_colors}"
     __ups1_time_pref="${__ups1_blue}"
