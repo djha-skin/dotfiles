@@ -15,3 +15,5 @@ set keymap vi-insert
 
 "\M-e": rlwrap-call-editor
 "\M-o": rlwrap-accept-line-and-forget
+
+# vim: set ft=inputrc
