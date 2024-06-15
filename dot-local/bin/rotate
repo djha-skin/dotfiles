@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [ "${1}" = "clockwise" ]
+then
+    echo 3 | sudo tee /sys/class/graphics/fbcon/rotate_all
+elif [ "${1}" = "counterclockwise" ]
+then
+    echo 1 | sudo tee /sys/class/graphics/fbcon/rotate_all
+elif [ "${1}" = "upside_down" ]
+then
+    echo 2 | sudo tee /sys/class/graphics/fbcon/rotate_all
+else
+    echo 0 | sudo tee /sys/class/graphics/fbcon/rotate_all
+fi
