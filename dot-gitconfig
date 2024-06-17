@@ -7,6 +7,7 @@
 	name = Daniel Jay Haskin
 [push]
 	default = simple
+	autoSetupRemote = true
 [sendemail]
 	annotate = yes
 	smtpEncryption = tls
