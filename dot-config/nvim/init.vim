@@ -322,7 +322,7 @@ au BufRead,BufNewFile *.md nnoremap <LocalLeader>t :let @/=""<CR>:s/^\( *\)\(- *
 au BufRead,BufNewFile *.md set makeprg=markdown-to-pdf\ %\ %:r.pdf
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>v :w<CR>:execute "!sh -c \"zathura '%:r.pdf' &\""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>f :w<CR>:execute "!sh -c \"zathura '%' && sleep 1\""<CR>
-au BufRead,BufNewFile *.dot makeprg=dot\ -Tpng\ %\ -o\ %:r.png
+au BufRead,BufNewFile *.dot set makeprg=dot\ -Tpng\ %\ -o\ %:r.png
 au BufRead,BufNewFile *.dot nnoremap <LocalLeader>v :w<CR>:execute "!sh -c \"imv '%:r.png' &\""<CR>
 
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>s :lua vim.fn.execute("r!screen2vim '" ..  vim.fn.expand("%:p") .. "' 'img'")<CR>
