@@ -41,7 +41,6 @@ output 'HP Inc. HP VH240a 6CM01319L1' resolution 1920x1080
 output 'HP Inc. HP VH240a 6CM01319L1' transform 270
 output 'HP Inc. HP VH240a 6CM01319L1' position 2476 0
 
-
 #
 # Example configuration:
 #
@@ -206,20 +205,33 @@ bindsym Shift+0 move container to workspace number 10
 bindsym i mode "interact"
 
 mode "interact" {
-    bindsym Mod4+comma exec point
-    bindsym Mod4+Shift+s exec screenshot-region
-    bindsym Mod4+Shift+d exec screen2rclone
-    bindsym Mod4+Shift+a exec work-screen2gdrive
-    bindsym Mod4+Shift+f exec file2rclone
-    bindsym Mod4+Shift+g exec work-file2gdrive
-    bindsym Mod4+Return exec $term
-    bindsym Mod4+Shift+Return exec $browser
-    bindsym XF86Calculator exec rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '{result}' | copy" -kb-accept-custom 'control+KP_Enter'
-    bindsym Mod4+Shift+j exec rofimoji -a type # "react"
+    # Typical keybindings in other OSes
+    # This allows me to preserve some of the old muscle memory
     bindsym Alt+Tab focus right
     bindsym Alt+Shift+Tab focus left
     bindsym Control+Tab focus down
     bindsym Control+Shift+Tab focus up
+    bindsym Control+Alt+Tab mode_toggle
+
+    bindsym Mod4+Shift+s exec screenshot-region
+    bindsym Alt+F4 kill
+    bindsym Alt+Space exec $menu
+
+    # Typical "for me" keybindings
+    bindsym Mod4+Shift+d exec screen2rclone
+    bindsym Mod4+Shift+a exec work-screen2gdrive
+    bindsym Mod4+Shift+f exec file2rclone
+    bindsym Mod4+Shift+g exec work-file2gdrive
+
+    # Sway-specific keybindings
+    bindsym Mod4+comma exec point
+
+
+    bindsym Mod4+Shift+Return exec $browser
+
+    bindsym XF86Calculator exec rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '{result}' | copy" -kb-accept-custom 'control+KP_Enter'
+    bindsym Mod4+Shift+j exec rofimoji -a type # "react"
+
     # Move your focus around
     #bindsym $mod+$left focus left
     #bindsym $mod+$down focus down
