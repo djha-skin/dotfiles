@@ -1,3 +1,8 @@
+# Requires posh-git: https://github.com/dahlbyk/posh-git
+Import-Module posh-git
+# Requires PSReadLine: # https://github.com/PowerShell/PSReadLine#usage
+Set-PSReadLineOption -EditMode Vi
+
 if (Test-Path Alias:\curl) {
     del alias:curl
 }
@@ -104,6 +109,96 @@ function procmon {
         sleep 4
     }
 }
+
+function find-git {
+    $lookIn = get-item $PWD
+
+    while ($lookIn) {
+        $gitDir = $lookIn | get-childitem -filter .git -directory
+        if ($gitDir) {
+            return $lookIn
+        }
+        $lookIn = $lookIn.Parent
+    }
+    return $null
+}
+
+# Prompt stuff
+$GitPromptSettings.PathStatusSeparator = ""
+$GitPromptSettings.DefaultPromptSuffix = ""
+$GitPromptSettings.DefaultPromptPath = ""
+function prompt {
+
+    $savedExitCode = $LASTEXITCODE
+    $esc = [char]27
+    $startBright = "${esc}[1m"
+    $endBright = "${esc}[22m"
+    $startUnderline = "${esc}[4m"
+    $endUnderline = "${esc}[24m"
+    $startRed = "${esc}[31m"
+    $startGreen = "${esc}[32m"
+    $startYellow = "${esc}[33m"
+    $startBlue = "${esc}[34m"
+    $startCyan = "${esc}[36m"
+    $startMagenta = "${esc}[35m"
+    $startCyan = "${esc}[36m"
+    $startWhite = "${esc}[37m"
+    $endColor = "${esc}[39m"
+
+    # https://stackoverflow.com/a/19592903
+    $isAdmin = ([Security.Principal.WindowsPrincipal]`
+        [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole(`
+        [Security.Principal.WindowsBuiltInRole] "Administrator")
+    $prompt = ""
+
+    if ($isAdmin) {
+        $prompt += "$startRed(admin) "
+    }
+    if ($savedExitCode) {
+        if ($savedExitCode -eq 0) {
+            $prompt += "$startGreen"
+            $prompt += "$savedExitCode"
+        } else {
+            $prompt += "$startRed"
+            $prompt += "$startUnderline"
+            $prompt += "$savedExitCode"
+            $prompt += "$endUnderline"
+        }
+        $prompt += " "
+    }
+
+    $time = Get-Date -Format 'HH:mm:ss'
+
+    $pathPrelude = $PWD.Path `
+        -Replace '^[A-Z]:', '' `
+        -Replace '([^\\/])[^\\/]*[\\/]', '$1\' `
+        -Replace '[\\/][^\\/]+$', ''
+    $pathSuffix = $PWD.Path -Replace '[^\\/]+[\\/]', ''
+
+    $prompt += "$startBright"
+    $prompt += "$startBlue"
+    $prompt += "$time"
+    $prompt += " "
+
+    $prompt += "$($PWD.Provider.Drives.Name):"
+
+    $prompt += "$pathPrelude\"
+    $prompt += "$startMagenta"
+    $prompt += "$pathSuffix"
+    $prompt += "$endBright "
+
+    $prompt = Write-Prompt $prompt
+    $prompt += & $GitPromptScriptBlock
+    $prompt += Write-Prompt " $startBright$startBlue>$endColor"
+
+    $global:LASTEXITCODE = $savedLastExitCode
+    if ($prompt) {
+        return "$prompt "
+    } else {
+        return " "
+    }
+
+    return $prompt
+}
+
 pchanged
-
-
