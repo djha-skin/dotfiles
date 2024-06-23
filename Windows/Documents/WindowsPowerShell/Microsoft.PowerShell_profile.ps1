@@ -125,11 +125,12 @@ function find-git {
 
 # Prompt stuff
 $GitPromptSettings.PathStatusSeparator = ""
+$GitPromptSettings.DefaultPromptPrefix = ""
 $GitPromptSettings.DefaultPromptSuffix = ""
 $GitPromptSettings.DefaultPromptPath = ""
+$GitPromptSettings.BeforePath = ""
+$GitPromptSettings.AfterPath = ""
 function prompt {
-
-    $savedExitCode = $LASTEXITCODE
     $esc = [char]27
     $startBright = "${esc}[1m"
     $endBright = "${esc}[22m"
@@ -144,6 +145,7 @@ function prompt {
     $startCyan = "${esc}[36m"
     $startWhite = "${esc}[37m"
     $endColor = "${esc}[39m"
+    $savedExitCode = $LASTEXITCODE
 
     # https://stackoverflow.com/a/19592903
     $isAdmin = ([Security.Principal.WindowsPrincipal]`
@@ -189,7 +191,19 @@ function prompt {
 
     $prompt = Write-Prompt $prompt
     $prompt += & $GitPromptScriptBlock
-    $prompt += Write-Prompt " $startBright$startBlue>$endColor"
+    # Remove trailing space that git prompt adds sometimes
+    if ($prompt) {
+        $prompt = $prompt.TrimEnd()
+    }
+
+    $prompt_suffix = " "
+    $prompt_suffix += "$startBright"
+    $prompt_suffix += "$startBlue"
+    $prompt_suffix += ">"
+    $prompt_suffix += "$endColor"
+    $prompt_suffix += "$endBright"
+
+    $prompt += Write-Prompt $prompt_suffix
 
     $global:LASTEXITCODE = $savedLastExitCode
     if ($prompt) {
