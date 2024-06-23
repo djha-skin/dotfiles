@@ -215,4 +215,8 @@ function prompt {
     return $prompt
 }
 
+function dotdir {
+    cd "$Env:USERPROFILE\Code\skin\dotfiles"
+}
+
 pchanged

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+
+tee /c/Users/bhw/AppData/Local/Temp/mutt.html | \
+    pandoc --eol=lf \
+        --reference-links \
+        --reference-location=document \
+        -f html \
+        -t commonmark-raw_html \
+        --strip-comments -
+/c/Program\ Files\ \(x86\)/Microsoft/Edge/Application/msedge /c/Users/bhw/AppData/Local/Temp/mutt.html

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+picked=$(/c/Users/bhw/go/bin/xurls | fzf)
+if [ -n "${picked}" ]
+then
+    /c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -Command "Start-Process '$picked'"
+fi

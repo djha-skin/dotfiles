@@ -1,0 +1,16 @@
+text/html; mailhtml; compose=nvim %s; edit=nvim %s;
+text/html; pandoc --eol=lf --reference-links --reference-location=document -f html -t commonmark-raw_html --strip-comments -i %s; nametemplate=%s.html; needsterminal; copiousoutput
+application/pdf; pdftotext %s -; copiousoutput;
+text/calendar; khal printics %s;copiousoutput
+application/ics; khal printics %s;copiousoutput
+image/*; ffplay -hide_banner %s;
+audio/*; ffplay -hide_banner %s;
+video/*; ffplay -hide_banner %s;
+image/*; ffprobe -hide_banner %s; copiousoutput
+audio/*; ffprobe -hide_banner %s; copiousoutput
+video/*; ffprobe -hide_banner %s; copiousoutput
+#image/*; convert -geometry 80x80 ~/Pictures/avatar.png - | img2xterm; copiousoutput
+#image/*; sh -c 'img2txt -f utf8 %s'; needsterminal; copiousoutput
+#image/*; kitten icat %s; needsterminal; copiousoutput
+#text/calendar; mutt-ics; copiousoutput
+#application/ics; mutt-ics; copiousoutput

@@ -1,0 +1,70 @@
+source ~/.mutt/dracula.muttrc
+set move = no
+set confirmappend = no
+alternative_order text/plain text/html
+#auto_view text/html
+set mailcap_path = ~/.mailcap
+unset markers
+set envelope_from=yes
+set maildir_header_cache_verify = yes
+set delete = yes
+bind index <up> previous-unread
+bind index <down> next-unread
+set mail_check_stats
+set mail_check = 90
+set timeout = 15
+unset imap_passive
+
+set sort = threads
+set sort_aux = reverse-date
+
+set imap_check_subscribed = yes
+set mail_check_stats
+set beep = no
+set beep_new = yes
+set index_format = "%4C %Z %{%Y %b %d} %-15.15L (%?l?%4l&%4c?) %s"
+set timeout=300
+
+set wait_key=no
+
+macro index,pager \e7 "<tag-pattern>~f security@angel.com<enter><tag-prefix><save-message>+Security<enter>"
+
+macro index A \
+    "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" \
+    "mark all new as read"
+bind compose M view-pager
+bind attach T view-pager
+set allow_8bit = no
+#set attribution_intro = "On %d, %n wrote:\n"
+set forward_quote = yes
+#set forward_references = yes
+set forward_attribution_intro = "On %d, %n (%f) wrote:\n"
+macro compose Y "<first-entry><enter-command>set wait_key=no<enter> \
+    <pipe-entry>pandoc -f commonmark -t html -s --o /tmp/neomutt-alternative.html<enter> \
+    <attach-file>/tmp/neomutt-alternative.html<enter> \
+    <toggle-unlink><toggle-disposition> \
+    <tag-entry><first-entry><tag-entry><group-alternatives> \
+    <enter-command>set wait_key=yes<enter>" \
+    "prepare the message as 'multipart/alternative'"
+macro compose U "<first-entry><enter-command>set wait_key=no<enter> \
+    <pipe-entry>pandoc -f html -t commonmark --o /tmp/neomutt-alternative.txt<enter> \
+    <attach-file>/tmp/neomutt-alternative.txt<enter> \
+    <toggle-unlink><toggle-disposition> \
+    <tag-entry><first-entry><tag-entry><group-alternatives> \
+    <enter-command>set wait_key=yes<enter>" \
+    "prepare the message as 'multipart/alternative' in reverse"
+
+set pipe_sep = "\n--- next email ---\n"
+
+macro index B "<tag-thread><tag-prefix><pipe-message>b4 shazam -m - --stdin-pipe-sep='\\n--- next email ---\\n'<enter>" "pipe the message to b4"
+#unbind d
+# https://github.com/LukeSmithxyz/mutt-wizard/issues/147
+set query_command= "khard email --parsable --search-in-source-files %s"
+bind editor <Tab> complete-query
+bind editor ^T    complete
+#macro index,pager A \
+#    "<pipe-message>khard add-email<return>" \
+#        "add the sender email address to khard"
+
+# vim: syntax=muttrc
+#
