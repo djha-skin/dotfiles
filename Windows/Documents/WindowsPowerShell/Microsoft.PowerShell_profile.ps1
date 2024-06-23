@@ -114,7 +114,9 @@ function find-git {
     $lookIn = get-item $PWD
 
     while ($lookIn) {
-        $gitDir = $lookIn | get-childitem -filter .git -directory
+        $gitDir = $lookIn.GetDirectories() | `
+            where-object { $_.Name -eq ".git" }
+
         if ($gitDir) {
             return $lookIn
         }
