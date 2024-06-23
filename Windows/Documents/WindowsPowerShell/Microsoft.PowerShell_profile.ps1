@@ -189,21 +189,19 @@ function prompt {
     $prompt += "$pathSuffix"
     $prompt += "$endBright "
 
-    $prompt = Write-Prompt $prompt
-    $prompt += & $GitPromptScriptBlock
-    # Remove trailing space that git prompt adds sometimes
-    if ($prompt) {
-        $prompt = $prompt.TrimEnd()
+    if (find-git) {
+        $gitPrompt = Write-Prompt $prompt
+        $gitPrompt += & $GitPromptScriptBlock
+        if ($gitPrompt) {
+            $prompt = "$gitPrompt "
+        }
     }
 
-    $prompt_suffix = " "
-    $prompt_suffix += "$startBright"
-    $prompt_suffix += "$startBlue"
-    $prompt_suffix += ">"
-    $prompt_suffix += "$endColor"
-    $prompt_suffix += "$endBright"
-
-    $prompt += Write-Prompt $prompt_suffix
+    $prompt += "$startBright"
+    $prompt += "$startBlue"
+    $prompt += ">"
+    $prompt += "$endColor"
+    $prompt += "$endBright"
 
     $global:LASTEXITCODE = $savedLastExitCode
     if ($prompt) {
