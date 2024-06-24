@@ -16,20 +16,36 @@ gtk-theme-name="Adwaita-dark"
 style "purplerc_style"
 {
 }
+
 widget_class "*" style "purplerc_style"
+
 style "*pidgin_conv_entry_style"
 {
 	font_name = "Iosevka Term 12"
     fg[NORMAL] = {1, 1, 1}
     fg[INSENSITIVE] = {.9,.9,.9}
+    bg[NORMAL] = {0, 0, 0}
 }
 widget "*pidgin_conv_entry" style "*pidgin_conv_entry_style"
+
 style "*pidgin_conv_imhtml_style"
 {
 	font_name = "Iosevka Term 12"
     fg[NORMAL] = {1, 1, 1}
     fg[INSENSITIVE] = {.9,.9,.9}
+    bg[NORMAL] = {0, 0, 0}
 }
+
+style "buttons" {
+    fg[NORMAL] = {0, 0, 0}
+    fg[PRELIGHT] = {.1, .1, .1}
+    fg[ACTIVE] = {1, 1, 1}
+    fg[SELECTED] = {.4, .4, .4}
+    fg[INSENSITIVE] = {.25, .25, 25}
+}
+
+widget "*utton*" style "buttons"
+
 binding "no-return"
 {
     bind "Return" { "insert-at-cursor" ("\n") }
