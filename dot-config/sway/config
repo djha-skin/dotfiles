@@ -93,152 +93,160 @@ input type:pointer {
 
 floating_modifier Mod4 normal
 
-bindsym Shift+o workspace number 10, exec $menu, mode "interact"
-bindsym o exec $menu, mode "interact"
-# Reload the configuration file
-bindsym Shift+c reload
-# Exit sway (logs you out of your Wayland session)
-bindsym q exec exit
-bindsym Shift+q exec systemctl suspend
+
+# Modeled after "normal" mode in vi
+mode "wm" {
+    bindsym Shift+o workspace number 10, exec $menu, mode "interact"
+    bindsym o exec $menu, mode "interact"
+    # Reload the configuration file
+    bindsym Shift+c reload
+    # Exit sway (logs you out of your Wayland session)
+    bindsym q exec exit
+    bindsym Shift+q exec systemctl suspend
 
 
-bindsym $left focus left
-bindsym $down focus down
-bindsym $up focus up
-bindsym $right focus right
-# Move the focused window with the same, but add Shift
-bindsym Shift+$left move left
-bindsym Shift+$down move down
-bindsym Shift+$up move up
-bindsym Shift+$right move right
-# Resize
-bindsym Control+$left resize shrink width 10px
-bindsym Control+$down resize grow height 10px
-bindsym Control+$up resize shrink height 10px
-bindsym Control+$right resize grow width 10px
-# Mouse move
-bindsym Alt+$left seat seat0 cursor move -15 0
-bindsym Alt+$down seat seat0 cursor move 0 15
-bindsym Alt+$up seat seat0 cursor move 0 -15
-bindsym Alt+$right seat seat0 cursor move 15 0
-bindsym Alt+Shift+$left seat seat0 cursor move -120 0
-bindsym Alt+Shift+$down seat seat0 cursor move 0 120
-bindsym Alt+Shift+$up seat seat0 cursor move 0 -120
-bindsym Alt+Shift+$right seat seat0 cursor move 120 0
+    bindsym $left focus left
+    bindsym $down focus down
+    bindsym $up focus up
+    bindsym $right focus right
+    # Move the focused window with the same, but add Shift
+    bindsym Shift+$left move left
+    bindsym Shift+$down move down
+    bindsym Shift+$up move up
+    bindsym Shift+$right move right
+    # Resize
+    bindsym Control+$left resize shrink width 10px
+    bindsym Control+$down resize grow height 10px
+    bindsym Control+$up resize shrink height 10px
+    bindsym Control+$right resize grow width 10px
+    # Mouse move
+    bindsym Alt+$left seat seat0 cursor move -15 0
+    bindsym Alt+$down seat seat0 cursor move 0 15
+    bindsym Alt+$up seat seat0 cursor move 0 -15
+    bindsym Alt+$right seat seat0 cursor move 15 0
+    bindsym Alt+Shift+$left seat seat0 cursor move -120 0
+    bindsym Alt+Shift+$down seat seat0 cursor move 0 120
+    bindsym Alt+Shift+$up seat seat0 cursor move 0 -120
+    bindsym Alt+Shift+$right seat seat0 cursor move 120 0
 
-bindsym m seat seat0 cursor press button1
-bindsym --release m seat seat0 cursor release button1
+    bindsym m seat seat0 cursor press button1
+    bindsym --release m seat seat0 cursor release button1
 
-# Middle button
-bindsym comma seat seat0 cursor press button2
-bindsym --release comma seat seat0 cursor release button2
+    # Middle button
+    bindsym comma seat seat0 cursor press button2
+    bindsym --release comma seat seat0 cursor release button2
 
-# Right button
-bindsym period seat seat0 cursor press button3
-bindsym --release period seat seat0 cursor release button3
+    # Right button
+    bindsym period seat seat0 cursor press button3
+    bindsym --release period seat seat0 cursor release button3
 
-bindsym equal exec scalemon up
-bindsym Shift+equal exec scalemon down
+    bindsym equal exec scalemon up
+    bindsym Shift+equal exec scalemon down
 
-bindsym b exec $browser
-bindsym t exec $term
+    bindsym b exec $browser
+    bindsym t exec $term
 
-bindsym Shift+Apostrophe splith
-bindsym Shift+Backslash splitv
-bindsym w layout toggle all
+    bindsym Shift+Apostrophe splith
+    bindsym Shift+Backslash splitv
+    bindsym w layout toggle all
 
-# Make the current focus fullscreen
-bindsym f fullscreen
+    # Make the current focus fullscreen
+    bindsym f fullscreen
 
-# Toggle the current focus between tiling and floating mode
-bindsym Shift+f floating toggle
+    # Toggle the current focus between tiling and floating mode
+    bindsym Shift+f floating toggle
 
-# Swap focus between the tiling area and the floating area
-bindsym space focus mode_toggle
+    # Swap focus between the tiling area and the floating area
+    bindsym space focus mode_toggle
 
-# Move focus to the parent container
-bindsym g focus parent
-bindsym Shift+g focus child
+    # Move focus to the parent container
+    bindsym g focus parent
+    bindsym Shift+g focus child
 
-# Scratchpad:
-#
-# Sway has a "scratchpad", which is a bag of holding for windows.
-# You can send windows there and get them back later.
+    # Scratchpad:
+    #
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
 
-# Move the currently focused window to the scratchpad
-bindsym Shift+minus move scratchpad
+    # Move the currently focused window to the scratchpad
+    bindsym Shift+minus move scratchpad
 
-# Show the next scratchpad window or hide the focused scratchpad window.
-# If there are multiple scratchpad windows, this command cycles through them.
-bindsym minus scratchpad show
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym minus scratchpad show
 
-bindsym v exec screenshot-region
-bindsym Shift+v exec screen2rclone
-bindsym Control+v exec work-screen2gdrive
+    bindsym v exec screenshot-region
+    bindsym Shift+v exec screen2rclone
+    bindsym Control+v exec work-screen2gdrive
 
-bindsym s exec file2rclone
-bindsym Shift+s exec swaylock -f -c 000000 -s solid_color
-
-
-bindsym d kill
-bindsym 1 workspace number 1
-bindsym 2 workspace number 2
-bindsym 3 workspace number 3
-bindsym 4 workspace number 4
-bindsym 5 workspace number 5
-bindsym 6 workspace number 6
-bindsym 7 workspace number 7
-bindsym 8 workspace number 8
-bindsym 9 workspace number 9
-bindsym 0 workspace number 10
-# Move focused container to workspace
-bindsym Shift+1 move container to workspace number 1
-bindsym Shift+2 move container to workspace number 2
-bindsym Shift+3 move container to workspace number 3
-bindsym Shift+4 move container to workspace number 4
-bindsym Shift+5 move container to workspace number 5
-bindsym Shift+6 move container to workspace number 6
-bindsym Shift+7 move container to workspace number 7
-bindsym Shift+8 move container to workspace number 8
-bindsym Shift+9 move container to workspace number 9
-bindsym Shift+0 move container to workspace number 10
-bindsym i mode "interact"
-
-mode "interact" {
-    # Typical keybindings in other OSes
-    # This allows me to preserve some of the old muscle memory
-    bindsym Alt+Tab focus right
-    bindsym Alt+Shift+Tab focus left
-    bindsym Control+Tab focus down
-    bindsym Control+Shift+Tab focus up
-    bindsym Control+Alt+Tab mode_toggle
-
-    bindsym Mod4+Shift+s exec screenshot-region
-    bindsym Alt+F4 kill
-    bindsym Alt+Space exec $menu
-
-    # Typical "for me" keybindings
-    bindsym Mod4+Shift+d exec screen2rclone
-    bindsym Mod4+Shift+a exec work-screen2gdrive
-    bindsym Mod4+Shift+f exec file2rclone
-    bindsym Mod4+Shift+g exec work-file2gdrive
-
-    # Sway-specific keybindings
-    bindsym Mod4+comma exec point
+    bindsym s exec file2rclone
+    bindsym Shift+s exec swaylock -f -c 000000 -s solid_color
 
 
-    bindsym Mod4+Shift+Return exec $browser
-
-    bindsym XF86Calculator exec rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '{result}' | copy" -kb-accept-custom 'control+KP_Enter'
-    bindsym Mod4+Shift+j exec rofimoji -a type # "react"
-
-    # Move your focus around
-    #bindsym $mod+$left focus left
-    #bindsym $mod+$down focus down
-    #bindsym $mod+$up focus up
-    #bindsym $mod+$right focus right
-    bindsym $mod+j mode "default"
+    bindsym d kill
+    bindsym 1 workspace number 1
+    bindsym 2 workspace number 2
+    bindsym 3 workspace number 3
+    bindsym 4 workspace number 4
+    bindsym 5 workspace number 5
+    bindsym 6 workspace number 6
+    bindsym 7 workspace number 7
+    bindsym 8 workspace number 8
+    bindsym 9 workspace number 9
+    bindsym 0 workspace number 10
+    # Move focused container to workspace
+    bindsym Shift+1 move container to workspace number 1
+    bindsym Shift+2 move container to workspace number 2
+    bindsym Shift+3 move container to workspace number 3
+    bindsym Shift+4 move container to workspace number 4
+    bindsym Shift+5 move container to workspace number 5
+    bindsym Shift+6 move container to workspace number 6
+    bindsym Shift+7 move container to workspace number 7
+    bindsym Shift+8 move container to workspace number 8
+    bindsym Shift+9 move container to workspace number 9
+    bindsym Shift+0 move container to workspace number 10
+    bindsym i mode default
 }
+
+# Modeled after "insert" mode in vi, only it's the default
+# Typical keybindings in other OSes
+# This allows me to preserve some of the old muscle memory
+bindsym Alt+Tab focus right
+bindsym Alt+Shift+Tab focus left
+bindsym Control+Tab focus down
+bindsym Control+Shift+Tab focus up
+bindsym Control+Alt+Tab mode_toggle
+bindsym Mod4+Left move left
+bindsym Mod4+Down move down
+bindsym Mod4+Up move up
+bindsym Mod4+Right move right
+
+bindsym Mod4+Shift+s exec screenshot-region
+bindsym Alt+F4 kill
+bindsym Alt+Space exec $menu
+
+
+# Typical "for me" keybindings
+bindsym Mod4+Shift+d exec screen2rclone
+bindsym Mod4+Shift+a exec work-screen2gdrive
+bindsym Mod4+Shift+f exec file2rclone
+bindsym Mod4+Shift+g exec work-file2gdrive
+
+# Sway-specific keybindings
+bindsym Mod4+comma exec point
+
+
+bindsym Mod4+Shift+Return exec $browser
+
+bindsym XF86Calculator exec rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '{result}' | copy" -kb-accept-custom 'control+KP_Enter'
+bindsym Mod4+Shift+j exec rofimoji -a type # "react"
+
+# Move your focus around
+#bindsym $mod+$left focus left
+#bindsym $mod+$down focus down
+#bindsym $mod+$up focus up
+#bindsym $mod+$right focus right
+bindsym $mod+j mode "wm"
 
 for_window [app_id="qutebrowser"] mark Browser
 
