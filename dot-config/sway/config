@@ -93,6 +93,47 @@ input type:pointer {
 
 floating_modifier Mod4 normal
 
+# Modeled after "insert" mode in vi, only it's the default
+# Typical keybindings in other OSes
+# This allows me to preserve some of the old muscle memory
+bindsym Alt+Tab focus right
+bindsym Alt+Shift+Tab focus left
+bindsym Control+Tab focus down
+bindsym Control+Shift+Tab focus up
+bindsym Control+Alt+Tab mode_toggle
+bindsym Mod4+Left move left
+bindsym Mod4+Down move down
+bindsym Mod4+Up move up
+bindsym Mod4+Right move right
+bindsym Mod4+L exec swaylock -f -c 000000 -s solid_color
+
+bindsym Mod4+Shift+s exec screenshot-region
+bindsym Alt+F4 kill
+bindsym Alt+Space exec $menu
+
+
+# Typical "for me" keybindings
+bindsym Mod4+Shift+d exec screen2rclone
+bindsym Mod4+Shift+a exec work-screen2gdrive
+bindsym Mod4+Shift+f exec file2rclone
+bindsym Mod4+Shift+g exec work-file2gdrive
+
+# Sway-specific keybindings
+bindsym Mod4+comma exec point
+
+
+bindsym Mod4+Shift+Return exec $browser
+
+bindsym XF86Calculator exec rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '{result}' | copy" -kb-accept-custom 'control+KP_Enter'
+bindsym Mod4+Shift+j exec rofimoji -a type # "react"
+
+# Move your focus around
+#bindsym $mod+$left focus left
+#bindsym $mod+$down focus down
+#bindsym $mod+$up focus up
+#bindsym $mod+$right focus right
+bindsym $mod+j mode "wm"
+
 
 # Modeled after "normal" mode in vi
 mode "wm" {
@@ -114,6 +155,10 @@ mode "wm" {
     bindsym Shift+$down move down
     bindsym Shift+$up move up
     bindsym Shift+$right move right
+    bindsym Control+Shift+$up move container up
+    bindsym Control+Shift+$down move container down
+    bindsym Control+Shift+$left move container left
+    bindsym Control+Shift+$right move container right
     # Resize
     bindsym Control+$left resize shrink width 10px
     bindsym Control+$down resize grow height 10px
@@ -208,46 +253,6 @@ mode "wm" {
     bindsym i mode default
 }
 
-# Modeled after "insert" mode in vi, only it's the default
-# Typical keybindings in other OSes
-# This allows me to preserve some of the old muscle memory
-bindsym Alt+Tab focus right
-bindsym Alt+Shift+Tab focus left
-bindsym Control+Tab focus down
-bindsym Control+Shift+Tab focus up
-bindsym Control+Alt+Tab mode_toggle
-bindsym Mod4+Left move left
-bindsym Mod4+Down move down
-bindsym Mod4+Up move up
-bindsym Mod4+Right move right
-
-bindsym Mod4+Shift+s exec screenshot-region
-bindsym Alt+F4 kill
-bindsym Alt+Space exec $menu
-
-
-# Typical "for me" keybindings
-bindsym Mod4+Shift+d exec screen2rclone
-bindsym Mod4+Shift+a exec work-screen2gdrive
-bindsym Mod4+Shift+f exec file2rclone
-bindsym Mod4+Shift+g exec work-file2gdrive
-
-# Sway-specific keybindings
-bindsym Mod4+comma exec point
-
-
-bindsym Mod4+Shift+Return exec $browser
-
-bindsym XF86Calculator exec rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '{result}' | copy" -kb-accept-custom 'control+KP_Enter'
-bindsym Mod4+Shift+j exec rofimoji -a type # "react"
-
-# Move your focus around
-#bindsym $mod+$left focus left
-#bindsym $mod+$down focus down
-#bindsym $mod+$up focus up
-#bindsym $mod+$right focus right
-bindsym $mod+j mode "wm"
-
 for_window [app_id="qutebrowser"] mark Browser
 
 include "${XDG_CONFIG_HOME}/sway/private-config"
@@ -265,8 +270,6 @@ include "${XDG_CONFIG_HOME}/sway/private-config"
 # This mechanism permits overriding our default configuration per-system
 # (/etc) or per-user ($XDG_CONFIG_HOME) basis. Just create the file you
 # want to modify/override in the higher-level directory.
-#
-# For example, to disable the default bar from Fedora configs, you'll need to
 #     $ echo -n > "$HOME/.config/sway/config.d/90-bar.conf"
 #
 # Note the quoting, the $() and the arguments quoting. All the parts are equally
