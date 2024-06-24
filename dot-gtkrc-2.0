@@ -4,13 +4,13 @@ gtk-toolbar-style=3
 gtk-menu-images=1
 gtk-button-images=1
 gtk-cursor-theme-size=24
-gtk-cursor-theme-name="breeze_cursors"
-gtk-icon-theme-name="breeze"
-gtk-font-name="Noto Sans,  10"
+gtk-cursor-theme-name="Adwaita-dark"
+gtk-icon-theme-name="Adwaita-dark"
+gtk-font-name="Iosevka Aile, 12"
 include "/usr/share/themes/Adwaita/gtk-2.0/gtkrc"
 #gtk-xft-antialias=1
 
-gtk-theme-name="Breeze"
+gtk-theme-name="Adwaita-dark"
 
 
 style "purplerc_style"
@@ -19,12 +19,16 @@ style "purplerc_style"
 widget_class "*" style "purplerc_style"
 style "*pidgin_conv_entry_style"
 {
-	font_name = "Noto Sans Mono 12"
+	font_name = "Iosevka Term 12"
+    fg[NORMAL] = {1, 1, 1}
+    fg[INSENSITIVE] = {.9,.9,.9}
 }
 widget "*pidgin_conv_entry" style "*pidgin_conv_entry_style"
 style "*pidgin_conv_imhtml_style"
 {
-	font_name = "Noto Sans Mono 12"
+	font_name = "Iosevka Term 12"
+    fg[NORMAL] = {1, 1, 1}
+    fg[INSENSITIVE] = {.9,.9,.9}
 }
 binding "no-return"
 {
