@@ -4,6 +4,7 @@
 "query:Technology:unread = \"yes\" and tags # \"tech\""
 "query:Comics:unread = \"yes\" and tags # \"comics\""
 "query:News:unread = \"yes\" and tags # \"news\""
+https://reasonableapproximation.net/rss.xml development
 http://composition.al/atom.xml development
 http://dtrace.org/blogs/bmc/feed development
 http://muratbuffalo.blogspot.com/feeds/posts/default development
