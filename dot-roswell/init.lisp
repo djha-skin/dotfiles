@@ -4,9 +4,10 @@
 #+ecl
 (require '#:cmp)
 
-#+(and windows (not ocicl))
+#+(and win32 (not ocicl) (not quicklisp))
 (when (probe-file #P"C:/Users/bhw/AppData/Local/ocicl/ocicl-runtime.lisp")
   (load #P"C:/Users/bhw/AppData/Local/ocicl/ocicl-runtime.lisp"))
+
 ;;; Any systems you install in C:/Users/bhw/AppData/Local/ocicl/
 ;;; will be available globally unless you comment out this line:
 #+windows
@@ -14,7 +15,7 @@
 
 
 ;;; https://github.com/ocicl/ocicl.git
-#-(or windows ocicl)
+#-(or win32 ocicl)
 (when (probe-file #P"/home/skin/.local/share/ocicl/ocicl-runtime.lisp")
   (load #P"/home/skin/.local/share/ocicl/ocicl-runtime.lisp"))
 ;;; Any systems you install in C:/Users/bhw/AppData/Local/ocicl/
@@ -40,10 +41,6 @@
     (declare (ignore out)
              (ignore err))
     (eql code 0)))
-
-
-
-
 
 #+sbcl
 (push #'nvim *ed-functions*)
