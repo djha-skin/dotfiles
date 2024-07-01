@@ -4,6 +4,7 @@
 "query:Technology:unread = \"yes\" and tags # \"tech\""
 "query:Comics:unread = \"yes\" and tags # \"comics\""
 "query:News:unread = \"yes\" and tags # \"news\""
+https://notes.eatonphil.com/rss.xml development
 https://kmcd.dev/posts/index.xml development
 https://reasonableapproximation.net/rss.xml development
 http://composition.al/atom.xml development
@@ -50,7 +51,7 @@ https://blog.metaobject.com/feeds/posts/default development
 https://scattered-thoughts.net/atom.xml development
 https://buttondown.email/cassidoo/rss development
 https://www.juxt.pro/blog/rss.xml development
-http://planet.clojure.in/atom.xml development
+http://planet.clojure.in/atom.xml
 https://ericnormand.me/rss.xml development
 https://clojure.org/feed.xml development
 http://feeds.feedburner.com/Wrockblog devops
@@ -90,10 +91,8 @@ http://feeds.bbci.co.uk/news/world/rss.xml news
 https://www.cbc.ca/cmlink/rss-world news
 https://www.reutersagency.com/feed/?taxonomy=best-topics&post_type=best news
 https://www.reutersagency.com/feed/?best-topics=tech&post_type=best news
-https://www.reutersagency.com/feed/?best-topics=political-general&post_type=best
-news
-https://www.reutersagency.com/feed/?best-topics=business-finance&post_type=best
-news
+https://www.reutersagency.com/feed/?best-topics=political-general&post_type=best news
+https://www.reutersagency.com/feed/?best-topics=business-finance&post_type=best news
 https://www.reutersagency.com/feed/?post_type=reuters-best news
 http://feeds.foxnews.com/foxnews/latest news
 http://www.telegraph.co.uk/news/worldnews/rss news
