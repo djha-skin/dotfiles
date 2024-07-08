@@ -10,16 +10,11 @@ fi
 
 echo "${@}" > ~/.screen2rclone.log
 
-raw=false
 viewport=false
 remote=OneDrive
 while [ -n "${1}" ]
 do
     case "${1}" in
-        --raw)
-            raw=true
-            shift
-            ;;
         --view)
             viewport=true
             shift
@@ -44,11 +39,32 @@ dest="${remote}:Screenshots"
 #mkdir -p "${src}"
 #rclone mkdir "${dest}"
 
+rclone_args=""
+
+
 echo "screenshot"  >> ~/.screen2rclone.log 2>&1
 screenshot-region "${src}/${fname}"  >> ~/.screen2rclone.log 2>&1
 echo "copy"  >> ~/.screen2rclone.log 2>&1
-rclone copyto "${src}/${fname}" "${dest}/${fname}"  >> ~/.screen2rclone.log 2>&1
+rclone copyto -M "${src}/${fname}" "${dest}/${fname}"  >> ~/.screen2rclone.log 2>&1
 echo "clipboard"  >> ~/.screen2rclone.log 2>&1
-raw_link=$(rclone link "${dest}/${fname}")
-printf "${raw_link}" | copy >/dev/null 2>/dev/null
+rclone_link=$(rclone link -M ${rclone_args} "${dest}/${fname}")
+link=
+if echo "${remote}" | grep -F -i 'OneDrive'
+then
+    if [ "${viewport}" = "false" ]; then
+        link="${rclone_link}"
+    else
+        link="$(echo -n "${rclone_link}" | \
+                sed \
+                    -e 's/\/root\/content$//' \
+                    -e 's|^https://api\.onedrive\.com/v1\.0/shares/u!||' \
+                    -e 's|-|+|g' \
+                    -e 's|_|/|g' \
+                    -e 's|$|=|g' | \
+                base64 -d)"
+    fi
+else
+    link="${rclone_link}"
+fi
+printf "${link}" | copy >/dev/null 2>/dev/null
 notify "screen2rclone" "Synced to ${remote}, URL in clipboard"  >> ~/.screen2rclone.log 2>&1
