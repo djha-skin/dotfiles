@@ -4,6 +4,7 @@
 "query:Technology:unread = \"yes\" and tags # \"tech\""
 "query:Comics:unread = \"yes\" and tags # \"comics\""
 "query:News:unread = \"yes\" and tags # \"news\""
+https://andrew.gibiansky.com/feed.rss development
 https://notes.eatonphil.com/rss.xml development
 https://kmcd.dev/posts/index.xml development
 https://reasonableapproximation.net/rss.xml development
