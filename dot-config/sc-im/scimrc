@@ -1,0 +1,41 @@
+set xlsx_readformulas = 1
+
+
+define_color "Background" 40 42 54
+define_color "AlternateBackground" 68 71 90
+define_color "Foreground" 248 248 242
+define_color "Comment" 98 114 164
+define_color "Cyan" 139 233 253
+define_color "Green" 80 250 123
+define_color "Orange" 255 184 108
+define_color "Pink" 255 121 198
+define_color "Purple" 189 147 249
+define_color "Red" 255 85 85
+define_color "Yellow" 241 250 140
+
+color "type=NORMAL fg=Foreground bg=DEFAULT_COLOR"
+color "type=INPUT fg=Yellow bg=DEFAULT_COLOR"
+
+color "type=GRID_EVEN fg=DEFAULT_COLOR bg=Background"
+color "type=HEADINGS fg=Orange bg=Background"
+color "type=GRID_ODD fg=DEFAULT_COLOR bg=AlternateBackground"
+color "type=HEADINGS_ODD fg=Orange bg=AlternateBackground"
+color "type=MODE fg=Comment bg=DEFAULT_COLOR"
+
+color "type=CELL_SELECTION fg=Yellow bg=BLACK bold=1"
+color "type=CELL_SELECTION_SC fg=Yellow bg=BLACK bold=1"
+
+color "type=STRG fg=Pink bg=DEFAULT_COLOR"
+color "type=DATEF fg=Purple bg=DEFAULT_COLOR"
+color "type=NUMB fg=Green bg=DEFAULT_COLOR"
+color "type=EXPRESSION fg=Cyan bg=DEFAULT_COLOR"
+color "type=CELL_ERROR fg=Background bg=Red"
+color "type=CELL_NEGATIVE fg=Red bg=DEFAULT_COLOR"
+color "type=CELL_ID fg=Comment bg=DEFAULT_COLOR bold=1"
+color "type=CELL_FORMAT fg=Orange bg=DEFAULT_COLOR"
+color "type=CELL_CONTENT fg=Foreground bg=DEFAULT_COLOR bold=1"
+color "type=INFO_MSG fg=Comment bg=DEFAULT_COLOR"
+color "type=ERROR_MSG fg=Background bg=Red underline=1"
+color "type=WELCOME fg=Purple bg=Background bold=1"
+color "type=HELP_HIGHLIGHT fg=Yellow bg=DEFAULT_COLOR bold=1"
+
