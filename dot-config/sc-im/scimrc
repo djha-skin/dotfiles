@@ -1,5 +1,13 @@
 set xlsx_readformulas = 1
+#set numeric = 1
+#set numeric_zero = 1
+#set numeric_decimal = 1
+set autocalc = 1
 
+
+# keys
+
+# Colorscheme -- Dracula-ish
 
 define_color "Background" 40 42 54
 define_color "AlternateBackground" 68 71 90
