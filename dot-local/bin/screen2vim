@@ -18,7 +18,7 @@ base=$(echo "${1}" | sed -e 's|[^/]*/||g' -e 's| |_|g' -e 's|\.md$||')
 
 fname="${base}_${now}.png"
 
-screenshot-region "${dest}/${fname}"
+screenshot-region "${dest}/${fname}" >/dev/null 2>&1
 
 
 resolution=$(identify "${dest}/${fname}" | awk '{print $3}')
@@ -46,7 +46,11 @@ else
     height="${hheight}"
 fi
 
-convert "${dest}/${fname}" -resize "${width}x${height}" "${dest}/${fname}"
+magick \
+      -quiet \
+      "${dest}/${fname}"  \
+      -resize "${width}x${height}" \
+      "${dest}/${fname}"
 
 out="![](${2}/${fname})"
 
