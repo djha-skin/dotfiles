@@ -4,6 +4,7 @@
 "query:Technology:unread = \"yes\" and tags # \"tech\""
 "query:Comics:unread = \"yes\" and tags # \"comics\""
 "query:News:unread = \"yes\" and tags # \"news\""
+https://formal.land/blog/rss development formal-verification
 https://www.evalapply.org/index.xml development clojure
 https://matt.sh/.rss development
 https://samwho.dev/rss.xml development
