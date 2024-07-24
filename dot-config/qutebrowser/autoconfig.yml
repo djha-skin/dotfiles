@@ -23,8 +23,10 @@ settings:
         pt: spawn --userscript qute-keepassxc --connection home.key --key A1F9E6A2696D3CAADEDB203C3812FEA997B503B6
           --totp
         pw: spawn --userscript qute-keepassxc --connection home.key --key A1F9E6A2696D3CAADEDB203C3812FEA997B503B6
+  colors.tabs.bar.bg:
+    global: '#222222'
   colors.webpage.darkmode.enabled:
-    global: true
+    global: false
   colors.webpage.darkmode.policy.page:
     global: smart
   content.javascript.clipboard:
@@ -81,13 +83,15 @@ settings:
       right: 4
       top: 8
   tabs.position:
-    global: top
+    global: left
   tabs.show:
     global: always
   tabs.show_switching_delay:
     global: 3000
+  tabs.title.format:
+    global: '{audio}'
   tabs.width:
-    global: 20%
+    global: 4%
   url.default_page:
     global: https://github.com/
   url.searchengines:

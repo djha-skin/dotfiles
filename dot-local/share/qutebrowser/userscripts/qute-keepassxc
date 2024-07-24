@@ -224,7 +224,7 @@ def select_account(creds):
         if len(creds) == 1:
             return creds[0]
         idx = subprocess.check_output(
-                ['rofi', '-dmenu', '-format', 'i', '-matching', 'fuzzy',
+                ['rofi', '-dpi', '1', '-dmenu', '-format', 'i', '-matching', 'fuzzy',
                 '-p', 'Search',
                 '-mesg', '<b>qute-keepassxc</b>: select an account, please!'],
                 input=b"\n".join(c['login'].encode('utf-8') for c in creds)
