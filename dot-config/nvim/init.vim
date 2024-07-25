@@ -13,7 +13,6 @@ xmap <Leader>g <Plug>SlimeRegionSend
 nmap <Leader>g <Plug>SlimeParagraphSend
 nmap <Leader>G <Plug>SlimeConfig
 
-
 if len($TMUX) > 0
     if has('win32')
         let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -105,13 +104,20 @@ Plug 'overcache/NeoSolarized'
 Plug 'guns/vim-sexp'
 Plug 'https://git.sr.ht/~skin/roswell-sbcl.vim'
 Plug 'vim-scripts/DrawIt'
+Plug 'git@github.com:preservim/nerdtree.git'
 call plug#end()
+
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <leader>N :NERDTreeToggle<CR>
+nnoremap <leader>/ :NERDTreeFind<CR>
+
 let g:sexp_enable_insert_mode_mappings = 0
 let g:paredit_mode=1
 nnoremap <Leader>w <C-w>
 nnoremap <Leader>ww <C-w><C-w>
 vnoremap <Leader>r y<C-w>wpa<CR><C-\><C-n><C-w>p
 
+autocmd VimEnter * NERDTree | wincmd p
 "let g:ycm_language_server =
 "\ [
 "\   {
@@ -336,8 +342,6 @@ vnoremap <Leader>c "+y
 "
 nnoremap <Leader>v "+]p
 "
-nnoremap <Leader>n :tabn<CR>
-nnoremap <Leader>p :tabp<CR>
 
 "au BufRead,BufNewFile *.c,*.h set makeprg=gcc\ \"%\"
 au BufRead,BufNewFile *.rkt,*.rktl  set filetype=racket
