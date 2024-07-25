@@ -91,7 +91,7 @@ settings:
   tabs.title.format:
     global: '{audio}'
   tabs.width:
-    global: 4%
+    global: 64
   url.default_page:
     global: https://github.com/
   url.searchengines:
