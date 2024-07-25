@@ -51,19 +51,20 @@ else
     tmux send-keys -l -t :.0 "worknotesppushd -i 0 .diary"
 fi
 tmux send-keys -l -t :.1 "pom"
-#tmux new-window
-#tmux rename-window "Email"
-#tmux split-window
-#tmux send-keys -l -t :.0 "cd ~mutt -F ~/.mutt/mhome.accountOd"
-#if [ "${play}" -ne 0 ]
-#then
-#    tmux send-keys -l -t :.1 "cd ~mutt -F ~/.mutt/mmigadu.accountOd"
-#else
-#    tmux send-keys -l -t :.1 "cd ~mutt -F ~/.mutt/mwork.accountOd"
-#fi
-#tmux new-window
-#tmux rename-window "Calendar"
-#tmux send-keys -l -t :.0 "khal interactive"
+tmux new-window
+tmux rename-window "Email"
+tmux split-window
+tmux send-keys -l -t :.0 "cd ~mutt -F ~/.mutt/mhome.accountOd"
+if [ "${play}" -ne 0 ]
+then
+    tmux send-keys -l -t :.1 "cd ~mutt -F ~/.mutt/mmigadu.accountOd"
+else
+    tmux send-keys -l -t :.1 "cd ~mutt -F ~/.mutt/mwork.accountOd"
+fi
+tmux new-window
+tmux rename-window "Calendar"
+tmux send-keys -l -t :.0 "rm -rf ~/.config/vdirsyncer/*_tokenvdirsyncer synckhal interactive"
+sleep 30
 tmux new-window
 tmux send-keys -l -t :.0 "newsboatR"
 tmux rename-window "News"
@@ -76,16 +77,17 @@ then
     tmux send-keys -l -t :.1 "vpndir./aws-connect.sh"
     sleep 30
     tmux send-keys -l -t :.0 ""
-    tmux send-keys -l -t :.0 "./dns.sh"
+    tmux send-keys -l -t :.0 "./dns.shssh git@github.com"
+
 fi
-#tmux new-window
-#tmux rename-window "Chat"
-#tmux send-keys -l -t :.0 "senpai"
-#tmux split-window
-#tmux send-keys -l -t :.1 "login-to-discord"
-#tmux split-window
-#tmux send-keys -l -t :.2 "cd ~nchat"
-#tmux select-layout even-vertical
+tmux new-window
+tmux rename-window "Chat"
+tmux send-keys -l -t :.0 "senpai"
+tmux split-window
+tmux send-keys -l -t :.1 "login-to-discord"
+tmux split-window
+tmux send-keys -l -t :.2 "cd ~nchat"
+tmux select-layout even-vertical
 tmux new-window
 tmux rename-window "Config"
 tmux send-keys -l -t :.0 "cd ~/Code/skin/dotfiles"
