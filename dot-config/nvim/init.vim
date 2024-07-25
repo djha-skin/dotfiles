@@ -1,9 +1,8 @@
-set spell spelllang=en
 let mapleader="\<SPACE>"
-
+set nospell
 let g:black_linelength = 79
 let g:vim_markdown_auto_insert_bullets = 0
-let g:vim_markdown_new_list_item_indent = 2
+let g:vim_markdown_new_list_item_indent = 4
 let g:slime_target = "conemu"
 let b:slime_target = "conemu"
 let b:slime_debug = 0
@@ -220,6 +219,7 @@ elseif has('win32unix')
     "if that doesn't work, try this:
     set backspace=indent,eol,start
 endif
+"colorscheme NeoSolarized
 colorscheme simple
 syntax enable
 
@@ -322,6 +322,9 @@ au BufRead,BufNewFile *.md nnoremap <LocalLeader>t :let @/=""<CR>:s/^\( *\)\(- *
 au BufRead,BufNewFile *.md set makeprg=markdown-to-pdf\ %\ %:r.pdf
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>v :w<CR>:execute "!sh -c \"zathura '%:r.pdf' &\""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>f :w<CR>:execute "!sh -c \"zathura '%' && sleep 1\""<CR>
+au BufRead,BufNewFile *.md setlocal spell spelllang=en
+au BufRead,BufNewFile *.eml setlocal spell spelllang=en
+au BufRead,BufNewFile *.txt setlocal spell spelllang=en
 au BufRead,BufNewFile *.dot set makeprg=dot\ -Tpng\ %\ -o\ %:r.png
 au BufRead,BufNewFile *.dot nnoremap <LocalLeader>v :w<CR>:execute "!sh -c \"imv '%:r.png' &\""<CR>
 
@@ -386,7 +389,6 @@ au BufRead,BufNewFile *.hs set shiftwidth=2 | set tabstop=2
 au BufRead,BufNewFile *.mtn set tabstop=8 | set shiftwidth=8 | set noexpandtab
 au BufRead,BufNewFile *.tsv set tabstop=8 | set shiftwidth=8 | set noexpandtab
 au BufRead,BufNewFile *.eml set colorcolumn=75 | map <LocalLeader>m :r!get-message-id %<CR>
-autocmd TermOpen * setlocal nospell
 au BufWritePost *.tf !terraform fmt %
 
 " make pretty formatted use of variables
