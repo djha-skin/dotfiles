@@ -1,0 +1,8 @@
+#!/bin/sh
+
+. ${HOME}/.profile
+
+pandoc -f commonmark-raw_html+pipe_tables+task_lists+emoji -t html \
+    -V colorlinks=true \
+    "${1}" \
+    -o "${2}"
