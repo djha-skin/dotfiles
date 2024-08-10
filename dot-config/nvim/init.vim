@@ -1,8 +1,15 @@
+set spell spelllang=en
 let mapleader="\<SPACE>"
-set nospell
+
+filetype off
+set runtimepath+=/usr/local/share/lilypond/current/vim/
+filetype on
+syntax on
+
+
 let g:black_linelength = 79
 let g:vim_markdown_auto_insert_bullets = 0
-let g:vim_markdown_new_list_item_indent = 4
+let g:vim_markdown_new_list_item_indent = 2
 let g:slime_target = "conemu"
 let b:slime_target = "conemu"
 let b:slime_debug = 0
@@ -12,6 +19,7 @@ let g:slime_default_config = {"HWND": "0"}
 xmap <Leader>g <Plug>SlimeRegionSend
 nmap <Leader>g <Plug>SlimeParagraphSend
 nmap <Leader>G <Plug>SlimeConfig
+
 
 if len($TMUX) > 0
     if has('win32')
@@ -82,7 +90,7 @@ endif
 "Plug 'gsuuon/llm.nvim'
 Plug 'jpalardy/vim-slime'
 Plug 'bakpakin/janet.vim'
-Plug 'github/copilot.vim'
+"Plug 'github/copilot.vim'
 Plug 'vlime/vlime', {'rtp': 'vim/'}
 Plug 'rhysd/vim-grammarous'
 Plug 'martinda/Jenkinsfile-vim-syntax'
@@ -104,12 +112,8 @@ Plug 'overcache/NeoSolarized'
 Plug 'guns/vim-sexp'
 Plug 'https://git.sr.ht/~skin/roswell-sbcl.vim'
 Plug 'vim-scripts/DrawIt'
-Plug 'git@github.com:preservim/nerdtree.git'
 call plug#end()
 
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <leader>N :NERDTreeToggle<CR>
-nnoremap <leader>/ :NERDTreeFind<CR>
 
 let g:sexp_enable_insert_mode_mappings = 0
 let g:paredit_mode=1
@@ -117,7 +121,6 @@ nnoremap <Leader>w <C-w>
 nnoremap <Leader>ww <C-w><C-w>
 vnoremap <Leader>r y<C-w>wpa<CR><C-\><C-n><C-w>p
 
-autocmd VimEnter * NERDTree | wincmd p
 "let g:ycm_language_server =
 "\ [
 "\   {
@@ -328,9 +331,6 @@ au BufRead,BufNewFile *.md nnoremap <LocalLeader>t :let @/=""<CR>:s/^\( *\)\(- *
 au BufRead,BufNewFile *.md set makeprg=markdown-to-pdf\ %\ %:r.pdf
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>v :w<CR>:execute "!sh -c \"zathura '%:r.pdf' &\""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>f :w<CR>:execute "!sh -c \"zathura '%' && sleep 1\""<CR>
-au BufRead,BufNewFile *.md setlocal spell spelllang=en
-au BufRead,BufNewFile *.eml setlocal spell spelllang=en
-au BufRead,BufNewFile *.txt setlocal spell spelllang=en
 au BufRead,BufNewFile *.dot set makeprg=dot\ -Tpng\ %\ -o\ %:r.png
 au BufRead,BufNewFile *.dot nnoremap <LocalLeader>v :w<CR>:execute "!sh -c \"imv '%:r.png' &\""<CR>
 
@@ -342,7 +342,6 @@ vnoremap <Leader>c "+y
 "
 nnoremap <Leader>v "+]p
 "
-
 "au BufRead,BufNewFile *.c,*.h set makeprg=gcc\ \"%\"
 au BufRead,BufNewFile *.rkt,*.rktl  set filetype=racket
 " insert a unicode lambda on C-\
@@ -393,6 +392,7 @@ au BufRead,BufNewFile *.hs set shiftwidth=2 | set tabstop=2
 au BufRead,BufNewFile *.mtn set tabstop=8 | set shiftwidth=8 | set noexpandtab
 au BufRead,BufNewFile *.tsv set tabstop=8 | set shiftwidth=8 | set noexpandtab
 au BufRead,BufNewFile *.eml set colorcolumn=75 | map <LocalLeader>m :r!get-message-id %<CR>
+autocmd TermOpen * setlocal nospell
 au BufWritePost *.tf !terraform fmt %
 
 " make pretty formatted use of variables
@@ -467,6 +467,7 @@ endfunction
 au BufRead,BufNewFile *.lisp compiler roswell-sbcl
 "au BufWritePre *.lisp call Indent()"
 au BufRead,BufNewFile *.asd compiler roswell-sbcl
-
-
+au BufRead,BufNewFile *.ly nnoremap <LocalLeader>p :!timidity output/%:r.midi<CR>
+au BufRead,BufNewFile *.ly nnoremap <LocalLeader>v :!zathura output/%:r.pdf &<CR>
+"au BufRead,BufNewFile *.ly set makeprg=lilypond\ --formats=midi,pdf\ %
 

@@ -4,8 +4,8 @@
 
 pandoc -f commonmark-raw_html+pipe_tables+task_lists+emoji -t pdf \
     --pdf-engine=xelatex \
-    -V 'sansfont=Whitney SSm Medium' \
-    -V 'mainfont=Whitney SSm Medium' \
+    -V 'sansfont=Noto Sans' \
+    -V 'mainfont=Noto Sans' \
     -V 'monofont=Fira Code' \
     -V colorlinks=true \
     -V 'fontsize=12pt' \
