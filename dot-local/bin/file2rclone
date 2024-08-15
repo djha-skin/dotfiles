@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -e
+set -ex
 
 if [ -f ~/.profile ]
 then
@@ -10,7 +10,7 @@ then
     . ~/.zprofile
 fi
 
-raw=true
+raw=false
 remote=OneDrive
 while [ -n "${1}" ]
 do
@@ -38,8 +38,30 @@ fname="$(echo "${path}" | sed -e 's|[^/]*/||g')"
 #echo "startup"
 #mkdir -p "${src}"
 #rclone mkdir "${dest}"
+rclone_args=""
 
-rclone copy "${path}" "${dest}/${fname}"
-raw_link=$(rclone link "${dest}/${fname}")
-printf "${raw_link}" | copy >/dev/null 2>/dev/null
-notify "file2rclone" "Synced to ${remote}, URL in clipboard"
+rclone copyto -M "${path}" "${dest}/${fname}"
+rclone_link=$(rclone link -M ${rclone_args} "${dest}/${fname}")
+link=
+if echo "${remote}" | grep -E -q '[Oo]ne[Dd]rive'
+then
+    if [ "${raw}" = "true" ]; then
+        link="${rclone_link}"
+        echo "Onedrive with no viewport"  >> ~/.screen2rclone.log 2>&1
+    else
+        link="$(echo -n "${rclone_link}" | \
+                sed \
+                    -e 's/\/root\/content$//' \
+                    -e 's|^https://api\.onedrive\.com/v1\.0/shares/u!||' \
+                    -e 's|-|+|g' \
+                    -e 's|_|/|g' \
+                    -e 's|$|=|g' | \
+                base64 -d)"
+        echo "Onedrive with viewport"  >> ~/.screen2rclone.log 2>&1
+    fi
+else
+    echo "Not OneDrive"  >> ~/.screen2rclone.log 2>&1
+    link="${rclone_link}"
+fi
+printf "${link}" | copy >/dev/null 2>/dev/null
+notify "file2rclone" "Synced to ${remote}, URL in clipboard"  >> ~/.screen2rclone.log 2>&1
