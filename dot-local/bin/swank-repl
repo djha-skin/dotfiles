@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Don't load quicklisp, I use OCICL
+# But load swank though
+# Then just sit there waiting for input
+ros run -Q \
+    -e '(asdf:load-system :swank)' \
+    -e '(swank:create-server :dont-close t)'
