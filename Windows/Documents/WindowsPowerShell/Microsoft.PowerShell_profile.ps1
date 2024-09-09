@@ -17,6 +17,15 @@ if (-not (Test-Path Alias:which)) {
     Set-Alias -name which -Value Get-Command
 }
 
+function conjureRepl {
+    ros run --eval '(ql:quickload :swank)' --eval '(swank:create-server :dont-close t)'
+}
+
+if (-Not (Test-Path Alias:conjure-repl)) {
+
+    Set-Alias -name conjure-repl -Value conjureRepl
+}
+
 function Out-UTF8-NoBom {
     param
     (
@@ -189,17 +198,19 @@ function prompt {
     $prompt += "$pathPrelude\"
     $prompt += "$startMagenta"
     $prompt += "$pathSuffix"
-    $prompt += "$endBright "
 
-    if (find-git) {
-        $gitPrompt = Write-Prompt $prompt
-        $gitPrompt += & $GitPromptScriptBlock
-        if ($gitPrompt) {
-            $prompt = "$gitPrompt "
-        }
-    }
-
-    $prompt += "$startBright"
+    #if (find-git) {
+    #    $prompt += "$endBright "
+    #    $branch = git branch --show-current
+    #    $gitInfo = git status --porcelain=v2
+    #    $prompt += "$startCyan"
+    #    $prompt += "$branch"
+    #    if ($gitInfo) {
+    #        $prompt += "$startYellow"
+    #        $prompt += "*"
+    #    }
+    #    $prompt += "$startBright"
+    #}
     $prompt += "$startBlue"
     $prompt += ">"
     $prompt += "$endColor"
@@ -211,7 +222,6 @@ function prompt {
     } else {
         return " "
     }
-
     return $prompt
 }
 
