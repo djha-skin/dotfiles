@@ -1,6 +1,6 @@
 REM @echo off
 
-set "remote=HomeGoogleDrive"
+set "remote=HomeOneDrive"
 
 goto endusage
 :usage
@@ -31,37 +31,33 @@ goto endmain
         mkdir "%fdir%"
     )
     REM scoop install printf
+    REM
     for /f "tokens=*" %%i in ('printf "%%04d-%%02d-%%02dT%%02d-%%02d-%%02d.png" "%date:~10%" "%date:~4,2%" "%date:~7,2%" "%time:~0,2%" "%time:~3,2%" "%time:~6,2%"') do ( set "fname=%%i" )
     REM set "fname=%date:~10%-%date:~4,2%-%date:~7,2%T%time:~0,2%-%time:~3,2%-%time:~6,2%.png"
     set "fpath=%fdir%\%fname%"
     rem REQUIRES ksnip for this to work.
     ksnip -r -p "%fpath%"
-    set "fdest=%remote%:Screenshots"
-    rclone copy "%fpath%" "%fdest%"
-    for /f "tokens=*" %%i in ('rclone link %fdest%/%fname%') do ( set "url=%%i" )
-    
+    set "fdest=%remote%:Screenshots/%fname%"
+    rclone copyto -M "%fpath%" "%fdest%"
+    for /f "tokens=*" %%i in ('rclone link %fdest%') do ( set "url=%%i" )
     if NOT "%raw%" == "true" (
-        for /f "tokens=2 delims==" %%i in ("%url%") do (
-            set "fid=%%i"
-            REM set "url=https://drive.google.com/uc?export=view^^^&id=%fid%^^^&filename=%fname%"
-            set "url=https://drive.google.com/uc?id=%fid%&filename=%fname%"
+        for /f "tokens=*" %%i in ('^
+            printf "%url%" ^| ^
+                sed -e "s/\/root\/content$//" ^
+                    -e "s|^https://api\.onedrive\.com/v1\.0/shares/u!||" ^
+                    -e "s|-|+|g" ^
+                    -e "s|_|/|g" ^
+                    -e "s|$|=|g" ^| ^
+                 base64 -d ^
+        ') do (
+            set "url=%%i"
         )
     )
-
 
     printf "%%s" "%url%" | clip
 
     msg %USERNAME% " Copied `%fpath%` to `%fdest%`, link in clipboard."
     goto :eof
 :endmain
-
-
-
-
-
-
-
-
-
 
 goto main
