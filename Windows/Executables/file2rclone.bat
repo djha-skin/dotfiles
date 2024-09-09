@@ -3,8 +3,8 @@
 setlocal
 set "me=%~f0"
 
-set "remote=HomeGoogleDrive"
 set "raw=false"
+set "remote=HomeOneDrive"
 
 goto endusage
 :usage
@@ -21,9 +21,6 @@ goto endmain
             shift
             set "remote=%1"
             shift
-        ) else if "%1"=="/raw" (
-            set "raw=true"
-            shift
         ) else (
             set "ret=main_argsloop_else"
             goto usage
@@ -33,8 +30,6 @@ goto endmain
         goto argsloop
     :outargsloop
 
-
-    rem REQUIRES ksnip for this to work.
     for /f "delims=" %%I in ('powershell -noprofile "iex (${%me%} | out-string)"') do (
         set "fpath=%%~I"
         set "fname=%%~nxI"
@@ -67,20 +62,28 @@ goto endmain
     ) else if "%fext%" == ".txt" (
         set "raw=false"
     )
-    set "fdest=%remote%:Files"
-    rclone copy "%fpath%" "%fdest%"
-    for /f "tokens=*" %%i in ('rclone link %fdest%/%fname%') do ( set "url=%%i" )
-
+    set "fdest=%remote%:Files/%fname%"
+    rclone copyto -M "%fpath%" "%fdest%"
+    for /f "tokens=*" %%i in ('rclone link %fdest%') do ( set "url=%%i" )
     if NOT "%raw%" == "true" (
-        for /f "tokens=2 delims==" %%i in ("%url%") do (
-            REM set "url=https://drive.google.com/uc?export=view^^^&id=%%i^^^&filename=%fname%"
-            set "url=https://drive.google.com/uc?id=%fid%&filename=%fname%"
+        for /f "tokens=*" %%i in ('^
+            printf "%url%" ^| ^
+                sed -e "s/\/root\/content$//" ^
+                    -e "s|^https://api\.onedrive\.com/v1\.0/shares/u!||" ^
+                    -e "s|-|+|g" ^
+                    -e "s|_|/|g" ^
+                    -e "s|$|=|g" ^| ^
+                 base64 -d ^
+        ') do (
+            set "url=%%i"
         )
     )
 
     printf "%%s" "%url%" | clip
 
-    msg %USERNAME% " Copied `%fpath%` to `%fdest%`, link in clipboard."
+
+    set scriptloc=%~dp0
+    cscript "%scriptloc%message-box.vbs" "File uploaded, url in clipboard."
     goto :eof
 :endmain
 
@@ -96,3 +99,5 @@ $f.ShowHelp = $true
 $f.Multiselect = $true
 [void]$f.ShowDialog()
 if ($f.Multiselect) { $f.FileNames } else { $f.FileName }
+
+

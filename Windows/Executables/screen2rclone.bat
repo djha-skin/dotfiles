@@ -55,8 +55,9 @@ goto endmain
     )
 
     printf "%%s" "%url%" | clip
-
-    msg %USERNAME% " Copied `%fpath%` to `%fdest%`, link in clipboard."
+    set scriptloc=%~dp0
+    cscript "%scriptloc%message-box.vbs" "Screenshot uploaded, url in clipboard."
+    REM powershell -c "[void][System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms');$objNotifyIcon = New-Object System.Windows.Forms.NotifyIcon;$objNotifyIcon.Icon = [System.Drawing.SystemIcons]::Information;$objNotifyIcon.BalloonTipIcon = 'Info';$objNotifyIcon.BalloonTipText = 'Screenshot Uploaded';$objNotifyIcon.BalloonTipTitle = 'URL in clipboard :)';$objNotifyIcon.Visible = $True;$objNotifyIcon.ShowBalloonTip(10000);Start-Sleep 5"
     goto :eof
 :endmain
 
