@@ -4,7 +4,7 @@ set "filepath=%~1"
 for /f "delims=" %%i in ("%filepath%") do set base_dir=%%~dpi
 for /f "delims=" %%i in ("%filepath%") do set base=%%~ni
 
-set dest=%base_dir%%~2
+set dest=%base_dir%
 
 if not exist "%dest%" (
     mkdir "%dest%"
@@ -12,9 +12,9 @@ if not exist "%dest%" (
 
 for /f "tokens=*" %%i in ("%date:~10%-%date:~4,2%-%date:~7,2%T%time:~0,2%-%time:~3,2%-%time:~6,2%") do set now=%%i
 
-set fname=%base%_%now%.png
+set fname=%~2/%base%_%now%.png
 
-set fpath=%dest%\%fname%
+set fpath=%dest%%fname%
 
 ksnip -d 3 -r -p "%fpath%" >NUL
 REM ksnip -e "%fpath%"
@@ -47,4 +47,4 @@ if %width% gtr %height% (
 magick -quiet %fpath% -resize %width%x%height% %fpath%
 
 :end
-echo ![](%fpath%)
+echo ![](%fname%)
