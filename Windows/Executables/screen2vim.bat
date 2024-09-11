@@ -46,7 +46,5 @@ if %width% gtr %height% (
 
 magick -quiet %fpath% -resize %width%x%height% %fpath%
 
-echo ![](%fpath%)
-
 :end
-
+echo ![](%fpath%)
