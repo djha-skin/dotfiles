@@ -15,7 +15,9 @@ let b:slime_target = "conemu"
 let b:slime_debug = 0
 let g:slime_debug = 0
 let g:slime_no_mappings = 1
-let g:slime_default_config = {"HWND": "0"}
+let b:slime_no_mappings = 1
+let g:slime_config = {"HWND": "0:T1"}
+let b:slime_config = {"HWND": "0:T1"}
 xmap <Leader>g <Plug>SlimeRegionSend
 nmap <Leader>g <Plug>SlimeParagraphSend
 nmap <Leader>G <Plug>SlimeConfig
@@ -64,18 +66,18 @@ elseif has('win32')
         endif
     endif
 
-    let g:clipboard = {
-                \   'name': 'WslClipboard',
-                \   'copy': {
-                \      '+': 'clip.exe',
-                \      '*': 'clip.exe',
-                \    },
-                \   'paste': {
-                \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-                \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-                \   },
-                \   'cache_enabled': 0,
-                \ }
+    "let g:clipboard = {
+    "            \   'name': 'WslClipboard',
+    "            \   'copy': {
+    "            \      '+': 'clip.exe',
+    "            \      '*': 'clip.exe',
+    "            \    },
+    "            \   'paste': {
+    "            \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    "            \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    "            \   },
+    "            \   'cache_enabled': 0,
+    "            \ }
 else
     let g:netrw_browser_viewer='xdg-open'
     if len($TERMINAL_PROFILE) > 0
@@ -88,7 +90,8 @@ else
 endif
 "Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clangd-completer --go-completer --ts-completer --rust-completer --java-completer' }
 "Plug 'gsuuon/llm.nvim'
-Plug 'jpalardy/vim-slime'
+"Plug 'Olical/conjure'
+Plug 'djhaskin987/vim-slime'
 Plug 'bakpakin/janet.vim'
 "Plug 'github/copilot.vim'
 Plug 'vlime/vlime', {'rtp': 'vim/'}
@@ -310,17 +313,22 @@ tnoremap jk <C-\><C-n>
 nnoremap <Leader><space> :let @/=""<CR>
 nnoremap <Leader>d :put =strftime('%FT%T%z')<CR>
 nnoremap <Leader>b :execute "!git blame -L " . line(".") . "," . line(".") . " %"<CR>
-" Easier copy/pasta
+" Easier copy/pasta and other things
 if has('unix')
     vnoremap <Leader>c "+y:lua str2file(vim.fn.getreg('+'), '/tmp/screen-exchange')<CR>
     nnoremap <Leader>c "+y:lua str2file(vim.fn.getreg('+'), '/tmp/screen-exchange')<CR>
     nnoremap <Leader>v "+]p
     nnoremap <Leader>V :r /tmp/screen-exchange<CR>
+    au BufRead,BufNewFile *.md nnoremap <LocalLeader>v :w<CR>:execute "!sh -c \"zathura '%:r.pdf' &\""<CR>
+    au BufRead,BufNewFile *.md nnoremap <LocalLeader>f :w<CR>:execute "!sh -c \"zathura '%' && sleep 1\""<CR>
+
 elseif has('win32')
     vnoremap <Leader>c "+y:lua str2file(vim.fn.getreg('+'), "C:\\Users\\bhw\\AppData\\Local\\Temp\\vim-exchange.txt")<CR>
     nnoremap <Leader>c "+y:lua str2file(vim.fn.getreg('+'), "C:\\Users\\bhw\\AppData\\Local\\Temp\\vim-exchange.txt")<CR>
     nnoremap <Leader>v "+]p
     nnoremap <Leader>V :r "C:\\Users\\bhw\\AppData\\Local\\Temp\\vim-exchange.txt"<CR>
+    au BufRead,BufNewFile *.md nnoremap <LocalLeader>v :w<CR>:execute "!sh -c \"start '%:r.pdf' &\""<CR>
+    au BufRead,BufNewFile *.md nnoremap <LocalLeader>f :w<CR>:execute "!sh -c \"start '%' && sleep 1\""<CR>
 endif
 nnoremap <Leader>o :FZF<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>q :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} \{1,\}\([^ ].*\) *$/\1\2\3 \~\~\4\~\~/<CR>:let @/=""<CR>
@@ -329,12 +337,10 @@ au BufRead,BufNewFile *.md nnoremap <LocalLeader>e :let @/=""<CR>:s/^\( *\)\(- *
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>r :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} */\1/g<CR>:let @/=""<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>t :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} *[~]\{2\}\(.*\)[~]\{2\} *$/\1\2\3 \4/<CR>:let @/=""<CR>
 au BufRead,BufNewFile *.md set makeprg=markdown-to-pdf\ %\ %:r.pdf
-au BufRead,BufNewFile *.md nnoremap <LocalLeader>v :w<CR>:execute "!sh -c \"zathura '%:r.pdf' &\""<CR>
-au BufRead,BufNewFile *.md nnoremap <LocalLeader>f :w<CR>:execute "!sh -c \"zathura '%' && sleep 1\""<CR>
 au BufRead,BufNewFile *.dot set makeprg=dot\ -Tpng\ %\ -o\ %:r.png
 au BufRead,BufNewFile *.dot nnoremap <LocalLeader>v :w<CR>:execute "!sh -c \"imv '%:r.png' &\""<CR>
 
-au BufRead,BufNewFile *.md nnoremap <LocalLeader>s :lua vim.fn.execute("r!screen2vim '" ..  vim.fn.expand("%:p") .. "' 'img'")<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>s :lua vim.fn.execute("r!screen2vim " ..  vim.fn.expand("%:p") .. " img")<CR>
 nnoremap <Leader>( t(l"pda(hda("pp
 nnoremap <Leader>l :lua vim.diagnostic.setloclist()<CR>
 " the leader f won't work with this, but the leader G will.

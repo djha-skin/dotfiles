@@ -65,6 +65,7 @@ goto endmain
     set "fdest=%remote%:Files/%fname%"
     rclone copyto -M "%fpath%" "%fdest%"
     for /f "tokens=*" %%i in ('rclone link %fdest%') do ( set "url=%%i" )
+    REM scoop install coreutils
     if NOT "%raw%" == "true" (
         for /f "tokens=*" %%i in ('^
             printf "%url%" ^| ^
