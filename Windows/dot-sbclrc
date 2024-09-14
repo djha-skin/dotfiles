@@ -1,21 +1,21 @@
+(require '#:asdf)
 
-;;; The following lines added by ql:add-to-init-file:
+(sb-ext:restrict-compiler-policy 'debug 3)
+
+; The following lines added by ql:add-to-init-file:
 #-quicklisp
 (let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
                                        (user-homedir-pathname))))
   (when (probe-file quicklisp-init)
     (load quicklisp-init)))
 
-(defun nvim (fname) (uiop:run-program (list "nvim-qt" fname)))
+(defun nvim (fname)
+  (multiple-value-bind
+    (out err code)
+    (uiop:run-program (list "nvim-qt" fname))
+
+    (declare (ignore out)
+             (ignore err))
+    (eql code 0)))
 
 (push #'nvim *ed-functions*)
-(asdf:load-system "cffi")
-(pushnew (make-pathname
-           :device "C"
-           :directory '(:absolute
-                        "Users"
-                        "bhw"
-                        "Code"
-                        "cmake"
-                        "bin"))
-         cffi:*FOREIGN-LIBRARY-DIRECTORIES*)

@@ -1,16 +1,17 @@
 (require '#:asdf)
 
+#+sbcl
+(sb-ext:restrict-compiler-policy 'debug 3)
 
-#+ecl
-(require '#:cmp)
+#+ecl (require '#:cmp)
 
 #+(and win32 (not ocicl) (not quicklisp))
 (when (probe-file #P"C:/Users/bhw/AppData/Local/ocicl/ocicl-runtime.lisp")
-  (load #P"C:/Users/bhw/AppData/Local/ocicl/ocicl-runtime.lisp"))
+ (load #P"C:/Users/bhw/AppData/Local/ocicl/ocicl-runtime.lisp"))
 
 ;;; Any systems you install in C:/Users/bhw/AppData/Local/ocicl/
 ;;; will be available globally unless you comment out this line:
-#+windows
+#+win32
 (asdf:initialize-source-registry '(:source-registry :ignore-inherited-configuration (:tree #P"C:/Users/bhw/AppData/Local/ocicl/")))
 
 
@@ -20,16 +21,16 @@
   (load #P"/home/skin/.local/share/ocicl/ocicl-runtime.lisp"))
 ;;; Any systems you install in C:/Users/bhw/AppData/Local/ocicl/
 ;;; will be available globally unless you comment out this line:
-#-windows
+#-win32
 (asdf:initialize-source-registry '(:source-registry :ignore-inherited-configuration (:tree #P"/home/skin/local/share/ocicl/")))
 
 
 ;;; The following lines added by ql:add-to-init-file:
-;;;#-quicklisp
-;;;(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
+;;; #-quicklisp
+;;; (let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
 ;;;                                       (user-homedir-pathname))))
-;;;  (when (probe-file quicklisp-init)
-;;;    (load quicklisp-init)))
+;;;   (when (probe-file quicklisp-init)
+;;;     (load quicklisp-init)))
 ;;;
 
 (defun nvim (fname)
@@ -54,7 +55,6 @@
   (defvar *USER-CC-FLAGS* "")
   (export 'C:*CC*)
   (export 'C:*USER-CC-FLAGS*)
-  (in-package #:cl-user)
-  )
+  (in-package #:cl-user))
 
 (pushnew (uiop:getcwd) asdf:*central-registry*)
