@@ -7,6 +7,20 @@ filetype on
 syntax on
 
 
+let b:slime_default_config = {"HWND": "0:T1"}
+if has('win32')
+  let b:slime_default_config = {"HWND": "O:T1"}
+else
+  let b:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.0"}
+endif
+
+call plug#begin()
+Plug 'jpalardy/vim-slime'
+Plug 'guns/vim-sexp'
+call plug#end()
+
+
+
 let g:black_linelength = 79
 let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_new_list_item_indent = 2
@@ -14,10 +28,12 @@ let g:slime_target = "conemu"
 let b:slime_target = "conemu"
 let b:slime_debug = 0
 let g:slime_debug = 0
-let g:slime_no_mappings = 1
 let b:slime_no_mappings = 1
-let g:slime_config = {"HWND": "0:T1"}
+let g:slime_no_mappings = 1
 let b:slime_config = {"HWND": "0:T1"}
+let g:slime_config = {"HWND": "0:T1"}
+let b:slime_default_config = {"HWND": "0:T1"}
+let g:slime_default_config = {"HWND": "0:T1"}
 xmap <Leader>g <Plug>SlimeRegionSend
 nmap <Leader>g <Plug>SlimeParagraphSend
 nmap <Leader>G <Plug>SlimeConfig
@@ -231,8 +247,8 @@ elseif has('win32unix')
     "if that doesn't work, try this:
     set backspace=indent,eol,start
 endif
-"colorscheme NeoSolarized
-colorscheme simple
+colorscheme NeoSolarized
+"colorscheme simple
 syntax enable
 
 set formatoptions+=o
