@@ -5,23 +5,32 @@ for /f "delims=" %%i in ("%filepath%") do set base_dir=%%~dpi
 for /f "delims=" %%i in ("%filepath%") do set base=%%~ni
 
 set dest=%base_dir%
+set subdir=%~2
 
-if not exist "%dest%" (
-    mkdir "%dest%"
+if not exist "%dest%\%subdir%" (
+    mkdir "%dest%\%subdir%"
 )
 
-for /f "tokens=*" %%i in ("%date:~10%-%date:~4,2%-%date:~7,2%T%time:~0,2%-%time:~3,2%-%time:~6,2%") do set now=%%i
+set "clean_time=%time: =0%"
+for /f "tokens=*" %%i in ("%date:~10%-%date:~4,2%-%date:~7,2%T%clean_time:~0,2%-%clean_time:~3,2%-%clean_time:~6,2%") do set now=%%i
 
-set fname=%~2/%base%_%now%.png
+set "fname=%subdir%\%base%_%now%.png"
 
-set fpath=%dest%%fname%
+set "fpath=%dest%%fname%"
 
 ksnip -d 3 -r -p "%fpath%" >NUL
 REM ksnip -e "%fpath%"
 
-for /f "tokens=4-5 delims=x " %%G in ('magick identify "%fpath%"') do (
-    set width=%%G
-    set height=%%H
+for /f "tokens=4 delims= " %%G in ('magick identify "%fpath%"') do (
+    set widthheight=%%G
+    REM Skip any remaining (blank) lines
+    goto out
+)
+:out
+
+for /f "tokens=1-2 delims=x" %%G in ("%widthheight%") do (
+  set width=%%G
+  set height=%%H
 )
 
 set wwidth=720

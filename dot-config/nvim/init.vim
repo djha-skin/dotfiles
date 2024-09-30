@@ -356,7 +356,9 @@ au BufRead,BufNewFile *.md set makeprg=markdown-to-pdf\ %\ %:r.pdf
 au BufRead,BufNewFile *.dot set makeprg=dot\ -Tpng\ %\ -o\ %:r.png
 au BufRead,BufNewFile *.dot nnoremap <LocalLeader>v :w<CR>:execute "!sh -c \"imv '%:r.png' &\""<CR>
 
-au BufRead,BufNewFile *.md nnoremap <LocalLeader>s :lua vim.fn.execute("r!screen2vim " ..  vim.fn.expand("%:p") .. " img")<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>s :lua vim.fn.execute("r!screen2vim " ..  vim.fn.expand("%:p") .. " attach")<CR>
+au BufRead,BufNewFile *.md nnoremap <LocalLeader>a :lua vim.fn.execute("r!file2vim " ..  vim.fn.expand("%:p") .. " attach")<CR>
+
 nnoremap <Leader>( t(l"pda(hda("pp
 nnoremap <Leader>l :lua vim.diagnostic.setloclist()<CR>
 " the leader f won't work with this, but the leader G will.

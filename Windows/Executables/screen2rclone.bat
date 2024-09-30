@@ -32,7 +32,9 @@ goto endmain
     )
     REM scoop install printf
     REM
-    for /f "tokens=*" %%i in ('printf "%%04d-%%02d-%%02dT%%02d-%%02d-%%02d.png" "%date:~10%" "%date:~4,2%" "%date:~7,2%" "%time:~0,2%" "%time:~3,2%" "%time:~6,2%"') do ( set "fname=%%i" )
+
+    set "clean_time=%time: =0%"
+    for /f "tokens=*" %%i in ('printf "%%04d-%%02d-%%02dT%%02d-%%02d-%%02d.png" "%date:~10%" "%date:~4,2%" "%date:~7,2%" "%clean_time:~0,2%" "%clean_time:~3,2%" "%clean_time:~6,2%"') do ( set "fname=%%i" )
     REM set "fname=%date:~10%-%date:~4,2%-%date:~7,2%T%time:~0,2%-%time:~3,2%-%time:~6,2%.png"
     set "fpath=%fdir%\%fname%"
     rem REQUIRES ksnip for this to work.
