@@ -10,9 +10,11 @@ if (Test-Path Alias:\curl) {
 if (-not (Test-Path Alias:\ll)) {
     Set-Alias -name ll -Value Get-ChildItem
 }
+
 if (-not (Test-Path Alias:\vim)) {
     Set-Alias -name vim -Value nvim
 }
+
 if (-not (Test-Path Alias:which)) {
     Set-Alias -name which -Value Get-Command
 }
@@ -26,6 +28,13 @@ if (-Not (Test-Path Alias:conjure-repl)) {
     Set-Alias -name conjure-repl -Value conjureRepl
 }
 
+function vlimeRepl {
+    ros run --load C:/Users/bhw/AppData/Local/nvim/plugged/vlime/lisp/start-vlime.lisp
+}
+
+if (-Not (Test-Path Alias:vlime-repl)) {
+    Set-Alias -name vlime-repl -Value vlimeRepl
+}
 function Out-UTF8-NoBom {
     param
     (
@@ -56,8 +65,20 @@ function Out-UTF8-NoBom {
 $Env:WORKING_LOCATION_FILE="$Env:USERPROFILE\.wdh.txt"
 
 function pchanged {
+    param(
+        [Parameter(ValueFromPipeline = $true)]
+        [Int]$Index = -1
+    )
+
+    if ($Index -lt 0) {
+        $Remaining=""
+    } else {
+        $Remaining="-i $Index"
+    }
+
     if (Test-Path -Path "$Env:WORKING_LOCATION_FILE") {
-        cd "$(python3 "${Env:USERPROFILE}/Executables/wdh.py" -p "${Env:WORKING_LOCATION_FILE}" peek)"
+        cd "$(python3 -- "${Env:USERPROFILE}/Executables/wdh.py" `
+            -p "${Env:WORKING_LOCATION_FILE}" peek $Remaining)"
     } else {
         write-error "No directory on stack"
     }
@@ -65,9 +86,23 @@ function pchanged {
 
 
 function ppopd {
+    param(
+        [Parameter(ValueFromRemainingArguments)]
+        [Int]$Index = -1
+    )
+
+    if ($Index -lt 0) {
+        $Remaining=""
+    } else {
+        $Remaining="-i $Index"
+    }
     if (Test-Path -Path "$Env:WORKING_LOCATION_FILE") {
-        python3 "${Env:USERPROFILE}\Executables\wdh.py" -p "${Env:WORKING_LOCATION_FILE}" pop
-        cd "$(python3 "${Env:USERPROFILE}\Executables\wdh.py" -p "${Env:WORKING_LOCATION_FILE}" peek)"
+        python3 "${Env:USERPROFILE}\Executables\wdh.py" `
+            -p "${Env:WORKING_LOCATION_FILE}" `
+            pop $Remaining
+        cd "$(python3 "${Env:USERPROFILE}\Executables\wdh.py" `
+            -p "${Env:WORKING_LOCATION_FILE}" `
+            peek $Remaining)"
     } else {
         write-error "No directory on stack"
     }
@@ -78,34 +113,82 @@ function ppushd {
     param (
         [Parameter(Mandatory = $true)]
         [string]
-        $Path
+        $Path,
+        [Int]$Index = -1
     )
-    python3 "${Env:USERPROFILE}\Executables\wdh.py" -p "${Env:WORKING_LOCATION_FILE}" push "${Path}"
-    cd "$(python3 "${Env:USERPROFILE}\Executables\wdh.py" -p "${Env:WORKING_LOCATION_FILE}" peek)"
+
+    if ($Index -lt 0) {
+        $Remaining=""
+    } else {
+        $Remaining="-i $Index"
+    }
+    python3 "${Env:USERPROFILE}\Executables\wdh.py" `
+        -p "${Env:WORKING_LOCATION_FILE}" `
+        push "${Path}" `
+        $Remaining
+    cd "$(python3 "${Env:USERPROFILE}\Executables\wdh.py" `
+        -p "${Env:WORKING_LOCATION_FILE}" `
+        peek $Remaining)"
 }
 
 function psetd {
     param (
         [Parameter(Mandatory = $true)]
         [string]
-        $Path
+        $Path,
+        [Int]$Index = -1
     )
-    python3 "${Env:USERPROFILE}\Executables\wdh.py" -p "${Env:WORKING_LOCATION_FILE}" set "${Path}"
-    cd "$(python3 "${Env:USERPROFILE}\Executables\wdh.py" -p "${Env:WORKING_LOCATION_FILE}" peek)"
+
+    if ($Index -lt 0) {
+        $Remaining=""
+    } else {
+        $Remaining="-i $Index"
+    }
+    python3 "${Env:USERPROFILE}\Executables\wdh.py" `
+        -p "${Env:WORKING_LOCATION_FILE}" `
+        set "${Path}" $Remaining
+    cd "$(python3 "${Env:USERPROFILE}\Executables\wdh.py" `
+        -p "${Env:WORKING_LOCATION_FILE}" peek $Remaining)"
 }
 
 function plistd {
+    param(
+        [Parameter(ValueFromRemainingArguments)]
+        [Int]$Index
+    )
+    if ($Index) {
+        $Remaining="-i $Index"
+    } else {
+        $Remaining=""
+    }
     if (Test-Path -Path "$Env:WORKING_LOCATION_FILE") {
-        python3 "${Env:USERPROFILE}\Executables\wdh.py" -p "${Env:WORKING_LOCATION_FILE}" list
+        python3 "${Env:USERPROFILE}\Executables\wdh.py" `
+            -p "${Env:WORKING_LOCATION_FILE}" `
+            list $Remaining
     } else {
         write-error "No directory on stack"
     }
 }
 
+function pcleard {
+    rm "${Env:WORKING_LOCATION_FILE}"
+}
+
+function worknotes {
+    ppushd "$Env:USERPROFILE\OneDrive\Markdown\Work"
+}
+
+function homenotes {
+    ppushd "$Env:USERPROFILE\OneDrive\Markdown\Home"
+}
+
+function diary {
+    nvim "Planning\Diary\$(get-date -Format "yyyy-MM-dd-dddd").md"
+}
+
 if (-not ($Env:PATH -match "C:\\Users\\bhw\\Executables")) {
     $Env:PATH = "$Env:PATH;C:\\Users\\bhw\\Executables"
 }
-
 
 function procmon {
     while (1) {
