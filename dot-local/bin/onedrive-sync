@@ -1,0 +1,6 @@
+#!/bin/sh
+
+rclone sync OneDrive:/Markdown/ /home/skin/OneDrive/Markdown/
+rclone sync OneDrive:/KeePassXC/ /home/skin/OneDrive/KeePassXC/
+rclone sync OneDrive:/Documents/ /home/skin/OneDrive/Documents/
+rclone sync OneDrive:/Books/ /home/skin/OneDrive/Books/

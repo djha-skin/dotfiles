@@ -1,0 +1,6 @@
+[Unit]
+Description=OneDrive synchronization service
+
+[Service]
+Type=oneshot
+ExecStart=/home/skin/.local/bin/onedrive-sync

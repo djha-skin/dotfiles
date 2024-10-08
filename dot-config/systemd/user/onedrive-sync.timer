@@ -1,0 +1,10 @@
+[Unit]
+Description=OneDrive synchronization timer
+
+[Timer]
+OnBootSec=17m
+OnUnitActiveSec=47m
+Unit=onedrive-sync.service
+
+[Install]
+WantedBy=timers.target
