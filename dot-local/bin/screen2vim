@@ -49,10 +49,10 @@ if which magick 2>/dev/null
 then
     magic=magick
 else
-    magic=convert
+    magic=
 fi
 
-${magic} \
+${magic} convert \
       -quiet \
       "${dest}/${fname}"  \
       -resize "${width}x${height}" \

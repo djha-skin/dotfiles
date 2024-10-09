@@ -1,0 +1,61 @@
+#!/bin/sh
+set -e
+
+if which magick 2>/dev/null
+then
+    magic=magick
+else
+    magic=
+fi
+
+imgprocessing() {
+    imp_origin="${1}"
+    shift
+    imp_fpath="${1}"
+    shift
+
+    widthheight="$(${magic} identify "${imp_origin}" | awk '//{ print $4 }')"
+    width=$(echo "${widthheight}" | awk -F'[x+]' '//{print $1}')
+    height=$(echo "${widthheight}" | awk -F'[x+]' '//{print $2}')
+    wwidth=720
+    wheight=$(( ${height}000 / ( ${width}000 / 720 ) ))
+    hheight=1280
+    hwidth=$(( ${width}000 / ( ${height}000 / 1280 ) ))
+    if [ ${width} -le ${wwidth} -a ${height} -le ${hheight} ]
+    then
+        cp "${imp_origin}" "${imp_fpath}"
+    else
+        if [ ${width} -gt ${height} ]
+        then
+            width=${wwidth}
+            height=${wheight}
+        else
+            width=${hwidth}
+            height=${hheight}
+        fi
+        ${magic} convert -quiet "${imp_origin}" -resize "${width}x${height}" "${imp_fpath}"
+    fi
+}
+
+filepath="${1}"
+subdir="${2}"
+base_dir=$(echo "${filepath}" | sed -e 's|/[^/]*$|/|')
+origin="$(choose-file 2>/dev/null)"
+fname="$(echo "${origin}" | sed -e 's|[^/]*/||g')"
+fext="$(echo "${fname}" | sed -e 's|[^.]*\.||g')"
+fdest="${subdir}/${fname}"
+fpath="${base_dir}${fdest}"
+
+if [ ! -d "${base_dir}${subdir}" ]
+then
+    mkdir -p "${base_dir}${subdir}"
+fi
+
+if echo "${fext}" | grep -E -q '^(png|jpe?g|gifv?|mp4|webp)$'
+then
+    imgprocessing "${origin}" "${fpath}"
+    echo "![](${fdest})"
+else
+    cp "${origin}" "${fpath}"
+    echo "[](${fdest})"
+fi
