@@ -9,12 +9,14 @@ then
     exit 0
 fi
 
-offlineimap -a home
-notmuch --config=${HOME}/Mail/home/.notmuch-config new
-offlineimap -a work
-notmuch --config=${HOME}/Mail/work/.notmuch-config new
-offlineimap -a migadu
-notmuch --config=${HOME}/Mail/migadu/.notmuch-config new
+#offlineimap -a home
+mbsync -Va
+notmuch new
+
+#offlineimap -a work
+#notmuch --config=${HOME}/Mail/work/.notmuch-config new
+#offlineimap -a migadu
+#notmuch --config=${HOME}/Mail/migadu/.notmuch-config new
 vdirsyncer sync --no-force-delete
 khal-remind
 ) 9>~/.cache/sync-mail-lock

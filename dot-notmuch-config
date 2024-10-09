@@ -10,7 +10,7 @@
 # configured here named ".notmuch".
 #
 [database]
-path=/home/skin/~/Mail
+path=/home/skin/Mail
 # User configuration
 #
 # Here is where you can let notmuch know how you would like to be
@@ -29,7 +29,7 @@ path=/home/skin/~/Mail
 [user]
 name=Daniel Jay Haskin
 primary_email=djhaskin987@gmail.com
-other_email=dan@djhaskin.com;daniel.haskin@angel.com;
+other_email=dan@djhaskin.com;
 # Configuration for "notmuch new"
 #
 # The following options are supported here:

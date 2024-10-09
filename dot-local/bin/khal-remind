@@ -1,9 +1,9 @@
 #!/bin/sh
 set -e
 
+#    --include-calendar work_calendar_local \
 khal list \
     --include-calendar home_calendar_local \
-    --include-calendar work_calendar_local \
     --format '{start-time}-{end-time} {title}' \
     --day-format '' --notstarted now '23:59' | while read d
 do
