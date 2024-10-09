@@ -20,4 +20,5 @@ bisync() {
     bisync OneDrive:/KeePassXC/ /home/skin/OneDrive/KeePassXC/
     bisync OneDrive:/Documents/ /home/skin/OneDrive/Documents/
     bisync OneDrive:/Books/ /home/skin/OneDrive/Books/
+    bisync OneDrive:/Audio/ /home/skin/OneDrive/Audio/
 ) 9>~/.cache/onedrive-sync-lock
