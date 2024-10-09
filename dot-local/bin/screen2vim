@@ -4,7 +4,6 @@ set -e
 # In case I want to switch windows
 sleep 3
 
-
 base_dir=$(echo "${1}" | sed -e 's|/[^/]*$|/|g')
 
 dest="${base_dir}${2}"
@@ -46,7 +45,14 @@ else
     height="${hheight}"
 fi
 
-magick \
+if which magick 2>/dev/null
+then
+    magic=magick
+else
+    magic=convert
+fi
+
+${magic} \
       -quiet \
       "${dest}/${fname}"  \
       -resize "${width}x${height}" \

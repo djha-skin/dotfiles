@@ -1,6 +1,23 @@
 #!/bin/sh
 
-rclone sync OneDrive:/Markdown/ /home/skin/OneDrive/Markdown/
-rclone sync OneDrive:/KeePassXC/ /home/skin/OneDrive/KeePassXC/
-rclone sync OneDrive:/Documents/ /home/skin/OneDrive/Documents/
-rclone sync OneDrive:/Books/ /home/skin/OneDrive/Books/
+bisync() {
+    rclone bisync "${@}"
+    if [ "${?}" = 2 ]
+    then
+        rclone bisync "${@}" --resync
+    fi
+}
+
+. ${HOME}/.profile
+(
+    flock -n 9
+    if [ "${?}" -ne 0 ]
+    then
+        echo "Another instance is running." >&2
+        exit 0
+    fi
+    bisync OneDrive:/Markdown/ /home/skin/OneDrive/Markdown/
+    bisync OneDrive:/KeePassXC/ /home/skin/OneDrive/KeePassXC/
+    bisync OneDrive:/Documents/ /home/skin/OneDrive/Documents/
+    bisync OneDrive:/Books/ /home/skin/OneDrive/Books/
+) 9>~/.cache/onedrive-sync-lock

@@ -19,18 +19,18 @@ elif which grimshot >/dev/null 2>&1 && which swappy >/dev/null 2>&1
 then
     if [ "${clipboard}" -ne 0 ]
     then
-        grimshot --cursor save area - | swappy -f -
+        grimshot save area - --cursor | swappy -f -
     else
-        grimshot --cursor save area - | swappy -f -
+        grimshot save area - --cursor | swappy -f -
         mv ~/Pictures/Screenshots/swappy.png "${1}"
     fi
 elif which grimshot >/dev/null 2>&1
 then
     if [ "${clipboard}" -ne 0 ]
     then
-        grimshot --cursor copy area >/dev/null 2>&1
+        grimshot copy area --cursor >/dev/null 2>&1
     else
-        grimshot --cursor save area "${1}" >/dev/null 2>&1
+        grimshot save area "${1}" --cursor >/dev/null 2>&1
     fi
 elif which screencapture >/dev/null 2>&1
 then
