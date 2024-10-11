@@ -7,11 +7,20 @@ filetype on
 syntax on
 
 
-let b:slime_default_config = {"HWND": "0:T1"}
 if has('win32')
+  let g:slime_target = "conemu"
+  let b:slime_target = "conemu"
   let b:slime_default_config = {"HWND": "O:T1"}
+  let g:slime_default_config = {"HWND": "0:T1"}
+  let b:slime_config = {"HWND": "O:T1"}
+  let g:slime_config = {"HWND": "O:T1"}
 else
+  let b:slime_target = "tmux"
+  let g:slime_target = "tmux"
   let b:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.0"}
+  let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.0"}
+  let b:slime_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.0"}
+  let g:slime_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.0"}
 endif
 
 call plug#begin()
@@ -24,16 +33,10 @@ call plug#end()
 let g:black_linelength = 79
 let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_new_list_item_indent = 2
-let g:slime_target = "conemu"
-let b:slime_target = "conemu"
 let b:slime_debug = 0
 let g:slime_debug = 0
 let b:slime_no_mappings = 1
 let g:slime_no_mappings = 1
-let b:slime_config = {"HWND": "0:T1"}
-let g:slime_config = {"HWND": "0:T1"}
-let b:slime_default_config = {"HWND": "0:T1"}
-let g:slime_default_config = {"HWND": "0:T1"}
 xmap <Leader>g <Plug>SlimeRegionSend
 nmap <Leader>g <Plug>SlimeParagraphSend
 nmap <Leader>G <Plug>SlimeConfig
@@ -247,8 +250,8 @@ elseif has('win32unix')
     "if that doesn't work, try this:
     set backspace=indent,eol,start
 endif
-colorscheme NeoSolarized
-"colorscheme simple
+"colorscheme NeoSolarized
+colorscheme simple
 syntax enable
 
 set formatoptions+=o
@@ -283,7 +286,6 @@ else
     au BufWinEnter * let w:m2=matchadd('OverLength', '/\%>80v.\+/', -1)
     "au BufWinEnter *.lisp let w:m2=matchadd('OverLength', '/\%>100v.\+/', -1)
 endif
-au BufWinEnter * set textwidth=80
 "au BufWinEnter *.lisp set textwidth=100
 
 set expandtab
@@ -354,7 +356,12 @@ au BufRead,BufNewFile *.md nnoremap <LocalLeader>r :let @/=""<CR>:s/^\( *\)\(- *
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>t :let @/=""<CR>:s/^\( *\)\(- *\)\{0,1\}\(\[.\]\)\{0,1\} *[~]\{2\}\(.*\)[~]\{2\} *$/\1\2\3 \4/<CR>:let @/=""<CR>
 au BufRead,BufNewFile *.md set makeprg=markdown-to-pdf\ %\ %:r.pdf
 au BufRead,BufNewFile *.dot set makeprg=dot\ -Tpng\ %\ -o\ %:r.png
-au BufRead,BufNewFile *.dot nnoremap <LocalLeader>v :w<CR>:execute "!sh -c \"imv '%:r.png' &\""<CR>
+
+if system("which imv-wayland") == ""
+    au BufRead,BufNewFile *.dot nnoremap <LocalLeader>v :w<CR>:execute "!sh -c \"imv '%:r.png' &\""<CR>
+else
+    au BufRead,BufNewFile *.dot nnoremap <LocalLeader>v :w<CR>:execute "!sh -c \"imv-wayland '%:r.png' &\""<CR>
+endif
 
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>s :lua vim.fn.execute("r!screen2vim " ..  vim.fn.expand("%:p") .. " attach")<CR>
 au BufRead,BufNewFile *.md nnoremap <LocalLeader>a :lua vim.fn.execute("r!file2vim " ..  vim.fn.expand("%:p") .. " attach")<CR>
