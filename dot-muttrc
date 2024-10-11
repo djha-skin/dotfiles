@@ -52,16 +52,15 @@ set wait_key=no
 macro index,pager \e7 "<tag-pattern>~f security@angel.com<enter><tag-prefix><save-message>+Security<enter>"
 
 macro index A \
-    "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" \
+    "<tag-pattern>(~N|~O)<enter><tag-prefix><clear-flag>N<tag-prefix><clear-flag>O<untag-pattern>.<enter>" \
     "mark all new as read"
-bind compose M view-pager
 set allow_8bit = no
 set attribution_intro = "On %d, %n wrote:\n"
 set forward_quote = yes
 set forward_references = yes
 set forward_attribution_intro = "On %d, %n (%f) wrote:\n"
 macro compose Y "<first-entry><enter-command>set wait_key=no<enter> \
-    <pipe-entry>pandoc -f commonmark -t html -s --o /tmp/neomutt-alternative.html<enter> \
+    <pipe-entry>pandoc -f commonmark -t html --fontsize=10pt -s --o /tmp/neomutt-alternative.html<enter> \
     <attach-file>/tmp/neomutt-alternative.html<enter> \
     <toggle-unlink><toggle-disposition> \
     <tag-entry><first-entry><tag-entry><group-alternatives> \
@@ -84,10 +83,10 @@ set query_command= "khard email --parsable --search-in-source-files %s"
 bind editor <Tab> complete-query
 bind editor ^T    complete
 
-
-#macro index,pager A \
-#    "<pipe-message>khard add-email<return>" \
-#        "add the sender email address to khard"
+macro index,pager E \
+    "<pipe-message>khard add-email<return>" \
+        "add the sender email address to khard"
+bind attach M view-pager
 
 # vim: syntax=neomuttrc
 #
