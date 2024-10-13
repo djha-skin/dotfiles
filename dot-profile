@@ -14,13 +14,7 @@ then
 else
     export HOME="/home/$(id -nu)"
 fi
-
-# systemctl --user enable gpg-agent.socket
-# systemctl --user start gpg-agent-ssh.sockket
-export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 export home_altprefix="${HOME}/.apps"
-export WARP_ENABLE_WAYLAND=1
-export QT_STYLE_OVERRIDE=Adwaita-Dark
 
 # Set up PATH
 if [ -d /mingw64 ]
@@ -29,16 +23,19 @@ then
     export C_INCLUDE_PATH=/mingw64/include:/usr/include
     export LIBRARY_PATH=/mingw64/lib64:/mingw64/lib:/usr/lib64:/usr/lib
 else
-    export PATH="${HOME}/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+    export PATH="${HOME}/.local/bin:/usr/local/sbin:/usr/local/go/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
     export C_INCLUDE_PATH=/usr/include
     export LIBRARY_PATH=/usr/lib64:/usr/lib
 fi
+
+export PATH="/home/skin/.qlot/bin:$PATH"
 export LANG="en_US.UTF-8"
 export LOCALE="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export LANGUAGE="en_US:"
 export RLWRAP_EDITOR="nvim '+call cursor(%L,%C)'"
 export LESS="-Q --no-vbell --use-color -r"
+
 #export LD_LIBRARY_PATH=${HOME}/.local/lib64:${HOME}/.local/lib:/usr/local/lib64:/usr/local/lib:/usr/lib64:/usr/lib
 
 for i in $(ls -1A "${home_altprefix}")
@@ -48,7 +45,10 @@ do
         export PATH="${home_altprefix}/${i}:${PATH}"
         if [ -d "${home_altprefix}/${i}/bin" ]
         then
-            export PATH="${home_altprefix}/${i}/bin:${PATH}"
+            if [ ! -e "${home_altprefix}/${i}/bin/python" ]
+            then
+                export PATH="${home_altprefix}/${i}/bin:${PATH}"
+            fi
             if [ -f "${home_altprefix}/${i}/bin/java" ]
             then
                 export JAVA_HOME="${home_altprefix}/${i}"
@@ -66,6 +66,7 @@ do
 done
 
 export CARGO_HOME="${HOME}/.cargo"
+
 if [ -d "${CARGO_HOME}" ]
 then
     export PATH="${CARGO_HOME}/bin:${PATH}"
@@ -92,7 +93,10 @@ then
     done
 fi
 
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+if [ -n "${KREW_ROOT}" ]
+then
+    export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+fi
 
 export NPM_PACKAGES="${HOME}/.npm-packages"
 if [ -d "${NPM_PACKAGES}" ]
@@ -107,7 +111,6 @@ then
     export PATH="${JAVA_HOME}/bin:${PATH}"
 fi
 
-#. <(rtx env)
 
 export EDITOR="nvim"
 export ALTERNATE_EDITOR=""
@@ -137,15 +140,6 @@ fi
 export PARINIT="rTbgqR B=*/-.,?'_A_a_@ Q=_s>| W=_S"
 
 export WORKING_LOCATION_FILE="${HOME}/.wdh.txt"
-
-
-export QT_SCALE_FACTOR_ROUNDING_POLICY=Round
-export QT_ENABLE_HIGHDPI_SCALING=1
-export QT_AUTO_SCREEN_SCALE_FACTOR=1
-
-export XDG_CONFIG_HOME="${HOME}/.config"
-export XDG_PICTURES_DIR="${HOME}/Pictures"
-export XDG_SCREENSHOTS_DIR="${HOME}/Pictures/Screenshots"
 
 pchanged() {
     if [ -n "${WORKING_LOCATION_FILE:-}" -a -f "${WORKING_LOCATION_FILE:-}" ]
@@ -190,3 +184,4 @@ pcleard() {
     rm -f "${WORKING_LOCATION_FILE}"
     touch "${WORKING_LOCATION_FILE}"
 }
+. "$HOME/.cargo/env"
