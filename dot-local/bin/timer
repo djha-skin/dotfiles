@@ -27,9 +27,9 @@ do
     notify '⌚ Timer' "${name} (${duration} minutes)"
     if uname -a | grep -q 'Darwin'
     then
-        afplay "${HOME}/OneDrive/Audio/Dings/351371__wilhellboy__heavybulletping.wav" &
+        afplay -q "${HOME}/Music/ding.wav" &
     else
-        aplay "${HOME}/OneDrive/Audio/Dings/351371__wilhellboy__heavybulletping.wav" &
+        aplay "${HOME}/Music/ding.wav" &
     fi
     while [ "${seconds}" -ge 0 ]
     do
