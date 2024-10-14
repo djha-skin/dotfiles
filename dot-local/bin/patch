@@ -1,7 +1,0 @@
-#!/bin/sh
-set -ex
-
-sudo dnf update -y
-sudo flatpak update --system -y
-flatpak update --user -y
-shutdown
