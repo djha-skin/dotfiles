@@ -23,13 +23,6 @@ else
   let g:slime_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.0"}
 endif
 
-call plug#begin()
-Plug 'jpalardy/vim-slime'
-Plug 'guns/vim-sexp'
-call plug#end()
-
-
-
 let g:black_linelength = 79
 let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_new_list_item_indent = 2
@@ -107,6 +100,9 @@ else
         endif
     endif
 endif
+
+call plug#begin()
+Plug 'ntpeters/vim-better-whitespace'
 "Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clangd-completer --go-completer --ts-completer --rust-completer --java-completer' }
 "Plug 'gsuuon/llm.nvim'
 "Plug 'Olical/conjure'
@@ -272,13 +268,10 @@ au BufWinEnter * let w:m2=matchadd('ErrorMsg', '/\%>80v.\+/', -1)
 "au BufWinEnter *.lisp let w:m2=matchadd('ErrorMsg', '/\%>100v.\+/', -1)
 
 hi clear OverLength
-hi clear ExtraWhitespace
-hi ExtraWhitespace ctermbg=red guibg=red
 hi link OverLength Error
 
 au BufWinEnter * match OverLength '\%>80v.\+'
 "au BufWinEnter *.lisp match OverLength '\%>100v.\+'
-2match ExtraWhitespace '\s\+\%#\@<!$'
 if exists('+colorcolumn')
     au BufWinEnter * set colorcolumn=80
     "au BufWinEnter *.lisp set colorcolumn=100
@@ -403,6 +396,7 @@ au BufRead,BufNewFile *.tex set makeprg=pdflatex\ -halt-on-error\ --shell-escape
 au BufRead,BufNewFile SConstruct,SConscript set makeprg=scons
 au BufRead,BufNewFile *.rb set tabstop=2
 au BufRead,BufNewFile *.rb set shiftwidth=2
+au BufRead,BufNewFile *.pp set shiftwidth=2
 "au BufRead,BufNewFile *.lisp lua clstart()
 au BufRead,BufNewFile *.lisp nnoremap <LocalLeader>d i(print <Esc>l])a)<Esc>
 au BufRead,BufNewFile *.lisp nnoremap <LocalLeader>D bi(print <Esc>lea)<Esc>
