@@ -1,0 +1,7 @@
+#!/bin/sh
+
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
+kitten themes 'Tango Light'
+cat > ~/.profile-theme << THEME
+export GTK_THEME='Adwaita'
+THEME
