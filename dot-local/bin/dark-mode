@@ -1,7 +1,14 @@
 #!/bin/sh
 
+if which lookandfeeltool 2>&1 >/dev/null
+then
+    lookandfeeltool -a org.kde.breezedark.desktop
+fi
+
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+
 kitten themes 'Tango Dark'
+
 cat > ~/.profile-theme << THEME
 export GTK_THEME='Adwaita-dark'
 export TERMINAL_PROFILE='Dark'

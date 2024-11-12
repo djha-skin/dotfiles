@@ -1,5 +1,11 @@
 #!/bin/sh
 
+
+if which lookandfeeltool 2>&1 >/dev/null
+then
+    lookandfeeltool -a org.kde.breeze.desktop
+fi
+
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
 kitten themes 'Tango Light'
 cat > ~/.profile-theme << THEME
