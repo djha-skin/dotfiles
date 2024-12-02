@@ -7,7 +7,14 @@ then
 fi
 
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
-kitten themes 'Tango Light'
+
+rm -f ~/.config/kitty/current-theme.conf
+ln -s ~/.config/kitty/tango-light.conf ~/.config/kitty/current-theme.conf
+ps -ef | awk '/[0-9] *kitty$/{ print $2}' | while read kitty_pid
+do
+    kill -usr1 $kitty_pid
+done
+
 cat > ~/.profile-theme << THEME
 export GTK_THEME='Adwaita'
 export TERMINAL_PROFILE='Light'

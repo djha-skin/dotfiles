@@ -7,7 +7,12 @@ fi
 
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
-kitten themes 'Tango Dark'
+rm -f ~/.config/kitty/current-theme.conf
+ln -s ~/.config/kitty/tango-dark.conf ~/.config/kitty/current-theme.conf
+ps -ef | awk '/[0-9] *kitty$/{ print $2}' | while read kitty_pid
+do
+    kill -usr1 $kitty_pid
+done
 
 cat > ~/.profile-theme << THEME
 export GTK_THEME='Adwaita-dark'
