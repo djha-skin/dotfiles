@@ -9,6 +9,10 @@ gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
 rm -f ~/.config/kitty/current-theme.conf
 ln -s ~/.config/kitty/tango-dark.conf ~/.config/kitty/current-theme.conf
+
+rm -f ~/.config/nvim/background.vim
+ln -s ~/.config/nvim/dark-mode.vim ~/.config/nvim/background.vim
+
 ps -ef | awk '/[0-9] *kitty$/{ print $2}' | while read kitty_pid
 do
     kill -usr1 $kitty_pid

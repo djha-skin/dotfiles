@@ -6,6 +6,7 @@ set runtimepath+=/usr/local/share/lilypond/current/vim/
 filetype on
 syntax on
 
+runtime background.vim
 
 if has('win32')
   let g:slime_target = "conemu"
@@ -61,23 +62,10 @@ call plug#begin()
 if has('mac')
     let g:netrw_browser_viewer='open'
     if len($TERM_PROFILE) > 0
-        if $ITERM_PROFILE == 'Dark'
-            set background=dark
-        else
-            set background=light
-        endif
     endif
 elseif has('win32')
     set shellslash
     let g:netrw_browser_viewer='start'
-    if len($TERMINAL_PROFILE) > 0
-        if $TERMINAL_PROFILE == 'Dark'
-            set background=dark
-        else
-            set background=light
-        endif
-    endif
-
     "let g:clipboard = {
     "            \   'name': 'WslClipboard',
     "            \   'copy': {
@@ -92,17 +80,12 @@ elseif has('win32')
     "            \ }
 else
     let g:netrw_browser_viewer='xdg-open'
-    if len($TERMINAL_PROFILE) > 0
-        if $TERMINAL_PROFILE == 'Dark'
-            set background=dark
-        else
-            set background=light
-        endif
-    endif
 endif
 
 call plug#begin()
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'nvim-lua/plenary.nvim'
+"Plug 'sourcegraph/sg.nvim', { 'do': 'nvim -l build/init.lua' }
 "Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clangd-completer --go-completer --ts-completer --rust-completer --java-completer' }
 "Plug 'gsuuon/llm.nvim'
 "Plug 'Olical/conjure'
