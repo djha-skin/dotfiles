@@ -13,7 +13,7 @@ ln -s ~/.config/kitty/tango-light.conf ~/.config/kitty/current-theme.conf
 rm -f ~/.config/nvim/background.vim
 ln -s ~/.config/nvim/light-mode.vim ~/.config/nvim/background.vim
 
-ps -ef | awk '/[0-9] *kitty$/{ print $2}' | while read kitty_pid
+ps -ef | awk '/[0-9] *((\/[^\/]+)+\/)?kitty$/{print $2}' | while read kitty_pid
 do
     kill -usr1 $kitty_pid
 done
