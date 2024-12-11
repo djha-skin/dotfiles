@@ -3,11 +3,20 @@ set -ex
 if which dnf 2>/dev/null
 then
     sudo dnf update -y
+fi
+
+if which flatpak 2>/dev/null
+then
     sudo flatpak update --system -y
     flatpak update --user -y
-else
+fi
+
+if which apt-get 2>/dev/null
     sudo apt-get update -y
     sudo apt-get dist-upgrade -y
+fi
+
+if which snap 2>/dev/null
     sudo snap refresh
 fi
 
