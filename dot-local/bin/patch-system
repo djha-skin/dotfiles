@@ -1,5 +1,6 @@
 #!/bin/sh
 set -ex
+
 if which dnf 2>/dev/null
 then
     sudo dnf update -y
@@ -18,6 +19,7 @@ then
 fi
 
 if which snap 2>/dev/null
+then
     sudo snap refresh
 fi
 
