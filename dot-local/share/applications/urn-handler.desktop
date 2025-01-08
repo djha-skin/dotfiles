@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=URN Scheme Handler
+Exec=/home/skin/.local/bin/open-urn %u
+StartupNotify=false
+MimeType=x-scheme-handler/urn;

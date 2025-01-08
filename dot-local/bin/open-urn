@@ -1,0 +1,15 @@
+#!/bin/sh
+
+set -ex
+
+if [ -f ~/.profile ]
+then
+    . ~/.profile
+elif [ -f ~/.zprofile ]
+then
+    . ~/.zprofile
+fi
+
+echo "${@}" | copy
+
+notify "open-urn" "URN URL in clipboard"  >> ~/.open-urn.log 2>&1
