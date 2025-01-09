@@ -1,18 +1,19 @@
 #!/bin/sh
-set -e
+set -ex
 
-#    --include-calendar work_calendar_local \
 khal list \
     --include-calendar home_calendar_local \
+    --include-calendar kpm_calendar_local \
     --format '{start-time}-{end-time} {title}' \
-    --day-format '' --notstarted now '23:59' | while read d
+    --day-format '' --notstarted now '23:59' |
+    grep -v '^- ' | while read d
 do
     start_time=$(echo "${d}" | awk -F'[- ]' '/[0-9]+:[0-9]+/{ print $1 }')
     start_time_epoch=$(date -d "${start_time}" +%s)
     now=$(date +%s)
     if [ "$(( ${start_time_epoch} - ${now} ))" -lt "600" ]
     then
-        play ~/Music/notify-bell.wav
+        ffplay -nodisp -autoexit ~/OneDrive/Audio/Dings/588718__collierhs-colinlib__elevator-ding.wav
         notify "Calendar" "${d}"
     fi
 done
