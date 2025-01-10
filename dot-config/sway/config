@@ -1,5 +1,3 @@
-# Read `man 5 sway` for a complete reference.
-
 set $mod Alt
 
 # Home row direction keys, like vim
@@ -9,9 +7,9 @@ set $up k
 set $right l
 
 set $term kitty
-set $browser firefox
+set $browser "${BROWSER}"
 
-titlebar_padding 4 8
+#titlebar_padding 4 8
 
 focus_on_window_activation focus
 # Your preferred application launcher
@@ -26,22 +24,28 @@ set $rofi_cmd rofi \
 set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 
 set $main_display eDP-1
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # Requires: desktop-backgrounds-compat, swaybg
-output * bg /usr/share/backgrounds/default.png fill
 
 output 'HP Inc. HP VH240a 6CM01304VL' resolution 1920x1080
 output 'HP Inc. HP VH240a 6CM01304VL' transform 270
-output 'HP Inc. HP VH240a 6CM01304VL' position 0 0
+output 'HP Inc. HP VH240a 6CM01304VL' position -1080 -640
+output 'HP Inc. HP VH240a 6CM01304VL' bg ~/OneDrive/Pictures/Backgrounds/dan-baker-voltaire-kelpie-v012-db-reprint.jpg fill
 
 output 'Dell Inc. DELL S2209W P262H93320YU' resolution 1920x1080
 output 'Dell Inc. DELL S2209W P262H93320YU' position 0 0
 
 output 'HP Inc. HP VH240a 6CM01319L1' resolution 1920x1080
 output 'HP Inc. HP VH240a 6CM01319L1' transform 270
-output 'HP Inc. HP VH240a 6CM01319L1' position 2476 0
+output 'HP Inc. HP VH240a 6CM01319L1' position 1920 -640
+output 'HP Inc. HP VH240a 6CM01319L1' bg ~/OneDrive/Pictures/Backgrounds/dan-baker-voltaire-kelpie-v012-db-reprint.jpg fill
+
+output $main_display resolution 1920x1080
+output $main_display position 0 0
+output $main_display bg ~/OneDrive/Pictures/Backgrounds/w9hdknav3q9e1.jpeg fill
 #
 # Example configuration:
 #
@@ -58,13 +62,11 @@ exec swayidle -w \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock -f -c 000000 -s solid_color'
 
-exec gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 
-exec keepassxc
+#exec gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 
-exec nm-applet
+#exec waybar
 
-exec /home/skin/.local/bin/OneDriveGUI
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -240,32 +242,125 @@ mode "interact" {
     bindsym $mod+j mode "default"
 }
 
+# Begin outright theft of the Fedora sway config
 for_window [app_id="qutebrowser"] mark Browser
+for_window [class="Chromium-browser"] mark Browser
+for_window [class="Brave-browser"] mark Browser
+for_window [class="firefox"]  mark Browser
+for_window [app_id="Chromium-browser"] mark Browser
+for_window [app_id="microsoft-edge"] mark Browser
+for_window [app_id="brave-browser"] mark Browser
+for_window [app_id="firefox"] mark Browser
 
-include "${XDG_CONFIG_HOME}/sway/private-config"
+# inhibit scrensaver for fullscreen browser windows
+for_window [con_mark="Browser"] {
+    inhibit_idle fullscreen
+}
 
-# Include configs from 3 locations:
-#  - /usr/share/sway/config.d
-#  - /etc/sway/config.d
-#  - $XDG_CONFIG_HOME/sway/config.d ($HOME/.config/sway/config.d)
+# firefox wayland screensharing indicator
+for_window [app_id="firefox" title="Firefox — Sharing Indicator"] {
+    floating enable
+}
+
+# Display PulseAudio volume control application (both GTK and Qt varieties)
+# as a floating window.
+
+for_window [app_id="pavucontrol"] {
+    floating enable
+    move position center
+}
+
+for_window [app_id="pavucontrol-qt"] {
+    floating enable
+    move position center
+}
+
+
+for_window [app_id="lxqt-policykit-agent"] {
+    floating enable
+    move position center
+}
+
+set $brightness_notification_cmd  command -v notify-send >/dev/null && \
+        VALUE=$(brightnessctl --percentage get) && \
+        notify-send -e -h string:x-canonical-private-synchronous:brightness \
+            -h "int:value:$VALUE" -t 800 "Brightness: ${VALUE}%"
+
+bindsym XF86MonBrightnessDown exec \
+        'STEP="$brightness_step" && brightnessctl -q set ${STEP:-5}%- && $brightness_notification_cmd'
+bindsym XF86MonBrightnessUp exec \
+        'STEP="$brightness_step" && brightnessctl -q set +${STEP:-5}% && $brightness_notification_cmd'
+# Key bindings for media player control via MPRIS D-Bus interface
 #
-# If multiple directories contain the files with the same name, the later
-# directory takes precedence; `$XDG_CONFIG_HOME/sway/config.d/20-swayidle.conf`
-# will always be loaded instead of `/usr/share/sway/config.d/20-swayidle.conf`
-# or `/etc/sway/config.d/20-swayidle.conf`
+# Requires:     playerctl
+
+# Allow Play and Stop bindings even if the screen is locked
+bindsym --locked {
+    XF86AudioPlay       exec playerctl play-pause
+    XF86AudioStop       exec playerctl stop
+}
+
+bindsym {
+    XF86AudioForward    exec playerctl position +10
+    XF86AudioNext       exec playerctl next
+    XF86AudioPause      exec playerctl pause
+    XF86AudioPrev       exec playerctl previous
+    XF86AudioRewind     exec playerctl position -10
+}
+
+set $volume_helper_cmd /home/skin/.local/lib/volume-helper
+
+# Allow volume controls even if the screen is locked
+bindsym --locked {
+    XF86AudioRaiseVolume exec \
+        $volume_helper_cmd --limit "$volume_limit" --increase "$volume_step"
+    XF86AudioLowerVolume exec \
+        $volume_helper_cmd --limit "$volume_limit" --decrease "$volume_step"
+    XF86AudioMute    exec pactl set-sink-mute @DEFAULT_SINK@ toggle && $volume_helper_cmd
+    XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+}
+
+# A special mode for passing any keybindings to the focused application
+
+mode "passthrough" {
+    bindsym $mod+Pause mode default
+}
+bindsym $mod+Pause mode "passthrough"
+
+bar {
+    position top
+    # Keep in mind that the current directory of this config file is $HOME
+    status_command while ~/.config/sway/status.sh; do sleep 1; done
+
+    colors {
+        # Text color of status bar
+        statusline #ffffff
+        # Background of status bar
+        background #323232
+        binding_mode #000000 #545454 #ffffff
+    }
+    font pango:Iosevka Term 10
+}
+
+# Start graphical authentication agent for PolicyKit.
 #
-# This mechanism permits overriding our default configuration per-system
-# (/etc) or per-user ($XDG_CONFIG_HOME) basis. Just create the file you
-# want to modify/override in the higher-level directory.
+# Certain applications may require this to request elevated privileges:
+#   GParted, virt-manager, anything that uses pkexec
 #
-# For example, to disable the default bar from Fedora configs, you'll need to
-#     $ echo -n > "$HOME/.config/sway/config.d/90-bar.conf"
+# Requires: lxqt-policykit
+
+exec /usr/bin/lxqt-policykit-agent
+
+# Create or update XDG user dir configuration
 #
-# Note the quoting, the $() and the arguments quoting. All the parts are equally
-# important to make the magic work. And if you want to learn the secret behind
-# the trick, it's all in the `wordexp(3)`.
+# See also:
+#  - /etc/xdg/autostart/xdg-user-dirs.desktop
+#  - https://github.com/systemd/systemd/issues/18791
+#
+# Recommends: xdg-user-dirs
 
+exec /usr/bin/xdg-user-dirs-update
 
-
-
-include "$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")"
+exec nm-applet
+exec sleep 5 && keepassxc
+exec sleep 5 && /home/skin/.local/bin/OneDriveGUI
