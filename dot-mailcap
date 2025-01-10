@@ -1,5 +1,5 @@
 text/html; $BROWSER %s; nametemplate=%s.html; compose=$EDITOR %s; edit=$EDITOR %s;
-text/html; pandoc --reference-links --reference-location=document -f html -t commonmark-raw_html --strip-comments -i %s; nametemplate=%s.html; needsterminal; copiousoutput
+text/html; pandoc --reference-links --reference-location=document -f html -L /home/skin/.local/lib/no-tables.lua -t commonmark-raw_html --strip-comments -i %s; nametemplate=%s.html; needsterminal; copiousoutput
 application/pdf; pdftotext %s -; copiousoutput;
 text/calendar; khal printics %s;copiousoutput
 application/ics; khal printics %s;copiousoutput
