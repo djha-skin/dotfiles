@@ -45,7 +45,7 @@ output 'HP Inc. HP VH240a 6CM01319L1' bg ~/OneDrive/Pictures/Backgrounds/dan-bak
 
 output $main_display resolution 1920x1080
 output $main_display position 0 0
-output $main_display bg ~/OneDrive/Pictures/Backgrounds/w9hdknav3q9e1.jpeg fill
+output $main_display bg ~/OneDrive/Pictures/Backgrounds/ddjfyzd-15207cdf-a0b0-473b-94ee-017009605e4d.jpg fill
 #
 # Example configuration:
 #
@@ -63,7 +63,7 @@ exec swayidle -w \
          before-sleep 'swaylock -f -c 000000 -s solid_color'
 
 
-#exec gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+exec gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 
 #exec waybar
 
@@ -180,7 +180,6 @@ bindsym Control+v exec work-screen2gdrive
 
 bindsym s exec file2rclone
 bindsym Shift+s exec swaylock -f -c 000000 -s solid_color
-
 
 bindsym d kill
 bindsym 1 workspace number 1
