@@ -56,7 +56,7 @@ output 'ASUSTek COMPUTER INC VY249 MALMRS015307' transform 90
 output 'ASUSTek COMPUTER INC VY249 MALMRS015307' position 1920 0
 output 'ASUSTek COMPUTER INC VY249 MALMRS015307' bg ~/OneDrive/Pictures/Backgrounds/dan-baker-voltaire-kelpie-v012-db-reprint.jpg fill
 
-
+focus_on_window_activation none
 #
 # Example configuration:
 #
