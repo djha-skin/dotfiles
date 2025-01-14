@@ -31,30 +31,31 @@ set $main_display eDP-1
 
 output 'HP Inc. HP VH240a 6CM01304VL' resolution 1920x1080
 output 'HP Inc. HP VH240a 6CM01304VL' transform 270
-output 'HP Inc. HP VH240a 6CM01304VL' position -1080 -640
+output 'HP Inc. HP VH240a 6CM01304VL' position 0 440
 output 'HP Inc. HP VH240a 6CM01304VL' bg ~/OneDrive/Pictures/Backgrounds/dan-baker-voltaire-kelpie-v012-db-reprint.jpg fill
-
-output 'Dell Inc. DELL S2209W P262H93320YU' resolution 1920x1080
-output 'Dell Inc. DELL S2209W P262H93320YU' position 0 0
 
 output 'HP Inc. HP VH240a 6CM01319L1' resolution 1920x1080
 output 'HP Inc. HP VH240a 6CM01319L1' transform 270
-output 'HP Inc. HP VH240a 6CM01319L1' position 1920 -640
+output 'HP Inc. HP VH240a 6CM01319L1' position 3000 440
 output 'HP Inc. HP VH240a 6CM01319L1' bg ~/OneDrive/Pictures/Backgrounds/dan-baker-voltaire-kelpie-v012-db-reprint.jpg fill
 
 output $main_display resolution 1920x1080
-output $main_display position 0 0
+output $main_display position 1080 1080
 output $main_display bg ~/OneDrive/Pictures/Backgrounds/ddjfyzd-15207cdf-a0b0-473b-94ee-017009605e4d.jpg fill
 
 output 'ASUSTek COMPUTER INC VY249 MALMRS015320' resolution 1920x1080
 output 'ASUSTek COMPUTER INC VY249 MALMRS015320' transform 270
-output 'ASUSTek COMPUTER INC VY249 MALMRS015320' position -1080 0
+output 'ASUSTek COMPUTER INC VY249 MALMRS015320' position 0 1080
 output 'ASUSTek COMPUTER INC VY249 MALMRS015320' bg ~/OneDrive/Pictures/Backgrounds/dan-baker-voltaire-kelpie-v012-db-reprint.jpg fill
 
 output 'ASUSTek COMPUTER INC VY249 MALMRS015307' resolution 1920x1080
 output 'ASUSTek COMPUTER INC VY249 MALMRS015307' transform 90
-output 'ASUSTek COMPUTER INC VY249 MALMRS015307' position 1920 0
+output 'ASUSTek COMPUTER INC VY249 MALMRS015307' position 3000 1080
 output 'ASUSTek COMPUTER INC VY249 MALMRS015307' bg ~/OneDrive/Pictures/Backgrounds/dan-baker-voltaire-kelpie-v012-db-reprint.jpg fill
+
+output 'Dell Inc. DELL S2209W P262H93320YU' resolution 1920x1080
+output 'Dell Inc. DELL S2209W P262H93320YU' position  1080 0
+output 'Dell Inc. DELL S2209W P262H93320YU' bg ~/OneDrive/Pictures/Backgrounds/ddjfyzd-15207cdf-a0b0-473b-94ee-017009605e4d.jpg fill
 
 focus_on_window_activation none
 #
