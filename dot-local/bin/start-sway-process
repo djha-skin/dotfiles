@@ -1,0 +1,11 @@
+#!/bin/sh
+
+process="${1}"
+clean_process="$(echo "${process}" | sed 's|[^/]\{1,\}/||g')"
+
+pid=$(pgrep -x "${clean_process}")
+
+if [ -z "${pid}" ]
+then
+    "${process}" &
+fi
