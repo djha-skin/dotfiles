@@ -16,13 +16,16 @@ focus_on_window_activation focus
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # Recommends: rofi-wayland
-set $menu_cmd wofi -t '$term' -S drun
-set $run_cmd wofi -t '$term' -S run
+set $rofi_cmd rofi \
+        -terminal '$term'
 # Shows a combined list of the applications with desktop files and
 # executables from PATH.
 # TODO: add window with the next release of rofi-wayland
-set $menu $menu_cmd
-set $runmenu $run_cmd
+set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
+#set $menu_cmd wofi -t '$term' -S drun
+#set $run_cmd wofi -t '$term' -S run
+#set $menu $menu_cmd
+#set $runmenu $run_cmd
 
 set $main_display eDP-1
 
@@ -42,22 +45,27 @@ output 'HP Inc. HP VH240a 6CM01319L1' position 3000 440
 output 'HP Inc. HP VH240a 6CM01319L1' bg ~/OneDrive/Pictures/Backgrounds/dan-baker-voltaire-kelpie-v012-db-reprint.jpg fill
 
 output $main_display resolution 1920x1080
-output $main_display position 1080 1080
+output $main_display position 1920 1080
 output $main_display bg ~/OneDrive/Pictures/Backgrounds/ddjfyzd-15207cdf-a0b0-473b-94ee-017009605e4d.jpg fill
+
+
 
 output 'ASUSTek COMPUTER INC VY249 MALMRS015320' resolution 1920x1080
 output 'ASUSTek COMPUTER INC VY249 MALMRS015320' transform 270
-output 'ASUSTek COMPUTER INC VY249 MALMRS015320' position 0 1080
+output 'ASUSTek COMPUTER INC VY249 MALMRS015320' position 840 1080
 output 'ASUSTek COMPUTER INC VY249 MALMRS015320' bg ~/OneDrive/Pictures/Backgrounds/dan-baker-voltaire-kelpie-v012-db-reprint.jpg fill
 
 output 'ASUSTek COMPUTER INC VY249 MALMRS015307' resolution 1920x1080
 output 'ASUSTek COMPUTER INC VY249 MALMRS015307' transform 90
-output 'ASUSTek COMPUTER INC VY249 MALMRS015307' position 3000 1080
+output 'ASUSTek COMPUTER INC VY249 MALMRS015307' position 3840 1080
 output 'ASUSTek COMPUTER INC VY249 MALMRS015307' bg ~/OneDrive/Pictures/Backgrounds/dan-baker-voltaire-kelpie-v012-db-reprint.jpg fill
 
 output 'Dell Inc. DELL S2209W P262H93320YU' resolution 1920x1080
-output 'Dell Inc. DELL S2209W P262H93320YU' position  1080 0
+output 'Dell Inc. DELL S2209W P262H93320YU' position  1920 0
 output 'Dell Inc. DELL S2209W P262H93320YU' bg ~/OneDrive/Pictures/Backgrounds/ddjfyzd-15207cdf-a0b0-473b-94ee-017009605e4d.jpg fill
+
+output 'VIZIO, Inc M220VA ' resolution 1920x1080
+output 'VIZIO, Inc M220VA ' position 0 1080
 
 focus_on_window_activation none
 #
@@ -110,7 +118,7 @@ floating_modifier Mod4 normal
 
 bindsym Shift+o workspace number 10, exec $menu, mode "interact"
 bindsym o exec $menu, mode "interact"
-bindsym r exec $runmenu, mode "interact"
+#bindsym r exec $runmenu, mode "interact"
 # Reload the configuration file
 bindsym Shift+c reload
 # Exit sway (logs you out of your Wayland session)
