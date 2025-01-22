@@ -7,7 +7,7 @@ set $up k
 set $right l
 
 set $term kitty
-set $browser "${BROWSER}"
+set $browser "microsoft-edge"
 
 #titlebar_padding 4 8
 
@@ -22,12 +22,12 @@ set $rofi_cmd rofi \
 # executables from PATH.
 # TODO: add window with the next release of rofi-wayland
 set $menu $rofi_cmd
-set $wofi_menu_cmd wofi -t '$term' -S drun
-set $wofi_run_cmd wofi -t '$term' -S run
+#set $wofi_menu_cmd wofi -t '$term' -S drun
+#set $wofi_run_cmd wofi -t '$term' -S run
 # Shows a combined list of the applications with desktop files and
 # executables from PATH.
 # TODO: add window with the next release of rofi-wayland
-set $menu $rofi_cmd
+#set $menu $rofi_cmd
 #set $runmenu $run_cmd
 
 set $main_display eDP-1
@@ -398,3 +398,5 @@ exec sleep 30 && flatpak run com.ktechpit.whatsie
 exec sleep 30 && flatpak run com.slack.Slack
 exec start-sway-process swaync
 bindsym Shift+n exec swaync-client -t -sw
+
+include /etc/sway/config.d/*
