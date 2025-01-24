@@ -17,10 +17,25 @@ offlineimap -a work
 #notmuch --config=${HOME}/Mail/kpm/.notmuch-config new
 #offlineimap -a migadu
 #notmuch --config=${HOME}/Mail/migadu/.notmuch-config new
-if ! vdirsyncer sync --no-force-delete
-then
-    rm -rf ~/.config/vdirsyncer/*_token
-    vdirsyncer sync --no-force-delete
-fi
+
+sync_pair() {
+    sp_pair="${1}"
+    shift
+
+    if ! vdirsyncer sync --no-force-delete "${sp_pair}"
+    then
+        if vdirsyncer sync --no-force-delete 2>&1 "${sp_pair}" | grep -qE '40[13]'
+        then
+            rm -f ~/.config/vdirsyncer/${sp_pair}_token
+        fi
+        vdirsyncer sync --no-force-delete
+    fi
+}
+
+sync_pair home_calendar
+sync_pair home_contacts
+sync_pair kpm_calendar
+sync_pair kpm_contacts
+
 khal-remind
 ) 9>~/.cache/sync-mail-lock
