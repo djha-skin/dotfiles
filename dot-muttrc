@@ -1,4 +1,5 @@
-source ~/.mutt/dracula.muttrc
+#source ~/.mutt/dracula.muttrc
+source ~/.mutt/simple.muttrc
 #source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-light-16.muttrc
 set move = no
 set confirmappend = no
@@ -60,7 +61,7 @@ set forward_quote = yes
 set forward_references = yes
 set forward_attribution_intro = "On %d, %n (%f) wrote:\n"
 macro compose Y "<first-entry><enter-command>set wait_key=no<enter> \
-    <pipe-entry>pandoc -f commonmark -t html --fontsize=10pt -s --o /tmp/neomutt-alternative.html<enter> \
+    <pipe-entry>pandoc -f commonmark -t html -V fontsize=10pt -s --o /tmp/neomutt-alternative.html<enter> \
     <attach-file>/tmp/neomutt-alternative.html<enter> \
     <toggle-unlink><toggle-disposition> \
     <tag-entry><first-entry><tag-entry><group-alternatives> \
