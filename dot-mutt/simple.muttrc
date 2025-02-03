@@ -1,0 +1,42 @@
+###############################################################################
+# Simple Theme for Mutt: https://draculatheme.com/
+#
+# @author Daniel Haskin <djhaskin987@gmail.com>
+
+# general ------------ foreground ---- background -----------------------------
+color error		color1	color7
+color indicator		color6	color7
+color markers		color210	default
+color message		default		default
+color normal		default		default
+color prompt		default	        default
+color search		color14	default
+color status 		color6	color7
+color tilde		color4	default
+color tree		color12	default
+
+# message index ------ foreground ---- background -----------------------------
+color index		color9	default 	~D # deleted messages
+color index		color13		default 	~F # flagged messages
+color index		color3	default 	~N # new messages
+color index		color2	default 	~Q # messages which have been replied to
+color index		color5	default 	~T # tagged messages
+color index		color4	default		~v # messages part of a collapsed thread
+
+# message headers ---- foreground ---- background -----------------------------
+color hdrdefault	color7	default
+color header		color7	default		^Subject:.*
+
+# message body ------- foreground ---- background -----------------------------
+color attachment	color130	default
+color body		color214	default		[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+               # email addresses
+color body		color105	default		(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+        # URLs
+color body		color135	default		(^|[[:space:]])\\*[^[:space:]]+\\*([[:space:]]|$) # *bold* text
+color body		color136	default		(^|[[:space:]])_[^[:space:]]+_([[:space:]]|$)     # _underlined_ text
+color body		color138	default		(^|[[:space:]])/[^[:space:]]+/([[:space:]]|$)     # /italic/ text
+color quoted		color127		default
+color quoted1		color98	default
+color quoted2		color74		default
+color quoted3		color203	default
+color quoted4		color197	default
+color signature		color197	default

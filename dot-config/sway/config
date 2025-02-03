@@ -122,7 +122,7 @@ bindsym o exec $menu, mode "interact"
 # Reload the configuration file
 bindsym Shift+c reload
 # Exit sway (logs you out of your Wayland session)
-bindsym Shift+d exit
+#bindsym Shift+d exit
 bindsym Shift+q exec systemctl suspend
 
 bindsym $left focus left
@@ -166,8 +166,9 @@ bindsym Shift+equal exec scalemon down
 bindsym b exec $browser
 bindsym t exec $term
 
-bindsym Shift+Apostrophe splitv
+bindsym Shift+Hyphen splitv
 bindsym Shift+Backslash splith
+bindsym Shift+Apostrophe splitv; layout tabbed
 bindsym w layout toggle all
 
 # Make the current focus fullscreen
