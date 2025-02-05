@@ -38,6 +38,10 @@ macro index \e1 "\
 <tag-prefix-cond><save-message>+Transactions<Enter><end-cond>\
 <sync-mailbox>"
 
+# Pipe any attached ICS file to khal from the message viewer
+macro pager C "<view-attachments><search>\.ics<enter><pipe-entry>khal import -a home_calendar_local --batch<enter><exit>" \
+    "Pipe attachment to khal"
+
 set alias_file = "~/.mutt/mhome.aliases"
 
 source ~/.muttrc
