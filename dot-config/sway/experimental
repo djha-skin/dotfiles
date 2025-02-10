@@ -149,9 +149,6 @@ bindsym $mod+o mode "resize" # The `o` is for "order"
 
 
 
-
-
-
 # Include configs from 3 locations:
 #  - /usr/share/sway/config.d
 #  - /etc/sway/config.d

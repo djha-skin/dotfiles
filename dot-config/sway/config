@@ -11,6 +11,25 @@ set $browser "${BROWSER}"
 
 #titlebar_padding 4 8
 
+# Credit: https://github.com/catppuccin/i3
+include "./color_mode.conf"
+
+# bar
+#bar {
+#  colors {
+#    background         $base
+#    statusline         $text
+#    focused_statusline $text
+#    focused_separator  $base
+#
+#    # target           border bg        text
+#    focused_workspace  $base  $mauve    $crust
+#    active_workspace   $base  $surface2 $text
+#    inactive_workspace $base  $base     $text
+#    urgent_workspace   $base  $red      $crust
+#  }
+#}
+
 focus_on_window_activation focus
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
@@ -354,18 +373,18 @@ bar {
     swaybar_command waybar
     # Use swaybar
 
-    position top
+    #position top
     # Keep in mind that the current directory of this config file is $HOME
     #status_command while ~/.config/sway/status.sh; do sleep 1; done
 
-    colors {
-        # Text color of status bar
-        statusline #ffffff
-        # Background of status bar
-        background #323232
-        binding_mode #000000 #545454 #ffffff
-    }
-    font pango:Noto Sans Mono 10
+    #colors {
+    #    # Text color of status bar
+    #    statusline #000000
+    #    # Background of status bar
+    #    background #cdcdcd
+    #    binding_mode #000000 #ababab #ffffff
+    #}
+    #font pango:Noto Sans Mono 10
 }
 
 # Start graphical authentication agent for PolicyKit.

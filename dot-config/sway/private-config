@@ -1,0 +1,10 @@
+output 'ASUSTek COMPUTER INC VY249 MALMRS015320' resolution 1920x1080
+output 'ASUSTek COMPUTER INC VY249 MALMRS015320' transform 270
+output 'ASUSTek COMPUTER INC VY249 MALMRS015320' position -1080 0
+output 'ASUSTek COMPUTER INC VY249 MALMRS015320' bg ~/OneDrive/Pictures/Backgrounds/dan-baker-voltaire-kelpie-v012-db-reprint.jpg fill
+
+output 'ASUSTek COMPUTER INC VY249 MALMRS015307' resolution 1920x1080
+output 'ASUSTek COMPUTER INC VY249 MALMRS015307' transform 90
+output 'ASUSTek COMPUTER INC VY249 MALMRS015307' position 1920 0
+output 'ASUSTek COMPUTER INC VY249 MALMRS015307' bg ~/OneDrive/Pictures/Backgrounds/dan-baker-voltaire-kelpie-v012-db-reprint.jpg fill
+

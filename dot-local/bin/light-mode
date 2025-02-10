@@ -10,8 +10,16 @@ gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
 rm -f ~/.config/kitty/current-theme.conf
 ln -s ~/.config/kitty/tango-light.conf ~/.config/kitty/current-theme.conf
 
+rm -f ~/.config/sway/color_mode.conf
+ln -s ~/.config/sway/light_mode.conf ~/.config/sway/color_mode.conf
+
+rm -f ~/.config/waybar/style.css
+ln -s ~/.config/waybar/styles/light.css ~/.config/waybar/style.css
+
 rm -f ~/.config/nvim/background.vim
 ln -s ~/.config/nvim/light-mode.vim ~/.config/nvim/background.vim
+
+swaymsg reload
 
 ps -ef | awk '/[0-9] *((\/[^\/]+)+\/)?kitty$/{print $2}' | while read kitty_pid
 do
