@@ -185,7 +185,7 @@ bindsym Shift+equal exec scalemon down
 bindsym b exec $browser
 bindsym t exec $term
 
-bindsym Shift+Hyphen splitv
+bindsym Shift+Slash splitv
 bindsym Shift+Backslash splith
 bindsym Shift+Apostrophe splitv; layout tabbed
 bindsym w layout toggle all
