@@ -6,4 +6,4 @@ last_entry=$(find Planning/Diary \-type f -printf "%T@ %p\n" | \
     grep -F -v "${current_entry}" | \
     sort -n | cut -d' ' -f 2- | tail -n 1)
 
-nvim "${current_entry}" "${last_entry}" Planning/Activity-Inventory.md Planning/Templates/To-Do-Today-Template.md
+nvim "${current_entry}" Planning/Activity-Inventory.md "${last_entry}"
