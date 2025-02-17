@@ -25,14 +25,17 @@
     kitty
     keepassxc
     git-credential-keepassxc
+    onedrive
     onedrivegui
     firefox
+    glib
 
     # dev
     neovim
     git
     tmux
     gnupg
+    gh
 
     # mail, chat
     neomutt
@@ -68,12 +71,10 @@
     ".profile".source = dotfiles/dot-profile-nix;
     ".config/sway/light_mode.conf".source = dotfiles/dot-config/sway/light_mode.conf;
     ".config/sway/dark_mode.conf".source = dotfiles/dot-config/sway/dark_mode.conf;
-    ".config/sway/color_mode.conf".source = dotfiles/dot-config/sway/dark_mode.conf;
     ".config/kitty/tango-light.conf".source = dotfiles/dot-config/kitty/tango-light.conf;
     ".config/kitty/tango-dark.conf".source = dotfiles/dot-config/kitty/tango-dark.conf;
     ".config/waybar/styles/dark.css".source = dotfiles/dot-config/waybar/styles/dark.css;
     ".config/waybar/styles/light.css".source = dotfiles/dot-config/waybar/styles/light.css;
-    ".config/waybar/style.css".source = dotfiles/dot-config/waybar/styles/dark.css;
   
     ".screenrc".source = dotfiles/dot-screenrc;
     ".gnupg/sshcontrol".source = dotfiles/dot-gnupg/sshcontrol;
@@ -200,9 +201,9 @@
     ".gtkrc-2.0-kde4".source = dotfiles/dot-gtkrc-2.0-kde4;
     ".gcalclirc".source = dotfiles/dot-gcalclirc;
     ".local/share/figlet/djhaskin.flf".source = dotfiles/dot-local/share/figlet/djhaskin.flf;
-    ".local/share/applications/urn-handler.desktop".source = dotfiles/dot-local/share/applications/urn-handler.desktop;
-    ".local/share/applications/st-256color.desktop".source = dotfiles/dot-local/share/applications/st-256color.desktop;
-    ".local/share/applications/OneDriveGUI.desktop".source = dotfiles/dot-local/share/applications/OneDriveGUI.desktop;
+    #".local/share/applications/urn-handler.desktop".source = dotfiles/dot-local/share/applications/urn-handler.desktop;
+    #".local/share/applications/st-256color.desktop".source = dotfiles/dot-local/share/applications/st-256color.desktop;
+    #".local/share/applications/OneDriveGUI.desktop".source = dotfiles/dot-local/share/applications/OneDriveGUI.desktop;
     ".local/share/qutebrowser/userscripts/qute-keepassxc".source = dotfiles/dot-local/share/qutebrowser/userscripts/qute-keepassxc;
     ".local/bin/copy".source = dotfiles/dot-local/bin/copy;
     ".local/bin/stylus-back".source = dotfiles/dot-local/bin/stylus-back;
