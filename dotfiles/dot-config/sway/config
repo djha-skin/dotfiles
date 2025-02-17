@@ -371,6 +371,7 @@ bindsym $mod+Pause mode "passthrough"
 bar {
     # Use waybar
     swaybar_command waybar
+
     # Use swaybar
 
     #position top
