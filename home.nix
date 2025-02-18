@@ -281,8 +281,6 @@
     ".local/lib/copy-pasta.sh".source = dotfiles/dot-local/lib/copy-pasta.sh;
     ".Xmodmap".source = dotfiles/dot-Xmodmap;
     ".ssh/config".source = dotfiles/dot-ssh/config;
-    ".ssh/srht.pub".source = dotfiles/dot-ssh/srht.pub;
-    ".ssh/github.pub".source = dotfiles/dot-ssh/github.pub;
     ".gitconfig".source = dotfiles/dot-gitconfig;
     ".sbclrc".source = dotfiles/dot-sbclrc;
     
