@@ -280,7 +280,6 @@
     ".local/lib/add-message-id.py".source = dotfiles/dot-local/lib/add-message-id.py;
     ".local/lib/copy-pasta.sh".source = dotfiles/dot-local/lib/copy-pasta.sh;
     ".Xmodmap".source = dotfiles/dot-Xmodmap;
-    ".ssh/config".source = dotfiles/dot-ssh/config;
     ".gitconfig".source = dotfiles/dot-gitconfig;
     ".sbclrc".source = dotfiles/dot-sbclrc;
     
