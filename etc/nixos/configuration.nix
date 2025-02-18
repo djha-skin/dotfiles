@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./suspend-and-hibernate.nix
       ./user-configuration.nix
     ];
 
@@ -22,6 +23,7 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -94,7 +96,7 @@
   security.polkit.enable = true;
   security.rtkit.enable = true;
   services.printing.enable = true;
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     iosevka
     noto-fonts
   ];
