@@ -20,7 +20,6 @@
   home.packages = with pkgs; [
     # basic
     waybar
-    coreutils
     btop
     kitty
     keepassxc
@@ -28,20 +27,21 @@
     onedrive
     onedrivegui
     firefox
-    glib
+    networkmanagerapplet
 
     # dev
-    neovim
-    git
-    tmux
-    gnupg
     gh
+    git
+    gnupg
+    jq
+    neovim
+    roswell
+    tmux
 
     # mail, chat
     neomutt
     msmtp
     offlineimap
-    roswell
     irssi
     newsboat
 
@@ -76,6 +76,8 @@
     ".config/waybar/styles/dark.css".source = dotfiles/dot-config/waybar/styles/dark.css;
     ".config/waybar/styles/light.css".source = dotfiles/dot-config/waybar/styles/light.css;
   
+
+    ".config/nix/nix.conf".source = dotfiles/dot-config/nix/nix.conf;
     ".screenrc".source = dotfiles/dot-screenrc;
     ".gnupg/sshcontrol".source = dotfiles/dot-gnupg/sshcontrol;
     ".gnupg/gpg-agent.conf".source = dotfiles/dot-gnupg/gpg-agent.conf;

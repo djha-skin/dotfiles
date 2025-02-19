@@ -1,0 +1,4 @@
+#!/bin/sh
+sudo cp etc/nixos/* /etc/nixos/
+sudo nixos-rebuild switch
+home-manager switch
