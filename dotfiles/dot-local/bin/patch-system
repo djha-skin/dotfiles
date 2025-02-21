@@ -23,4 +23,10 @@ then
     sudo snap refresh
 fi
 
+if which home-manager 2>/dev/null
+then
+    nix-channel --update
+    home-manager switch
+fi
+
 shutdown

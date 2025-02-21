@@ -5,7 +5,7 @@ if ! echo "${PATH}" | grep -q -E '\.nix-profile'
 then
     export PATH="${HOME}/.nix-profile/bin:${PATH}"
 fi
-export EDITOR = "nvim"
+export EDITOR="nvim"
 export LANG="en_US.UTF-8"
 export LOCALE="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
