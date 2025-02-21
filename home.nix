@@ -1,15 +1,15 @@
 { config, pkgs, ... }:
-
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "skin";
-  home.homeDirectory = "/home/skin";
+  imports = [
+    ./machine-specific.nix
+  ];
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
-  #
+  #nix-channel --update
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
@@ -17,35 +17,44 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs; [
+  home.packages = [
     # basic
-    waybar
-    btop
-    kitty
-    keepassxc
-    git-credential-keepassxc
-    onedrive
-    onedrivegui
-    firefox
-    networkmanagerapplet
+    pkgs.waybar
+    pkgs.btop
+    pkgs.kitty
+    pkgs.keepassxc
+    pkgs.git-credential-keepassxc
+    pkgs.onedrive
+    pkgs.onedrivegui
+    pkgs.networkmanagerapplet
+    pkgs.zenity
+    pkgs.ffmpeg
+    pkgs.imv
+    pkgs.zathura
+    pkgs.firefox
+
+
+    #glib
 
     # dev
-    gh
-    git
-    gnupg
-    jq
-    neovim
-    roswell
-    tmux
+    pkgs.neovim
+    pkgs.git
+    pkgs.tmux
+    pkgs.gnupg
+    pkgs.gh
+    pkgs.jq
+    pkgs.pandoc
+    pkgs.texlivePackages.xetex
 
     # mail, chat
-    neomutt
-    msmtp
-    offlineimap
-    irssi
-    newsboat
+    pkgs.neomutt
+    pkgs.msmtp
+    pkgs.offlineimap
+    pkgs.roswell
+    pkgs.irssi
+    pkgs.newsboat
 
-    
+
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -75,8 +84,6 @@
     ".config/kitty/tango-dark.conf".source = dotfiles/dot-config/kitty/tango-dark.conf;
     ".config/waybar/styles/dark.css".source = dotfiles/dot-config/waybar/styles/dark.css;
     ".config/waybar/styles/light.css".source = dotfiles/dot-config/waybar/styles/light.css;
-  
-
     ".config/nix/nix.conf".source = dotfiles/dot-config/nix/nix.conf;
     ".screenrc".source = dotfiles/dot-screenrc;
     ".gnupg/sshcontrol".source = dotfiles/dot-gnupg/sshcontrol;
@@ -284,7 +291,222 @@
     ".Xmodmap".source = dotfiles/dot-Xmodmap;
     ".gitconfig".source = dotfiles/dot-gitconfig;
     ".sbclrc".source = dotfiles/dot-sbclrc;
-    
+
+    ".profile".force = true;
+    ".config/sway/light_mode.conf".force = true;
+    ".config/sway/dark_mode.conf".force = true;
+    ".config/kitty/tango-light.conf".force = true;
+    ".config/kitty/tango-dark.conf".force = true;
+    ".config/waybar/styles/dark.css".force = true;
+    ".config/waybar/styles/light.css".force = true;
+
+    ".config/nix/nix.conf".force = true;
+    ".screenrc".force = true;
+    ".gnupg/sshcontrol".force = true;
+    ".gnupg/gpg-agent.conf".force = true;
+    ".gnupg/gpg.conf".force = true;
+    ".purple/prefs.xml".force = true;
+    ".purple/status.xml".force = true;
+    ".purple/gtkrc-2.0".force = true;
+    ".purple/blist.xml".force = true;
+    ".msmtprc".force = true;
+    ".tool-versions".force = true;
+    ".zshrc".force = true;
+    ".racket/.plt-autosave-toc-save".force = true;
+    ".racket/racket-prefs.rktd".force = true;
+    ".racket/.plt-autosave-toc".force = true;
+    ".roswell/init.lisp".force = true;
+    ".notmuch-config".force = true;
+    "Mail/migadu/.notmuch-config".force = true;
+    "Mail/home/.notmuch-config".force = true;
+    ".config/environment.d/ssh_auth_socket.conf".force = true;
+    ".config/iamb/config.toml".force = true;
+    ".config/common-lisp/source-registry.conf.d/50-djha-skin-lisp.conf".force = true;
+    ".config/common-lisp/source-registry.conf.d/50-skin-lisp.conf".force = true;
+    ".config/common-lisp/edi-weitz".force = true;
+    ".config/sway/status.sh".force = true;
+    ".config/sway/config".force = true;
+    ".config/sway/experimental".force = true;
+    ".config/sway/private-config".force = true;
+    ".config/discordo/config.toml".force = true;
+    ".config/sc-im/scimrc".force = true;
+    ".config/kitty/kitty.conf".force = true;
+    ".config/qterminal.org/qterminal.ini".force = true;
+    ".config/khard/khard.conf".force = true;
+    ".config/swappy/config".force = true;
+    ".config/tmux/tmux.conf".force = true;
+    ".config/foot/foot.ini".force = true;
+    ".config/foot/tango".force = true;
+    ".config/foot/xterm".force = true;
+    ".config/foot/a".force = true;
+    ".config/nvim/colors/simple.vim".force = true;
+    ".config/nvim/colors/rainbow_brite.vim".force = true;
+    ".config/nvim/autoload/cljstyle.vim".force = true;
+    ".config/nvim/autoload/plug.vim".force = true;
+    ".config/nvim/init.vim".force = true;
+    ".config/nvim/dark-mode.vim".force = true;
+    ".config/nvim/light-mode.vim".force = true;
+    ".config/nvim/ginit.vim".force = true;
+    ".config/wayfire.ini".force = true;
+    ".config/waybar/config".force = true;
+    ".config/waybar/convert_colors.py".force = true;
+    ".config/zoomus.conf".force = true;
+    ".config/mimeapps.list".force = true;
+    ".config/autostart/set-input-settings.desktop".force = true;
+    ".config/autostart/keynav.desktop".force = true;
+    ".config/clpm/clpm.conf".force = true;
+    ".config/clpm/sources.conf".force = true;
+    ".config/nchat/ui.conf".force = true;
+    ".config/spotifyd/spotifyd.conf".force = true;
+    ".config/qutebrowser/bookmarks/urls".force = true;
+    ".config/qutebrowser/config.py".force = true;
+    ".config/qutebrowser/autoconfig.yml".force = true;
+    ".config/systemd/user/onedrive-sync.service".force = true;
+    ".config/systemd/user/comodoro.service".force = true;
+    ".config/systemd/user/himalaya-notify-gmail.service".force = true;
+    ".config/systemd/user/home-skin-WorkGoogleDrive.mount".force = true;
+    ".config/systemd/user/himalaya-notify-skin.service".force = true;
+    ".config/systemd/user/mbsync.timer".force = true;
+    ".config/systemd/user/librespot.service".force = true;
+    ".config/systemd/user/pidgin.service".force = true;
+    ".config/systemd/user/spotifyd.service".force = true;
+    ".config/systemd/user/himalaya-watch-skin.service".force = true;
+    ".config/systemd/user/sync-mail.service".force = true;
+    ".config/systemd/user/mbsync.service".force = true;
+    ".config/systemd/user/home-skin-HomeGoogleDrive.mount".force = true;
+    ".config/systemd/user/himalaya-watch-gmail.service".force = true;
+    ".config/systemd/user/sync-mail.timer".force = true;
+    ".config/systemd/user/onedrive-sync.timer".force = true;
+    ".config/alacritty/alacritty.toml".force = true;
+    ".config/fontconfig/conf.d/01-font.conf".force = true;
+    ".config/gtk-3.0/settings.ini".force = true;
+    ".mbsyncrc".force = true;
+    ".inputrc".force = true;
+    ".vimrc".force = true;
+    ".emacs".force = true;
+    ".ratpoisonrc".force = true;
+    ".newsboat/urls".force = true;
+    ".newsboat/config".force = true;
+    ".gtkrc-2.0".force = true;
+    ".mutt/mmigadu.account".force = true;
+    ".mutt/mhome.account".force = true;
+    ".mutt/simple.muttrc".force = true;
+    ".mutt/dracula.muttrc".force = true;
+    ".mutt/migadu.account".force = true;
+    ".mutt/home.account".force = true;
+    ".racketrc".force = true;
+    ".ratpoisonmouse".force = true;
+    ".offlineimaprc".force = true;
+    ".muttrc".force = true;
+    ".tridactylrc".force = true;
+    ".mailcap".force = true;
+    ".nanorc".force = true;
+    ".shell_aliases".force = true;
+    ".Xresources".force = true;
+    ".lein/profiles.clj".force = true;
+    ".urlview".force = true;
+    ".offlineimap.py".force = true;
+    ".bashrc".force = true;
+    ".Xdefaults".force = true;
+    ".emacs.d/themes/djhaskin987-midnight-theme.el".force = true;
+    ".emacs.d/lisp/color-theme-rainbow-brite.el".force = true;
+    ".emacs.d/lisp/xterm-extras.el".force = true;
+    ".emacs.d/lisp/linum+.el".force = true;
+    ".emacs.d/lisp/djhaskin987-untab-to-tab-stop.el".force = true;
+    ".emacs.d/lisp/color-theme-djhaskin987-console.el".force = true;
+    ".emacs.d/eshell/alias".force = true;
+    ".emacs.d/.emacs.d/themes/djhaskin987-midnight-theme.el".force = true;
+    ".emacs.d/.emacs.d/lisp/color-theme-rainbow-brite.el".force = true;
+    ".emacs.d/.emacs.d/lisp/color-theme-djha-skin-console.el".force = true;
+    ".emacs.d/.emacs.d/lisp/xterm-extras.el".force = true;
+    ".emacs.d/.emacs.d/lisp/linum+.el".force = true;
+    ".emacs.d/.emacs.d/lisp/djha-skin-untab-to-tab-stop.el".force = true;
+    ".emacs.d/.emacs.d/eshell/alias".force = true;
+    ".ratpoisonkeys".force = true;
+    ".gtkrc-2.0-kde4".force = true;
+    ".gcalclirc".force = true;
+    ".local/share/figlet/djhaskin.flf".force = true;
+    #".local/share/applications/urn-handler.desktop".force = true;
+    #".local/share/applications/st-256color.desktop".force = true;
+    #".local/share/applications/OneDriveGUI.desktop".force = true;
+    ".local/share/qutebrowser/userscripts/qute-keepassxc".force = true;
+    ".local/bin/copy".force = true;
+    ".local/bin/stylus-back".force = true;
+    ".local/bin/dropbox-sync".force = true;
+    ".local/bin/start-my-day".force = true;
+    ".local/bin/get-message-id".force = true;
+    ".local/bin/qp".force = true;
+    ".local/bin/com-run".force = true;
+    ".local/bin/light-mode".force = true;
+    ".local/bin/choose-file".force = true;
+    ".local/bin/start-sway-process".force = true;
+    ".local/bin/testtruecolor".force = true;
+    ".local/bin/him".force = true;
+    ".local/bin/file2gdrive".force = true;
+    ".local/bin/point".force = true;
+    ".local/bin/sync-mail".force = true;
+    ".local/bin/calc-lesson".force = true;
+    ".local/bin/screen2slack".force = true;
+    ".local/bin/notify-bell".force = true;
+    ".local/bin/onedrive-sync".force = true;
+    ".local/bin/open-urn".force = true;
+    ".local/bin/screenshot-region".force = true;
+    ".local/bin/screen2gdrive".force = true;
+    ".local/bin/file2vim".force = true;
+    ".local/bin/timer".force = true;
+    ".local/bin/pidgin-notify".force = true;
+    ".local/bin/markdown-to-pdf".force = true;
+    ".local/bin/paste".force = true;
+    ".local/bin/multipass".force = true;
+    ".local/bin/dropbox-down".force = true;
+    ".local/bin/markdown-to-html".force = true;
+    ".local/bin/set-input-settings".force = true;
+    ".local/bin/sync-gmail".force = true;
+    ".local/bin/clip2gist".force = true;
+    ".local/bin/dropbox-up".force = true;
+    ".local/bin/patch-system".force = true;
+    ".local/bin/entry".force = true;
+    ".local/bin/swank-repl".force = true;
+    ".local/bin/one-at-a-time".force = true;
+    ".local/bin/dpi-fix".force = true;
+    ".local/bin/himalaya-mbox".force = true;
+    ".local/bin/diary".force = true;
+    ".local/bin/consume-clipboard".force = true;
+    ".local/bin/dark-mode".force = true;
+    ".local/bin/dropbox-start".force = true;
+    ".local/bin/rotate".force = true;
+    ".local/bin/login-to-discord".force = true;
+    ".local/bin/wdh.py".force = true;
+    ".local/bin/com".force = true;
+    ".local/bin/khal-remind".force = true;
+    ".local/bin/work-file2gdrive".force = true;
+    ".local/bin/vim-screenshot".force = true;
+    ".local/bin/gcal".force = true;
+    ".local/bin/clrepl".force = true;
+    ".local/bin/scalemon".force = true;
+    ".local/bin/croncal".force = true;
+    ".local/bin/screen2vim".force = true;
+    ".local/bin/kpuser".force = true;
+    ".local/bin/notify".force = true;
+    ".local/bin/display-calendar".force = true;
+    ".local/bin/stylus-left".force = true;
+    ".local/bin/work-screen2gdrive".force = true;
+    ".local/bin/gdfuse".force = true;
+    ".local/bin/file2rclone".force = true;
+    ".local/bin/pidge".force = true;
+    ".local/bin/com-hook".force = true;
+    ".local/bin/kptotp".force = true;
+    ".local/bin/pasta".force = true;
+    ".local/bin/himctl".force = true;
+    ".local/bin/hmbox".force = true;
+    ".local/bin/screen2rclone".force = true;
+    ".local/bin/bamboohr-to-vcards.py".force = true;
+    ".local/lib/no-tables.lua".force = true;
+    ".local/lib/add-message-id.py".force = true;
+    ".local/lib/copy-pasta.sh".force = true;
+    ".Xmodmap".force = true;
+    ".gitconfig".force = true;
+    ".sbclrc".force = true;
 
 
 

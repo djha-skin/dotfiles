@@ -1,0 +1,18 @@
+#!/bin/sh
+
+cmd=
+
+if which nixGL 2>&1 >/dev/null
+then
+    cmd="nixGL"
+fi
+
+if which kitty 2>&1 >/dev/null
+then
+    cmd="${cmd} kitty"
+elif which foot 2>&1 >/dev/null
+then
+    cmd="${cmd} foot"
+fi
+
+${cmd} "${@}"
