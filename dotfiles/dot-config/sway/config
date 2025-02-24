@@ -409,7 +409,7 @@ exec /usr/bin/xdg-user-dirs-update
 
 exec nm-applet --indicator
 exec sleep 5 && keepassxc
-exec sleep 5 && start-sway-process /home/skin/.local/bin/OneDriveGUI
+exec sleep 5 && start-sway-process /home/dhaskin/.nix-profile/bin/onedrivegui
 exec sleep 5 && davmail
 exec sleep 30 && flatpak run com.github.IsmaelMartinez.teams_for_linux
 exec sleep 30 && flatpak run com.discordapp.Discord

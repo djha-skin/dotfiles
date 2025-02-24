@@ -46,7 +46,10 @@
     pkgs.pandoc
     pkgs.texlivePackages.xetex
     pkgs.roswell
-    pkgs.nerdfonts
+    pkgs.nerd-fonts.iosevka-term
+    pkgs.nerd-fonts.noto
+    pkgs.nerd-fonts.fira-code
+
 
     # mail, chat
     pkgs.neomutt
@@ -181,7 +184,7 @@
     ".mutt/home.account".source = dotfiles/dot-mutt/home.account;
     ".racketrc".source = dotfiles/dot-racketrc;
     ".ratpoisonmouse".source = dotfiles/dot-ratpoisonmouse;
-    ".offlineimaprc".source = dotfiles/dot-offlineimaprc;
+    #".offlineimaprc".source = dotfiles/dot-offlineimaprc;
     ".muttrc".source = dotfiles/dot-muttrc;
     ".tridactylrc".source = dotfiles/dot-tridactylrc;
     ".mailcap".source = dotfiles/dot-mailcap;
@@ -397,7 +400,7 @@
     ".mutt/home.account".force = true;
     ".racketrc".force = true;
     ".ratpoisonmouse".force = true;
-    ".offlineimaprc".force = true;
+    #".offlineimaprc".force = true;
     ".muttrc".force = true;
     ".tridactylrc".force = true;
     ".mailcap".force = true;
