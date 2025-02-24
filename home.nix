@@ -45,15 +45,16 @@
     pkgs.jq
     pkgs.pandoc
     pkgs.texlivePackages.xetex
+    pkgs.roswell
+    pkgs.nerdfonts
 
     # mail, chat
     pkgs.neomutt
     pkgs.msmtp
     pkgs.offlineimap
-    pkgs.roswell
     pkgs.irssi
     pkgs.newsboat
-
+    pkgs.vdirsyncer
 
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
