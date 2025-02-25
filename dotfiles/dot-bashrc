@@ -7,10 +7,10 @@ then
     . ${HOME}/.pijulconfig/bash
 fi
 
-#if [ -d "${HOME}/.asdf" ]
-#then
-#    . "${HOME}/.asdf/asdf.sh"
-#fi
+if [ -d "${HOME}/.asdf" ]
+then
+    . "${HOME}/.asdf/asdf.sh"
+fi
 
 #eval "$(~/.local/bin/rtx activate -s bash)"
 
