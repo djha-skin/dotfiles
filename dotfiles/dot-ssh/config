@@ -1,7 +1,11 @@
-Host *sr.ht
-  IdentityFile ~/.ssh/srht.pub
-  PreferredAuthentications publickey
+Host *
+  HashKnownHosts no
 
-Host *github.com
-  IdentityFile ~/.ssh/github.pub
-  PreferredAuthentications publickey
+#Host *sr.ht
+#  IdentityFile ~/.ssh/srht.pub
+#  PreferredAuthentications publickey
+#
+#Host *github.com
+#  IdentityFile ~/.ssh/github.pub
+#  PreferredAuthentications publickey
+#

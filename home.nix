@@ -81,6 +81,7 @@
   # plain files is through 'home.file'.
   home.file = {
     # dark/light
+    ".ssh/config".source = dotfiles/dot-ssh/config;
     ".profile".source = dotfiles/dot-profile-nix;
     ".config/sway/light_mode.conf".source = dotfiles/dot-config/sway/light_mode.conf;
     ".config/sway/dark_mode.conf".source = dotfiles/dot-config/sway/dark_mode.conf;
@@ -97,7 +98,7 @@
     ".purple/status.xml".source = dotfiles/dot-purple/status.xml;
     ".purple/gtkrc-2.0".source = dotfiles/dot-purple/gtkrc-2.0;
     ".purple/blist.xml".source = dotfiles/dot-purple/blist.xml;
-    ".msmtprc".source = dotfiles/dot-msmtprc;
+    #".msmtprc".source = dotfiles/dot-msmtprc;
     ".tool-versions".source = dotfiles/dot-tool-versions;
     ".zshrc".source = dotfiles/dot-zshrc;
     ".racket/.plt-autosave-toc-save".source = dotfiles/dot-racket/.plt-autosave-toc-save;
@@ -296,6 +297,7 @@
     ".gitconfig".source = dotfiles/dot-gitconfig;
     ".sbclrc".source = dotfiles/dot-sbclrc;
 
+    ".ssh/config".force = true;
     ".profile".force = true;
     ".config/sway/light_mode.conf".force = true;
     ".config/sway/dark_mode.conf".force = true;
@@ -313,7 +315,7 @@
     ".purple/status.xml".force = true;
     ".purple/gtkrc-2.0".force = true;
     ".purple/blist.xml".force = true;
-    ".msmtprc".force = true;
+    #".msmtprc".force = true;
     ".tool-versions".force = true;
     ".zshrc".force = true;
     ".racket/.plt-autosave-toc-save".force = true;
