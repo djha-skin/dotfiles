@@ -9,14 +9,11 @@ then
     exit 0
 fi
 
-offlineimap -a home
-#mbsync -Va
-notmuch new
-
-offlineimap -a work
-#notmuch --config=${HOME}/Mail/kpm/.notmuch-config new
-#offlineimap -a migadu
-#notmuch --config=${HOME}/Mail/migadu/.notmuch-config new
+cat ~/.offlineimaprc  | awk '-F[][ ]' '/^\[Account/{print $3}' | while read account
+do
+    offlineimap -a ${account}
+    notmuch --config=${HOME}/Mail/${account}/.notmuch-config new
+done
 
 sync_pair() {
     sp_pair="${1}"
@@ -32,10 +29,34 @@ sync_pair() {
     fi
 }
 
-sync_pair home_calendar
-sync_pair home_contacts
-sync_pair kpm_calendar
-sync_pair kpm_contacts
 
-khal-remind
+cat ~/.vdirsyncer/config  | awk '-F[][ ]' '/^\[pair/{print $3}' | \
+    while read pair
+    do
+        sync_pair ${pair}
+    done
+
+khal_args=
+cat ~/.vdirsyncer/config  | awk '-F[][ ]' '/^\[storage.*local\]/{print $3}' | \
+    while read store
+    do
+        khal_args="${khal_args} --include-calendar ${store}"
+    done
+
+khal list \
+    ${khal_args} \
+    --format '{start-time}-{end-time} {title}' \
+    --day-format '' --notstarted now '23:59' |
+    grep -v '^- ' | while read d
+do
+    start_time=$(echo "${d}" | awk -F'[- ]' '/[0-9]+:[0-9]+/{ print $1 }')
+    start_time_epoch=$(date -d "${start_time}" +%s)
+    now=$(date +%s)
+    if [ "$(( ${start_time_epoch} - ${now} ))" -lt "600" ]
+    then
+        ffplay -nodisp -autoexit ~/OneDrive/Audio/Dings/588718__collierhs-colinlib__elevator-ding.wav
+        notify "Calendar" "${d}"
+    fi
+done
+
 ) 9>~/.cache/sync-mail-lock

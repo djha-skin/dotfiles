@@ -1,6 +1,7 @@
 [Unit]
 Description=Mailbox synchronization service
 After=network.target
+PartOf=
 
 [Service]
 Type=oneshot

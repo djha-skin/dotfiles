@@ -89,5 +89,11 @@ macro index,pager E \
         "add the sender email address to khard"
 bind attach M view-pager
 
+macro index,pager \cb "<pipe-message> urlscan<Enter>" \
+    "call urlscan to extract URLs out of a message"
+
+macro attach,compose \cb "<pipe-entry> urlscan<Enter>" \
+    "call urlscan to extract URLs out of a message"
+
 # vim: syntax=neomuttrc
 #

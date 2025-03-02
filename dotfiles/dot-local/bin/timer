@@ -27,9 +27,9 @@ do
     notify '⌚ Timer' "${name} (${duration} minutes)"
     if uname -a | grep -q 'Darwin'
     then
-        afplay -q "${HOME}/Music/ding.wav" &
+        afplay -q "${HOME}/OneDrive/Audio/Dings/chat-ding.wav" &
     else
-        aplay "${HOME}/Music/ding.wav" &
+        ffplay -autoexit -nodisp "${HOME}/OneDrive/Audio/Dings/chat-ding.wav" &
     fi
     while [ "${seconds}" -ge 0 ]
     do
@@ -58,7 +58,8 @@ figlet -d "${HOME}/.local/share/figlet" -f djhaskin -cWt "Complete!"
 notify '⌚ Timer' "Complete!"
 if uname -a | grep -q 'Darwin'
 then
-    afplay -q "${HOME}/Music/ding.wav"
+    #afplay -q "${HOME}/Music/ding.wav"
+    afplay -q "${HOME}/OneDrive/Audio/Dings/chat-ding.wav"
 else
-    aplay -q "${HOME}/Music/ding.wav"
+    ffplay -autoexit -nodisp "${HOME}/OneDrive/Audio/Dings/chat-ding.wav"
 fi

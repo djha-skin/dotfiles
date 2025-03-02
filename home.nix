@@ -31,6 +31,8 @@
     pkgs.rofi
     pkgs.rofi-calc
     pkgs.playerctl
+    pkgs.libnotify
+    pkgs.mako
 
     # basic
     pkgs.btop
@@ -52,6 +54,7 @@
 
     # dev
     pkgs.neovim
+    pkgs.ripgrep
     pkgs.git
     pkgs.tmux
     pkgs.gnupg
@@ -60,6 +63,7 @@
     pkgs.pandoc
     pkgs.texlivePackages.xetex
     pkgs.roswell
+    pkgs.figlet
     # On unstable, add to machine-specific for now
     #pkgs.nerd-fonts.iosevka-term
     #pkgs.nerd-fonts.noto
@@ -73,6 +77,10 @@
     pkgs.irssi
     pkgs.newsboat
     pkgs.vdirsyncer
+    pkgs.khal
+    pkgs.khard
+    pkgs.urlscan
+    pkgs.notmuch
 
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
@@ -95,9 +103,10 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    # dark/light
+    ".irssi/config".source = dotfiles/dot-irssi/config;
     ".ssh/config".source = dotfiles/dot-ssh/config;
     ".profile".source = dotfiles/dot-profile-nix;
+    # dark/light
     ".config/sway/light_mode.conf".source = dotfiles/dot-config/sway/light_mode.conf;
     ".config/sway/dark_mode.conf".source = dotfiles/dot-config/sway/dark_mode.conf;
     ".config/kitty/tango-light.conf".source = dotfiles/dot-config/kitty/tango-light.conf;
@@ -175,11 +184,11 @@
     ".config/systemd/user/pidgin.service".source = dotfiles/dot-config/systemd/user/pidgin.service;
     ".config/systemd/user/spotifyd.service".source = dotfiles/dot-config/systemd/user/spotifyd.service;
     ".config/systemd/user/himalaya-watch-skin.service".source = dotfiles/dot-config/systemd/user/himalaya-watch-skin.service;
-    ".config/systemd/user/sync-mail.service".source = dotfiles/dot-config/systemd/user/sync-mail.service;
+    #".config/systemd/user/sync-mail.service".source = dotfiles/dot-config/systemd/user/sync-mail.service;
     ".config/systemd/user/mbsync.service".source = dotfiles/dot-config/systemd/user/mbsync.service;
     ".config/systemd/user/home-skin-HomeGoogleDrive.mount".source = dotfiles/dot-config/systemd/user/home-skin-HomeGoogleDrive.mount;
     ".config/systemd/user/himalaya-watch-gmail.service".source = dotfiles/dot-config/systemd/user/himalaya-watch-gmail.service;
-    ".config/systemd/user/sync-mail.timer".source = dotfiles/dot-config/systemd/user/sync-mail.timer;
+    #".config/systemd/user/sync-mail.timer".source = dotfiles/dot-config/systemd/user/sync-mail.timer;
     ".config/systemd/user/onedrive-sync.timer".source = dotfiles/dot-config/systemd/user/onedrive-sync.timer;
     ".config/alacritty/alacritty.toml".source = dotfiles/dot-config/alacritty/alacritty.toml;
     ".config/fontconfig/conf.d/01-font.conf".source = dotfiles/dot-config/fontconfig/conf.d/01-font.conf;
@@ -312,6 +321,7 @@
     ".gitconfig".source = dotfiles/dot-gitconfig;
     ".sbclrc".source = dotfiles/dot-sbclrc;
 
+    ".irssi/config".force = true;
     ".ssh/config".force = true;
     ".profile".force = true;
     ".config/sway/light_mode.conf".force = true;
@@ -392,11 +402,11 @@
     ".config/systemd/user/pidgin.service".force = true;
     ".config/systemd/user/spotifyd.service".force = true;
     ".config/systemd/user/himalaya-watch-skin.service".force = true;
-    ".config/systemd/user/sync-mail.service".force = true;
+    #".config/systemd/user/sync-mail.service".force = true;
     ".config/systemd/user/mbsync.service".force = true;
     ".config/systemd/user/home-skin-HomeGoogleDrive.mount".force = true;
     ".config/systemd/user/himalaya-watch-gmail.service".force = true;
-    ".config/systemd/user/sync-mail.timer".force = true;
+    #".config/systemd/user/sync-mail.timer".force = true;
     ".config/systemd/user/onedrive-sync.timer".force = true;
     ".config/alacritty/alacritty.toml".force = true;
     ".config/fontconfig/conf.d/01-font.conf".force = true;
@@ -529,9 +539,6 @@
     ".gitconfig".force = true;
     ".sbclrc".force = true;
 
-
-
-
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
@@ -542,6 +549,34 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+  };
+
+  systemd.user.services.sync-mail = {
+    Unit = {
+        Description = "Mailbox synchronization service";
+        After = "graphical-session-pre.target";
+        PartOf = "graphical-session.target";
+    };
+
+    Service = {
+        Type = "oneshot";
+        ExecStart = "${config.home.homeDirectory}/.local/bin/sync-mail";
+        TimeoutStopSec = 150;
+    };
+  };
+
+  systemd.user.timers.sync-mail = {
+    Unit = {
+        Description = "Mailbox synchronization timer";
+    };
+    Timer = {
+        OnBootSec = "2m";
+        OnUnitActiveSec = "15m";
+        Unit = "sync-mail.service";
+    };
+    Install = {
+        WantedBy = ["timers.target"];
+    };
   };
 
   # Home Manager can also manage your environment variables through

@@ -14,6 +14,7 @@ export RLWRAP_EDITOR="nvim '+call cursor(%L,%C)'"
 export LESS="-Q --no-vbell --use-color -r"
 export PARINIT="rTbgqR B=*/-.,?'_A_a_@ Q=_s>| W=_S"
 export NIXOS_OZONE_WL=1
+export NIXPKGS_ALLOW_UNFREE=1
 
 # ~/.profile: executed by the command interpreter for login shells.
 # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
