@@ -18,15 +18,27 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    # basic
+    # Desktop Environment
     pkgs.waybar
+    pkgs.pwvucontrol
+    pkgs.networkmanagerapplet
+    pkgs.wev
+    pkgs.brightnessctl
+    pkgs.kitty
+    pkgs.grim
+    pkgs.swayidle
+    pkgs.swaylock
+    pkgs.rofi
+    pkgs.rofi-calc
+    pkgs.playerctl
+
+    # basic
     pkgs.btop
     pkgs.kitty
     pkgs.keepassxc
     pkgs.git-credential-keepassxc
     pkgs.onedrive
     pkgs.onedrivegui
-    pkgs.networkmanagerapplet
     pkgs.zenity
     pkgs.ffmpeg
     pkgs.imv

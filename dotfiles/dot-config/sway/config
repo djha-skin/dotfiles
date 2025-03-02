@@ -272,6 +272,7 @@ mode "interact" {
     bindsym Mod4+Shift+Return exec $browser
 
     bindsym XF86Calculator exec rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '{result}' | copy" -kb-accept-custom 'control+KP_Enter'
+
     bindsym Mod4+Shift+j exec rofimoji -a type # "react"
 
 
@@ -280,7 +281,7 @@ mode "interact" {
     #bindsym $mod+$down focus down
     #bindsym $mod+$up focus up
     #bindsym $mod+$right focus right
-    bindsym $mod+j mode "default"
+    bindsym $mod+j mode "default":w
 }
 
 # Begin outright theft of the Fedora sway config
@@ -303,8 +304,13 @@ for_window [app_id="firefox" title="Firefox — Sharing Indicator"] {
     floating enable
 }
 
-# Display PulseAudio volume control application (both GTK and Qt varieties)
+# Display Volume control application (both GTK and Qt varieties)
 # as a floating window.
+
+for_window [app_id="pwvucontrol"] {
+    floating enable
+    move position center
+}
 
 for_window [app_id="pavucontrol"] {
     floating enable
@@ -323,9 +329,9 @@ for_window [app_id="lxqt-policykit-agent"] {
 }
 
 set $brightness_notification_cmd  command -v notify-send >/dev/null && \
-        VALUE=$(brightnessctl --percentage get) && \
+        value=$(brightnessctl --percentage get) && \
         notify-send -e -h string:x-canonical-private-synchronous:brightness \
-            -h "int:value:$VALUE" -t 800 "Brightness: ${VALUE}%"
+            -h "int:value:$value" -t 800 "Brightness: ${value}%"
 
 bindsym XF86MonBrightnessDown exec \
         'STEP="$brightness_step" && brightnessctl -q set ${STEP:-5}%- && $brightness_notification_cmd'
@@ -349,16 +355,17 @@ bindsym {
     XF86AudioRewind     exec playerctl position -10
 }
 
-set $volume_helper_cmd /home/skin/.local/lib/volume-helper
+set $volume_notification_cmd command -v notify-send >/dev/null && \
+        value=$(wpctl get-volume @DEFAULT_AUDIO_SINK@  | cut -d. -f2) && \
+        notify-send -e -h string:x-canonical-private-synchronous:volume \
+            -h "int:value:$value" -t 800 "Volume: ${value}%"
 
 # Allow volume controls even if the screen is locked
 bindsym --locked {
-    XF86AudioRaiseVolume exec \
-        $volume_helper_cmd --limit "$volume_limit" --increase "$volume_step"
-    XF86AudioLowerVolume exec \
-        $volume_helper_cmd --limit "$volume_limit" --decrease "$volume_step"
-    XF86AudioMute    exec pactl set-sink-mute @DEFAULT_SINK@ toggle && $volume_helper_cmd
-    XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+    # https://bbs.archlinux.org/viewtopic.php?id=276379
+    XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ && $volume_notification_cmd
+    XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1- && $volume_notification_cmd
+    XF86AudioMute    exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && $volume_notification_cmd
 }
 
 # A special mode for passing any keybindings to the focused application
