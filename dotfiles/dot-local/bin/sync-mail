@@ -1,62 +1,56 @@
 #!/bin/sh
-
-. ${HOME}/.profile
-(
-flock -n 9
-if [ "${?}" -ne 0 ]
+if [ "${SYNCMAIL_FLOCK}" != "$0" ]
 then
-    echo "Another instance is running." >&2
-    exit 0
-fi
+    SYNCMAIL_FLOCK="${0}" flock -en "$0" "$0" "$@"
+else
 
-cat ~/.offlineimaprc  | awk '-F[][ ]' '/^\[Account/{print $3}' | while read account
-do
-    offlineimap -a ${account}
-    notmuch --config=${HOME}/Mail/${account}/.notmuch-config new
-done
+    cat ~/.offlineimaprc  | awk '-F[][ ]' '/^\[Account/{print $3}' | while read account
+    do
+        offlineimap -a ${account}
+        notmuch --config=${HOME}/Mail/${account}/.notmuch-config new
+    done
 
-sync_pair() {
-    sp_pair="${1}"
-    shift
+    sync_pair() {
+        sp_pair="${1}"
+        shift
 
-    if ! vdirsyncer sync --no-force-delete "${sp_pair}"
-    then
-        if vdirsyncer sync --no-force-delete 2>&1 "${sp_pair}" | grep -qE '40[13]'
+        if ! vdirsyncer sync --no-force-delete "${sp_pair}"
         then
-            rm -f ~/.config/vdirsyncer/${sp_pair}_token
+            if vdirsyncer sync --no-force-delete 2>&1 "${sp_pair}" | grep -qE '40[13]'
+            then
+                rm -f ~/.config/vdirsyncer/${sp_pair}_token
+            fi
+            vdirsyncer sync --no-force-delete
         fi
-        vdirsyncer sync --no-force-delete
-    fi
-}
+    }
 
 
-cat ~/.vdirsyncer/config  | awk '-F[][ ]' '/^\[pair/{print $3}' | \
-    while read pair
+    cat ~/.vdirsyncer/config  | awk '-F[][ ]' '/^\[pair/{print $3}' | \
+        while read pair
+        do
+            sync_pair ${pair}
+        done
+
+    khal_args=
+    cat ~/.vdirsyncer/config  | awk '-F[][ ]' '/^\[storage.*local\]/{print $3}' | \
+        while read store
+        do
+            khal_args="${khal_args} --include-calendar ${store}"
+        done
+
+    khal list \
+        ${khal_args} \
+        --format '{start-time}-{end-time} {title}' \
+        --day-format '' --notstarted now '23:59' |
+        grep -v '^- ' | while read d
     do
-        sync_pair ${pair}
+        start_time=$(echo "${d}" | awk -F'[- ]' '/[0-9]+:[0-9]+/{ print $1 }')
+        start_time_epoch=$(date -d "${start_time}" +%s)
+        now=$(date +%s)
+        if [ "$(( ${start_time_epoch} - ${now} ))" -lt "600" ]
+        then
+            ffplay -nodisp -autoexit ~/OneDrive/Audio/Dings/588718__collierhs-colinlib__elevator-ding.wav
+            notify "Calendar" "${d}"
+        fi
     done
-
-khal_args=
-cat ~/.vdirsyncer/config  | awk '-F[][ ]' '/^\[storage.*local\]/{print $3}' | \
-    while read store
-    do
-        khal_args="${khal_args} --include-calendar ${store}"
-    done
-
-khal list \
-    ${khal_args} \
-    --format '{start-time}-{end-time} {title}' \
-    --day-format '' --notstarted now '23:59' |
-    grep -v '^- ' | while read d
-do
-    start_time=$(echo "${d}" | awk -F'[- ]' '/[0-9]+:[0-9]+/{ print $1 }')
-    start_time_epoch=$(date -d "${start_time}" +%s)
-    now=$(date +%s)
-    if [ "$(( ${start_time_epoch} - ${now} ))" -lt "600" ]
-    then
-        ffplay -nodisp -autoexit ~/OneDrive/Audio/Dings/588718__collierhs-colinlib__elevator-ding.wav
-        notify "Calendar" "${d}"
-    fi
-done
-
-) 9>~/.cache/sync-mail-lock
+fi

@@ -319,7 +319,7 @@ settings = {
     user_name = "skin";
     nick = "skin";
   };
-  lookandfeel = {
-    show_names_on_join = OFF;
-  };
 };
+ignores = (
+  { level = "JOINS PARTS QUITS NICKS"; channels = ( "#commonlisp" ); }
+);
