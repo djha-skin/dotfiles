@@ -59,7 +59,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  
+
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -97,11 +97,7 @@
   security.polkit.enable = true;
   security.rtkit.enable = true;
   services.printing.enable = true;
-  fonts.packages = with pkgs; [
-    iosevka
-    noto-fonts
-  ];
-  
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

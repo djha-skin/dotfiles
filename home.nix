@@ -32,7 +32,9 @@
     pkgs.imv
     pkgs.zathura
     pkgs.firefox
-
+    pkgs.discord
+    # Machine-specific
+    #pkgs.slack
 
     #glib
 
@@ -46,9 +48,10 @@
     pkgs.pandoc
     pkgs.texlivePackages.xetex
     pkgs.roswell
-    pkgs.nerd-fonts.iosevka-term
-    pkgs.nerd-fonts.noto
-    pkgs.nerd-fonts.fira-code
+    # On unstable, add to machine-specific for now
+    #pkgs.nerd-fonts.iosevka-term
+    #pkgs.nerd-fonts.noto
+    #pkgs.nerd-fonts.fira-code
 
 
     # mail, chat

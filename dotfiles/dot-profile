@@ -35,6 +35,7 @@ export LC_ALL="en_US.UTF-8"
 export LANGUAGE="en_US:"
 export RLWRAP_EDITOR="nvim '+call cursor(%L,%C)'"
 export LESS="-Q --no-vbell --use-color -r"
+export NIXPKGS_ALLOW_UNFREE=1
 
 #export LD_LIBRARY_PATH=${HOME}/.local/lib64:${HOME}/.local/lib:/usr/local/lib64:/usr/local/lib:/usr/lib64:/usr/lib
 

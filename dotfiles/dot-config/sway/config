@@ -62,7 +62,7 @@ output 'HP Inc. HP VH240a 6CM01304VL' position 840 440
 output 'HP Inc. HP VH240a 6CM01304VL' bg ~/OneDrive/Pictures/Backgrounds/dan-baker-voltaire-kelpie-v012-db-reprint.jpg fill
 
 output 'Dell Inc. DELL S2209W P262H93320YU' resolution 1920x1080
-output 'Dell Inc. DELL S2209W P262H93320YU' position  1920 0
+output 'Dell Inc. DELL S2209W P262H93320YU' position  0 1080
 output 'Dell Inc. DELL S2209W P262H93320YU' bg ~/OneDrive/Pictures/Backgrounds/ddjfyzd-15207cdf-a0b0-473b-94ee-017009605e4d.jpg fill
 
 output 'HP Inc. HP VH240a 6CM01319L1' resolution 1920x1080
@@ -412,7 +412,8 @@ exec sleep 5 && keepassxc
 exec sleep 5 && start-sway-process /home/dhaskin/.nix-profile/bin/onedrivegui
 exec sleep 5 && davmail
 exec sleep 30 && flatpak run com.github.IsmaelMartinez.teams_for_linux
-exec sleep 30 && flatpak run com.discordapp.Discord
+#exec sleep 30 && flatpak run com.discordapp.Discord
+exec sleep 30 && discord
 exec sleep 30 && flatpak run com.ktechpit.whatsie
 exec sleep 30 && flatpak run com.slack.Slack
 exec start-sway-process swaync
