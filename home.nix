@@ -47,6 +47,7 @@
     pkgs.zathura
     pkgs.firefox
     pkgs.discord
+    pkgs.whatsie
     # Machine-specific
     #pkgs.slack
 
@@ -241,7 +242,7 @@
     ".local/share/figlet/djhaskin.flf".source = dotfiles/dot-local/share/figlet/djhaskin.flf;
     #".local/share/applications/urn-handler.desktop".source = dotfiles/dot-local/share/applications/urn-handler.desktop;
     #".local/share/applications/st-256color.desktop".source = dotfiles/dot-local/share/applications/st-256color.desktop;
-    #".local/share/applications/OneDriveGUI.desktop".source = dotfiles/dot-local/share/applications/OneDriveGUI.desktop;
+    ".local/share/applications/OneDriveGUI.desktop".source = dotfiles/dot-local/share/applications/OneDriveGUI.desktop;
     ".local/share/qutebrowser/userscripts/qute-keepassxc".source = dotfiles/dot-local/share/qutebrowser/userscripts/qute-keepassxc;
     ".local/bin/copy".source = dotfiles/dot-local/bin/copy;
     ".local/bin/stylus-back".source = dotfiles/dot-local/bin/stylus-back;
@@ -459,7 +460,7 @@
     ".local/share/figlet/djhaskin.flf".force = true;
     #".local/share/applications/urn-handler.desktop".force = true;
     #".local/share/applications/st-256color.desktop".force = true;
-    #".local/share/applications/OneDriveGUI.desktop".force = true;
+    ".local/share/applications/OneDriveGUI.desktop".force = true;
     ".local/share/qutebrowser/userscripts/qute-keepassxc".force = true;
     ".local/bin/copy".force = true;
     ".local/bin/stylus-back".force = true;

@@ -85,7 +85,7 @@ output 'ASUSTek COMPUTER INC VY249 MALMRS015307' position 3840 1080
 output 'ASUSTek COMPUTER INC VY249 MALMRS015307' bg ~/OneDrive/Pictures/Backgrounds/dan-baker-voltaire-kelpie-v012-db-reprint.jpg fill
 
 output 'VIZIO, Inc M220VA ' resolution 1920x1080
-output 'VIZIO, Inc M220VA ' position 0 1080
+output 'VIZIO, Inc M220VA ' position 1920 0
 
 focus_on_window_activation none
 #
@@ -421,8 +421,8 @@ exec sleep 5 && davmail
 exec sleep 30 && flatpak run com.github.IsmaelMartinez.teams_for_linux
 #exec sleep 30 && flatpak run com.discordapp.Discord
 exec sleep 30 && discord
-exec sleep 30 && flatpak run com.ktechpit.whatsie
-exec sleep 30 && flatpak run com.slack.Slack
+exec sleep 30 && whatsie
+exec sleep 30 && slack
 exec start-sway-process swaync
 bindsym Shift+n exec swaync-client -t -sw
 
