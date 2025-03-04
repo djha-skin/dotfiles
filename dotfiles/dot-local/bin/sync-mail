@@ -1,4 +1,11 @@
 #!/bin/sh
+set -ex
+
+if [ "${PROFILE_INCLUDED:-0}" -eq 0 ]
+then
+    . ~/.profile
+fi
+
 if [ "${SYNCMAIL_FLOCK}" != "$0" ]
 then
     SYNCMAIL_FLOCK="${0}" flock -en "$0" "$0" "$@"
