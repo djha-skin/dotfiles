@@ -1,3 +1,7 @@
+export HOME=/home/${USER}
+export PATH=:${HOME}/.local/bin:/run/wrappers/bin:${HOME}/.nix-profile/bin:/nix/profile/bin:${HOME}/.local/state/nix/profile/bin:/etc/profiles/per-user/$(id -nu)/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin
+export PATH=${HOME}/perl5/bin:${HOME}/.local/bin:/run/wrappers/bin:${HOME}/.nix-profile/bin:/nix/profile/bin:${HOME}/.local/state/nix/profile/bin:/etc/profiles/per-user/$(id -nu)/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin
+
 . "${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
 export PATH="${HOME}/.local/bin:${PATH}"
@@ -26,12 +30,6 @@ export NIXPKGS_ALLOW_UNFREE=1
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 export PROFILE_INCLUDED=1
-if [ -d /mingw64 ]
-then
-    export HOME="/home/bhw"
-else
-    export HOME="/home/$(id -nu)"
-fi
 export home_altprefix="${HOME}/.apps"
 
 export CARGO_HOME="${HOME}/.cargo"

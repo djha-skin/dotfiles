@@ -19,6 +19,7 @@
   # environment.
   home.packages = [
     # Desktop Environment
+    pkgs.wl-clipboard
     pkgs.waybar
     pkgs.pwvucontrol
     pkgs.networkmanagerapplet
@@ -26,6 +27,7 @@
     pkgs.brightnessctl
     pkgs.kitty
     pkgs.grim
+    pkgs.slurp
     pkgs.swayidle
     pkgs.swaylock
     pkgs.rofi
@@ -35,6 +37,7 @@
     pkgs.mako
 
     # basic
+    pkgs.wget
     pkgs.btop
     pkgs.kitty
     pkgs.keepassxc
@@ -55,7 +58,9 @@
 
     # dev
     pkgs.neovim
+    pkgs.curl
     pkgs.ripgrep
+    pkgs.gnupg
     pkgs.git
     pkgs.tmux
     pkgs.gnupg

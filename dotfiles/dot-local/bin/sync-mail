@@ -1,15 +1,30 @@
 #!/bin/sh
-set -ex
+sync_pair() {
+    sp_pair="${1}"
+    shift
+
+    if ! vdirsyncer sync --no-force-delete "${sp_pair}"
+    then
+        if vdirsyncer sync --no-force-delete 2>&1 "${sp_pair}" | grep -qE '40[13]'
+        then
+            rm -f ~/.config/vdirsyncer/${sp_pair}_token
+        fi
+        vdirsyncer sync --no-force-delete
+    fi
+}
 
 if [ "${PROFILE_INCLUDED:-0}" -eq 0 ]
 then
     . ~/.profile
 fi
 
-if [ "${SYNCMAIL_FLOCK}" != "$0" ]
-then
-    SYNCMAIL_FLOCK="${0}" flock -en "$0" "$0" "$@"
-else
+(
+    flock -n 9
+    if [ "${?}" -ne 0 ]
+    then
+        echo "Executing flock failed. Another instance is likely running." >&2
+        exit 1
+    fi
 
     cat ~/.offlineimaprc  | awk '-F[][ ]' '/^\[Account/{print $3}' | while read account
     do
@@ -17,19 +32,6 @@ else
         notmuch --config=${HOME}/Mail/${account}/.notmuch-config new
     done
 
-    sync_pair() {
-        sp_pair="${1}"
-        shift
-
-        if ! vdirsyncer sync --no-force-delete "${sp_pair}"
-        then
-            if vdirsyncer sync --no-force-delete 2>&1 "${sp_pair}" | grep -qE '40[13]'
-            then
-                rm -f ~/.config/vdirsyncer/${sp_pair}_token
-            fi
-            vdirsyncer sync --no-force-delete
-        fi
-    }
 
 
     cat ~/.vdirsyncer/config  | awk '-F[][ ]' '/^\[pair/{print $3}' | \
@@ -60,4 +62,5 @@ else
             notify "Calendar" "${d}"
         fi
     done
-fi
+
+) 9> ${HOME}/.cache/sync-mail-lock
