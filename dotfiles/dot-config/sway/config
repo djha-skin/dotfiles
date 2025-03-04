@@ -6,7 +6,7 @@ set $down j
 set $up k
 set $right l
 
-set $term kitty
+set $term terminal
 set $browser "${BROWSER}"
 
 #titlebar_padding 4 8
