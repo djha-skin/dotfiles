@@ -1,6 +1,15 @@
 export HOME=/home/${USER}
-export PATH=:${HOME}/.local/bin:/run/wrappers/bin:${HOME}/.nix-profile/bin:/nix/profile/bin:${HOME}/.local/state/nix/profile/bin:/etc/profiles/per-user/$(id -nu)/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin
-export PATH=${HOME}/perl5/bin:${HOME}/.local/bin:/run/wrappers/bin:${HOME}/.nix-profile/bin:/nix/profile/bin:${HOME}/.local/state/nix/profile/bin:/etc/profiles/per-user/$(id -nu)/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin
+#export PATH=${HOME}/.local/bin:/run/wrappers/bin:${HOME}/.nix-profile/bin:/nix/profile/bin:${HOME}/.local/state/nix/profile/bin:/etc/profiles/per-user/$(id -nu)/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin
+
+base_path=${HOME}/.local/bin
+for i in ${HOME}/perl5/bin /run/wrappers/bin ${HOME}/.nix-profile/bin /nix/profile/bin ${HOME}/.local/state/nix/profile/bin /etc/profiles/per-user/$(id -nu)/bin /nix/var/nix/profiles/default/bin /run/current-system/sw/bin /bin /usr/bin /usr/local/bin /usr/bin/site_perl /usr/bin/vendor_perl /usr/bin/core_perl /usr/games /usr/local/games /snap/bin /var/lib/flatpak/exports/bin /usr/sbin /bin
+do
+    if [ -d "${i}" ]
+    then
+        base_path="${base_path}:${i}"
+    fi
+done
+export PATH="${base_path}"
 
 . "${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh"
 

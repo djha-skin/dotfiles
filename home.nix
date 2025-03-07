@@ -40,7 +40,8 @@
     pkgs.grim
     pkgs.slurp
     pkgs.swayidle
-    pkgs.swaylock
+    # Don't do this one here, needs at configuration.nix
+    #pkgs.swaylock
     pkgs.rofi
     pkgs.rofi-calc
     pkgs.playerctl
