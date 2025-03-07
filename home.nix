@@ -6,6 +6,17 @@
     ./machine-specific.nix
   ];
 
+  nixpkgs.overlays = [
+    (final: prev: {
+        notmuch = prev.notmuch.overrideDerivation(oldAttrs: {
+            doCheck = false;
+        });
+        neomutt = prev.neomutt.overrideDerivation(oldAttrs: {
+            doCheck = false;
+        });
+        })
+  ];
+
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -49,8 +60,8 @@
     pkgs.imv
     pkgs.zathura
     pkgs.firefox
-    pkgs.discord
     pkgs.whatsie
+    #pkgs.discord
     # Machine-specific
     #pkgs.slack
 
@@ -610,5 +621,7 @@
   #};
 
   # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  programs = {
+    home-manager.enable = true;
+  };
 }
