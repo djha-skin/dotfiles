@@ -34,14 +34,14 @@ fi
 
 
 
-    cat ~/.vdirsyncer/config  | awk '-F[][ ]' '/^\[pair/{print $3}' | \
+    cat ~/.config/vdirsyncer/config  | awk '-F[][ ]' '/^\[pair/{print $3}' | \
         while read pair
         do
             sync_pair ${pair}
         done
 
     khal_args=
-    cat ~/.vdirsyncer/config  | awk '-F[][ ]' '/^\[storage.*local\]/{print $3}' | \
+    cat ~/.config/vdirsyncer/config  | awk '-F[][ ]' '/^\[storage.*local\]/{print $3}' | \
         while read store
         do
             khal_args="${khal_args} --include-calendar ${store}"
