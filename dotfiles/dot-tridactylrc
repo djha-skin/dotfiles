@@ -3,6 +3,8 @@ bind ? fillcmdline find -?
 bind n findnext 1
 bind N findnext -1
 bind ,<Space> nohlsearch
+keymap J K
+keymap K J
 
 bind <C-j> --mode=insert mode normal
 set editorcmd nvim-qt

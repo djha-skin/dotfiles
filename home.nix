@@ -71,6 +71,7 @@
 
     # dev
     pkgs.neovim
+    pkgs.neovim-qt
     pkgs.curl
     pkgs.ripgrep
     pkgs.gnupg
