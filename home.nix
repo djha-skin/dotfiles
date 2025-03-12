@@ -38,6 +38,7 @@
     pkgs.brightnessctl
     pkgs.kitty
     pkgs.grim
+    pkgs.sway-contrib.grimshot
     pkgs.slurp
     pkgs.swayidle
     # Don't do this one here, needs at configuration.nix
