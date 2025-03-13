@@ -2,7 +2,7 @@ rlwrap 0.46
 sbcl 2.3.1
 kubectl 1.24.10
 github-cli 2.34.0
-vault 1.14.2
+vault 1.18.3
 awscli 2.13.17
 krew 0.4.4
 k6 0.49.0
