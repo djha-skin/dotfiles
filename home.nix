@@ -102,6 +102,10 @@
     pkgs.urlscan
     pkgs.notmuch
 
+    # Music
+    pkgs.spotifyd
+    pkgs.spotify-qt
+
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -202,7 +206,6 @@
     ".config/systemd/user/mbsync.timer".source = dotfiles/dot-config/systemd/user/mbsync.timer;
     ".config/systemd/user/librespot.service".source = dotfiles/dot-config/systemd/user/librespot.service;
     ".config/systemd/user/pidgin.service".source = dotfiles/dot-config/systemd/user/pidgin.service;
-    ".config/systemd/user/spotifyd.service".source = dotfiles/dot-config/systemd/user/spotifyd.service;
     ".config/systemd/user/himalaya-watch-skin.service".source = dotfiles/dot-config/systemd/user/himalaya-watch-skin.service;
     #".config/systemd/user/sync-mail.service".source = dotfiles/dot-config/systemd/user/sync-mail.service;
     ".config/systemd/user/mbsync.service".source = dotfiles/dot-config/systemd/user/mbsync.service;
@@ -405,7 +408,6 @@
     ".config/systemd/user/onedrive-sync.service".force = true;
     ".config/systemd/user/onedrive-sync.timer".force = true;
     ".config/systemd/user/pidgin.service".force = true;
-    ".config/systemd/user/spotifyd.service".force = true;
     ".config/tmux/tmux.conf".force = true;
     ".config/waybar/config".force = true;
     ".config/waybar/convert_colors.py".force = true;
@@ -619,6 +621,31 @@
 
     Install = {
         WantedBy = ["default.target"];
+    };
+  };
+
+
+  systemd.user.services.spotifyd = {
+    Unit = {
+      Description = "A spotify playing daemon";
+      Documentation = "https://githubc.om/Spotifyd/spotifyd";
+      Wants = [
+        "sound.target"
+        "network-online.target"
+      ];
+      After = [
+        "sound.target"
+        "network-online.target"
+      ];
+    };
+    Service = {
+      ExecStart = "spotifyd --no-daemon";
+      Restart = "always";
+      RestartSec = "12";
+    };
+
+    Install = {
+      WantedBy = ["default.target"];
     };
   };
 
