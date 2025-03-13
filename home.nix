@@ -103,8 +103,8 @@
     pkgs.notmuch
 
     # Music
-    pkgs.spotifyd
-    pkgs.spotify-qt
+    #pkgs.spotifyd
+    #pkgs.spotify-qt
 
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
@@ -194,7 +194,7 @@
     ".config/clpm/clpm.conf".source = dotfiles/dot-config/clpm/clpm.conf;
     ".config/clpm/sources.conf".source = dotfiles/dot-config/clpm/sources.conf;
     ".config/nchat/ui.conf".source = dotfiles/dot-config/nchat/ui.conf;
-    ".config/spotifyd/spotifyd.conf".source = dotfiles/dot-config/spotifyd/spotifyd.conf;
+    #".config/spotifyd/spotifyd.conf".source = dotfiles/dot-config/spotifyd/spotifyd.conf;
     ".config/qutebrowser/bookmarks/urls".source = dotfiles/dot-config/qutebrowser/bookmarks/urls;
     ".config/qutebrowser/config.py".source = dotfiles/dot-config/qutebrowser/config.py;
     ".config/qutebrowser/autoconfig.yml".source = dotfiles/dot-config/qutebrowser/autoconfig.yml;
@@ -387,7 +387,7 @@
     ".config/qutebrowser/bookmarks/urls".force = true;
     ".config/qutebrowser/config.py".force = true;
     ".config/sc-im/scimrc".force = true;
-    ".config/spotifyd/spotifyd.conf".force = true;
+    #".config/spotifyd/spotifyd.conf".force = true;
     ".config/swappy/config".force = true;
     ".config/sway/config".force = true;
     ".config/sway/dark_mode.conf".force = true;
@@ -625,29 +625,29 @@
   };
 
 
-  systemd.user.services.spotifyd = {
-    Unit = {
-      Description = "A spotify playing daemon";
-      Documentation = "https://githubc.om/Spotifyd/spotifyd";
-      Wants = [
-        "sound.target"
-        "network-online.target"
-      ];
-      After = [
-        "sound.target"
-        "network-online.target"
-      ];
-    };
-    Service = {
-      ExecStart = "spotifyd --no-daemon";
-      Restart = "always";
-      RestartSec = "12";
-    };
+  #systemd.user.services.spotifyd = {
+  #  Unit = {
+  #    Description = "A spotify playing daemon";
+  #    Documentation = "https://githubc.om/Spotifyd/spotifyd";
+  #    Wants = [
+  #      "sound.target"
+  #      "network-online.target"
+  #    ];
+  #    After = [
+  #      "sound.target"
+  #      "network-online.target"
+  #    ];
+  #  };
+  #  Service = {
+  #    ExecStart = "spotifyd --no-daemon";
+  #    Restart = "always";
+  #    RestartSec = "12";
+  #  };
 
-    Install = {
-      WantedBy = ["default.target"];
-    };
-  };
+  #  Install = {
+  #    WantedBy = ["default.target"];
+  #  };
+  #};
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
