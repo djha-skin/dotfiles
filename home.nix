@@ -136,7 +136,7 @@ in
   # plain files is through 'home.file'.
   home.file = {
     ".irssi/config".source = dotfiles/dot-irssi/config;
-    ".ssh/config".source = dotfiles/dot-ssh/config;
+    #".ssh/config".source = dotfiles/dot-ssh/config;
     ".profile".source = dotfiles/dot-profile-nix;
     # dark/light
     ".config/sway/light_mode.conf".source = dotfiles/dot-config/sway/light_mode.conf;
@@ -556,7 +556,7 @@ in
     ".sbclrc".force = true;
     ".screenrc".force = true;
     ".shell_aliases".force = true;
-    ".ssh/config".force = true;
+    #".ssh/config".force = true;
     ".tool-versions".force = true;
     ".tridactylrc".force = true;
     ".urlview".force = true;
