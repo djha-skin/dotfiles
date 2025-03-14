@@ -9,7 +9,7 @@
 
     outputs = { home-manager, nixpkgs, ... }@inputs:
         let
-        username = "dhaskin";
+        username = "skin";
     system = "x86_64-linux";
     pkgs = import nixpkgs {
         inherit system;
@@ -22,7 +22,10 @@
         #    modules = [ ./configuration.nix ];
         #};
         homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
+            pkgs = import nixpkgs {
+                config = { allowUnfree = true; };
+                system = "x86_64-linux";
+            };
             extraSpecialArgs = { inherit inputs username; };
             modules = [ ./home.nix ];
         };
