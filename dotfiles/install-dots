@@ -1,13 +1,14 @@
 #!/bin/sh
 set -ex
+
+output=${1:-${out:-${HOME}}}
 for i in dot-*
 do
     dest=$(echo "${i}" | sed 's|^dot-|.|')
     if [ -d "${i}" ]
     then
-        rsync -avHAX "${i}/" "${HOME}/${dest}/"
+        rsync -avHAX "${i}/" "${output}/${dest}/"
     else
-        rsync -avHAX "${i}" "${HOME}/${dest}"
+        rsync -avHAX "${i}" "${output}/${dest}"
     fi
-
 done
