@@ -5,10 +5,6 @@ in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-
-  home.username = "skin";
-  home.homeDirectory = "/home/skin";
-
   nixpkgs.overlays = [
     (final: prev: {
         notmuch = prev.notmuch.overrideDerivation(oldAttrs: {
@@ -33,7 +29,6 @@ in
   # environment.
   home.packages = [
     # Desktop Environment
-    nixgl.auto.nixGLDefault
     pkgs.wl-clipboard
     pkgs.waybar
     pkgs.pwvucontrol

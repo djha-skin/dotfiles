@@ -21,13 +21,23 @@
         #    specialArgs = { inherit inputs username system; };
         #    modules = [ ./configuration.nix ];
         #};
-        homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
+        homeConfigurations."dhaskin" = home-manager.lib.homeManagerConfiguration {
             pkgs = import nixpkgs {
                 config = { allowUnfree = true; };
                 system = "x86_64-linux";
             };
             extraSpecialArgs = { inherit inputs username; };
-            modules = [ ./home.nix ];
+            modules = [ ./home.nix
+                        ./machine-specific-not-nixos.nix];
+        };
+        homeConfigurations."skin" = home-manager.lib.homeManagerConfiguration {
+            pkgs = import nixpkgs {
+                config = { allowUnfree = true; };
+                system = "x86_64-linux";
+            };
+            extraSpecialArgs = { inherit inputs username; };
+            modules = [ ./home.nix
+                        ./machine-specific-nixos.nix];
         };
     };
 }
