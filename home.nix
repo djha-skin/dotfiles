@@ -52,6 +52,9 @@ in
     pkgs.playerctl
     pkgs.libnotify
     pkgs.mako
+    (pkgs.python312.withPackages (ppkgs: [
+      ppkgs.pynacl
+    ]))
 
     # basic
     pkgs.wget
