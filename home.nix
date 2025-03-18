@@ -191,7 +191,6 @@ in
     ".config/waybar/config".source = dotfiles/dot-config/waybar/config;
     ".config/waybar/convert_colors.py".source = dotfiles/dot-config/waybar/convert_colors.py;
     ".config/zoomus.conf".source = dotfiles/dot-config/zoomus.conf;
-    ".config/mimeapps.list".source = dotfiles/dot-config/mimeapps.list;
     ".config/autostart/set-input-settings.desktop".source = dotfiles/dot-config/autostart/set-input-settings.desktop;
     ".config/autostart/keynav.desktop".source = dotfiles/dot-config/autostart/keynav.desktop;
     ".config/clpm/clpm.conf".source = dotfiles/dot-config/clpm/clpm.conf;
@@ -374,7 +373,6 @@ in
     ".config/kitty/kitty.conf".force = true;
     ".config/kitty/tango-dark.conf".force = true;
     ".config/kitty/tango-light.conf".force = true;
-    ".config/mimeapps.list".force = true;
     ".config/nchat/ui.conf".force = true;
     ".config/nix/nix.conf".force = true;
     ".config/nvim/autoload/cljstyle.vim".force = true;

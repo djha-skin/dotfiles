@@ -8,4 +8,8 @@ in
   home.packages = [
     nixgl.auto.nixGLDefault
   ];
+  home.file = {
+    ".config/mimeapps.list".source = dotfiles/dot-config/work-mimeapps.list;
+    ".config/mimeapps.list".force = true;
+  };
 }
