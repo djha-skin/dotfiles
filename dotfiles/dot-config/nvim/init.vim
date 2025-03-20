@@ -91,7 +91,7 @@ Plug 'nvim-lua/plenary.nvim'
 "Plug 'Olical/conjure'
 Plug 'djhaskin987/vim-slime'
 Plug 'bakpakin/janet.vim'
-"Plug 'github/copilot.vim'
+Plug 'github/copilot.vim'
 Plug 'vlime/vlime', {'rtp': 'vim/'}
 Plug 'rhysd/vim-grammarous'
 Plug 'martinda/Jenkinsfile-vim-syntax'
