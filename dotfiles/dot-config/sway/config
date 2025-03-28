@@ -425,4 +425,8 @@ exec sleep 30 && whatsie || flatpak run com.ktechpit.whatsie
 exec start-sway-process swaync
 bindsym Shift+n exec swaync-client -t -sw
 
+#exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+#
+#exec hash dbus-update-activation-environment 2>/dev/null && \
+#        dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 include /etc/sway/config.d/*
