@@ -8,6 +8,7 @@ set $right l
 
 set $term terminal
 set $browser "${BROWSER}"
+set $home "${HOME}"
 
 #titlebar_padding 4 8
 
@@ -416,7 +417,7 @@ exec /usr/bin/xdg-user-dirs-update
 exec mako
 exec nm-applet --indicator
 exec sleep 5 && keepassxc
-exec sleep 5 && start-sway-process /home/dhaskin/.nix-profile/bin/onedrivegui
+exec sleep 5 && start-sway-process "${HOME}/.nix-profile/bin/onedrivegui"
 exec sleep 5 && davmail
 exec sleep 30 && discord || flatpak run com.discordapp.Discord
 exec sleep 30 && slack || flatpak run com.slack.Slack
