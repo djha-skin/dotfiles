@@ -15,12 +15,13 @@
         inherit system;
         config.allowUnfree = true;
     };
+    hostname = "nixos";
     in
     {
-        #nixosConfigurations."${hostname}" = nixpkgs.lib.nixosSystem {
-        #    specialArgs = { inherit inputs username system; };
-        #    modules = [ ./configuration.nix ];
-        #};
+        nixosConfigurations."${hostname}" = nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs username system; };
+            modules = [ ./configuration.nix ];
+        };
         homeConfigurations."dhaskin" = home-manager.lib.homeManagerConfiguration {
             pkgs = import nixpkgs {
                 config = { allowUnfree = true; };

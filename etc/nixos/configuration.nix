@@ -2,8 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
-
+{ config, pkgs ? (fetchTarball "https://github.com/NixOS/nixpkgs/archive/7819a0d29d1dd2bc331bec4b327f0776359b1fa6.tar.gz") {}, ...}:
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -108,8 +107,10 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
   programs.ssh.startAgent = true;
+
+  # A good default browser.
+  programs.firefox.enable = true;
 
   services.displayManager.sddm.wayland.enable = true;
   services.displayManager.sddm.enable = true;
