@@ -6,6 +6,7 @@ set mbox_type = Maildir
 set trash = "+gmail~Trash"
 mailboxes -label "Inbox" +INBOX
 mailboxes -nonotify -label "Sent" "+gmail~Sent Mail"
+mailboxes -nonotify +Archives~2025
 mailboxes -nonotify +Archives
 mailboxes -nonotify -label "Coupons/Papa Johns" "+Coupons~Papa Johns"
 mailboxes -nonotify +Family

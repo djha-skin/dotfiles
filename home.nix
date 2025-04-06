@@ -80,7 +80,6 @@ in
     pkgs.gnupg
     pkgs.git
     pkgs.tmux
-    pkgs.gnupg
     pkgs.gh
     pkgs.jq
     pkgs.pandoc
@@ -669,8 +668,8 @@ in
   #home.sessionVariables = {
   #};
 
-  # Let Home Manager install and manage itself.
   programs = {
+    # Let Home Manager install and manage itself.
     home-manager.enable = true;
   };
 }
