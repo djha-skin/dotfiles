@@ -13,11 +13,20 @@ usage() {
 reset=0
 play=0
 vpn=0
+timer=1
 while [ -n "${1}" ]
 do
     case "${1}" in
         -r|--reset)
             reset=1
+            shift
+            ;;
+        -t|--timer)
+            timer=1
+            shift
+            ;;
+        -T|--no-timer)
+            timer=0
             shift
             ;;
         -v|--vpn)
@@ -26,6 +35,7 @@ do
             ;;
         -p|--play)
             play=1
+            timer=0
             shift
             ;;
         -h|--help)
@@ -66,7 +76,10 @@ then
 else
     tmux send-keys -l -t :.0 "worknotesppushd -i 0 .diary"
 fi
-tmux send-keys -l -t :.1 "pom"
+if [ "${timer}" -ne 0 ]
+then
+    tmux send-keys -l -t :.1 "pom"
+fi
 tmux new-window
 tmux rename-window "Email"
 tmux split-window
