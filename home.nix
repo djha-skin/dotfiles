@@ -345,7 +345,7 @@ in
     ".Xmodmap".source = dotfiles/dot-Xmodmap;
     ".gitconfig".source = dotfiles/dot-gitconfig;
     ".sbclrc".source = dotfiles/dot-sbclrc;
-    ".config/xdg-desktop-portal/portal.conf".source = dotfiles/dot-config/xdg-desktop-portal/portal.conf;
+    ".config/xdg-desktop-portal/portals.conf".source = dotfiles/dot-config/xdg-desktop-portal/portals.conf;
 
 
     ".Xdefaults".force = true;
@@ -557,7 +557,7 @@ in
     ".zshrc".force = true;
     "Mail/home/.notmuch-config".force = true;
     "Mail/migadu/.notmuch-config".force = true;
-    ".config/xdg-desktop-portal/portal.conf".force = true;
+    ".config/xdg-desktop-portal/portals.conf".force = true;
     #".config/systemd/user/sync-mail.service".force = true;
     #".config/systemd/user/sync-mail.timer".force = true;
     #".local/share/applications/st-256color.desktop".force = true;
