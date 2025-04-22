@@ -419,7 +419,7 @@ exec sleep 5 && keepassxc
 exec sleep 5 && start-sway-process /home/dhaskin/.nix-profile/bin/onedrivegui
 exec sleep 5 && davmail
 exec sleep 30 && discord || flatpak run com.discordapp.Discord
-exec sleep 30 && slack || flatpak run com.discordapp.Slack
+exec sleep 30 && slack || flatpak run com.slack.Slack
 exec sleep 30 && teams || flatpak run com.github.IsmaelMartinez.teams_for_linux
 exec sleep 30 && whatsie || flatpak run com.ktechpit.whatsie
 exec start-sway-process swaync

@@ -24,12 +24,12 @@ do
     shift
     seconds=$(( ${duration} * 60 ))
     end=$(( $(date "+%s") + ${seconds} ))
-    notify '⌚ Timer' "${name} (${duration} minutes)"
+    #notify '⌚ Timer' "${name} (${duration} minutes)"
     if uname -a | grep -q 'Darwin'
     then
         afplay -q "${HOME}/OneDrive/Audio/Dings/chat-ding.wav" &
     else
-        ffplay -autoexit -nodisp "${HOME}/OneDrive/Audio/Dings/chat-ding.wav" &
+        ffplay -loglevel quiet -autoexit -nodisp "${HOME}/OneDrive/Audio/Dings/chat-ding.wav" &
     fi
     while [ "${seconds}" -ge 0 ]
     do
@@ -55,11 +55,11 @@ do
 done
 clear
 figlet -d "${HOME}/.local/share/figlet" -f djhaskin -cWt "Complete!"
-notify '⌚ Timer' "Complete!"
+#notify '⌚ Timer' "Complete!"
 if uname -a | grep -q 'Darwin'
 then
     #afplay -q "${HOME}/Music/ding.wav"
     afplay -q "${HOME}/OneDrive/Audio/Dings/chat-ding.wav"
 else
-    ffplay -autoexit -nodisp "${HOME}/OneDrive/Audio/Dings/chat-ding.wav"
+    ffplay -loglevel quiet -autoexit -nodisp "${HOME}/OneDrive/Audio/Dings/chat-ding.wav"
 fi

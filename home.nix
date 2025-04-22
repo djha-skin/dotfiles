@@ -29,6 +29,7 @@ in
   # environment.
   home.packages = [
     # Desktop Environment
+    pkgs.firefox
     pkgs.wl-clipboard
     pkgs.waybar
     pkgs.pwvucontrol
@@ -171,7 +172,7 @@ in
     ".config/sc-im/scimrc".source = dotfiles/dot-config/sc-im/scimrc;
     ".config/kitty/kitty.conf".source = dotfiles/dot-config/kitty/kitty.conf;
     ".config/qterminal.org/qterminal.ini".source = dotfiles/dot-config/qterminal.org/qterminal.ini;
-    ".config/khard/khard.conf".source = dotfiles/dot-config/khard/khard.conf;
+    #".config/khard/khard.conf".source = dotfiles/dot-config/khard/khard.conf;
     ".config/swappy/config".source = dotfiles/dot-config/swappy/config;
     ".config/tmux/tmux.conf".source = dotfiles/dot-config/tmux/tmux.conf;
     ".config/foot/foot.ini".source = dotfiles/dot-config/foot/foot.ini;
@@ -369,7 +370,7 @@ in
     ".config/foot/xterm".force = true;
     ".config/gtk-3.0/settings.ini".force = true;
     ".config/iamb/config.toml".force = true;
-    ".config/khard/khard.conf".force = true;
+    #".config/khard/khard.conf".force = true;
     ".config/kitty/kitty.conf".force = true;
     ".config/kitty/tango-dark.conf".force = true;
     ".config/kitty/tango-light.conf".force = true;
