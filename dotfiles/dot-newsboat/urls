@@ -61,6 +61,7 @@ http://planet.clojure.in/atom.xml development
 https://planet.lisp.org/rss20.xml development
 https://ericnormand.me/rss.xml development
 https://clojure.org/feed.xml development
+https://www.hashicorp.com/blog/feed.xml devops
 http://feeds.feedburner.com/Wrockblog devops
 http://feeds.scottlowe.org/slowe/content/feed devops
 https://blog.gruntwork.io/feed devops
