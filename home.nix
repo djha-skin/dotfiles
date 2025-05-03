@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, unstable, ... }:
 let
   nixgl = import <nixgl> {};
 in
@@ -15,6 +15,8 @@ in
         });
         })
   ];
+
+  imports = [ ./unstable.nix ];
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
