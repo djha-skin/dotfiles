@@ -24,7 +24,7 @@ export LOCALE="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export LANGUAGE="en_US:"
 export RLWRAP_EDITOR="nvim '+call cursor(%L,%C)'"
-export LESS="-Q --no-vbell --use-color -r"
+#export LESS="-Q --no-vbell --use-color -r"
 export PARINIT="rTbgqR B=*/-.,?'_A_a_@ Q=_s>| W=_S"
 export NIXOS_OZONE_WL=1
 export NIXPKGS_ALLOW_UNFREE=1
