@@ -34,7 +34,10 @@
                 config = { allowUnfree = true; };
                 system = "x86_64-linux";
             };
-            extraSpecialArgs = { inherit inputs username; };
+            extraSpecialArgs = {
+                inherit inputs username;
+                unstable = unstable;
+            };
             modules = [ ./home.nix
                         ./machine-specific-not-nixos.nix];
         };

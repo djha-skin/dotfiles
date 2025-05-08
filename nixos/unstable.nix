@@ -1,6 +1,6 @@
 { config, pkgs, unstable, ... }:
 {
-  home.packages = with unstable; [
-    goose-cli
+  home.packages = [
+    unstable.goose-cli
   ];
 }
