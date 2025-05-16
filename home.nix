@@ -76,6 +76,7 @@ in
     #glib
 
     # dev
+    pkgs.nodejs
     pkgs.neovim
     pkgs.neovim-qt
     pkgs.curl
