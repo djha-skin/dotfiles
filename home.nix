@@ -90,6 +90,7 @@ in
     pkgs.texlivePackages.xetex
     pkgs.roswell
     pkgs.figlet
+    pkgs.sbcl
     # On unstable, add to machine-specific for now
     #pkgs.nerd-fonts.iosevka-term
     #pkgs.nerd-fonts.noto
