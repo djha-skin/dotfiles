@@ -26,7 +26,13 @@ in
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
-
+  programs.rofi = {
+      enable = true;
+      package = pkgs.rofi-wayland;
+      plugins = with pkgs; [
+          (rofi-calc.override { rofi-unwrapped = rofi-wayland-unwrapped; })
+      ];
+  };
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
@@ -45,8 +51,6 @@ in
     pkgs.swayidle
     # Don't do this one here, needs at configuration.nix
     #pkgs.swaylock
-    pkgs.rofi
-    pkgs.rofi-calc
     pkgs.playerctl
     pkgs.libnotify
     pkgs.mako
