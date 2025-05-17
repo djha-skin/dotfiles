@@ -272,7 +272,6 @@ mode "interact" {
 
     bindsym Mod4+Shift+Return exec $browser
 
-    bindsym XF86Calculator exec rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '{result}' | copy" -kb-accept-custom 'control+KP_Enter'
 
     bindsym Mod4+Shift+j exec rofimoji -a type # "react"
 
@@ -283,6 +282,43 @@ mode "interact" {
     #bindsym $mod+$up focus up
     #bindsym $mod+$right focus right
     bindsym $mod+j mode "default"
+
+    bindsym XF86Calculator exec rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '{result}' | copy" -kb-accept-custom 'control+KP_Enter'
+    bindsym --locked {
+        XF86MonBrightnessDown exec brightnessctl set 5%+
+        XF86MonBrightnessUp exec brightnessctl set 5%-
+        XF86AudioPlay       exec playerctl play-pause
+        XF86AudioStop       exec playerctl stop
+        XF86AudioForward    exec playerctl position +10
+        XF86AudioNext       exec playerctl next
+        XF86AudioPause      exec playerctl pause
+        XF86AudioPrev       exec playerctl previous
+        XF86AudioRewind     exec playerctl position -10
+        # https://bbs.archlinux.org/viewtopic.php?id=276379
+        XF86AudioRaiseVolume exec wpctl set-volume \@DEFAULT_AUDIO_SINK@ 0.1+
+        XF86AudioLowerVolume exec wpctl set-volume \@DEFAULT_AUDIO_SINK@ 0.1-
+        XF86AudioMute       exec wpctl set-mute \@DEFAULT_AUDIO_SINK@ toggle
+        XF86AudioMicMute    exec wpctl set-mute \@DEFAULT_AUDIO_SOURCE@ toggle
+    }
+}
+
+
+bindsym XF86Calculator exec rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '{result}' | copy" -kb-accept-custom 'control+KP_Enter'
+bindsym --locked {
+    XF86MonBrightnessDown exec brightnessctl set 5%+
+    XF86MonBrightnessUp exec brightnessctl set 5%-
+    XF86AudioPlay       exec playerctl play-pause
+    XF86AudioStop       exec playerctl stop
+    XF86AudioForward    exec playerctl position +10
+    XF86AudioNext       exec playerctl next
+    XF86AudioPause      exec playerctl pause
+    XF86AudioPrev       exec playerctl previous
+    XF86AudioRewind     exec playerctl position -10
+    # https://bbs.archlinux.org/viewtopic.php?id=276379
+    XF86AudioRaiseVolume exec wpctl set-volume \@DEFAULT_AUDIO_SINK@ 0.1+
+    XF86AudioLowerVolume exec wpctl set-volume \@DEFAULT_AUDIO_SINK@ 0.1-
+    XF86AudioMute       exec wpctl set-mute \@DEFAULT_AUDIO_SINK@ toggle
+    XF86AudioMicMute    exec wpctl set-mute \@DEFAULT_AUDIO_SOURCE@ toggle
 }
 
 # Begin outright theft of the Fedora sway config
@@ -329,45 +365,15 @@ for_window [app_id="lxqt-policykit-agent"] {
     move position center
 }
 
-set $brightness_notification_cmd  command -v notify-send >/dev/null && \
-        value=$(brightnessctl --percentage get) && \
-        notify-send -e -h string:x-canonical-private-synchronous:brightness \
-            -h "int:value:$value" -t 800 "Brightness: ${value}%"
-
-bindsym XF86MonBrightnessDown exec \
-        'STEP="$brightness_step" && brightnessctl -q set ${STEP:-5}%- && $brightness_notification_cmd'
-bindsym XF86MonBrightnessUp exec \
-        'STEP="$brightness_step" && brightnessctl -q set +${STEP:-5}% && $brightness_notification_cmd'
 # Key bindings for media player control via MPRIS D-Bus interface
 #
 # Requires:     playerctl
 
-# Allow Play and Stop bindings even if the screen is locked
-bindsym --locked {
-    XF86AudioPlay       exec playerctl play-pause
-    XF86AudioStop       exec playerctl stop
-}
-
-bindsym {
-    XF86AudioForward    exec playerctl position +10
-    XF86AudioNext       exec playerctl next
-    XF86AudioPause      exec playerctl pause
-    XF86AudioPrev       exec playerctl previous
-    XF86AudioRewind     exec playerctl position -10
-}
 
 set $volume_notification_cmd command -v notify-send >/dev/null && \
         value=$(wpctl get-volume @DEFAULT_AUDIO_SINK@  | cut -d. -f2) && \
         notify-send -e -h string:x-canonical-private-synchronous:volume \
             -h "int:value:$value" -t 800 "Volume: ${value}%"
-
-# Allow volume controls even if the screen is locked
-bindsym --locked {
-    # https://bbs.archlinux.org/viewtopic.php?id=276379
-    XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ && $volume_notification_cmd
-    XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1- && $volume_notification_cmd
-    XF86AudioMute    exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && $volume_notification_cmd
-}
 
 # A special mode for passing any keybindings to the focused application
 
