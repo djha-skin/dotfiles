@@ -14,6 +14,7 @@ set $home "${HOME}"
 
 # Credit: https://github.com/catppuccin/i3
 include "./color_mode.conf"
+include "./private-config"
 
 # bar
 #bar {

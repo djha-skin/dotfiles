@@ -57,6 +57,16 @@
       };
       enableDefaultFonts = true;
   };
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = false;
+    #alsa.pulseaudio.support32Bit = false;
+    #alsa.pulseaudio.package = pkgs.pipewire-pulseaudio;
+    #alsa.pulseaudio.enable = false;
+    pulse.enable = true;
+  };
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -90,7 +100,23 @@
     glib
     flock
   ];
-
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    pkgs.glib
+    pkgs.libGLU
+    pkgs.libGL
+    pkgs.xorg.libX11
+    pkgs.xorg.libpthreadstubs
+    pkgs.libz
+    pkgs.darwin.libpthread
+    pkgs.gnustep-libobjc
+    pkgs.libpng
+    pkgs.libvorbis
+    pkgs.glibmm
+    pkgs.darwin.Libm
+    pkgs.alsa-lib
+    xorg.libxcb
+  ];
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;

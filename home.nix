@@ -37,6 +37,7 @@ in
   # environment.
   home.packages = [
     # Desktop Environment
+    pkgs.blueman
     pkgs.firefox
     pkgs.wl-clipboard
     pkgs.waybar
@@ -175,7 +176,6 @@ in
     ".config/sway/status.sh".source = dotfiles/dot-config/sway/status.sh;
     ".config/sway/config".source = dotfiles/dot-config/sway/config;
     ".config/sway/experimental".source = dotfiles/dot-config/sway/experimental;
-    ".config/sway/private-config".source = dotfiles/dot-config/sway/private-config;
     ".config/discordo/config.toml".source = dotfiles/dot-config/discordo/config.toml;
     ".config/sc-im/scimrc".source = dotfiles/dot-config/sc-im/scimrc;
     ".config/kitty/kitty.conf".source = dotfiles/dot-config/kitty/kitty.conf;
@@ -403,7 +403,6 @@ in
     ".config/sway/dark_mode.conf".force = true;
     ".config/sway/experimental".force = true;
     ".config/sway/light_mode.conf".force = true;
-    ".config/sway/private-config".force = true;
     ".config/sway/status.sh".force = true;
     ".config/systemd/user/comodoro.service".force = true;
     ".config/systemd/user/himalaya-notify-gmail.service".force = true;
