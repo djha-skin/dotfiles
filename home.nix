@@ -96,6 +96,7 @@ in
     pkgs.roswell
     pkgs.figlet
     pkgs.sbcl
+    pkgs.asdf
     # On unstable, add to machine-specific for now
     #pkgs.nerd-fonts.iosevka-term
     #pkgs.nerd-fonts.noto

@@ -423,6 +423,7 @@ exec /usr/bin/lxqt-policykit-agent
 exec /usr/bin/xdg-user-dirs-update
 exec mako
 exec nm-applet --indicator
+exec blueman-applet
 exec sleep 5 && keepassxc
 exec sleep 5 && start-sway-process "${HOME}/.nix-profile/bin/onedrivegui"
 exec sleep 5 && davmail
