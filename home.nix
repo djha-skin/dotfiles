@@ -147,6 +147,7 @@ in
     ".config/sway/light_mode.conf".source = dotfiles/dot-config/sway/light_mode.conf;
     ".config/sway/dark_mode.conf".source = dotfiles/dot-config/sway/dark_mode.conf;
     ".config/kitty/tango-light.conf".source = dotfiles/dot-config/kitty/tango-light.conf;
+    ".config/kitty/solarized-light.conf".source = dotfiles/dot-config/kitty/solarized-light.conf;
     ".config/kitty/tango-dark.conf".source = dotfiles/dot-config/kitty/tango-dark.conf;
     ".config/waybar/styles/dark.css".source = dotfiles/dot-config/waybar/styles/dark.css;
     ".config/waybar/styles/light.css".source = dotfiles/dot-config/waybar/styles/light.css;
@@ -383,6 +384,7 @@ in
     ".config/kitty/kitty.conf".force = true;
     ".config/kitty/tango-dark.conf".force = true;
     ".config/kitty/tango-light.conf".force = true;
+    ".config/kitty/solarized-light.conf".force = true;
     ".config/nchat/ui.conf".force = true;
     ".config/nix/nix.conf".force = true;
     ".config/nvim/autoload/cljstyle.vim".force = true;
