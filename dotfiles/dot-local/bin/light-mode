@@ -8,7 +8,7 @@ fi
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
 
 rm -f ~/.config/kitty/current-theme.conf
-ln -s ~/.config/kitty/solarized-light.conf ~/.config/kitty/current-theme.conf
+ln -s ~/.config/kitty/tango-light.conf ~/.config/kitty/current-theme.conf
 
 rm -f ~/.config/sway/color_mode.conf
 ln -s ~/.config/sway/light_mode.conf ~/.config/sway/color_mode.conf
