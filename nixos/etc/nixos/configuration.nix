@@ -102,19 +102,20 @@
   ];
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
-    pkgs.glib
-    pkgs.libGLU
-    pkgs.libGL
-    pkgs.xorg.libX11
-    pkgs.xorg.libpthreadstubs
-    pkgs.libz
+    pkgs.alsa-lib
+    pkgs.darwin.Libm
     pkgs.darwin.libpthread
+    pkgs.glib
+    pkgs.glibmm
     pkgs.gnustep-libobjc
+    pkgs.libGL
+    pkgs.libGLU
     pkgs.libpng
     pkgs.libvorbis
-    pkgs.glibmm
-    pkgs.darwin.Libm
-    pkgs.alsa-lib
+    pkgs.libz
+    pkgs.openssl
+    pkgs.xorg.libX11
+    pkgs.xorg.libpthreadstubs
     xorg.libxcb
   ];
   programs.sway = {
