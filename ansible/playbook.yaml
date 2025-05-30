@@ -1,0 +1,28 @@
+- name: Setup localhost
+  hosts: localhost
+  connection: local
+
+  tasks:
+    - name: Install figlet package
+      ansible.builtin.package:
+        name: figlet
+        state: present
+
+    - name: Ensure user 'goose' exists
+      ansible.builtin.user:
+        name: skin
+        state: present
+        create_home: true
+        shell: /bin/bash
+
+    - name: Install example config file
+      ansible.builtin.copy:
+        content: |
+          # This is an example config file for goose
+          # You can add your configuration settings here
+          greeting: "Hello from Ansible!"
+          editor: "vim"
+        dest: /home/skin/.example_config
+        owner: skin
+        group: skin
+        mode: '0644'
