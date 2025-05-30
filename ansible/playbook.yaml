@@ -3,17 +3,75 @@
   connection: local
 
   tasks:
-    - name: Install figlet package
+    - name: Install packages
       ansible.builtin.package:
-        name: figlet
+        name: "{{ item }}"
         state: present
+      loop:
+        - bind-utils # for dig
+        - btop
+        - cl-asdf
+        - curl
+        - ffmpeg
+        - figlet
+        - gh
+        - gimp
+        - git
+        - gnupg2
+        - irssi
+        - jq
+        - kitty
+        - neovim
+        - neovim-qt
+        - newsboat
+        - nodejs
+        - onedrive
+        - pandoc
+        - ripgrep
+        - sbcl
+        - texlive-fonts-extra
+        - texlive-fontspec
+        - texlive-latex-extra
+        - texlive-scheme-full
+        - texlive-xetex
+        - tmux
+        - wget
 
-    - name: Ensure user 'goose' exists
-      ansible.builtin.user:
-        name: skin
+    - name: Install roswell
+      community.general.copr:
         state: present
-        create_home: true
-        shell: /bin/bash
+        name: '@fed500/roswell'
+        includepkgs:
+          - roswell
+
+    - name: Install iosevka
+      community.general.copr:
+        state: present
+        name: '@peterwu/iosevka'
+        includepkgs:
+          - iosevka
+
+    - name: Ensure directory exists
+      ansible.builtin.file:
+        path: /home/skin/.local/bin
+        state: directory
+
+    - name: Download and install OneDriveGUI
+      ansible.builtin.get_url:
+        url: https://github.com/bpozdena/OneDriveGUI/releases/download/v1.1.1a/OneDriveGUI-1.1.1-x86_64.AppImage
+        dest: /home/skin/.local/bin/OneDriveGui
+        mode: '0755'
+        owner: skin
+
+    - name: Install the flatpaks
+      community.general.flatpak:
+        name: "{{ item }}"
+        state: present
+        method: user
+      loop:
+        - com.slack.Slack
+        - com.discordapp.Discord
+        - com.ktechpit.whatsie
 
     - name: Install example config file
       ansible.builtin.copy:

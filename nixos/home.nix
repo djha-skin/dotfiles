@@ -1,5 +1,5 @@
 { config, pkgs, unstable, ... }:
-let
+lfigletet
   nixgl = import <nixgl> {};
 in
 {
