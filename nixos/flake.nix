@@ -48,7 +48,8 @@
             };
             extraSpecialArgs = { inherit inputs username unstable; };
             modules = [ ./home.nix
-                        ./machine-specific-nixos.nix];
+                        ./machine-specific-nixos.nix
+                        ];
         };
     };
 }
