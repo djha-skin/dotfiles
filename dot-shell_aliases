@@ -15,6 +15,12 @@ alias gpt='chatblade -c gpt-4o -s'
 alias darkmode="gsettings set org.gnome.desktop.interface color-scheme prefer-dark"
 alias lightmode="gsettings set org.gnome.desktop.interface color-scheme prefer-light"
 alias login-vault='export VAULT_TOKEN=$(vault login -method=github token="$(gh auth status -t 2>&1 | awk "/Token:/{print \$3}")" | awk "/^token[^_]/{print \$2}")'
+alias ls='ls --color=auto'
+alias less='less -Q --use-colors -r'
+alias kitty=/usr/bin/kitty
+alias grep='grep --color=auto'
+alias diff='diff --color=auto'
+alias dotfiles='cd ~/Code/djha-skin/dotfiles'
 if [ -f "${HOME}/.private_shell_aliases" ]; then
     source ~/.private_shell_aliases
 fi
