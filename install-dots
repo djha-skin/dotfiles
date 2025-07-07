@@ -1,14 +1,22 @@
 #!/bin/sh
 set -ex
 
-output=${1:-${out:-${HOME}}}
-for i in dot-*
+find . -name 'dot-*' | while read dotfile
 do
-    dest=$(echo "${i}" | sed 's|^dot-|.|')
-    if [ -d "${i}" ]
+    dest=$(echo "${dotfile}" | sed 's|^dot-|.|')
+    if [ -L "${HOME}/${dest}" ]
     then
-        rsync -avHAX "${i}/" "${output}/${dest}/"
+        rm "${HOME}/${dest}"
+    elif [ -f "${HOME}/${dest}" ]
+    then
+        echo "Warning: ${HOME}/${dest} already exists and is not a directory or symlink. Skipping."
+    elif [ -d "${HOME}/${dest}" ]
+    then
+        rsync -avHAX "${dotfile}/" "${HOME}/${dest}"
+    elif [ -f "${dotfile}" ]
+    then
+        rsync -avHAX "${dotfile}" "${HOME}/${dest}"
     else
-        rsync -avHAX "${i}" "${output}/${dest}"
+        echo "Warning: ${dotfile} is not a file or directory. Skipping."
     fi
 done
