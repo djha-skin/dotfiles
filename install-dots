@@ -1,22 +1,10 @@
 #!/bin/sh
-set -ex
 
-find . -name 'dot-*' | while read dotfile
+find . -type f | grep -v Windows | grep -v iac | grep -v \.git | while read file
 do
-    dest=$(echo "${dotfile}" | sed 's|^dot-|.|')
-    if [ -L "${HOME}/${dest}" ]
-    then
-        rm "${HOME}/${dest}"
-    elif [ -f "${HOME}/${dest}" ]
-    then
-        echo "Warning: ${HOME}/${dest} already exists and is not a directory or symlink. Skipping."
-    elif [ -d "${HOME}/${dest}" ]
-    then
-        rsync -avHAX "${dotfile}/" "${HOME}/${dest}"
-    elif [ -f "${dotfile}" ]
-    then
-        rsync -avHAX "${dotfile}" "${HOME}/${dest}"
-    else
-        echo "Warning: ${dotfile} is not a file or directory. Skipping."
-    fi
+    dest=${HOME}/$(echo $file | sed -e 's|dot-|.|g' -e 's|^\./||')
+    destdir=$(echo "${dest}" | sed -e 's|[^/]\{1,\}$||')
+    mkdir -p $destdir
+    rm -f $dest
+    cp $file $dest
 done
