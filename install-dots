@@ -1,4 +1,5 @@
 #!/bin/sh
+set -ex
 
 find . -type f | grep -v Windows | grep -v iac | grep -v \.git | while read file
 do
