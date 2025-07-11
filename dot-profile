@@ -115,7 +115,8 @@ fi
 
 export EDITOR="nvim"
 export ALTERNATE_EDITOR=""
-export BROWSER="qutebrowser"
+export BROWSER="firefox"
+export SSH_AUTH_SOCK=/run/user/1000/ssh-agent.socket
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 export HISTCONTROL=ignoredups:ignorespace
