@@ -1,7 +1,7 @@
 [Desktop Entry]
 Comment[en_US]=
 Comment=
-Exec=/home/dhaskin/.nix-profile/bin/onedrivegui
+Exec=/home/skin/.local/bin/onedrivegui
 GenericName[en_US]=One Drive GUI
 GenericName=One Drive GUI
 Icon=/home/skin/.local/share/icons/OneDriveGUI.png
