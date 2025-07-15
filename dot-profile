@@ -83,13 +83,13 @@ then
     export PATH="${PATH}:${HOME}/.roswell/bin"
 fi
 
-if [ -d "${HOME}/.gem/ruby" ]
+if [ -d "${HOME}/.local/share/gem/ruby" ]
 then
-    for i in $(ls -1A ${HOME}/.gem/ruby)
+    for i in $(ls -1A ${HOME}/.local/share/gem/ruby)
     do
-        if [ -d "${HOME}/.gem/ruby/${i}/bin" ]
+        if [ -d "${HOME}/.local/share/gem/ruby/${i}/bin" ]
         then
-            export PATH="${HOME}/.gem/ruby/${i}/bin:${PATH}"
+            export PATH="${HOME}/.local/share/gem/ruby/${i}/bin:${PATH}"
         fi
     done
 fi
