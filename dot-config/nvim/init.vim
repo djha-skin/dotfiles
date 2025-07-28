@@ -5,7 +5,7 @@ filetype off
 set runtimepath+=/usr/local/share/lilypond/current/vim/
 filetype on
 syntax on
-
+set backupdir=~/.local/state/nvim/backup//
 runtime background.vim
 
 if has('win32')
