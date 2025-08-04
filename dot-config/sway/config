@@ -60,7 +60,7 @@ set $main_display eDP-1
 
 output 'HP Inc. HP VH240a 6CM01304VL' resolution 1920x1080
 output 'HP Inc. HP VH240a 6CM01304VL' transform 270
-output 'HP Inc. HP VH240a 6CM01304VL' position 840 440
+output 'HP Inc. HP VH240a 6CM01304VL' position 3840 440
 output 'HP Inc. HP VH240a 6CM01304VL' bg ~/OneDrive/Pictures/Backgrounds/dan-baker-voltaire-kelpie-v012-db-reprint.jpg fill
 
 output 'Dell Inc. DELL S2209W P262H93320YU' resolution 1920x1080
@@ -69,12 +69,13 @@ output 'Dell Inc. DELL S2209W P262H93320YU' bg ~/OneDrive/Pictures/Backgrounds/d
 
 output 'HP Inc. HP VH240a 6CM01319L1' resolution 1920x1080
 output 'HP Inc. HP VH240a 6CM01319L1' transform 270
-output 'HP Inc. HP VH240a 6CM01319L1' position 3840 440
+output 'HP Inc. HP VH240a 6CM01319L1' position 840 440
 output 'HP Inc. HP VH240a 6CM01319L1' bg ~/OneDrive/Pictures/Backgrounds/dan-baker-voltaire-kelpie-v012-db-reprint.jpg fill
 
 output $main_display resolution 1920x1080
 output $main_display position 1920 1080
 output $main_display bg ~/OneDrive/Pictures/Backgrounds/ddjfyzd-15207cdf-a0b0-473b-94ee-017009605e4d.jpg fill
+
 
 output 'ASUSTek COMPUTER INC VY249 MALMRS015320' resolution 1920x1080
 output 'ASUSTek COMPUTER INC VY249 MALMRS015320' transform 270
