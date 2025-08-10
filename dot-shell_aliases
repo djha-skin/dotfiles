@@ -20,7 +20,7 @@ alias less='less -Q --use-colors -r'
 alias kitty=/usr/bin/kitty
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
-alias dotfiles='cd ~/Code/djha-skin/dotfiles'
+alias dotfiles='cd ~/Code/skin/dotfiles'
 if [ -f "${HOME}/.private_shell_aliases" ]; then
     source ~/.private_shell_aliases
 fi

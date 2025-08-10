@@ -30,4 +30,9 @@ then
     nix-collect-garbage
 fi
 
+if which yay 2>/dev/null
+then
+    yay -Syu
+fi
+
 shutdown now
