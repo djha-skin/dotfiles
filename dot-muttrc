@@ -55,11 +55,15 @@ macro index,pager \e7 "<tag-pattern>~f security@angel.com<enter><tag-prefix><sav
 macro index A \
     "<tag-pattern>(~N|~O)<enter><tag-prefix><clear-flag>N<tag-prefix><clear-flag>O<untag-pattern>.<enter>" \
     "mark all new as read"
+macro index \eF \
+    "<tag-pattern>~F<enter><tag-prefix><clear-flag>F<untag-pattern>.<enter>" \
+    "unflag all flagged"
 set allow_8bit = no
 set attribution_intro = "On %d, %n wrote:\n"
 set forward_quote = yes
 set forward_references = yes
 set forward_attribution_intro = "On %d, %n (%f) wrote:\n"
+set pipe_decode = yes
 macro compose Y "<first-entry><enter-command>set wait_key=no<enter> \
     <pipe-entry>pandoc -f commonmark -t html -V fontsize=10pt -s --o /tmp/neomutt-alternative.html<enter> \
     <attach-file>/tmp/neomutt-alternative.html<enter> \
@@ -78,6 +82,8 @@ macro compose U "<first-entry><enter-command>set wait_key=no<enter> \
 set pipe_sep = "\n--- next email ---\n"
 
 macro index B "<tag-thread><tag-prefix><pipe-message>b4 shazam -m - --stdin-pipe-sep='\\n--- next email ---\\n'<enter>" "pipe the message to b4"
+macro index T <clear-flag>N<clear-flag>O<clear-flag>F<save-message>+Transactions/<enter> "save the message to Transactions folder"
+macro index R <clear-flag>N<clear-flag>O<clear-flag>F<save-message>+Archives~2025/<enter> "save the message to Archives folder"
 unbind d
 # https://github.com/LukeSmithxyz/mutt-wizard/issues/147
 set query_command= "khard email --parsable --search-in-source-files %s"
