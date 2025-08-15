@@ -1,0 +1,177 @@
+GOOSE_ROUTER_TOOL_SELECTION_STRATEGY: default
+GOOSE_PROVIDER: openrouter
+GOOSE_MODE: smart_approve
+GOOSE_SCHEDULER_TYPE: legacy
+ANTHROPIC_HOST: https://api.anthropic.com
+GOOSE_CLI_MIN_PRIORITY: 0.0
+GOOSE_MAX_TURNS: 100
+GOOSE_MODEL: mistralai/mistral-saba
+GOOSE_CLI_THEME: light
+OLLAMA_HOST: localhost
+extensions:
+  asana:
+    args:
+    - -y
+    - '@roychri/mcp-server-asana'
+    bundled: null
+    cmd: npx
+    description: null
+    enabled: true
+    env_keys:
+    - ASANA_ACCESS_TOKEN
+    envs: {}
+    name: Asana
+    timeout: 300
+    type: stdio
+  computercontroller:
+    bundled: true
+    description: null
+    display_name: Computer Controller
+    enabled: false
+    name: computercontroller
+    timeout: 300
+    type: builtin
+  desktop-commander:
+    args:
+    - -y
+    - '@wonderwhy-er/desktop-commander'
+    bundled: null
+    cmd: npx
+    description: null
+    enabled: false
+    env_keys: []
+    envs: {}
+    name: desktop-commander
+    timeout: 300
+    type: stdio
+  developer:
+    bundled: true
+    description: null
+    display_name: Developer Tools
+    enabled: true
+    name: developer
+    timeout: 60
+    type: builtin
+  filesystem:
+    args:
+    - -y
+    - '@modelcontextprotocol/server-filesystem'
+    - /home/skin
+    bundled: null
+    cmd: npx
+    description: |
+      This extension provides access to the filesystem, in particular files
+      under the home user directory. It is intended as the main plugin through
+      which to interact with files, with the exception of making and reading
+      temporary files. These temporary files should be dealt with using the
+      `tmp-files` extension.
+    enabled: true
+    env_keys: []
+    envs: {}
+    name: filesystem
+    timeout: 300
+    type: stdio
+  git:
+    args:
+    - mcp-server-git
+    bundled: null
+    cmd: uvx
+    description: null
+    enabled: true
+    env_keys: []
+    envs: {}
+    name: git
+    timeout: 300
+    type: stdio
+  goose-docs:
+    args:
+    - mcp-remote
+    - https://block.gitmcp.io/goose/
+    bundled: null
+    cmd: npx
+    description: null
+    enabled: true
+    env_keys: []
+    envs: {}
+    name: goose-docs
+    timeout: 300
+    type: stdio
+  jsondiffpatch:
+    args:
+    - -y
+    - diff-mcp
+    bundled: null
+    cmd: npx
+    description: Compare text or JSON data and get a readable diff.
+    enabled: true
+    env_keys: []
+    envs: {}
+    name: jsondiffpatch
+    timeout: 300
+    type: stdio
+  knowledge-graph-memory:
+    args:
+    - -y
+    - '@modelcontextprotocol/server-memory'
+    bundled: null
+    cmd: npx
+    description: null
+    enabled: true
+    env_keys: []
+    envs: {}
+    name: knowledge-graph-memory
+    timeout: 300
+    type: stdio
+  memory:
+    bundled: true
+    description: null
+    display_name: Memory
+    enabled: true
+    name: memory
+    timeout: 30
+    type: builtin
+  pdf:
+    args:
+    - mcp-read-pdf
+    bundled: null
+    cmd: uvx
+    description: null
+    enabled: true
+    env_keys: []
+    envs: {}
+    name: pdf
+    timeout: 300
+    type: stdio
+  sequential-thinking:
+    args:
+    - -y
+    - '@modelcontextprotocol/server-sequential-thinking'
+    bundled: null
+    cmd: npx
+    description: null
+    enabled: true
+    env_keys: []
+    envs: {}
+    name: sequential-thinking
+    timeout: 300
+    type: stdio
+  tmp-files:
+    args:
+    - -y
+    - '@modelcontextprotocol/server-filesystem'
+    - /tmp
+    bundled: null
+    cmd: npx
+    description: |
+      This extension provides access to temporary files, which are intended
+      for short-lived use. It is recommended to use this extension for
+      creating and reading temporary files, rather than the `filesystem`
+      extension. This is because the permissions for this plugin are intended
+      to be much broader in scope so as to not annoy the user with "can I make
+      a tempfile" requests.
+    enabled: true
+    env_keys: []
+    envs: {}
+    name: tmp-files
+    timeout: 300
+    type: stdio
