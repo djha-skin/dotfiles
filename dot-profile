@@ -141,6 +141,29 @@ fi
 
 export PARINIT="rTbgqR B=*/-.,?'_A_a_@ Q=_s>| W=_S"
 
+export GOOSE_CONTEXT_LIMIT=128000
+export GOOSE_LEAD_CONTEXT_LIMIT=256000
+export GOOSE_PLANNER_CONTEXT_LIMIT=256000
+export GOOSE_LEAD_TURNS=10
+export GOOSE_CONTEXT_STRATEGY=summarize
+export GOOSE_CLI_SHOW_COST=true
+export GOOSE_PROVIDER="openrouter"
+export GOOSE_MODEL="google/gemini-2.5-flash"
+export GOOSE_PLANNER_PROVIDER="openrouter"
+export GOOSE_PLANNER_MODEL="anthropic/claude-sonnet-4"
+export GOOSE_LEAD_PROVIDER="openrouter"
+export GOOSE_LEAD_MODEL="anthropic/claude-sonnet-4"
+export GOOSE_TEMPERATURE="0.7"
+export GOOSE_CONTEXT_STRATEGY=summarize
+
+# Set to prompt the user
+export GOOSE_CONTEXT_STRATEGY=prompt
+
+if [ -f "${HOME}/.profile-theme" ]
+then
+    . "${HOME}/.profile-theme"
+fi
+
 export WORKING_LOCATION_FILE="${HOME}/.wdh.txt"
 
 pchanged() {
