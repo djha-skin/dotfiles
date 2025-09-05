@@ -6,6 +6,9 @@
 # - For all others, use existing KeePassXC lookup.
 # - Only print the password to stdout on success. Errors and logs go to stderr.
 
+# Debugging control (set MULTIPASS_DEBUG=1 to enable verbose stderr traces)
+DEBUG=${MULTIPASS_DEBUG:-0}
+
 # Personal email addresses to EXCLUDE from the 1Password path (case-insensitive)
 PERSONAL1="djhaskin987@gmail.com"
 PERSONAL2="dan@djhaskin.com"
@@ -14,6 +17,12 @@ PERSONAL2="dan@djhaskin.com"
 log_err() {
     # shellcheck disable=SC2059
     printf "%s\n" "$*" >&2
+}
+
+log_dbg() {
+    if [ "$DEBUG" -eq 1 ]; then
+        printf "DEBUG: %s\n" "$*" >&2
+    fi
 }
 
 # Keep the existing audit file write (best-effort, does not touch stdout/stderr)
@@ -71,14 +80,21 @@ op_available_quick() {
     fi
     [ -n "$OP_BIN" ] || return 1
 
+    log_dbg "detected OP_BIN=$OP_BIN"
+
     # Require timeout to avoid hangs
     if ! have_cmd timeout; then
         # Without timeout, avoid risking hangs
+        log_dbg "timeout not found"
         return 1
     fi
 
     # Quick availability check (won't print anything)
-    timeout 2s "$OP_BIN" whoami >/dev/null 2>&1 || return 1
+    timeout 2s "$OP_BIN" whoami >/dev/null 2>&1 || {
+        log_dbg "op whoami failed or timed out"
+        return 1
+    }
+    log_dbg "op whoami OK"
     return 0
 }
 
@@ -91,13 +107,17 @@ op_get_password() {
     op_available_quick || return 1
     OP_BIN=$(command -v op 2>/dev/null || command -v 1password 2>/dev/null)
 
+    log_dbg "using OP_BIN=$OP_BIN"
+
     if ! have_cmd jq; then
         # jq is preferred; without it, skip 1Password path for safety
+        log_dbg "jq not found; skipping op path"
         return 1
     fi
 
     host=$(extract_host "$u")
     [ -n "$host" ] || return 1
+    log_dbg "extracted host=$host"
 
     # Step 1: shortlist login items matching the username (case-insensitive) using additional_information
     # Note: item list JSON typically contains .additional_information like "username: user@example.com"
@@ -109,11 +129,16 @@ op_get_password() {
             | .id
         ' 2>/dev/null)
 
+    log_dbg "candidate count initial=$(printf '%s' "$candidates" | wc -w)"
+
     # Fallback: if no candidates found via list, consider all login items but cap to 50 to avoid long loops
     if [ -z "$candidates" ]; then
+        log_dbg "no candidates from additional_information; listing up to 50 logins"
         candidates=$(timeout 2s "$OP_BIN" item list --categories Login --format json 2>/dev/null |
             jq -r '.[].id' 2>/dev/null | head -n 50)
     fi
+
+    log_dbg "candidate ids=$(printf '%s' "$candidates")"
 
     [ -n "$candidates" ] || return 1
 
@@ -121,7 +146,8 @@ op_get_password() {
     # Iterate candidates, verify username and host via full item get
     # Abort after first unambiguous match; if more than one match is found, treat as ambiguous failure
     for id in $candidates; do
-        item_json=$(timeout 2s "$OP_BIN" item get "$id" --format json 2>/dev/null) || continue
+        log_dbg "checking candidate id=$id"
+        item_json=$(timeout 2s "$OP_BIN" item get "$id" --format json 2>/dev/null) || { log_dbg "item get failed for $id"; continue; }
         # Validate username and host with jq
         ok=$(printf '%s' "$item_json" | jq -r --arg u "$(lower "$un")" --arg h "$(lower "$host")" '
             def lc($s): ($s // "") | ascii_downcase;
@@ -144,12 +170,15 @@ op_get_password() {
             ( (usernames | any(. == $u)) and (hosts | any(. == $h)) )
             | tostring
         ' 2>/dev/null)
+        log_dbg "candidate $id match_ok=$ok"
         [ "$ok" = "true" ] || continue
 
         if [ -z "$matched_id" ]; then
             matched_id="$id"
+            log_dbg "matched_id set to $matched_id"
         else
             # Multiple matches are ambiguous; bail out to fallback
+            log_dbg "ambiguous matches found (existing $matched_id, new $id); aborting op path"
             matched_id=""
             break
         fi
@@ -188,11 +217,13 @@ username_lc=$(lower "$username")
 
 # Decide path: work email tries 1Password first
 if is_email "$username_lc" && ! is_personal_email "$username_lc"; then
+    log_dbg "username appears to be work email: $username_lc"
     if pw=$(op_get_password "$url" "$username_lc"); then
         # 1Password success
         printf '%s\n' "$pw"
         exit 0
     fi
+    log_dbg "1Password path failed; falling back to KeePassXC"
     # Fall back to KeePassXC
     if pw=$(get_from_keepass) && [ -n "$pw" ]; then
         printf '%s\n' "$pw"
@@ -201,6 +232,7 @@ if is_email "$username_lc" && ! is_personal_email "$username_lc"; then
     log_err "password retrieval failed via 1Password and KeePassXC"
     exit 1
 else
+    log_dbg "username is personal or not an email; using KeePassXC only"
     # Non-email or personal email: KeePassXC only
     if pw=$(get_from_keepass) && [ -n "$pw" ]; then
         printf '%s\n' "$pw"
