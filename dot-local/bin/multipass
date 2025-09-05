@@ -119,37 +119,59 @@ op_get_password() {
     [ -n "$host" ] || return 1
     log_dbg "extracted host=$host"
 
-    # Step 1: shortlist login items matching the username (case-insensitive) using additional_information
-    # Note: item list JSON typically contains .additional_information like "username: user@example.com"
-    # We filter by username here to keep the candidate set small before fetching details.
-    candidates=$(timeout 2s "$OP_BIN" item list --categories Login --format json 2>/dev/null |
-        jq -r --arg u "$(lower "$un")" '
-            .[]
-            | select((.additional_information // "") | ascii_downcase | test("\\busername: " + ($u|gsub("[\\\\/\\^\\$\\.\\|\\?\\*\\+\\(\\)\\[\\]"; "\\\\&")) + "\\b"))
-            | .id
-        ' 2>/dev/null)
+    # --- Optimized single list approach ---
+    host_lc=$(lower "$host")
+    un_lc=$(lower "$un")
 
-    log_dbg "candidate count initial=$(printf '%s' "$candidates" | wc -w)"
-
-    # Fallback: if no candidates found via list, consider all login items but cap to 50 to avoid long loops
-    if [ -z "$candidates" ]; then
-        log_dbg "no candidates from additional_information; listing up to 50 logins"
-        candidates=$(timeout 2s "$OP_BIN" item list --categories Login --format json 2>/dev/null |
-            jq -r '.[].id' 2>/dev/null | head -n 50)
+    list_json=$(timeout 2s "$OP_BIN" item list --categories Login --format json 2>/dev/null) || list_json=""
+    if [ -n "$list_json" ]; then
+        has_details=$(printf '%s' "$list_json" | jq 'map(has("fields") or has("urls")) | any' 2>/dev/null || echo "false")
+        if [ "$has_details" = "true" ]; then
+            log_dbg "item list contains fields/urls; searching in list JSON"
+            matched_ids=$(printf '%s' "$list_json" | jq -r --arg u "$un_lc" --arg h "$host_lc" '
+                .[] |
+                ( .fields? // [] | map(if (.value // "" | type=="string") then (.value|ascii_downcase) else "" end) ) as $usernames |
+                ( .urls? // [] | map(.href // "" ) | map(
+                    if test("://") then (split("://")[1] // "") else . end
+                ) | map(split("/")[0]) | map(split(":")[0]) | map(ascii_downcase) ) as $hosts |
+                ( ($usernames | any(. == $u)) and ($hosts | any(. == $h)) ) // false
+                | select(.) | .id
+            ' 2>/dev/null)
+            if [ -n "$matched_ids" ]; then
+                count=$(printf '%s
+' "$matched_ids" | wc -l)
+                log_dbg "matched ids from list: $(printf '%s' "$matched_ids") (count=$count)"
+                if [ "$count" -eq 1 ]; then
+                    matched_id=$(printf '%s' "$matched_ids" | tr -d '\r\n')
+                    log_dbg "single match via list: $matched_id; running single item get"
+                    password=$(timeout 2s "$OP_BIN" item get "$matched_id" --format json 2>/dev/null |
+                        jq -r '(.fields // []) | map(select(((.purpose // "") == "PASSWORD") or ((.label//""|ascii_downcase)=="password") or ((.id//""|ascii_downcase)=="password"))) | .[].value' 2>/dev/null | head -n1)
+                    [ -n "$password" ] || return 1
+                    printf '%s\n' "$password"
+                    return 0
+                fi
+                log_dbg "ambiguous matches from list; falling back to per-id check"
+            else
+                log_dbg "no matches found in list JSON"
+            fi
+        else
+            log_dbg "item list JSON does not include fields/urls; need per-item gets for verification"
+        fi
+    else
+        log_dbg "item list returned empty or timed out"
     fi
 
-    log_dbg "candidate ids=$(printf '%s' "$candidates")"
+    # --- Fallback: previous behaviour but capped ---
+    candidates=$(timeout 2s "$OP_BIN" item list --categories Login --format json 2>/dev/null |
+        jq -r '.[].id' 2>/dev/null | head -n 50)
 
     [ -n "$candidates" ] || return 1
 
     matched_id=""
-    # Iterate candidates, verify username and host via full item get
-    # Abort after first unambiguous match; if more than one match is found, treat as ambiguous failure
     for id in $candidates; do
         log_dbg "checking candidate id=$id"
         item_json=$(timeout 2s "$OP_BIN" item get "$id" --format json 2>/dev/null) || { log_dbg "item get failed for $id"; continue; }
-        # Validate username and host with jq
-        ok=$(printf '%s' "$item_json" | jq -r --arg u "$(lower "$un")" --arg h "$(lower "$host")" '
+        ok=$(printf '%s' "$item_json" | jq -r --arg u "$un_lc" --arg h "$host_lc" '
             def lc($s): ($s // "") | ascii_downcase;
             def hosts:
                 (.urls // [])
@@ -161,14 +183,11 @@ op_get_password() {
                 ;
             def usernames:
                 (.fields // [])
-                | map(select((.purpose // "") == "USERNAME"
-                            or (lc(.label) == "username")
-                            or (lc(.id) == "username")))
+                | map(select((.purpose // "") == "USERNAME" or (lc(.label) == "username") or (lc(.id) == "username")))
                 | map(.value // "")
                 | map(ascii_downcase)
                 ;
-            ( (usernames | any(. == $u)) and (hosts | any(. == $h)) )
-            | tostring
+            ( (usernames | any(. == $u)) and (hosts | any(. == $h)) ) | tostring
         ' 2>/dev/null)
         log_dbg "candidate $id match_ok=$ok"
         [ "$ok" = "true" ] || continue
@@ -177,7 +196,6 @@ op_get_password() {
             matched_id="$id"
             log_dbg "matched_id set to $matched_id"
         else
-            # Multiple matches are ambiguous; bail out to fallback
             log_dbg "ambiguous matches found (existing $matched_id, new $id); aborting op path"
             matched_id=""
             break
@@ -186,20 +204,11 @@ op_get_password() {
 
     [ -n "$matched_id" ] || return 1
 
-    # Extract password
     password=$(timeout 2s "$OP_BIN" item get "$matched_id" --format json 2>/dev/null |
-        jq -r '
-            (.fields // [])
-            | map(select((.purpose // "") == "PASSWORD"
-                         or ((.label // "" | ascii_downcase) == "password")
-                         or ((.id // "" | ascii_downcase) == "password")))
-            | map(.value // "")
-            | .[]
-        ' 2>/dev/null | head -n 1)
+        jq -r '(.fields // []) | map(select(((.purpose // "") == "PASSWORD") or ((.label // "" | ascii_downcase) == "password") or ((.id // "" | ascii_downcase) == "password"))) | .[].value' 2>/dev/null | head -n 1)
 
     [ -n "$password" ] || return 1
 
-    # Success: print only the password
     printf '%s\n' "$password"
     return 0
 }
