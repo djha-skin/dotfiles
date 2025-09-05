@@ -1,12 +1,211 @@
 #!/bin/sh
-echo "$(date) ${@}" >> ~/.var/log/audit.log || :
-url="${1}"
-username="${2}"
+# multipass: print password for given URL and username
+# Behavior:
+# - For work emails (any email that is NOT one of the two personal addresses below),
+#   first try 1Password (op CLI) with a short timeout; on any failure, fall back to KeePassXC.
+# - For all others, use existing KeePassXC lookup.
+# - Only print the password to stdout on success. Errors and logs go to stderr.
 
-# Weird bug in vdirsyncer
-url=$(echo "${url}" | sed 's|\([^:/]*\):/\([^/]\)|\1://\2|')
+# Personal email addresses to EXCLUDE from the 1Password path (case-insensitive)
+PERSONAL1="djhaskin987@gmail.com"
+PERSONAL2="dan@djhaskin.com"
 
-printf 'url=%s\nusername=%s\n' \
-    "${url}" "${username}" | \
-    git-credential-keepassxc get | \
-    awk -F' *= *' '/^password/ {print $2}'
+# Simple stderr logger
+log_err() {
+    # shellcheck disable=SC2059
+    printf "%s\n" "$*" >&2
+}
+
+# Keep the existing audit file write (best-effort, does not touch stdout/stderr)
+# Note: contains arguments including the username; retained from original script.
+# You may remove this if you no longer want local file logging.
+{
+    # shellcheck disable=SC2128
+    echo "$(date) $*" >> "$HOME/.var/log/audit.log"
+} || :
+
+url="$1"
+username="$2"
+
+if [ -z "${url:-}" ] || [ -z "${username:-}" ]; then
+    log_err "usage: multipass <url> <username>"
+    exit 2
+fi
+
+# Preserve the original vdirsyncer bug workaround
+# Fix cases like proto:/path -> proto://path
+url=$(printf '%s' "$url" | sed 's|\([^:/]*\):/\([^/]\)|\1://\2|')
+
+lower() {
+    printf '%s' "$1" | tr '[:upper:]' '[:lower:]'
+}
+
+is_email() {
+    # Conservative email check: something@something.tld (no spaces)
+    printf '%s' "$1" | grep -Eq '^[^@[:space:]]+@[^@[:space:]]+\.[^@[:space:]]+$'
+}
+
+is_personal_email() {
+    u_lc=$(lower "$1")
+    [ "$u_lc" = "$(lower "$PERSONAL1")" ] || [ "$u_lc" = "$(lower "$PERSONAL2")" ]
+}
+
+extract_host() {
+    # Extract host from URL, strip port if present
+    h=$(printf '%s' "$1" | sed -E 's#^[a-zA-Z][a-zA-Z0-9+.-]*://([^/]+).*#\1#')
+    h=${h%%:*}
+    printf '%s' "$h"
+}
+
+have_cmd() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+op_available_quick() {
+    # Determine the op binary and verify it responds quickly
+    OP_BIN=""
+    if have_cmd op; then
+        OP_BIN="op"
+    elif have_cmd 1password; then
+        OP_BIN="1password"
+    fi
+    [ -n "$OP_BIN" ] || return 1
+
+    # Require timeout to avoid hangs
+    if ! have_cmd timeout; then
+        # Without timeout, avoid risking hangs
+        return 1
+    fi
+
+    # Quick availability check (won't print anything)
+    timeout 2s "$OP_BIN" whoami >/dev/null 2>&1 || return 1
+    return 0
+}
+
+op_get_password() {
+    # Inputs: URL USERNAME
+    u="$1"
+    un="$2"
+
+    # Preconditions
+    op_available_quick || return 1
+    OP_BIN=$(command -v op 2>/dev/null || command -v 1password 2>/dev/null)
+
+    if ! have_cmd jq; then
+        # jq is preferred; without it, skip 1Password path for safety
+        return 1
+    fi
+
+    host=$(extract_host "$u")
+    [ -n "$host" ] || return 1
+
+    # Step 1: shortlist login items matching the username (case-insensitive) using additional_information
+    # Note: item list JSON typically contains .additional_information like "username: user@example.com"
+    # We filter by username here to keep the candidate set small before fetching details.
+    candidates=$(timeout 2s "$OP_BIN" item list --categories Login --format json 2>/dev/null |
+        jq -r --arg u "$(lower "$un")" '
+            .[]
+            | select((.additional_information // "") | ascii_downcase | test("\\busername: " + ($u|gsub("[\\\\/\\^\\$\\.\\|\\?\\*\\+\\(\\)\\[\\]"; "\\\\&")) + "\\b"))
+            | .id
+        ' 2>/dev/null)
+
+    # Fallback: if no candidates found via list, consider all login items but cap to 50 to avoid long loops
+    if [ -z "$candidates" ]; then
+        candidates=$(timeout 2s "$OP_BIN" item list --categories Login --format json 2>/dev/null |
+            jq -r '.[].id' 2>/dev/null | head -n 50)
+    fi
+
+    [ -n "$candidates" ] || return 1
+
+    matched_id=""
+    # Iterate candidates, verify username and host via full item get
+    # Abort after first unambiguous match; if more than one match is found, treat as ambiguous failure
+    for id in $candidates; do
+        item_json=$(timeout 2s "$OP_BIN" item get "$id" --format json 2>/dev/null) || continue
+        # Validate username and host with jq
+        ok=$(printf '%s' "$item_json" | jq -r --arg u "$(lower "$un")" --arg h "$(lower "$host")" '
+            def lc($s): ($s // "") | ascii_downcase;
+            def hosts:
+                (.urls // [])
+                | map(.href // "")
+                | map( if test("://") then (split("://")[1] // "") else . end )
+                | map( split("/")[0] )
+                | map( split(":")[0] )
+                | map(ascii_downcase)
+                ;
+            def usernames:
+                (.fields // [])
+                | map(select((.purpose // "") == "USERNAME"
+                            or (lc(.label) == "username")
+                            or (lc(.id) == "username")))
+                | map(.value // "")
+                | map(ascii_downcase)
+                ;
+            ( (usernames | any(. == $u)) and (hosts | any(. == $h)) )
+            | tostring
+        ' 2>/dev/null)
+        [ "$ok" = "true" ] || continue
+
+        if [ -z "$matched_id" ]; then
+            matched_id="$id"
+        else
+            # Multiple matches are ambiguous; bail out to fallback
+            matched_id=""
+            break
+        fi
+    done
+
+    [ -n "$matched_id" ] || return 1
+
+    # Extract password
+    password=$(timeout 2s "$OP_BIN" item get "$matched_id" --format json 2>/dev/null |
+        jq -r '
+            (.fields // [])
+            | map(select((.purpose // "") == "PASSWORD"
+                         or ((.label // "" | ascii_downcase) == "password")
+                         or ((.id // "" | ascii_downcase) == "password")))
+            | map(.value // "")
+            | .[]
+        ' 2>/dev/null | head -n 1)
+
+    [ -n "$password" ] || return 1
+
+    # Success: print only the password
+    printf '%s\n' "$password"
+    return 0
+}
+
+get_from_keepass() {
+    # Mirror the original KeePassXC credential helper pipeline
+    # Only print the password to stdout
+    printf 'url=%s\nusername=%s\n' \
+        "$url" "$username" | \
+        git-credential-keepassxc get 2>/dev/null | \
+        awk -F' *= *' '/^password/ {print $2}'
+}
+
+username_lc=$(lower "$username")
+
+# Decide path: work email tries 1Password first
+if is_email "$username_lc" && ! is_personal_email "$username_lc"; then
+    if pw=$(op_get_password "$url" "$username_lc"); then
+        # 1Password success
+        printf '%s\n' "$pw"
+        exit 0
+    fi
+    # Fall back to KeePassXC
+    if pw=$(get_from_keepass) && [ -n "$pw" ]; then
+        printf '%s\n' "$pw"
+        exit 0
+    fi
+    log_err "password retrieval failed via 1Password and KeePassXC"
+    exit 1
+else
+    # Non-email or personal email: KeePassXC only
+    if pw=$(get_from_keepass) && [ -n "$pw" ]; then
+        printf '%s\n' "$pw"
+        exit 0
+    fi
+    log_err "password retrieval failed via KeePassXC"
+    exit 1
+fi
