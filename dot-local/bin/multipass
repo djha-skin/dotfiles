@@ -13,6 +13,9 @@ DEBUG=${MULTIPASS_DEBUG:-0}
 PERSONAL1="djhaskin987@gmail.com"
 PERSONAL2="dan@djhaskin.com"
 
+# Session file location for OP_SESSION exports (created with mode 600)
+SESSION_FILE="${XDG_DATA_HOME:-$HOME/.local/share}/op_session.sh"
+
 # Simple stderr logger
 log_err() {
     # shellcheck disable=SC2059
@@ -70,6 +73,69 @@ have_cmd() {
     command -v "$1" >/dev/null 2>&1
 }
 
+# Ensure we have an OP_SESSION token loaded into environment for non-interactive op use.
+# Behavior:
+# - If SESSION_FILE exists, source it (it should contain exports like: export OP_SESSION_my=TOKEN)
+# - If whoami still fails and stdin is a TTY, attempt an interactive signin (eval "$(op signin)")
+#   then write the new OP_SESSION_* exports to SESSION_FILE atomically with mode 600.
+# - If stdin is not a TTY, do not attempt interactive signin (avoid hangs).
+ensure_op_session() {
+    OP_BIN="$(command -v op 2>/dev/null || true)"
+    [ -n "$OP_BIN" ] || return 1
+
+    # Load session file if present
+    if [ -f "$SESSION_FILE" ]; then
+        # shellcheck disable=SC1090
+        . "$SESSION_FILE" 2>/dev/null || log_dbg "sourcing session file failed"
+        log_dbg "sourced session file: $SESSION_FILE"
+    fi
+
+    # Quick whoami test
+    if have_cmd timeout && timeout 2s "$OP_BIN" whoami >/dev/null 2>&1; then
+        log_dbg "op whoami OK after sourcing session"
+        return 0
+    fi
+
+    # If we do not have an interactive tty, don't try to sign in
+    if [ ! -t 0 ]; then
+        log_dbg "no TTY available; will not attempt interactive op signin"
+        return 1
+    fi
+
+    # Interactive sign in (will prompt). Capture the exports.
+    # Note: op signin modifies environment variables in the current shell; use --raw to get token to write a file.
+    # We call 'op signin --raw' to get a token and then write a SESSION_FILE with the appropriate OP_SESSION_<account>=token export.
+    log_dbg "attempting interactive op signin (will prompt)"
+    # Ask op for raw token; user must complete interactive flow
+    token_and_host=$(op signin --raw 2>/dev/null) || {
+        log_dbg "op signin --raw failed"
+        return 1
+    }
+
+    # op signin --raw returns a token only; we need the account shorthand to form OP_SESSION_<account>
+    # Try to detect accounts and pick the first account name
+    acct_name=$(op account list --format json 2>/dev/null | jq -r '.[0].name' 2>/dev/null || true)
+    if [ -z "$acct_name" ]; then
+        # Fallback: try to parse whoami output
+        acct_name=$(op whoami 2>/dev/null | awk '{print $1}' | sed 's/[^a-zA-Z0-9_]/_/g' | head -n1 || true)
+    fi
+    if [ -z "$acct_name" ] || [ "$acct_name" = "null" ]; then
+        acct_name="default"
+    fi
+
+    var_name="OP_SESSION_${acct_name}"
+
+    # Atomically write session file
+    tmpf=$(mktemp "${SESSION_FILE}.tmp.XXXX") || return 1
+    printf 'export %s=%s\n' "$var_name" "$token_and_host" > "$tmpf"
+    chmod 600 "$tmpf"
+    mv "$tmpf" "$SESSION_FILE"
+    # shellcheck disable=SC1090
+    . "$SESSION_FILE" 2>/dev/null || true
+    log_dbg "wrote and sourced new session file: $SESSION_FILE"
+    return 0
+}
+
 op_available_quick() {
     # Determine the op binary and verify it responds quickly
     OP_BIN=""
@@ -81,6 +147,9 @@ op_available_quick() {
     [ -n "$OP_BIN" ] || return 1
 
     log_dbg "detected OP_BIN=$OP_BIN"
+
+    # Try to ensure we have a session token
+    ensure_op_session || log_dbg "ensure_op_session failed or not available"
 
     # Require timeout to avoid hangs
     if ! have_cmd timeout; then
