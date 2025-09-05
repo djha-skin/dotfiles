@@ -16,6 +16,9 @@ PERSONAL2="dan@djhaskin.com"
 # Session file location for OP_SESSION exports (created with mode 600)
 SESSION_FILE="${XDG_DATA_HOME:-$HOME/.local/share}/op_session.sh"
 
+# Default vault name to search in (can be overridden with OP_VAULT env var)
+VAULT_NAME="${OP_VAULT:-Employee}"
+
 # Simple stderr logger
 log_err() {
     # shellcheck disable=SC2059
@@ -146,7 +149,7 @@ op_available_quick() {
     fi
     [ -n "$OP_BIN" ] || return 1
 
-    log_dbg "detected OP_BIN=$OP_BIN"
+    log_dbg "detected OP_BIN=$OP_BIN (vault=$VAULT_NAME)"
 
     # Try to ensure we have a session token
     ensure_op_session || log_dbg "ensure_op_session failed or not available"
@@ -176,7 +179,7 @@ op_get_password() {
     op_available_quick || return 1
     OP_BIN=$(command -v op 2>/dev/null || command -v 1password 2>/dev/null)
 
-    log_dbg "using OP_BIN=$OP_BIN"
+    log_dbg "using OP_BIN=$OP_BIN (vault=$VAULT_NAME)"
 
     if ! have_cmd jq; then
         # jq is preferred; without it, skip 1Password path for safety
@@ -192,7 +195,8 @@ op_get_password() {
     host_lc=$(lower "$host")
     un_lc=$(lower "$un")
 
-    list_json=$(timeout 2s "$OP_BIN" item list --categories Login --format json 2>/dev/null) || list_json=""
+    # Use --vault "$VAULT_NAME" when listing items
+    list_json=$(timeout 2s "$OP_BIN" item list --categories Login --vault "$VAULT_NAME" --format json 2>/dev/null) || list_json=""
     if [ -n "$list_json" ]; then
         has_details=$(printf '%s' "$list_json" | jq 'map(has("fields") or has("urls")) | any' 2>/dev/null || echo "false")
         if [ "$has_details" = "true" ]; then
@@ -207,8 +211,7 @@ op_get_password() {
                 | select(.) | .id
             ' 2>/dev/null)
             if [ -n "$matched_ids" ]; then
-                count=$(printf '%s
-' "$matched_ids" | wc -l)
+                count=$(printf '%s\n' "$matched_ids" | wc -l)
                 log_dbg "matched ids from list: $(printf '%s' "$matched_ids") (count=$count)"
                 if [ "$count" -eq 1 ]; then
                     matched_id=$(printf '%s' "$matched_ids" | tr -d '\r\n')
@@ -222,6 +225,26 @@ op_get_password() {
                 log_dbg "ambiguous matches from list; falling back to per-id check"
             else
                 log_dbg "no matches found in list JSON"
+                # Try username-only match in list JSON (if present)
+                user_only_ids=$(printf '%s' "$list_json" | jq -r --arg u "$un_lc" '
+                    .[] |
+                    ( .fields? // [] | map(if (.value // "" | type=="string") then (.value|ascii_downcase) else "" end) ) as $usernames |
+                    ($usernames | any(. == $u)) | select(.) | .id
+                ' 2>/dev/null)
+                if [ -n "$user_only_ids" ]; then
+                    count2=$(printf '%s\n' "$user_only_ids" | wc -l)
+                    log_dbg "username-only matched ids: $(printf '%s' "$user_only_ids") (count=$count2)"
+                    if [ "$count2" -eq 1 ]; then
+                        matched_id=$(printf '%s' "$user_only_ids" | tr -d '\r\n')
+                        log_dbg "single username-only match via list: $matched_id; running single item get"
+                        password=$(timeout 2s "$OP_BIN" item get "$matched_id" --format json 2>/dev/null |
+                            jq -r '(.fields // []) | map(select(((.purpose // "") == "PASSWORD") or ((.label//""|ascii_downcase)=="password") or ((.id//""|ascii_downcase)=="password"))) | .[].value' 2>/dev/null | head -n1)
+                        [ -n "$password" ] || return 1
+                        printf '%s\n' "$password"
+                        return 0
+                    fi
+                    log_dbg "username-only matches ambiguous; continuing to per-id fallback"
+                fi
             fi
         else
             log_dbg "item list JSON does not include fields/urls; need per-item gets for verification"
@@ -231,7 +254,7 @@ op_get_password() {
     fi
 
     # --- Fallback: previous behaviour but capped ---
-    candidates=$(timeout 2s "$OP_BIN" item list --categories Login --format json 2>/dev/null |
+    candidates=$(timeout 2s "$OP_BIN" item list --categories Login --vault "$VAULT_NAME" --format json 2>/dev/null |
         jq -r '.[].id' 2>/dev/null | head -n 50)
 
     [ -n "$candidates" ] || return 1
