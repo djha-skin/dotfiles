@@ -1,344 +1,59 @@
 #!/bin/sh
-# multipass: print password for given URL and username
-# Behavior:
-# - For work emails (any email that is NOT one of the two personal addresses below),
-#   first try 1Password (op CLI) with a short timeout; on any failure, fall back to KeePassXC.
-# - For all others, use existing KeePassXC lookup.
-# - Only print the password to stdout on success. Errors and logs go to stderr.
+export POSIXLY_CORRECT=1
 
-# Debugging control (set MULTIPASS_DEBUG=1 to enable verbose stderr traces)
-DEBUG=${MULTIPASS_DEBUG:-0}
+echo "$(date) ${@}" >> ~/.var/log/audit.log || :
+url="${1}"
+username="${2}"
 
-# Personal email addresses to EXCLUDE from the 1Password path (case-insensitive)
-PERSONAL1="djhaskin987@gmail.com"
-PERSONAL2="dan@djhaskin.com"
+# Weird bug in vdirsyncer
+url=$(echo "${url}" | sed 's|\([^:/]*\):/\([^/]\)|\1://\2|')
+found_one_password=0
+if echo "${username}" | grep -q -v 'gmail.com|djhaskin.com'
+then
+    # try 1password
+    pwlist=$(op item list \
+        --vault ${ONEPASSWORD_VAULT:-Employee} --format=json | \
+        jq -r '.[] |
+                select(.urls | length > 0) |
+                {
+                    "id": .id,
+                    "url": (.urls[] |
+                            select(contains({"href": "'"${url}"'"}))).href
+                } |
+                .id' | \
+                while read id
+                do
+                    item=$(op item get \
+                        --vault ${ONEPASSWORD_VAULT:-Employee} \
+                        --format=json $id)
+                    item_username=$(echo "${item}" | \
+                        jq -r '.fields[] |
+                                select(contains({ "purpose": "USERNAME"})) |
+                                    .value')
+                    item_password=$(echo "${item}" | \
+                        jq -r '.fields[] |
+                                select(contains({ "purpose": "PASSWORD"})) |
+                                    .value')
 
-# Session file location for OP_SESSION exports (created with mode 600)
-SESSION_FILE="${XDG_DATA_HOME:-$HOME/.local/share}/op_session.sh"
-
-# Default vault name to search in (can be overridden with OP_VAULT env var)
-VAULT_NAME="${OP_VAULT:-Employee}"
-
-# Simple stderr logger
-log_err() {
-    # shellcheck disable=SC2059
-    printf "%s\n" "$*" >&2
-}
-
-log_dbg() {
-    if [ "$DEBUG" -eq 1 ]; then
-        printf "DEBUG: %s\n" "$*" >&2
-    fi
-}
-
-# Keep the existing audit file write (best-effort, does not touch stdout/stderr)
-# Note: contains arguments including the username; retained from original script.
-# You may remove this if you no longer want local file logging.
-{
-    # shellcheck disable=SC2128
-    echo "$(date) $*" >> "$HOME/.var/log/audit.log"
-} || :
-
-url="$1"
-username="$2"
-
-if [ -z "${url:-}" ] || [ -z "${username:-}" ]; then
-    log_err "usage: multipass <url> <username>"
-    exit 2
-fi
-
-# Preserve the original vdirsyncer bug workaround
-# Fix cases like proto:/path -> proto://path
-url=$(printf '%s' "$url" | sed 's|\([^:/]*\):/\([^/]\)|\1://\2|')
-
-lower() {
-    printf '%s' "$1" | tr '[:upper:]' '[:lower:]'
-}
-
-is_email() {
-    # Conservative email check: something@something.tld (no spaces)
-    printf '%s' "$1" | grep -Eq '^[^@[:space:]]+@[^@[:space:]]+\.[^@[:space:]]+$'
-}
-
-is_personal_email() {
-    u_lc=$(lower "$1")
-    [ "$u_lc" = "$(lower "$PERSONAL1")" ] || [ "$u_lc" = "$(lower "$PERSONAL2")" ]
-}
-
-extract_host() {
-    # Extract host from URL, strip port if present
-    h=$(printf '%s' "$1" | sed -E 's#^[a-zA-Z][a-zA-Z0-9+.-]*://([^/]+).*#\1#')
-    h=${h%%:*}
-    printf '%s' "$h"
-}
-
-have_cmd() {
-    command -v "$1" >/dev/null 2>&1
-}
-
-# Ensure we have an OP_SESSION token loaded into environment for non-interactive op use.
-# Behavior:
-# - If SESSION_FILE exists, source it (it should contain exports like: export OP_SESSION_my=TOKEN)
-# - If whoami still fails and stdin is a TTY, attempt an interactive signin (eval "$(op signin)")
-#   then write the new OP_SESSION_* exports to SESSION_FILE atomically with mode 600.
-# - If stdin is not a TTY, do not attempt interactive signin (avoid hangs).
-ensure_op_session() {
-    OP_BIN="$(command -v op 2>/dev/null || true)"
-    [ -n "$OP_BIN" ] || return 1
-
-    # Load session file if present
-    if [ -f "$SESSION_FILE" ]; then
-        # shellcheck disable=SC1090
-        . "$SESSION_FILE" 2>/dev/null || log_dbg "sourcing session file failed"
-        log_dbg "sourced session file: $SESSION_FILE"
-    fi
-
-    # Quick whoami test
-    if have_cmd timeout && timeout 2s "$OP_BIN" whoami >/dev/null 2>&1; then
-        log_dbg "op whoami OK after sourcing session"
-        return 0
-    fi
-
-    # If we do not have an interactive tty, don't try to sign in
-    if [ ! -t 0 ]; then
-        log_dbg "no TTY available; will not attempt interactive op signin"
-        return 1
-    fi
-
-    # Interactive sign in (will prompt). Capture the exports.
-    # Note: op signin modifies environment variables in the current shell; use --raw to get token to write a file.
-    # We call 'op signin --raw' to get a token and then write a SESSION_FILE with the appropriate OP_SESSION_<account>=token export.
-    log_dbg "attempting interactive op signin (will prompt)"
-    # Ask op for raw token; user must complete interactive flow
-    token_and_host=$(op signin --raw 2>/dev/null) || {
-        log_dbg "op signin --raw failed"
-        return 1
-    }
-
-    # op signin --raw returns a token only; we need the account shorthand to form OP_SESSION_<account>
-    # Try to detect accounts and pick the first account name
-    acct_name=$(op account list --format json 2>/dev/null | jq -r '.[0].name' 2>/dev/null || true)
-    if [ -z "$acct_name" ]; then
-        # Fallback: try to parse whoami output
-        acct_name=$(op whoami 2>/dev/null | awk '{print $1}' | sed 's/[^a-zA-Z0-9_]/_/g' | head -n1 || true)
-    fi
-    if [ -z "$acct_name" ] || [ "$acct_name" = "null" ]; then
-        acct_name="default"
-    fi
-
-    var_name="OP_SESSION_${acct_name}"
-
-    # Atomically write session file
-    tmpf=$(mktemp "${SESSION_FILE}.tmp.XXXX") || return 1
-    printf 'export %s=%s\n' "$var_name" "$token_and_host" > "$tmpf"
-    chmod 600 "$tmpf"
-    mv "$tmpf" "$SESSION_FILE"
-    # shellcheck disable=SC1090
-    . "$SESSION_FILE" 2>/dev/null || true
-    log_dbg "wrote and sourced new session file: $SESSION_FILE"
-    return 0
-}
-
-op_available_quick() {
-    # Determine the op binary and verify it responds quickly
-    OP_BIN=""
-    if have_cmd op; then
-        OP_BIN="op"
-    elif have_cmd 1password; then
-        OP_BIN="1password"
-    fi
-    [ -n "$OP_BIN" ] || return 1
-
-    log_dbg "detected OP_BIN=$OP_BIN (vault=$VAULT_NAME)"
-
-    # Try to ensure we have a session token
-    ensure_op_session || log_dbg "ensure_op_session failed or not available"
-
-    # Require timeout to avoid hangs
-    if ! have_cmd timeout; then
-        # Without timeout, avoid risking hangs
-        log_dbg "timeout not found"
-        return 1
-    fi
-
-    # Quick availability check (won't print anything)
-    timeout 2s "$OP_BIN" whoami >/dev/null 2>&1 || {
-        log_dbg "op whoami failed or timed out"
-        return 1
-    }
-    log_dbg "op whoami OK"
-    return 0
-}
-
-op_get_password() {
-    # Inputs: URL USERNAME
-    u="$1"
-    un="$2"
-
-    # Preconditions
-    op_available_quick || return 1
-    OP_BIN=$(command -v op 2>/dev/null || command -v 1password 2>/dev/null)
-
-    log_dbg "using OP_BIN=$OP_BIN (vault=$VAULT_NAME)"
-
-    if ! have_cmd jq; then
-        # jq is preferred; without it, skip 1Password path for safety
-        log_dbg "jq not found; skipping op path"
-        return 1
-    fi
-
-    host=$(extract_host "$u")
-    [ -n "$host" ] || return 1
-    log_dbg "extracted host=$host"
-
-    # --- Optimized single list approach ---
-    host_lc=$(lower "$host")
-    un_lc=$(lower "$un")
-
-    # Use --vault "$VAULT_NAME" when listing items
-    list_json=$(timeout 2s "$OP_BIN" item list --categories Login --vault "$VAULT_NAME" --format json 2>/dev/null) || list_json=""
-    if [ -n "$list_json" ]; then
-        has_details=$(printf '%s' "$list_json" | jq 'map(has("fields") or has("urls")) | any' 2>/dev/null || echo "false")
-        if [ "$has_details" = "true" ]; then
-            log_dbg "item list contains fields/urls; searching in list JSON"
-            matched_ids=$(printf '%s' "$list_json" | jq -r --arg u "$un_lc" --arg h "$host_lc" '
-                .[] |
-                ( .fields? // [] | map(if (.value // "" | type=="string") then (.value|ascii_downcase) else "" end) ) as $usernames |
-                ( .urls? // [] | map(.href // "" ) | map(
-                    if test("://") then (split("://")[1] // "") else . end
-                ) | map(split("/")[0]) | map(split(":")[0]) | map(ascii_downcase) ) as $hosts |
-                ( ($usernames | any(. == $u)) and ($hosts | any(. == $h)) ) // false
-                | select(.) | .id
-            ' 2>/dev/null)
-            if [ -n "$matched_ids" ]; then
-                count=$(printf '%s\n' "$matched_ids" | wc -l)
-                log_dbg "matched ids from list: $(printf '%s' "$matched_ids") (count=$count)"
-                if [ "$count" -eq 1 ]; then
-                    matched_id=$(printf '%s' "$matched_ids" | tr -d '\r\n')
-                    log_dbg "single match via list: $matched_id; running single item get"
-                    password=$(timeout 2s "$OP_BIN" item get "$matched_id" --format json 2>/dev/null |
-                        jq -r '(.fields // []) | map(select(((.purpose // "") == "PASSWORD") or ((.label//""|ascii_downcase)=="password") or ((.id//""|ascii_downcase)=="password"))) | .[].value' 2>/dev/null | head -n1)
-                    [ -n "$password" ] || return 1
-                    printf '%s\n' "$password"
-                    return 0
-                fi
-                log_dbg "ambiguous matches from list; falling back to per-id check"
-            else
-                log_dbg "no matches found in list JSON"
-                # Try username-only match in list JSON (if present)
-                user_only_ids=$(printf '%s' "$list_json" | jq -r --arg u "$un_lc" '
-                    .[] |
-                    ( .fields? // [] | map(if (.value // "" | type=="string") then (.value|ascii_downcase) else "" end) ) as $usernames |
-                    ($usernames | any(. == $u)) | select(.) | .id
-                ' 2>/dev/null)
-                if [ -n "$user_only_ids" ]; then
-                    count2=$(printf '%s\n' "$user_only_ids" | wc -l)
-                    log_dbg "username-only matched ids: $(printf '%s' "$user_only_ids") (count=$count2)"
-                    if [ "$count2" -eq 1 ]; then
-                        matched_id=$(printf '%s' "$user_only_ids" | tr -d '\r\n')
-                        log_dbg "single username-only match via list: $matched_id; running single item get"
-                        password=$(timeout 2s "$OP_BIN" item get "$matched_id" --format json 2>/dev/null |
-                            jq -r '(.fields // []) | map(select(((.purpose // "") == "PASSWORD") or ((.label//""|ascii_downcase)=="password") or ((.id//""|ascii_downcase)=="password"))) | .[].value' 2>/dev/null | head -n1)
-                        [ -n "$password" ] || return 1
-                        printf '%s\n' "$password"
-                        return 0
+                    if [ "${item_username}" = "${username}" ]
+                    then
+                        echo "${item_password}"
                     fi
-                    log_dbg "username-only matches ambiguous; continuing to per-id fallback"
-                fi
-            fi
-        else
-            log_dbg "item list JSON does not include fields/urls; need per-item gets for verification"
-        fi
+                done
+        )
+    if [ -z "${pwlist}" ]
+    then
+        echo "1password detection failed, moving on to KeePassXC" >&2
     else
-        log_dbg "item list returned empty or timed out"
+        for i in ${pwlist}
+        do
+            echo "${i}"
+            exit 0
+        done
     fi
-
-    # --- Fallback: previous behaviour but capped ---
-    candidates=$(timeout 2s "$OP_BIN" item list --categories Login --vault "$VAULT_NAME" --format json 2>/dev/null |
-        jq -r '.[].id' 2>/dev/null | head -n 50)
-
-    [ -n "$candidates" ] || return 1
-
-    matched_id=""
-    for id in $candidates; do
-        log_dbg "checking candidate id=$id"
-        item_json=$(timeout 2s "$OP_BIN" item get "$id" --format json 2>/dev/null) || { log_dbg "item get failed for $id"; continue; }
-        ok=$(printf '%s' "$item_json" | jq -r --arg u "$un_lc" --arg h "$host_lc" '
-            def lc($s): ($s // "") | ascii_downcase;
-            def hosts:
-                (.urls // [])
-                | map(.href // "")
-                | map( if test("://") then (split("://")[1] // "") else . end )
-                | map( split("/")[0] )
-                | map( split(":")[0] )
-                | map(ascii_downcase)
-                ;
-            def usernames:
-                (.fields // [])
-                | map(select((.purpose // "") == "USERNAME" or (lc(.label) == "username") or (lc(.id) == "username")))
-                | map(.value // "")
-                | map(ascii_downcase)
-                ;
-            ( (usernames | any(. == $u)) and (hosts | any(. == $h)) ) | tostring
-        ' 2>/dev/null)
-        log_dbg "candidate $id match_ok=$ok"
-        [ "$ok" = "true" ] || continue
-
-        if [ -z "$matched_id" ]; then
-            matched_id="$id"
-            log_dbg "matched_id set to $matched_id"
-        else
-            log_dbg "ambiguous matches found (existing $matched_id, new $id); aborting op path"
-            matched_id=""
-            break
-        fi
-    done
-
-    [ -n "$matched_id" ] || return 1
-
-    password=$(timeout 2s "$OP_BIN" item get "$matched_id" --format json 2>/dev/null |
-        jq -r '(.fields // []) | map(select(((.purpose // "") == "PASSWORD") or ((.label // "" | ascii_downcase) == "password") or ((.id // "" | ascii_downcase) == "password"))) | .[].value' 2>/dev/null | head -n 1)
-
-    [ -n "$password" ] || return 1
-
-    printf '%s\n' "$password"
-    return 0
-}
-
-get_from_keepass() {
-    # Mirror the original KeePassXC credential helper pipeline
-    # Only print the password to stdout
-    printf 'url=%s\nusername=%s\n' \
-        "$url" "$username" | \
-        git-credential-keepassxc get 2>/dev/null | \
-        awk -F' *= *' '/^password/ {print $2}'
-}
-
-username_lc=$(lower "$username")
-
-# Decide path: work email tries 1Password first
-if is_email "$username_lc" && ! is_personal_email "$username_lc"; then
-    log_dbg "username appears to be work email: $username_lc"
-    if pw=$(op_get_password "$url" "$username_lc"); then
-        # 1Password success
-        printf '%s\n' "$pw"
-        exit 0
-    fi
-    log_dbg "1Password path failed; falling back to KeePassXC"
-    # Fall back to KeePassXC
-    if pw=$(get_from_keepass) && [ -n "$pw" ]; then
-        printf '%s\n' "$pw"
-        exit 0
-    fi
-    log_err "password retrieval failed via 1Password and KeePassXC"
-    exit 1
-else
-    log_dbg "username is personal or not an email; using KeePassXC only"
-    # Non-email or personal email: KeePassXC only
-    if pw=$(get_from_keepass) && [ -n "$pw" ]; then
-        printf '%s\n' "$pw"
-        exit 0
-    fi
-    log_err "password retrieval failed via KeePassXC"
-    exit 1
 fi
+
+printf 'url=%s\nusername=%s\n' \
+    "${url}" "${username}" | \
+    git-credential-keepassxc get | \
+    awk -F' *= *' '/^password/ {print $2}'
