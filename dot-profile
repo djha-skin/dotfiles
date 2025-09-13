@@ -66,8 +66,6 @@ do
     fi
 done
 
-export CARGO_HOME="${HOME}/.cargo"
-
 if [ -d "${CARGO_HOME}" ]
 then
     export PATH="${CARGO_HOME}/bin:${PATH}"
@@ -209,4 +207,7 @@ pcleard() {
     rm -f "${WORKING_LOCATION_FILE}"
     touch "${WORKING_LOCATION_FILE}"
 }
-. "$HOME/.cargo/env"
+if [ -f "${HOME}/.cargo/env" ]
+then
+    . "$HOME/.cargo/env"
+fi
