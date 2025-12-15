@@ -82,8 +82,9 @@ macro compose U "<first-entry><enter-command>set wait_key=no<enter> \
 set pipe_sep = "\n--- next email ---\n"
 
 macro index B "<tag-thread><tag-prefix><pipe-message>b4 shazam -m - --stdin-pipe-sep='\\n--- next email ---\\n'<enter>" "pipe the message to b4"
-macro index T <clear-flag>N<clear-flag>O<clear-flag>F<save-message>+Transactions/<enter> "save the message to Transactions folder"
-macro index R <clear-flag>N<clear-flag>O<clear-flag>F<save-message>+Archives~2025/<enter> "save the message to Archives folder"
+macro index T <save-message>+Transactions/<enter> "save the message to Transactions folder"
+macro index R <save-message>+Archives~2025/<enter> "save the message to Archives folder"
+macro index C <save-message>+Recruiters/<enter> "save the message to Archives folder"
 unbind d
 # https://github.com/LukeSmithxyz/mutt-wizard/issues/147
 set query_command= "khard email --parsable --search-in-source-files %s"
