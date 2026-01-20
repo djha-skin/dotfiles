@@ -8,49 +8,46 @@ username="${2}"
 # Weird bug in vdirsyncer
 url=$(echo "${url}" | sed 's|\([^:/]*\):/\([^/]\)|\1://\2|')
 found_one_password=0
-if echo "${username}" | grep -q -v 'gmail.com|djhaskin.com'
-then
-    # try 1password
-    pwlist=$(op item list \
-        --vault ${ONEPASSWORD_VAULT:-Employee} --format=json | \
-        jq -r '.[] |
-                select(.urls | length > 0) |
-                {
-                    "id": .id,
-                    "url": (.urls[] |
-                            select(contains({"href": "'"${url}"'"}))).href
-                } |
-                .id' | \
-                while read id
-                do
-                    item=$(op item get \
-                        --vault ${ONEPASSWORD_VAULT:-Employee} \
-                        --format=json $id)
-                    item_username=$(echo "${item}" | \
-                        jq -r '.fields[] |
-                                select(contains({ "purpose": "USERNAME"})) |
-                                    .value')
-                    item_password=$(echo "${item}" | \
-                        jq -r '.fields[] |
-                                select(contains({ "purpose": "PASSWORD"})) |
-                                    .value')
+# try 1password
+pwlist=$(op item list \
+    --vault ${ONEPASSWORD_VAULT:-Employee} --format=json | \
+    jq -r '.[] |
+            select(.urls | length > 0) |
+            {
+                "id": .id,
+                "url": (.urls[] |
+                        select(contains({"href": "'"${url}"'"}))).href
+            } |
+            .id' | \
+            while read id
+            do
+                item=$(op item get \
+                    --vault ${ONEPASSWORD_VAULT:-Employee} \
+                    --format=json $id)
+                item_username=$(echo "${item}" | \
+                    jq -r '.fields[] |
+                            select(contains({ "purpose": "USERNAME"})) |
+                                .value')
+                item_password=$(echo "${item}" | \
+                    jq -r '.fields[] |
+                            select(contains({ "purpose": "PASSWORD"})) |
+                                .value')
 
-                    if [ "${item_username}" = "${username}" ]
-                    then
-                        echo "${item_password}"
-                    fi
-                done
-        )
-    if [ -z "${pwlist}" ]
-    then
-        echo "1password detection failed, moving on to KeePassXC" >&2
-    else
-        for i in ${pwlist}
-        do
-            echo "${i}"
-            exit 0
-        done
-    fi
+                if [ "${item_username}" = "${username}" ]
+                then
+                    echo "${item_password}"
+                fi
+            done
+    )
+if [ -z "${pwlist}" ]
+then
+    echo "1password detection failed for ${username}/${url}, moving on to KeePassXC" >&2
+else
+    for i in ${pwlist}
+    do
+        echo "${i}"
+        exit 0
+    done
 fi
 
 printf 'url=%s\nusername=%s\n' \
