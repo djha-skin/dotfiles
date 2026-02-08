@@ -146,11 +146,11 @@ export GOOSE_LEAD_TURNS=10
 export GOOSE_CONTEXT_STRATEGY=summarize
 export GOOSE_CLI_SHOW_COST=true
 export GOOSE_PROVIDER="openrouter"
-export GOOSE_MODEL="anthopic/haiku-"
+export GOOSE_MODEL="anthropic/claude-haiku-4.5"
 export GOOSE_PLANNER_PROVIDER="openrouter"
-export GOOSE_PLANNER_MODEL="anthropic/claude-sonnet-4"
+export GOOSE_PLANNER_MODEL="anthropic/claude-opus-4.5"
 export GOOSE_LEAD_PROVIDER="openrouter"
-export GOOSE_LEAD_MODEL="anthropic/claude-sonnet-4"
+export GOOSE_LEAD_MODEL="anthropic/claude-sonnet-4.5"
 export GOOSE_TEMPERATURE="0.7"
 export GOOSE_CONTEXT_STRATEGY=summarize
 
