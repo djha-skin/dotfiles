@@ -274,7 +274,7 @@ set cursorline
 "set cursorlineopt=line
 
 set viminfo='20,\"1000
-set pastetoggle=<F3>
+"set pastetoggle=<F3>
 set hlsearch
 map!  u03bb
 
