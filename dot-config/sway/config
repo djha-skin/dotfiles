@@ -425,7 +425,8 @@ exec /usr/bin/xdg-user-dirs-update
 exec mako
 exec nm-applet --indicator
 exec blueman-applet
-exec sleep 5 && keepassxc
+#exec sleep 5 && keepassxc
+exec sleep 5 && 1password
 exec sleep 5 && start-sway-process "${HOME}/.local/bin/onedrivegui"
 exec sleep 5 && davmail
 exec sleep 30 && discord || flatpak run com.discordapp.Discord

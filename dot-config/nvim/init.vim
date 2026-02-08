@@ -278,25 +278,6 @@ set viminfo='20,\"1000
 set hlsearch
 map!  u03bb
 
-" enable unicode
-if has('multi_byte')
-  if &termencoding == ""
-    let &termencoding = &encoding
-  endif
-  set encoding=utf-8
-  setglobal fileencoding=utf-8
-  set fileencodings=ucs-bom,utf-8,latin1
-  setglobal nobomb
-  set nobomb
-  setlocal nobomb
-  set encoding=utf-8
-  setlocal encoding=utf-8
-  setglobal encoding=utf-8
-  setglobal fileencoding=utf-8
-  set fileencoding=utf-8
-  setlocal fileencoding=utf-8
-endif
-
 map ]] :call searchpair('\[', '', '\]', 'W')
 map [[ :call searchpair('\[', '', '\]', 'bW')
 " trim lines of whitespace
