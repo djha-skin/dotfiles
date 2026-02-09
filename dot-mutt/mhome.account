@@ -10,13 +10,12 @@ mailboxes -nonotify +Archives
 mailboxes -nonotify +Family
 mailboxes -nonotify -label "Drafts" +gmail~Drafts
 mailboxes -nonotify -label "Trash" +gmail~Trash
-mailboxes -nonotify "+Highland Ward"
+mailboxes -nonotify "+Church"
 mailboxes -nonotify "+Kids School"
 mailboxes -nonotify "+Local Politics"
 mailboxes -nonotify "+Mailing Lists"
-mailboxes -nonotify +Recruiters
 mailboxes -nonotify +Jobs
-mailboxes -nonotify +Transactions
+mailboxes -nonotify +Money
 mailboxes -nonotify +Work
 
 
