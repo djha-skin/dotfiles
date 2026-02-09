@@ -7,7 +7,6 @@ set trash = "+gmail~Trash"
 mailboxes -label "Inbox" +INBOX
 mailboxes -nonotify -label "Sent" "+gmail~Sent Mail"
 mailboxes -nonotify +Archives
-mailboxes -nonotify -label "Coupons/Papa Johns" "+Coupons~Papa Johns"
 mailboxes -nonotify +Family
 mailboxes -nonotify -label "Drafts" +gmail~Drafts
 mailboxes -nonotify -label "Trash" +gmail~Trash
@@ -15,7 +14,6 @@ mailboxes -nonotify "+Highland Ward"
 mailboxes -nonotify "+Kids School"
 mailboxes -nonotify "+Local Politics"
 mailboxes -nonotify "+Mailing Lists"
-mailboxes -nonotify -label "Mailing Lists/Home Bot App" "+Mailing Lists~Home Bot App"
 mailboxes -nonotify +Recruiters
 mailboxes -nonotify +Jobs
 mailboxes -nonotify +Transactions
