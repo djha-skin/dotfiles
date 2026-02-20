@@ -51,12 +51,12 @@ set $menu $rofi_cmd
 #set $menu $rofi_cmd
 #set $runmenu $run_cmd
 
-set $main_display eDP-1
-
 ### Output configuration
-#
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # Requires: desktop-backgrounds-compat, swaybg
+output 'Dell Inc. DELL S2209W P262H93320GU' resolution 1920x1080
+output 'Dell Inc. DELL S2209W P262H93320GU' position 0 1080
+output 'Dell Inc. DELL S2209W P262H93320GU' bg ~/OneDrive/Pictures/Backgrounds/ddjfyzd-15207cdf-a0b0-473b-94ee-017009605e4d.jpg fill
 
 output 'HP Inc. HP VH240a 6CM01304VL' resolution 1920x1080
 output 'HP Inc. HP VH240a 6CM01304VL' transform 270
@@ -67,25 +67,14 @@ output 'Dell Inc. DELL S2209W P262H93320YU' resolution 1920x1080
 output 'Dell Inc. DELL S2209W P262H93320YU' position  0 1080
 output 'Dell Inc. DELL S2209W P262H93320YU' bg ~/OneDrive/Pictures/Backgrounds/ddjfyzd-15207cdf-a0b0-473b-94ee-017009605e4d.jpg fill
 
+output eDP-1 resolution 1920x1080
+output eDP-1 position 1920 1080
+output eDP-1 bg ~/OneDrive/Pictures/Backgrounds/ddjfyzd-15207cdf-a0b0-473b-94ee-017009605e4d.jpg fill
+
 output 'HP Inc. HP VH240a 6CM01319L1' resolution 1920x1080
 output 'HP Inc. HP VH240a 6CM01319L1' transform 270
 output 'HP Inc. HP VH240a 6CM01319L1' position 840 440
 output 'HP Inc. HP VH240a 6CM01319L1' bg ~/OneDrive/Pictures/Backgrounds/dan-baker-voltaire-kelpie-v012-db-reprint.jpg fill
-
-output $main_display resolution 1920x1080
-output $main_display position 1920 1080
-output $main_display bg ~/OneDrive/Pictures/Backgrounds/ddjfyzd-15207cdf-a0b0-473b-94ee-017009605e4d.jpg fill
-
-
-output 'ASUSTek COMPUTER INC VY249 MALMRS015320' resolution 1920x1080
-output 'ASUSTek COMPUTER INC VY249 MALMRS015320' transform 270
-output 'ASUSTek COMPUTER INC VY249 MALMRS015320' position 840 1080
-output 'ASUSTek COMPUTER INC VY249 MALMRS015320' bg ~/OneDrive/Pictures/Backgrounds/dan-baker-voltaire-kelpie-v012-db-reprint.jpg fill
-
-output 'ASUSTek COMPUTER INC VY249 MALMRS015307' resolution 1920x1080
-output 'ASUSTek COMPUTER INC VY249 MALMRS015307' transform 90
-output 'ASUSTek COMPUTER INC VY249 MALMRS015307' position 3840 1080
-output 'ASUSTek COMPUTER INC VY249 MALMRS015307' bg ~/OneDrive/Pictures/Backgrounds/dan-baker-voltaire-kelpie-v012-db-reprint.jpg fill
 
 output 'VIZIO, Inc M220VA ' resolution 1920x1080
 output 'VIZIO, Inc M220VA ' position 1920 0
@@ -417,9 +406,6 @@ exec /usr/bin/lxqt-policykit-agent
 #
 # See also:
 #  - /etc/xdg/autostart/xdg-user-dirs.desktop
-#  rin_2013-Open_Data_Structures (1).pdf'   bulk_transfer_template_v1.xlsx      Markdown                       'tmp2bbg823f_RO #112170 - Dan Haskin...Santa Fe SE Estimate.pdf'
-#'1Password Emergency Kit A3-6H6WH5-my.pdf'             contacts.csv                       'Microsoft Copilot Chat Files'   um.drawio
-
 #  - https://github.com/systemd/systemd/issues/18791
 #
 # Recommends: xdg-user-dirs
@@ -428,10 +414,9 @@ exec /usr/bin/xdg-user-dirs-update
 exec mako
 exec nm-applet --indicator
 exec blueman-applet
-#exec sleep 5 && keepassxc
-exec sleep 5 && 1password
 exec sleep 5 && start-sway-process "${HOME}/.local/bin/onedrivegui"
 exec sleep 5 && davmail
+exec sleep 5 && /opt/1Password/1password
 exec sleep 30 && discord || flatpak run com.discordapp.Discord
 exec sleep 30 && slack || flatpak run com.slack.Slack
 exec sleep 30 && teams || flatpak run com.github.IsmaelMartinez.teams_for_linux
