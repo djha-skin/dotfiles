@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -ex
+
+src="${1}"
+dest=$(echo "${1}" | sed -e "s|${HOME}/*||" -e "s/^[.]/dot-/")
+destdir=$(echo "${dest}" | sed -e 's|/[^/]*$||')
+
+mkdir -p "${destdir}"
+cp "${src}" "${dest}"
