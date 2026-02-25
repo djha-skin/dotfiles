@@ -3,6 +3,13 @@
 set -ex
 
 src="${1}"
+
+if [ ! -f "${src}" ]
+then
+  echo "File not found: ${src}" >&2
+  exit 1
+fi
+
 dest=$(echo "${1}" | sed -e "s|${HOME}/*||" -e "s/^[.]/dot-/")
 destdir=$(echo "${dest}" | sed -e 's|/[^/]*$||')
 

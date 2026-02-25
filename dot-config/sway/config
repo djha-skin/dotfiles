@@ -77,7 +77,7 @@ output 'HP Inc. HP VH240a 6CM01319L1' position 840 440
 output 'HP Inc. HP VH240a 6CM01319L1' bg ~/OneDrive/Pictures/Backgrounds/dan-baker-voltaire-kelpie-v012-db-reprint.jpg fill
 
 output 'VIZIO, Inc M220VA ' resolution 1920x1080
-output 'VIZIO, Inc M220VA ' position 1920 0
+output 'VIZIO, Inc M220VA ' position 0 1080
 
 focus_on_window_activation none
 #
@@ -351,6 +351,11 @@ for_window [app_id="pavucontrol-qt"] {
 }
 
 
+for_window [app_id="lxqt-policykit-agent"] {
+    floating enable
+    move position center
+}
+
 # Key bindings for media player control via MPRIS D-Bus interface
 #
 # Requires:     playerctl
@@ -388,6 +393,15 @@ bar {
     #font pango:Noto Sans Mono 10
 }
 
+# Start graphical authentication agent for PolicyKit.
+#
+# Certain applications may require this to request elevated privileges:
+#   GParted, virt-manager, anything that uses pkexec
+#
+# Requires: lxqt-policykit
+
+exec /usr/bin/lxqt-policykit-agent
+
 # Create or update XDG user dir configuration
 #
 # See also:
@@ -401,8 +415,7 @@ exec mako
 exec nm-applet --indicator
 exec blueman-applet
 exec sleep 5 && start-sway-process "${HOME}/.local/bin/onedrivegui"
-exec sleep 5 && davmail
-exec sleep 5 && /opt/1Password/1password
+exec sleep 5 && 1password
 exec sleep 30 && discord || flatpak run com.discordapp.Discord
 exec sleep 30 && slack || flatpak run com.slack.Slack
 exec sleep 30 && teams || flatpak run com.github.IsmaelMartinez.teams_for_linux
