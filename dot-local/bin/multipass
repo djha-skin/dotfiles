@@ -4,17 +4,94 @@ export POSIXLY_CORRECT=1
 echo "$(date) ${@}" >> ~/.var/log/audit.log || :
 url="${1}"
 username="${2}"
+requesting_account="${3:-}"
 
 # Weird bug in vdirsyncer
 url=$(echo "${url}" | sed 's|\([^:/]*\):/\([^/]\)|\1://\2|')
-found_one_password=0
 
+try_secret_service() {
+    tss_service_url="${1}"
+    tss_service_username="${2}"
+    tss_service_account="${3:-}"
+
+    # Try to lookup the credential
+    if [ -n "${tss_service_account}" ]; then
+        # With account specified
+        password=$(secret-tool lookup service "${tss_service_url}" username "${tss_service_username}" account "${tss_service_account}" 2>/dev/null)
+    else
+        # Without account
+        password=$(secret-tool lookup service "${tss_service_url}" username "${tss_service_username}" 2>/dev/null)
+    fi
+
+    if [ -n "${password}" ]; then
+        echo "${password}"
+        return 0
+    fi
+
+    return 1
+}
+
+store_in_secret_service() {
+    siss_service_url="${1}"
+    siss_service_username="${2}"
+    siss_service_password="${3}"
+    siss_service_account="${4:-}"
+
+    # Create a descriptive label
+    local label="${siss_service_username} @ ${siss_service_url}"
+
+    # Store the credential
+    if [ -n "${siss_service_account}" ]; then
+        echo "${siss_service_password}" | secret-tool store \
+            --label="${label}" \
+            service "${siss_service_url}" \
+            username "${siss_service_username}" \
+            account "${siss_service_account}" 2>/dev/null
+    else
+        echo "${siss_service_password}" | secret-tool store \
+            --label="${label}" \
+            service "${siss_service_url}" \
+            username "${siss_service_username}" 2>/dev/null
+    fi
+
+    if [ $? -ne 0 ]
+    then
+        echo "Warning: Failed to store credential in secret service" >&2
+        return 1
+    else
+        return 0
+    fi
+}
 
 find_in_1password() {
-    for op_account in $(op account list --format=json | jq -r '.[].account_uuid')
+    if [ -n "${requesting_account}" ]
+    then
+        op_accounts=$(op account list --format=json | \
+            jq -r ".[] |
+                select(contains({\"email\": \"${requesting_account}\"})) |
+                .account_uuid")
+    else
+        op_accounts=$(op account list --format=json | jq -r '.[].account_uuid')
+    fi
+
+    for op_account in ${op_accounts}
     do
-        for op_vault in $(op vault list --format=json --account="${op_account}" |
-            jq -r '.[].id')
+        if [ -n "${requesting_account}" ]
+        then
+            op_vaults_json=$(op vault list --account "${op_account}" \
+                --user "${requesting_account}" \
+                --format=json 2>/dev/null || echo "")
+            if [ -z "${op_vaults_json}" ]
+            then
+                op_vaults_json=$(op vault list --format=json --account="${op_account}" 2>/dev/null)
+            fi
+            op_vaults=$(printf '%s\n' "${op_vaults_json}" | jq -r '.[].id')
+        else
+            op_vaults=$(op vault list --format=json --account="${op_account}" |
+                jq -r '.[].id')
+        fi
+
+        for op_vault in ${op_vaults}
         do
             for entry_id in $(op item list --account="${op_account}" --vault="${op_vault}" --format=json |
                 jq -r '.[] | select(.urls | length > 0) |
@@ -50,20 +127,42 @@ find_in_1password() {
     done
 }
 
+if try_secret_service "${url}" "${username}" "${requesting_account}"
+then
+    exit 0
+fi
+
+echo "Credential not found in secret service, trying 1Password..." >&2
+
 pwlist=$(find_in_1password)
 
-if [ -z "${pwlist}" ]
-then
-    echo "1password detection failed for ${username}/${url}, moving on to KeePassXC" >&2
-else
-    for i in ${pwlist}
+if [ -n "${pwlist}" ]; then
+    for password in ${pwlist}
     do
-        echo "${i}"
+        # Store in secret service for next time
+        store_in_secret_service "${url}" "${username}" "${password}" "${requesting_account}"
+        # Return the password
+        echo "${password}"
         exit 0
     done
 fi
 
-printf 'url=%s\nusername=%s\n' \
+echo "1Password detection failed for ${username}/${url}, moving on to KeePassXC" >&2
+
+# Try KeePassXC as final fallback
+keepassxc_password=$(printf 'url=%s\nusername=%s\n' \
     "${url}" "${username}" | \
     git-credential-keepassxc get | \
-    awk -F' *= *' '/^password/ {print $2}'
+    awk -F' *= *' '/^password/ {print $2}')
+
+if [ -n "${keepassxc_password}" ]; then
+    echo "Found credential in KeePassXC for ${username}@${url}" >&2
+    # Store in secret service for next time
+    store_in_secret_service "${url}" "${username}" "${keepassxc_password}" "${requesting_account}"
+    # Return the password
+    echo "${keepassxc_password}"
+    exit 0
+fi
+
+echo "Error: No credential found for ${username}@${url}" >&2
+exit 1
