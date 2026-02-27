@@ -398,7 +398,7 @@ bar {
     #font pango:Noto Sans Mono 10
 }
 
-exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 ||  /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Create or update XDG user dir configuration
 #
