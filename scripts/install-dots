@@ -1,7 +1,7 @@
 #!/bin/sh
 set -ex
 
-find . -type f | grep -v Windows | grep -v iac | grep -v \.git | while read file
+find . -type f | grep -v Windows | grep -v iac | grep -v \.git | grep -v scripts | while read file
 do
     dest=${HOME}/$(echo $file | sed -e 's|dot-|.|g' -e 's|^\./||')
     destdir=$(echo "${dest}" | sed -e 's|[^/]\{1,\}$||')
