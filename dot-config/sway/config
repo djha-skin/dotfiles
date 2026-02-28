@@ -79,6 +79,9 @@ output 'HP Inc. HP VH240a 6CM01319L1' bg ~/OneDrive/Pictures/Backgrounds/dan-bak
 output 'VIZIO, Inc M220VA ' resolution 1920x1080
 output 'VIZIO, Inc M220VA ' position 0 1080
 
+output 'VIZIO, Inc M220VA 0x01010101' resolution 1920x1080
+output 'VIZIO, Inc M220VA 0x01010101' position 0 1080
+
 focus_on_window_activation none
 #
 # Example configuration:
@@ -415,8 +418,8 @@ exec blueman-applet
 exec sleep 5 && start-sway-process "${HOME}/.local/bin/onedrivegui"
 exec sleep 5 && 1password
 exec sleep 30 && discord || flatpak run com.discordapp.Discord
-exec sleep 30 && slack || flatpak run com.slack.Slack
-exec sleep 30 && teams || flatpak run com.github.IsmaelMartinez.teams_for_linux
+exec sleep 30 && slack || flatpak run com.slack.Slack || :
+exec sleep 30 && teams || flatpak run com.github.IsmaelMartinez.teams_for_linux || :
 exec sleep 30 && whatsie || flatpak run com.ktechpit.whatsie
 exec start-sway-process swaync
 bindsym Shift+n exec swaync-client -t -sw
