@@ -78,9 +78,11 @@ output 'HP Inc. HP VH240a 6CM01319L1' bg ~/OneDrive/Pictures/Backgrounds/dan-bak
 
 output 'VIZIO, Inc M220VA ' resolution 1920x1080
 output 'VIZIO, Inc M220VA ' position 0 1080
+output 'VIZIO, Inc M220VA ' bg ~/OneDrive/Pictures/Backgrounds/ddjfyzd-15207cdf-a0b0-473b-94ee-017009605e4d.jpg fill
 
 output 'VIZIO, Inc M220VA 0x01010101' resolution 1920x1080
 output 'VIZIO, Inc M220VA 0x01010101' position 0 1080
+output 'VIZIO, Inc M220VA 0x01010101' bg ~/OneDrive/Pictures/Backgrounds/ddjfyzd-15207cdf-a0b0-473b-94ee-017009605e4d.jpg fill
 
 focus_on_window_activation none
 #
