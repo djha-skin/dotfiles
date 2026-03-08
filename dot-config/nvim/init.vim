@@ -58,7 +58,6 @@ if len($TMUX) > 0
     let b:slime_paste_file = expand(".slime_paste")
 endif
 
-call plug#begin()
 if has('mac')
     let g:netrw_browser_viewer='open'
     if len($TERM_PROFILE) > 0
@@ -104,7 +103,7 @@ Plug 'godlygeek/tabular'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/playground'
+"Plug 'nvim-treesitter/playground'
 Plug 'tpope/vim-fireplace'
 Plug 'venantius/vim-cljfmt'
 Plug 'preservim/vim-markdown'
@@ -138,11 +137,25 @@ vnoremap <Leader>r y<C-w>wpa<CR><C-\><C-n><C-w>p
 "
 
 lua <<EOF
+-- LSP configuration deferred to VimEnter
 
-require 'lspconfig'.clojure_lsp.setup{}
-require 'lspconfig'.pylsp.setup{}
-require 'lspconfig'.terraformls.setup{}
-require 'lspconfig'.gopls.setup{}
+-- Defer LSP setup until after plugins are loaded
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    pcall(function()
+      vim.lsp.config("clojure_lsp", {})
+    end)
+    pcall(function()
+      vim.lsp.config("pylsp", {})
+    end)
+    pcall(function()
+      vim.lsp.config("terraformls", {})
+    end)
+    pcall(function()
+      vim.lsp.config("gopls", {})
+    end)
+  end
+})
 
 function clstart( )
     if ( not started)
