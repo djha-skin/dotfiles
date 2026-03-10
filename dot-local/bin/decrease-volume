@@ -1,0 +1,13 @@
+#!/bin/sh
+audio_sink="${1}"
+
+current_volume=$(wpctl get-volume "${audio_sink}" | awk '// {print $2}')
+
+under_min=$(echo "scale = 4; ( ${current_volume} - .1 ) < 0.4" | bc -l)
+
+if [ "${under_min}" -eq 0 ]
+then
+    wpctl set-volume "${audio_sink}" 0.1-
+else
+    wpctl set-volume "${audio_sink}" 0.4
+fi
