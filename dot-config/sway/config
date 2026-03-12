@@ -281,8 +281,8 @@ mode "interact" {
 
     bindsym XF86Calculator exec rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '{result}' | copy" -kb-accept-custom 'control+KP_Enter'
     bindsym --locked {
-        XF86MonBrightnessDown exec brightnessctl set 5%+
-        XF86MonBrightnessUp exec brightnessctl set 5%-
+        XF86MonBrightnessDown exec brightnessctl set 5%-
+        XF86MonBrightnessUp exec brightnessctl set 5%+
         XF86AudioPlay       exec playerctl play-pause
         XF86AudioStop       exec playerctl stop
         XF86AudioForward    exec playerctl position +10
