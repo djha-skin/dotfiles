@@ -13,5 +13,9 @@ fi
 dest=$(echo "${1}" | sed -e "s|${HOME}/*||" -e "s/^[.]/dot-/")
 destdir=$(echo "${dest}" | sed -e 's|/[^/]*$||')
 
-mkdir -p "${destdir}"
+if echo "${destdir}" | grep -q '/'
+then
+    mkdir -p "${destdir}"
+fi
+
 cp "${src}" "${dest}"
