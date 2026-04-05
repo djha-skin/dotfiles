@@ -2,7 +2,7 @@
 
 bisync() {
     rclone bisync "${@}"
-    if [ "${?}" = 2 ]
+    if [ "${?}" = 2 -o "${?}" = 7 ]
     then
         rclone bisync "${@}" --resync
     fi
