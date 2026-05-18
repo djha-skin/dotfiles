@@ -1,12 +1,13 @@
-"query:Development:unread = \"yes\" and tags # \"development\""
-"query:DevOps:unread = \"yes\" and tags # \"devops\""
-"query:Business:unread = \"yes\" and tags # \"business\""
-"query:Technology:unread = \"yes\" and tags # \"tech\""
-"query:Comics:unread = \"yes\" and tags # \"comics\""
-"query:News:unread = \"yes\" and tags # \"news\""
+"query:Development:tags # \"development\""
+"query:DevOps:tags # \"devops\""
+"query:Business:tags # \"business\""
+"query:Technology:tags # \"tech\""
+"query:Comics:tags # \"comics\""
+"query:News:tags # \"news\""
+"query:AI:tags # \"ai\""
+https://www.chrismdp.com/feed.xml ai
 https://kevingal.com/feed.xml development common-lisp
 https://formal.land/blog/rss development formal-verification
-https://www.evalapply.org/index.xml development clojure
 https://matt.sh/.rss development
 https://samwho.dev/rss.xml development
 https://andrew.gibiansky.com/feed.rss development
@@ -42,7 +43,7 @@ https://martinfowler.com/feed.atom development
 https://michaelscodingspot.com/feed development
 https://nedbatchelder.com/blog/rss.xml development
 https://pbpython.com/feeds/all.atom.xml development
-https://simonwillison.net/atom/everything muted
+https://simonwillison.net/atom/everything ai
 https://stackoverflow.blog/feed development
 https://tomtunguz.com/index.xml development
 https://tonsky.me/blog/atom.xml development
@@ -57,10 +58,8 @@ https://blog.metaobject.com/feeds/posts/default development
 https://scattered-thoughts.net/atom.xml development
 https://buttondown.email/cassidoo/rss development
 https://www.juxt.pro/blog/rss.xml development
-http://planet.clojure.in/atom.xml development
 https://planet.lisp.org/rss20.xml development
 https://ericnormand.me/rss.xml development
-https://clojure.org/feed.xml development
 https://www.hashicorp.com/blog/feed.xml devops
 http://feeds.feedburner.com/Wrockblog devops
 http://feeds.scottlowe.org/slowe/content/feed devops
