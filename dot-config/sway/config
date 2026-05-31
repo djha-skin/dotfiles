@@ -63,6 +63,10 @@ output eDP-1 resolution 1920x1080
 output eDP-1 position 1920 1080
 output eDP-1 bg ~/OneDrive/Pictures/Backgrounds/ddjfyzd-15207cdf-a0b0-473b-94ee-017009605e4d.jpg fill
 
+output 'Samsung Electric Company SAMSUNG Unknown' resolution 1920x1080
+output 'Samsung Electric Company SAMSUNG Unknown' position 0 0
+output 'Samsung Electric Company SAMSUNG Unknown' bg ~/OneDrive/Pictures/Backgrounds/ddjfyzd-15207cdf-a0b0-473b-94ee-017009605e4d.jpg fill
+
 output 'Dell Inc. DELL S2209W P262H93320GU' resolution 1920x1080
 output 'Dell Inc. DELL S2209W P262H93320GU' position 0 1080
 output 'Dell Inc. DELL S2209W P262H93320GU' bg ~/OneDrive/Pictures/Backgrounds/ddjfyzd-15207cdf-a0b0-473b-94ee-017009605e4d.jpg fill
