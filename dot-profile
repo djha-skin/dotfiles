@@ -144,7 +144,7 @@ export GOOSE_PLANNER_CONTEXT_LIMIT=256000
 export GOOSE_CONTEXT_STRATEGY=summarize
 export GOOSE_CLI_SHOW_COST=true
 export GOOSE_PROVIDER="openrouter"
-export GOOSE_MODEL="export GOOSE_MODEL=xiaomi/mimo-v2-flash"
+export GOOSE_MODEL="xiaomi/mimo-v2-flash"
 export GOOSE_PLANNER_PROVIDER="openrouter"
 export GOOSE_PLANNER_MODEL="anthropic/claude-sonnet-4.6"
 export GOOSE_TEMPERATURE="0.7"
