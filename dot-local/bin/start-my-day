@@ -44,6 +44,7 @@ do
             ;;
         *)
             echo "Unknown option: ${1}" >&2
+            shift
             ;;
     esac
 done
