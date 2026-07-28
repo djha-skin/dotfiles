@@ -1,11 +1,9 @@
-"query:Development:tags # \"development\""
-"query:DevOps:tags # \"devops\""
-"query:Business:tags # \"business\""
-"query:Technology:tags # \"tech\""
-"query:Comics:tags # \"comics\""
-"query:News:tags # \"news\""
-"query:AI:tags # \"ai\""
-https://www.chrismdp.com/feed.xml ai
+"query:Development:unread = \"yes\" and tags # \"development\""
+"query:DevOps:unread = \"yes\" and tags # \"devops\""
+"query:Business:unread = \"yes\" and tags # \"business\""
+"query:Technology:unread = \"yes\" and tags # \"tech\""
+"query:Comics:unread = \"yes\" and tags # \"comics\""
+"query:News:unread = \"yes\" and tags # \"news\""
 https://kevingal.com/feed.xml development common-lisp
 https://formal.land/blog/rss development formal-verification
 https://matt.sh/.rss development
@@ -43,8 +41,7 @@ https://martinfowler.com/feed.atom development
 https://michaelscodingspot.com/feed development
 https://nedbatchelder.com/blog/rss.xml development
 https://pbpython.com/feeds/all.atom.xml development
-https://simonwillison.net/atom/everything ai
-https://stackoverflow.blog/feed development
+https://simonwillison.net/atom/everything muted
 https://tomtunguz.com/index.xml development
 https://tonsky.me/blog/atom.xml development
 https://www.airs.com/blog/feed development
