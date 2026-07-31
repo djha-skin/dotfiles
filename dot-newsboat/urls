@@ -1,9 +1,12 @@
-"query:Development:unread = \"yes\" and tags # \"development\""
-"query:DevOps:unread = \"yes\" and tags # \"devops\""
-"query:Business:unread = \"yes\" and tags # \"business\""
-"query:Technology:unread = \"yes\" and tags # \"tech\""
-"query:Comics:unread = \"yes\" and tags # \"comics\""
-"query:News:unread = \"yes\" and tags # \"news\""
+"query:Development:tags # \"development\""
+"query:AI:tags # \"ai\""
+"query:DevOps:tags # \"devops\""
+"query:Business:tags # \"business\""
+"query:Technology:tags # \"tech\""
+"query:Comics:tags # \"comics\""
+"query:News:tags # \"news\""
+https://lucumr.pocoo.org/feed.xml ai
+https://mariozechner.at/rss.xml ai
 https://kevingal.com/feed.xml development common-lisp
 https://formal.land/blog/rss development formal-verification
 https://matt.sh/.rss development
