@@ -1,0 +1,26 @@
+{
+  "lastChangelogVersion": "0.83.0",
+  "theme": "dark",
+  "defaultProvider": "openrouter",
+  "defaultModel": "deepseek/deepseek-v4-flash",
+  "defaultThinkingLevel": "high",
+  "packages": [
+    "npm:pi-mcp-adapter",
+    "npm:pire-browser",
+    "npm:@robhowley/pi-openrouter",
+    "npm:pi-beads-extension",
+    "npm:@tintinweb/pi-tasks",
+    "npm:@tintinweb/pi-subagents",
+    "npm:@feniix/pi-sequential-thinking",
+    "npm:pi-stop",
+    "npm:pi-safe-compact",
+    "npm:@agnishc/edb-context-viewer",
+    "npm:@fgladisch/pi-persistent-history",
+    "npm:pi-quiet-tools",
+    "npm:pi-context-cap",
+    "npm:@djhaskin987/pi-top-of-mind"
+  ],
+  "compaction": {
+    "enabled": true
+  }
+}
