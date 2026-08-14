@@ -64,8 +64,6 @@ PERL_LOCAL_LIB_ROOT="${HOME}/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}
 PERL_MB_OPT="--install_base \"${HOME}/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=${HOME}/perl5"; export PERL_MM_OPT;
 
-pchanged
-
 update_ps1() {
     __ups1_lastcmd="${?}"
     __ups1_default_colors='\[\e[0;34m\]'
@@ -165,3 +163,5 @@ update_ps1() {
 }
 
 export PROMPT_COMMAND="update_ps1${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
+export PATH="$HOME/.npm-global/bin:$PATH"
+. "$HOME/.cargo/env"
