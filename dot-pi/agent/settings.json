@@ -1,24 +1,38 @@
 {
-  "lastChangelogVersion": "0.83.0",
+  "lastChangelogVersion": "0.84.1",
   "theme": "dark",
-  "defaultProvider": "openrouter",
-  "defaultModel": "deepseek/deepseek-v4-flash",
-  "defaultThinkingLevel": "high",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.6-luna",
+  "defaultThinkingLevel": "medium",
   "packages": [
     "npm:pi-mcp-adapter",
     "npm:pire-browser",
-    "npm:@robhowley/pi-openrouter",
+    {
+      "source": "npm:@robhowley/pi-openrouter",
+      "extensions": [
+        "-extensions/openrouter/index.ts"
+      ]
+    },
     "npm:pi-beads-extension",
     "npm:@tintinweb/pi-tasks",
     "npm:@tintinweb/pi-subagents",
     "npm:@feniix/pi-sequential-thinking",
     "npm:pi-stop",
     "npm:pi-safe-compact",
-    "npm:@agnishc/edb-context-viewer",
+    {
+      "source": "npm:@agnishc/edb-context-viewer",
+      "extensions": [
+        "+src/index.ts"
+      ]
+    },
     "npm:@fgladisch/pi-persistent-history",
     "npm:pi-quiet-tools",
     "npm:pi-context-cap",
-    "npm:@djhaskin987/pi-top-of-mind"
+    "npm:@djhaskin987/pi-top-of-mind",
+    "npm:pi-codex",
+    "npm:pi-thinking-timer",
+    "npm:@99percentpeople/pi-thinking-fold",
+    "npm:pi-speed-inhibitor"
   ],
   "compaction": {
     "enabled": true
