@@ -1,5 +1,6 @@
 set $mod Alt
 
+
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -57,41 +58,46 @@ set $menu $rofi_cmd
 
 output HDMI-A-1 resolution 1920x1080
 output HDMI-A-1 position 0 1080
-output HDMI-A-1 bg ~/OneDrive/Pictures/Backgrounds/ddjfyzd-15207cdf-a0b0-473b-94ee-017009605e4d.jpg fill
+output HDMI-A-1 bg ~/OneDrive/Pictures/Backgrounds/legend-of-jingwei.jpeg fill
 
 output eDP-1 resolution 1920x1080
-output eDP-1 position 1920 1080
-output eDP-1 bg ~/OneDrive/Pictures/Backgrounds/ddjfyzd-15207cdf-a0b0-473b-94ee-017009605e4d.jpg fill
+output eDP-1 position 3840 2160
+output eDP-1 bg ~/OneDrive/Pictures/Backgrounds/legend-of-jingwei.jpeg fill
 
 output 'Samsung Electric Company SAMSUNG Unknown' resolution 1920x1080
 output 'Samsung Electric Company SAMSUNG Unknown' position 0 0
-output 'Samsung Electric Company SAMSUNG Unknown' bg ~/OneDrive/Pictures/Backgrounds/ddjfyzd-15207cdf-a0b0-473b-94ee-017009605e4d.jpg fill
-
-output 'Dell Inc. DELL S2209W P262H93320GU' resolution 1920x1080
-output 'Dell Inc. DELL S2209W P262H93320GU' position 0 1080
-output 'Dell Inc. DELL S2209W P262H93320GU' bg ~/OneDrive/Pictures/Backgrounds/ddjfyzd-15207cdf-a0b0-473b-94ee-017009605e4d.jpg fill
+output 'Samsung Electric Company SAMSUNG Unknown' bg ~/OneDrive/Pictures/Backgrounds/legend-of-jingwei.jpeg fill
 
 output 'HP Inc. HP VH240a 6CM01304VL' resolution 1920x1080
 output 'HP Inc. HP VH240a 6CM01304VL' transform 270
 output 'HP Inc. HP VH240a 6CM01304VL' position 3840 440
-output 'HP Inc. HP VH240a 6CM01304VL' bg ~/OneDrive/Pictures/Backgrounds/dan-baker-voltaire-kelpie-v012-db-reprint.jpg fill
+output 'HP Inc. HP VH240a 6CM01304VL' bg ~/OneDrive/Pictures/Backgrounds/cosmic-cat-astrophe.jpeg fill
 
 output 'Dell Inc. DELL S2209W P262H93320YU' resolution 1920x1080
 output 'Dell Inc. DELL S2209W P262H93320YU' position  0 1080
-output 'Dell Inc. DELL S2209W P262H93320YU' bg ~/OneDrive/Pictures/Backgrounds/ddjfyzd-15207cdf-a0b0-473b-94ee-017009605e4d.jpg fill
+output 'Dell Inc. DELL S2209W P262H93320YU' bg ~/OneDrive/Pictures/Backgrounds/legend-of-jingwei.jpeg fill
+
+output 'Dell Inc. DELL S2209W P262H93320GU' resolution 1920x1080
+output 'Dell Inc. DELL S2209W P262H93320GU' position 0 1080
+output 'Dell Inc. DELL S2209W P262H93320GU' bg ~/OneDrive/Pictures/Backgrounds/legend-of-jingwei.jpeg fill
 
 output 'HP Inc. HP VH240a 6CM01319L1' resolution 1920x1080
 output 'HP Inc. HP VH240a 6CM01319L1' transform 270
 output 'HP Inc. HP VH240a 6CM01319L1' position 840 440
-output 'HP Inc. HP VH240a 6CM01319L1' bg ~/OneDrive/Pictures/Backgrounds/dan-baker-voltaire-kelpie-v012-db-reprint.jpg fill
+output 'HP Inc. HP VH240a 6CM01319L1' bg ~/OneDrive/Pictures/Backgrounds/cosmic-cat-astrophe.jpeg fill
 
 output 'VIZIO, Inc M220VA ' resolution 1920x1080
-output 'VIZIO, Inc M220VA ' position 0 1080
-output 'VIZIO, Inc M220VA ' bg ~/OneDrive/Pictures/Backgrounds/ddjfyzd-15207cdf-a0b0-473b-94ee-017009605e4d.jpg fill
+output 'VIZIO, Inc M220VA ' position 1920 2160
+output 'VIZIO, Inc M220VA ' bg ~/OneDrive/Pictures/Backgrounds/legend-of-jingwei.jpeg fill
 
 output 'VIZIO, Inc M220VA 0x01010101' resolution 1920x1080
-output 'VIZIO, Inc M220VA 0x01010101' position 0 1080
-output 'VIZIO, Inc M220VA 0x01010101' bg ~/OneDrive/Pictures/Backgrounds/ddjfyzd-15207cdf-a0b0-473b-94ee-017009605e4d.jpg fill
+output 'VIZIO, Inc M220VA 0x01010101' position 1920 2160
+output 'VIZIO, Inc M220VA 0x01010101' bg ~/OneDrive/Pictures/Backgrounds/legend-of-jingwei.jpeg fill
+
+
+output 'Samsung Electric Company LS32A70 HCPTB00645' resolution 3840x2060
+output 'Samsung Electric Company LS32A70 HCPTB00645' position 0 2160
+output 'Samsung Electric Company LS32A70 HCPTB00645' bg ~/OneDrive/Pictures/Backgrounds/legend-of-jingwei.jpeg fill
 
 
 focus_on_window_activation none
