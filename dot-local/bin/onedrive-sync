@@ -16,9 +16,9 @@ bisync() {
         echo "Another instance is running." >&2
         exit 0
     fi
-    bisync OneDrive:/Markdown/ /home/skin/OneDrive/Markdown/
-    bisync OneDrive:/KeePassXC/ /home/skin/OneDrive/KeePassXC/
-    bisync OneDrive:/Documents/ /home/skin/OneDrive/Documents/
-    bisync OneDrive:/Books/ /home/skin/OneDrive/Books/
-    bisync OneDrive:/Audio/ /home/skin/OneDrive/Audio/
+    bisync OneDrive:/Markdown/ ${HOME}/OneDrive/Markdown/
+    bisync OneDrive:/KeePassXC/ ${HOME}/OneDrive/KeePassXC/
+    bisync OneDrive:/Documents/ ${HOME}/OneDrive/Documents/
+    bisync OneDrive:/Books/ ${HOME}/OneDrive/Books/
+    bisync OneDrive:/Audio/ ${HOME}/OneDrive/Audio/
 ) 9>~/.cache/onedrive-sync-lock
