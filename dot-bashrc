@@ -164,4 +164,12 @@ update_ps1() {
 
 export PROMPT_COMMAND="update_ps1${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
 export PATH="$HOME/.npm-global/bin:$PATH"
-. "$HOME/.cargo/env"
+if [ -d "${HOME}/.cargo" ]
+then
+    . "$HOME/.cargo/env"
+fi
+
+if [ -d "/opt/homebrew" ]
+then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
