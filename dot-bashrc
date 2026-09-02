@@ -54,7 +54,6 @@ fi
 
 command -v vg >/dev/null 2>&1 && eval "$(vg eval --shell bash)"
 
-. /usr/share/bash-completion/completions/git
 # added by travis gem
 [ -f ${HOME}/.travis/travis.sh ] && source ${HOME}/.travis/travis.sh
 
@@ -172,4 +171,11 @@ fi
 if [ -d "/opt/homebrew" ]
 then
     eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+if [ -d "/opt/homebrew/etc/bash_completion" ]
+then
+    . "/opt/homebrew/etc/bash_completion"
+else
+    . /usr/share/bash-completion/completions/git
 fi
