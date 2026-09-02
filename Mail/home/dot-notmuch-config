@@ -29,7 +29,7 @@ path=/home/skin/Mail/home
 [user]
 name=Daniel Jay Haskin
 primary_email=djhaskin987@gmail.com
-other_email=dan@djhaskin.com;daniel.haskin@angel.com;
+other_email=dan@djhaskin.com;
 # Configuration for "notmuch new"
 #
 # The following options are supported here:
