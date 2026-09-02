@@ -15,7 +15,9 @@ try_secret_service() {
     tss_service_account="${3:-}"
 
     # Try to lookup the credential
-    if [ -n "${tss_service_account}" ]; then
+    if uname -a | grep -q Darwin; then
+        password=$(security find-generic-password -s "${tss_service_url}" -a "${tss_service_username}" -w)
+    elif [ -n "${tss_service_account}" ]; then
         # With account specified
         password=$(secret-tool lookup service "${tss_service_url}" username "${tss_service_username}" account "${tss_service_account}" 2>/dev/null)
     else
@@ -41,7 +43,11 @@ store_in_secret_service() {
     local label="${siss_service_username} @ ${siss_service_url}"
 
     # Store the credential
-    if [ -n "${siss_service_account}" ]; then
+    if uname -a | grep -q Darwin; then
+        security add-generic-password -a "${siss_service_username}" \
+            -s "${siss_service_url}" -w \
+            "${siss_service_password}" 2>/dev/null
+    elif [ -n "${siss_service_account}" ]; then
         echo "${siss_service_password}" | secret-tool store \
             --label="${label}" \
             service "${siss_service_url}" \
