@@ -1,4 +1,5 @@
 #!/bin/sh
+set -ex
 sync_pair() {
     sp_pair="${1}"
     shift
@@ -54,11 +55,11 @@ fi
         grep -v '^- ' | while read d
     do
         start_time=$(echo "${d}" | awk -F'[- ]' '/[0-9]+:[0-9]+/{ print $1 }')
-        start_time_epoch=$(date -d "${start_time}" +%s)
+        start_time_epoch=$(date "${start_time}" +%s)
         now=$(date +%s)
         if [ "$(( ${start_time_epoch} - ${now} ))" -lt "600" ]
         then
-            ffplay -nodisp -autoexit ~/OneDrive/Audio/Dings/588718__collierhs-colinlib__elevator-ding.wav
+            ffplay -nodisp -autoexit ~/Audio/588718__collierhs-colinlib__elevator-ding.wav
             notify "Calendar" "${d}"
         fi
     done
