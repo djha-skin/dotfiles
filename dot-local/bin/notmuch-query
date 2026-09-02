@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# NeoMutt passes the search string as the first argument ($1)
+# We search for that string matching any part of a name or email address
+
+notmuch --config "${HOME}/Mail/${1}/.notmuch-config" address --output=recipients --output=sender "to:*${2}* or from:*${2}*" | grep "${2}"
