@@ -1,5 +1,5 @@
 #!/bin/sh
-set -ex
+
 sync_pair() {
     sp_pair="${1}"
     shift
@@ -55,7 +55,12 @@ fi
         grep -v '^- ' | while read d
     do
         start_time=$(echo "${d}" | awk -F'[- ]' '/[0-9]+:[0-9]+/{ print $1 }')
-        start_time_epoch=$(date "${start_time}" +%s)
+        if uname -a | grep -q Darwin
+        then
+            start_time_epoch=$(date -j -f "%H:%M" "${start_time}" +%s)
+        else
+            start_time_epoch=$(date -d "${start_time}" +%s)
+        fi
         now=$(date +%s)
         if [ "$(( ${start_time_epoch} - ${now} ))" -lt "600" ]
         then
