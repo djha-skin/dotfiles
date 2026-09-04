@@ -35,4 +35,9 @@ then
     yay -Syu
 fi
 
-shutdown now
+if which brew 2>/dev/nu7ll
+then
+    brew upgrade
+fi
+
+sudo shutdown -h now
