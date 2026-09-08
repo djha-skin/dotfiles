@@ -85,15 +85,13 @@ tmux new-window
 tmux rename-window "Email"
 tmux split-window
 tmux send-keys -l -t :.0 "cd ~mutt -F ~/.mutt/mhome.accountOd"
-if [ "${play}" -ne 0 ]
+if [ "${play}" -eq 0 ]
 then
-    tmux send-keys -l -t :.1 "cd ~mutt -F ~/.mutt/mmigadu.accountOd"
-else
     tmux send-keys -l -t :.1 "cd ~mutt -F ~/.mutt/mwork.accountOd"
+else
+    tmux send-keys -l -t :.1 "cd ~mutt -F ~/.mutt/mmigadu.accountOd"
 fi
-
-
-
+tmux select-layout even-vertical
 tmux new-window
 tmux rename-window "Calendar"
 tmux send-keys -l -t :.0 "khal interactive"
