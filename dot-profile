@@ -1,3 +1,7 @@
+
+# Kiro CLI pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/profile.pre.bash" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/profile.pre.bash"
+
 # ~/.profile: executed by the command interpreter for login shells.
 # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
 # exists.
@@ -113,7 +117,15 @@ fi
 
 export EDITOR="nvim"
 export ALTERNATE_EDITOR=""
-export BROWSER="firefox"
+
+if uname -a | grep -q Darwin
+then
+    export BROWSER="${HOME}/.local/bin/mac-browser"
+    export PDFVIEWER="open"
+else
+    export BROWSER="firefox"
+    export PDFVIEWER="zathura"
+fi
 export SSH_AUTH_SOCK=/run/user/1000/ssh-agent.socket
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
@@ -147,9 +159,11 @@ export GOOSE_PLANNER_PROVIDER="openrouter"
 export GOOSE_PLANNER_MODEL="anthropic/claude-sonnet-4.6"
 export GOOSE_TEMPERATURE="0.7"
 export GOOSE_CONTEXT_STRATEGY=summarize
+export GOOSE_CLI_SHOW_THINKING=1
 
 # Set to prompt the user
 export GOOSE_CONTEXT_STRATEGY=prompt
+
 
 if [ -f "${HOME}/.profile-theme" ]
 then
@@ -205,3 +219,17 @@ if [ -f "${HOME}/.cargo/env" ]
 then
     . "$HOME/.cargo/env"
 fi
+
+
+# Kiro CLI post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/profile.post.bash" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/profile.post.bash"
+
+if uname -a | grep -q Darwin
+then
+    if [ -d /Library/TeX/texbin ]
+    then
+        export PATH="${PATH}:/Library/TeX/texbin"
+    fi
+fi
+
+export AWS_PAGER=""
