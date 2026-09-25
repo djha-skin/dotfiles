@@ -1,9 +1,10 @@
 [pager]
     branch = false
-    diff = false
 [user]
 	email = djhaskin987@gmail.com
 	name = Daniel Jay Haskin
+[core]
+    pager = less -Q --use-color -R --tabs=5,9,13,17,21,25,29,33
 [push]
 	default = simple
 	autoSetupRemote = true
