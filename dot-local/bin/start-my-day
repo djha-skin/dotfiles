@@ -1,4 +1,12 @@
-#/bin/sh
+#!/bin/sh
+
+# New tmux panes are not ready to consume terminal input immediately.  Launch
+# commands as the pane's process rather than injecting keys during shell setup.
+# The final Bash keeps the pane available after a command exits.
+run_in_pane() {
+    tmux "${1}" \
+        "exec /opt/homebrew/bin/bash -isc \"${2}\""
+}
 
 usage() {
     echo "Usage: start-my-day [-r|--reset]" >&2
@@ -9,6 +17,9 @@ usage() {
     exit 1
 }
 
+if [ -f "${HOME}/.private_shell_aliases" ]; then
+    source ~/.private_shell_aliases
+fi
 
 reset=0
 play=0
@@ -60,52 +71,41 @@ then
 fi
 
 tmux rename-window "Background"
-tmux send-keys -l -t :.0 "scrcpy"
+tmux send-keys -t :.0 "scrcpy" Enter
 
-if [ "${vpn}" -ne 0 ]
-then
-    tmux split-window
-    tmux send-keys -l -t :.1 "cd ~/Wireguard; uwg-quick up ./SVW-CanyonPark.conf; uwg-quick up ./SVW-DataCenter.conf"
-fi
-
-tmux new-window
-tmux rename-window "Planner"
-tmux split-window
 if [ "${play}" -ne 0 ]
 then
-    tmux send-keys -l -t :.0 "homenotesppushd -i 0 .diary"
+    run_in_pane new-window "cd ~/OneDrive/Markdown/Home && diary"
 else
-    tmux send-keys -l -t :.0 "worknotesppushd -i 0 .diary"
+    run_in_pane new-window "cd ~/OneDrive/Markdown/Work && diary"
 fi
 if [ "${timer}" -ne 0 ]
 then
-    tmux send-keys -l -t :.1 "pom"
+    run_in_pane split-window "timer Blast 22 && timer Pacer 2 && timer Shutdown 1 && timer Break 5"
 fi
-tmux new-window
-tmux rename-window "Email"
-tmux split-window
-tmux send-keys -l -t :.0 "cd ~mutt -F ~/.mutt/mhome.accountOd"
+tmux rename-window "Planner"
+
+run_in_pane new-window "exec neomutt -F ~/.mutt/mhome.account -e 'push <0><d>'"
 if [ "${play}" -eq 0 ]
 then
-    tmux send-keys -l -t :.1 "cd ~mutt -F ~/.mutt/mwork.accountOd"
+    run_in_pane split-window "exec neomutt -F ~/.mutt/mwork.account -e 'push <O><d>'"
 else
-    tmux send-keys -l -t :.1 "cd ~mutt -F ~/.mutt/mmigadu.accountOd"
+    run_in_pane split-window "exec neomutt -F ~/.mutt/mmigadu.account -e 'push <O><d>'"
 fi
 tmux select-layout even-vertical
-tmux new-window
+tmux rename-window "Email"
+
+run_in_pane new-window "exec khal interactive"
 tmux rename-window "Calendar"
-tmux send-keys -l -t :.0 "khal interactive"
-tmux new-window
+run_in_pane new-window "exec irssi"
 tmux rename-window "Chat"
-tmux send-keys -l -t :.0 "irssi"
 #tmux split-window
-#tmux send-keys -l -t :.2 "cd ~nchat"
+#tmux send-keys -t :.2 "cd ~" Enter "nchat" Enter
 #tmux select-layout even-vertical
 #tmux new-window
 #tmux rename-window "System"
-#tmux send-keys -l -t :.0 "btop"
-tmux new-window
-tmux send-keys -l -t :.0 "newsboatR"
+#tmux send-keys -t :.0 "btop" Enter
+run_in_pane new-window "exec newsboat --refresh-on-start"
 tmux rename-window "News"
 tmux new-window
 tmux rename-window "Lab"
