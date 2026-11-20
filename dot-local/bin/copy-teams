@@ -1,0 +1,42 @@
+#!/bin/sh
+
+. ${HOME}/.profile
+
+if ! command -v pandoc >/dev/null 2>&1
+then
+    echo "copy-teams: pandoc is required" >&2
+    return 1
+fi
+
+ct_html=$(pandoc \
+    -f commonmark-raw_html+pipe_tables+task_lists+emoji \
+    -t html --wrap=none --syntax-highlighting=none)
+ct_status=$?
+if [ "$ct_status" -ne 0 ]
+then
+    unset ct_html ct_status
+    return "$ct_status"
+fi
+
+if command -v osascript >/dev/null 2>&1 && command -v od >/dev/null 2>&1
+then
+    # AppleScript's HTML clipboard flavor takes raw bytes as a hex literal.
+    ct_html_hex=$(printf '%s' "$ct_html" | LC_ALL=C od -An -tx1 -v | tr -d ' \n')
+    printf 'set the clipboard to {text:" ", «class HTML»:«data HTML%s»}' \
+        "$ct_html_hex" | osascript -
+    ct_status=$?
+elif command -v wl-copy >/dev/null 2>&1
+then
+    printf '%s' "$ct_html" | wl-copy --type text/html
+    ct_status=$?
+elif command -v xclip >/dev/null 2>&1
+then
+    printf '%s' "$ct_html" | xclip -selection clipboard -t text/html
+    ct_status=$?
+else
+    echo "copy-teams: no HTML clipboard command found (need macOS osascript, wl-copy, or xclip)" >&2
+    ct_status=1
+fi
+
+unset ct_html ct_html_hex
+return "$ct_status"
