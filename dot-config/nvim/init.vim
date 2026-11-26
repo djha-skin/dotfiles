@@ -18,10 +18,10 @@ if has('win32')
 else
   let b:slime_target = "tmux"
   let g:slime_target = "tmux"
-  let b:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.0"}
-  let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.0"}
-  let b:slime_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.0"}
-  let g:slime_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.0"}
+  let b:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}
+  let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}
+  let b:slime_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}
+  let g:slime_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}
 endif
 
 let g:black_linelength = 79
@@ -90,7 +90,6 @@ Plug 'nvim-lua/plenary.nvim'
 "Plug 'Olical/conjure'
 Plug 'djhaskin987/vim-slime'
 Plug 'bakpakin/janet.vim'
-Plug 'github/copilot.vim'
 Plug 'vlime/vlime', {'rtp': 'vim/'}
 Plug 'rhysd/vim-grammarous'
 Plug 'martinda/Jenkinsfile-vim-syntax'
@@ -375,6 +374,9 @@ au BufRead,BufNewFile *.rb set tabstop=2
 au BufRead,BufNewFile *.rb set shiftwidth=2
 au BufRead,BufNewFile *.pp set shiftwidth=2
 "au BufRead,BufNewFile *.lisp lua clstart()
+"
+autocmd FileType lisp,scheme,clojure,janet setlocal lisp
+autocmd FileType lisp,scheme,clojure,janet setlocal nocindent nosmartindent autoindent
 au BufRead,BufNewFile *.lisp nnoremap <LocalLeader>d i(print <Esc>l])a)<Esc>
 au BufRead,BufNewFile *.lisp nnoremap <LocalLeader>D bi(print <Esc>lea)<Esc>
 au BufWritePre *.lisp lua vim.lsp.buf.format()
@@ -467,6 +469,8 @@ function! Indent()
 endfunction
 
 au BufRead,BufNewFile *.lisp compiler roswell-sbcl
+au BufRead,BufNewFile *.lisp compiler roswell-sbcl
+
 "au BufWritePre *.lisp call Indent()"
 au BufRead,BufNewFile *.asd compiler roswell-sbcl
 au BufRead,BufNewFile *.ly nnoremap <LocalLeader>p :!timidity output/%:r.midi<CR>
